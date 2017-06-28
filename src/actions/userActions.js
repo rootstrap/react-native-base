@@ -13,10 +13,10 @@ export const logoutSuccess = () => ({
 });
 
 export const login = user =>
-  (dispatch) =>
+  dispatch =>
     userApi.login({ user }).then(({ data }) => {
       sessionService.saveUser(data)
-      .then(() => dispatch(loginSuccess()))
+      .then(() => dispatch(loginSuccess()));
     }).catch((err) => {
       throw new SubmissionError({
         _error: err.errors[0]
@@ -28,8 +28,8 @@ export const logout = () =>
     userApi.logout().then(() => {
       sessionService.deleteSession();
       sessionService.deleteUser();
-      dispatch(logoutSuccess())
+      dispatch(logoutSuccess());
     }).catch((err) => {
-      throw(err);
+      throw (err);
     });
   };

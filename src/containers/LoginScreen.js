@@ -2,33 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import LoginForm from '../components/user/LoginForm';
-import * as userActions from '../actions/userActions';
-
-const LoginScreen = ({ navigation, actions: { login } }) => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>
-      LOGIN
-    </Text>
-    <LoginForm onSubmit={(user) => login(user.toJS())}/>
-  </View>
-);
-
-const { object } = PropTypes;
-
-LoginScreen.propTypes = {
-  navigation: object.isRequired
-};
-
-LoginScreen.navigationOptions = {
-  title: 'Log In'
-};
-
-const mapDispatch = dispatch => ({
-  actions: bindActionCreators(userActions, dispatch)
-});
+import { login } from '../actions/userActions';
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +18,29 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10
   },
+});
+
+const LoginScreen = ({ login }) => (
+  <View style={styles.container}>
+    <Text style={styles.welcome}>
+      LOGIN
+    </Text>
+    <LoginForm onSubmit={user => login(user.toJS())} />
+  </View>
+);
+
+const { func } = PropTypes;
+
+LoginScreen.propTypes = {
+  login: func.isRequired
+};
+
+LoginScreen.navigationOptions = {
+  title: 'Log In'
+};
+
+const mapDispatch = dispatch => ({
+  login: user => dispatch(login(user))
 });
 
 export default connect(null, mapDispatch)(LoginScreen);

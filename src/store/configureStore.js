@@ -8,7 +8,8 @@ import AppReducer from '../reducers';
 export default function configureStore(initialState) {
   const logger = createLogger({
     collapsed: true,
-    stateTransformer: (state) => Iterable.isIterable(state) ? state.toJS() : state
+    predicate: (getState, { type }) => !_.startsWith(type, '@@redux-form'),
+    stateTransformer: state => (Iterable.isIterable(state) ? state.toJS() : state)
   });
   const middewares = [
     thunkMiddleware,

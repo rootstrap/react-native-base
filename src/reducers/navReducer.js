@@ -15,6 +15,7 @@ const nav = (state = initialNavState, action) => {
   switch (action.type) {
     case '@@redux-react-session/SESSION_CHECKED_SUCCESS':
       nextState = getStateForAction(getActionForPathAndParams('Main'));
+      break;
     case 'LOGIN_SUCCESS':
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.reset({
@@ -39,6 +40,6 @@ const nav = (state = initialNavState, action) => {
 
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState ? Immutable.fromJS(nextState) : state;
-}
+};
 
 export default nav;
