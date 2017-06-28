@@ -31,7 +31,6 @@ const handleErrors = response =>
     .then(() => {
       if (response.status === 401) {
         sessionService.deleteSession();
-        window.location = '/login';
       }
     });
 

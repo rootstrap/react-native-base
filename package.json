@@ -1,45 +1,52 @@
 {
-		"name": "ReactNativeBase",
-		"version": "0.0.1",
-		"private": true,
-		"scripts": {
-				"start": "node node_modules/react-native/local-cli/cli.js start",
-				"test": "jest"
-		},
-		"dependencies": {
-				"humps": "^2.0.1",
-				"immutable": "^3.8.1",
-				"lodash": "^4.17.4",
-				"prop-types": "^15.5.10",
-				"react": "16.0.0-alpha.12",
-				"react-native": "0.45.1",
-				"react-navigation": "^1.0.0-beta.11",
-				"react-redux": "^5.0.5",
-				"redux": "^3.7.1",
-				"redux-form": "^6.8.0",
-				"redux-immutable": "^4.0.0",
-				"redux-react-native-session": "^1.0.0",
-				"redux-thunk": "^2.2.0",
-				"validate.js": "^0.11.1"
-		},
-		"devDependencies": {
-				"babel-jest": "20.0.3",
-				"babel-preset-react-native": "2.0.0",
-				"jest": "20.0.4",
-				"react-test-renderer": "16.0.0-alpha.12",
-				"redux-logger": "^3.0.6"
-		},
-		"jest": {
-				"preset": "react-native",
-				"setupFiles": [
-						"<rootDir>/../../jest-setup.js"
-				],
-				"modulePathIgnorePatterns": [
-						"/node_modules/.*/react-native/",
-						"/node_modules/.*/react/"
-				],
-				"transformIgnorePatterns": [
-						"/node_modules/(?!react-native|react-navigation)/"
-				]
-		}
+	"name": "ReactNativeBase",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node node_modules/react-native/local-cli/cli.js start",
+		"test": "jest",
+		"lint": "eslint src/**"
+	},
+	"dependencies": {
+		"humps": "^2.0.1",
+		"immutable": "^3.8.1",
+		"lodash": "^4.17.4",
+		"prop-types": "^15.5.10",
+		"react": "16.0.0-alpha.12",
+		"react-native": "0.45.1",
+		"react-navigation": "^1.0.0-beta.11",
+		"react-redux": "^5.0.5",
+		"redux": "^3.7.1",
+		"redux-form": "^6.8.0",
+		"redux-immutable": "^4.0.0",
+		"redux-react-native-session": "^1.0.0",
+		"redux-thunk": "^2.2.0",
+		"validate.js": "^0.11.1"
+	},
+	"devDependencies": {
+		"babel-eslint": "^7.2.3",
+		"babel-jest": "20.0.3",
+		"babel-preset-react-native": "2.0.0",
+		"eslint": "3.19.0",
+		"eslint-config-airbnb": "15.0.1",
+		"eslint-plugin-import": "2.2.0",
+		"eslint-plugin-jsx-a11y": "5.0.3",
+		"eslint-plugin-react": "7.0.1",
+		"jest": "20.0.4",
+		"react-test-renderer": "16.0.0-alpha.12",
+		"redux-logger": "^3.0.6"
+	},
+	"jest": {
+		"preset": "react-native",
+		"setupFiles": [
+			"<rootDir>/../../jest-setup.js"
+		],
+		"modulePathIgnorePatterns": [
+			"/node_modules/.*/react-native/",
+			"/node_modules/.*/react/"
+		],
+		"transformIgnorePatterns": [
+			"/node_modules/(?!react-native|react-navigation)/"
+		]
+	}
 }

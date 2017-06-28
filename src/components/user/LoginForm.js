@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form/immutable'
+import { Field, reduxForm } from 'redux-form/immutable';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
 import Input from '../common/Input';
@@ -24,7 +24,7 @@ const LoginForm = ({ handleSubmit, error }) => (
       name="password"
       label="Password"
       component={Input}
-      password={true}
+      password
     />
     <Button title="LOGIN" onPress={handleSubmit} />
   </View>

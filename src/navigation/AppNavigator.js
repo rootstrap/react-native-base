@@ -23,7 +23,7 @@ AppWithNavigationState.propTypes = {
   nav: object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   nav: state.get('nav').toJS(),
   session: state.get('session')
 });
