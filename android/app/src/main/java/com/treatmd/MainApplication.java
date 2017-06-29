@@ -1,4 +1,4 @@
-package com.reactnativebase;
+package com.treatmd;
 
 import android.app.Application;
 
