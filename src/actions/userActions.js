@@ -17,10 +17,13 @@ export const login = user =>
     userApi.login({ user }).then(({ data }) => {
       sessionService.saveUser(data)
       .then(() => dispatch(loginSuccess()));
-    }).catch((err) => {
-      throw new SubmissionError({
-        _error: err.errors[0]
-      });
+    }, (err) => {
+      console.log(err);
+      if(err.errors) {
+        throw new SubmissionError({
+          _error: err.errors[0]
+        });
+      }
     });
 
 export const logout = () =>

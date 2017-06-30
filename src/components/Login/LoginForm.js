@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form/immutable'
+import { Field, reduxForm, Form } from 'redux-form/immutable'
 import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 import Input from './Input';
 import * as constraints from '../../utils/constraints';

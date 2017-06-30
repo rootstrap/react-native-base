@@ -3,26 +3,14 @@ import humps from 'humps';
 
 import { API_URL } from '../constants/config';
 
-const saveSessionHeaders = (headers) => {
-  if (headers.get('access-token')) {
-    const sessionHeaders = {
-      token: headers.get('access-token'),
-      uid: headers.get('uid'),
-      client: headers.get('client')
-    };
-    sessionService.saveSession(sessionHeaders);
-  }
-};
-
-const handleErrors = response =>
-  new Promise((resolve, reject) => {
+const handleErrors = response => {
+  return new Promise((resolve, reject) => {
     if (!response) {
       reject({ message: 'No response returned from fetch' });
       return;
     }
 
     if (response.ok) {
-      saveSessionHeaders(response.headers);
       resolve(response);
       return;
     }
@@ -40,6 +28,7 @@ const handleErrors = response =>
         reject(error);
       }).catch(() => reject({ message: 'Response not JSON' }));
   });
+  }
 
 const getResponseBody = (response) => {
   const bodyIsEmpty = response.status === 204;
@@ -56,54 +45,67 @@ class Api {
       fetch(url, requestData)
         .then(handleErrors)
         .then(getResponseBody)
-        .then(response => resolve(humps.camelizeKeys(response)))
-        .catch(error => reject(humps.camelizeKeys(error)));
+        .then(response => {
+
+          resolve(humps.camelizeKeys(response))
+        })
+        .catch(error => {
+          reject(humps.camelizeKeys(error))
+        });
     });
   }
 
-  static getTokenHeader() {
-    return new Promise((resolve, reject) => {
-      sessionService.loadSession()
-      .then((session) => {
-        const headers = {};
-        const { token, client, uid } = session;
-        headers['access-token'] = token;
-        headers.client = client;
-        headers.uid = uid;
-        resolve(headers);
-      }).catch(() => reject());
-    });
+  static async getTokenHeader() {
+    const headers = {};
+    try {
+      session = await sessionService.loadSession();
+      const { token, client, uid } = session;
+      headers['access-token'] = token;
+      headers.client = client;
+      headers.uid = uid;
+    } catch (er) {
+      console.log(er);
+    }
+    return headers;
   }
 
-  static get(uri, apiUrl = API_URL) {
+ static async get(uri, apiUrl = API_URL) {
     const requestData = {
       method: 'get',
       headers: {
         accept: 'application/json'
       }
     };
-    return Api.getTokenHeader()
-    .then((headers) => {
+    try {
+      headers = await Api.getTokenHeader();
+    }catch(a) {
+      console.log('bu');
+    }
+    if (headers.client){
       requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+    }
+    return Api.performRequest(uri, apiUrl, requestData);
   }
 
-  static post(uri, data, apiUrl = API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
+  static async post(uri, data, apiUrl = API_URL, config = {}) {
     const requestData = {
       method: 'post',
       headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
+        accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        ...config.headers
       },
-      body: JSON.stringify(decamelizeData)
+      body: !config.notJson ? JSON.stringify(humps.decamelizeKeys(data)) : data
     };
-    return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+    // try {
+    //   headers = await Api.getTokenHeader();
+    // }catch(a) {
+    //   console.log('bu');
+    // }
+    // if (headers.client){
+    //   requestData.headers = { ...requestData.headers, ...headers };
+    // }
+    return Api.performRequest(uri, apiUrl, requestData);
   }
 
   static delete(uri, data, apiUrl = API_URL) {
@@ -154,7 +156,7 @@ class Api {
     .then((headers) => {
       requestData.headers = { ...requestData.headers, ...headers };
       return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+    },() => Api.performRequest(uri, apiUrl, requestData));
   }
 }
 

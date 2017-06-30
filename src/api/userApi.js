@@ -1,8 +1,13 @@
 import api from './apiService';
+import API_URL from '../constants/config'
 
 class Session {
-  static login(user) {
-    return api.post('/users/sign_in', user);
+  static login(params) {
+    data = 'username='+ encodeURI(params.user.email) + '&' + 'grant_type=password&password=' + encodeURI(params.user.password);
+    return api.post('/users/sign_in', data, API_URL, {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+      notJson: true
+    });
   }
 
   static logout() {
