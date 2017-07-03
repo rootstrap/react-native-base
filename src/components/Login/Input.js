@@ -6,7 +6,7 @@ const Input = ({ input: { onChange, ...restInput }, password = false, label, met
   <View>
     {label && <Text>{label}</Text>}
     <View>
-      <TextInput style={styles.input} onChangeText={onChange} {...restInput} secureTextEntry={password} />
+      <TextInput autoCapitalize={'none'} style={styles.input} onChangeText={onChange} {...restInput} secureTextEntry={password} />
       {touched && error && <Text>{error}</Text>}
     </View>
   </View>

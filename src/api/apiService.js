@@ -59,10 +59,8 @@ class Api {
     const headers = {};
     try {
       session = await sessionService.loadSession();
-      const { token, client, uid } = session;
-      headers['access-token'] = token;
-      headers.client = client;
-      headers.uid = uid;
+      const { accessToken, tokenType } = session;
+      headers['Authorization'] = `${tokenType} ${accessToken}`;
     } catch (er) {
       console.log(er);
     }
@@ -97,18 +95,18 @@ class Api {
       },
       body: !config.notJson ? JSON.stringify(humps.decamelizeKeys(data)) : data
     };
-    // try {
-    //   headers = await Api.getTokenHeader();
-    // }catch(a) {
-    //   console.log('bu');
-    // }
-    // if (headers.client){
-    //   requestData.headers = { ...requestData.headers, ...headers };
-    // }
+    try {
+      headers = await Api.getTokenHeader();
+    }catch(err) {
+      console.log(err);
+    }
+    if (headers.client){
+      requestData.headers = { ...requestData.headers, ...headers };
+    }
     return Api.performRequest(uri, apiUrl, requestData);
   }
 
-  static delete(uri, data, apiUrl = API_URL) {
+  static async delete(uri, data, apiUrl = API_URL) {
     const decamelizeData = humps.decamelizeKeys(data);
     const requestData = {
       method: 'delete',
@@ -118,14 +116,18 @@ class Api {
       },
       body: JSON.stringify(decamelizeData)
     };
-    return Api.getTokenHeader()
-    .then((headers) => {
+    try {
+      headers = await Api.getTokenHeader();
+    }catch(err) {
+      console.log(err);
+    }
+    if (headers.client){
       requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+    }
+    return Api.performRequest(uri, apiUrl, requestData);
   }
 
-  static put(uri, data, apiUrl = API_URL) {
+  static async put(uri, data, apiUrl = API_URL) {
     const decamelizeData = humps.decamelizeKeys(data);
     const requestData = {
       method: 'put',
@@ -142,7 +144,7 @@ class Api {
     }).catch(() => Api.performRequest(uri, apiUrl, requestData));
   }
 
-  static patch(uri, data, apiUrl = API_URL) {
+  static async patch(uri, data, apiUrl = API_URL) {
     const decamelizeData = humps.decamelizeKeys(data);
     const requestData = {
       method: 'patch',

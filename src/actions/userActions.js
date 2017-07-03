@@ -14,9 +14,11 @@ export const logoutSuccess = () => ({
 
 export const login = user =>
   dispatch =>
-    userApi.login({ user }).then(({ data }) => {
-      sessionService.saveUser(data)
-      .then(() => dispatch(loginSuccess()));
+    userApi.login({ user }).then((data) => {
+      sessionService.saveSession(data)
+      .then(() => {
+        dispatch(loginSuccess());
+      });
     }, (err) => {
       console.log(err);
       if(err.errors) {
@@ -28,11 +30,7 @@ export const login = user =>
 
 export const logout = () =>
   (dispatch) => {
-    userApi.logout().then(() => {
       sessionService.deleteSession();
       sessionService.deleteUser();
       dispatch(logoutSuccess());
-    }).catch((err) => {
-      throw (err);
-    });
   };
