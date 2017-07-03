@@ -35,7 +35,7 @@
 		"jest": "20.0.4",
 		"react-test-renderer": "16.0.0-alpha.12",
 		"redux-logger": "^3.0.6",
-		"reactotron-react-native": "^1.10.0"
+		"reactotron-react-native": "1.11.2"
 	},
 	"jest": {
 		"preset": "react-native",

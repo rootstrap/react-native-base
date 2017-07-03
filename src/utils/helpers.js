@@ -2,23 +2,19 @@ import { Alert } from 'react-native';
 import messages from './messages';
 
 export function alertErrors(message_) {
-  let message = message_ ? messages[message_] : 'An error occurred while processing your request. Try again later.'
+  const message = message_ ? messages[message_] : 'An error occurred while processing your request. Try again later.';
   Alert.alert(
-  'Error ', message ,
-  [
-    { text: 'OK' },
-  ],
+    'Error ', message,
+    [{ text: 'OK' }],
     { cancelable: false }
-  )
+  );
 }
 
 export function alertSuccess(message_) {
-  let message = message_ ? messages[message_] : 'Your action has been successfully completed.'
+  const message = message_ ? messages[message_] : 'Your action has been successfully completed.';
   Alert.alert(
-  'Success', message ,
-  [
-    { text: 'OK' },
-  ],
+    'Success', message,
+    [{ text: 'OK' }],
     { cancelable: false }
-  )
+  );
 }

@@ -1,4 +1,3 @@
-import { SubmissionError } from 'redux-form';
 import { sessionService } from 'redux-react-native-session';
 
 import userApi from '../api/userApi';
@@ -13,6 +12,11 @@ export const logoutSuccess = () => ({
   type: types.LOGOUT_SUCCESS
 });
 
+export const getUserData = () =>
+    userApi.getUserData().then((data) => {
+      sessionService.saveUser(data);
+    });
+
 export const login = user =>
   dispatch =>
     userApi.login({ user }).then((data) => {
@@ -21,14 +25,9 @@ export const login = user =>
         dispatch(loginSuccess());
         getUserData();
       });
-    }, (err) => {
+    }, () => {
       alertErrors('loginError');
     });
-
-export const getUserData = user =>
-  userApi.getUserData().then((data) => {
-    sessionService.saveUser(data)
-  });
 
 export const logout = () =>
   (dispatch) => {

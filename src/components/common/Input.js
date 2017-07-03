@@ -1,6 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TextInput, Text } from 'react-native';
+import { View, TextInput, Text, StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    margin: 5
+  }
+});
 
 const Input = ({ input: { onChange, ...restInput }, password = false, label, meta: { touched, error } }) => (
   <View>
@@ -20,14 +29,5 @@ Input.propTypes = {
   meta: object,
   password: bool
 };
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    margin: 5
-  }
-});
 
 export default Input;

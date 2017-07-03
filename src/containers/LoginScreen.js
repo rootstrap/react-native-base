@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import LoginForm from '../components/Login/LoginForm';
-import * as userActions from '../actions/userActions';
 import { login } from '../actions/userActions';
 
 const loginScreen = require('../../img/loginscreen.jpg');
@@ -11,29 +10,6 @@ const logo = require('../../img/treatmd-fullcolor.png');
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
-
-const LoginScreen = ({login}) => (
-  <Image source={loginScreen} style={styles.backgroundImage}>
-    <View style={styles.container}>
-      <Image source={logo} style={styles.logoImage}/>
-      <LoginForm onSubmit={(user) => login(user.toJS())}/>
-    </View>
-  </Image>
-);
-
-const { func } = PropTypes;
-
-LoginScreen.propTypes = {
-  login: func.isRequired
-};
-
-LoginScreen.navigationOptions = {
-  title: 'Log In'
-};
-
-const mapDispatch = dispatch => ({
-  login: user => dispatch(login(user))
-});
 
 const styles = StyleSheet.create({
   container: {
@@ -61,6 +37,29 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     marginBottom: 20
   }
+});
+
+const LoginScreen = ({ login }) => (
+  <Image source={loginScreen} style={styles.backgroundImage}>
+    <View style={styles.container}>
+      <Image source={logo} style={styles.logoImage} />
+      <LoginForm onSubmit={user => login(user.toJS())} />
+    </View>
+  </Image>
+);
+
+const { func } = PropTypes;
+
+LoginScreen.propTypes = {
+  login: func.isRequired
+};
+
+LoginScreen.navigationOptions = {
+  title: 'Log In'
+};
+
+const mapDispatch = dispatch => ({
+  login: user => dispatch(login(user))
 });
 
 export default connect(null, mapDispatch)(LoginScreen);

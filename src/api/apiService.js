@@ -3,8 +3,8 @@ import humps from 'humps';
 
 import { API_URL } from '../constants/config';
 
-const handleErrors = response => {
-  return new Promise((resolve, reject) => {
+const handleErrors = response =>
+  new Promise((resolve, reject) => {
     if (!response) {
       reject({ message: 'No response returned from fetch' });
       return;
@@ -19,9 +19,7 @@ const handleErrors = response => {
       if (response.status === 401) {
         sessionService.deleteSession();
       }
-    }, (err) => {
-      console.log(err);
-    });
+    }, () => {});
 
     response.json()
       .then((json) => {
@@ -29,7 +27,6 @@ const handleErrors = response => {
         reject(error);
       }).catch(() => reject({ message: 'Response not JSON' }));
   });
-  }
 
 const getResponseBody = (response) => {
   const bodyIsEmpty = response.status === 204;
@@ -46,60 +43,52 @@ class Api {
       fetch(url, requestData)
         .then(handleErrors)
         .then(getResponseBody)
-        .then(response => {
-          resolve(humps.camelizeKeys(response))
+        .then((response) => {
+          resolve(humps.camelizeKeys(response));
         })
-        .catch(error => {
-          reject(humps.camelizeKeys(error))
+        .catch((error) => {
+          reject(humps.camelizeKeys(error));
         });
     });
   }
 
-  static async buildRequestData(method, config, data){
+  static async buildRequestData(method, config, data) {
     const requestData = {
-      method: method,
+      method,
       headers: {
         accept: 'application/json',
         'Content-Type': 'application/json',
         ...config.headers
       }
     };
-    if(data){
-      requestData.body = !config.disableTransformBody ? JSON.stringify(humps.decamelizeKeys(data)) : data
+    if (data) {
+      requestData.body = !config.disableTransformBody ? JSON.stringify(humps.decamelizeKeys(data)) : data;
     }
-    try {
-      authHeaders = await Api.getTokenHeader();
-    }catch(err) {
-      console.log(err);
-    }
+    const authHeaders = await Api.getTokenHeader();
     requestData.headers = { ...requestData.headers, ...authHeaders };
     return requestData;
   }
 
   static async getTokenHeader() {
     const headers = {};
-    try {
-      session = await sessionService.loadSession();
-      const { accessToken, tokenType } = session;
-      headers['Authorization'] = `${tokenType} ${accessToken}`;
-    } catch (er) {
-      console.log(er);
-    }
+    const session = await sessionService.loadSession();
+    const { accessToken, tokenType } = session;
+    headers.Authorization = `${tokenType} ${accessToken}`;
     return headers;
   }
 
   static async get(uri, apiUrl = API_URL, config = {}) {
-    const requestData = await Api.buildRequestData('GET', config, null)
+    const requestData = await Api.buildRequestData('GET', config, null);
     return Api.performRequest(uri, apiUrl, requestData);
   }
 
   static async post(uri, data, apiUrl = API_URL, config = {}) {
-    const requestData = await Api.buildRequestData('POST', config, data)
+    const requestData = await Api.buildRequestData('POST', config, data);
     return Api.performRequest(uri, apiUrl, requestData);
   }
 
   static async delete(uri, data, apiUrl = API_URL, config = {}) {
-    const requestData = await Api.buildRequestData('DELETE', config, data)
+    const requestData = await Api.buildRequestData('DELETE', config, data);
     return Api.performRequest(uri, apiUrl, requestData);
   }
 
