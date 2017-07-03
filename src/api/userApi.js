@@ -13,6 +13,10 @@ class Session {
   static logout() {
     return api.delete('/users/sign_out');
   }
+
+  static getUserData() {
+    return api.get('/users/metadata');
+  }
 }
 
 export default Session;

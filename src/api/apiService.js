@@ -17,6 +17,7 @@ const handleErrors = response => {
 
     sessionService.loadSession()
     .then(() => {
+      debugger;
       if (response.status === 401) {
         sessionService.deleteSession();
       }
@@ -46,7 +47,6 @@ class Api {
         .then(handleErrors)
         .then(getResponseBody)
         .then(response => {
-
           resolve(humps.camelizeKeys(response))
         })
         .catch(error => {
@@ -79,9 +79,7 @@ class Api {
     }catch(a) {
       console.log('bu');
     }
-    if (headers.client){
-      requestData.headers = { ...requestData.headers, ...headers };
-    }
+    requestData.headers = { ...requestData.headers, ...headers };
     return Api.performRequest(uri, apiUrl, requestData);
   }
 
@@ -100,9 +98,7 @@ class Api {
     }catch(err) {
       console.log(err);
     }
-    if (headers.client){
-      requestData.headers = { ...requestData.headers, ...headers };
-    }
+    requestData.headers = { ...requestData.headers, ...headers };
     return Api.performRequest(uri, apiUrl, requestData);
   }
 
