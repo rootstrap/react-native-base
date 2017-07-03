@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import App from './src/components/App';
+import './ReactotronConfig';
 
-AppRegistry.registerComponent('ReactNativeBase', () => App);
+AppRegistry.registerComponent('TreatMD', () => App);

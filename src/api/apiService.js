@@ -3,17 +3,6 @@ import humps from 'humps';
 
 import { API_URL } from '../constants/config';
 
-const saveSessionHeaders = (headers) => {
-  if (headers.get('access-token')) {
-    const sessionHeaders = {
-      token: headers.get('access-token'),
-      uid: headers.get('uid'),
-      client: headers.get('client')
-    };
-    sessionService.saveSession(sessionHeaders);
-  }
-};
-
 const handleErrors = response =>
   new Promise((resolve, reject) => {
     if (!response) {
@@ -22,17 +11,15 @@ const handleErrors = response =>
     }
 
     if (response.ok) {
-      saveSessionHeaders(response.headers);
       resolve(response);
       return;
     }
-
     sessionService.loadSession()
     .then(() => {
       if (response.status === 401) {
         sessionService.deleteSession();
       }
-    });
+    }, () => {});
 
     response.json()
       .then((json) => {
@@ -56,105 +43,63 @@ class Api {
       fetch(url, requestData)
         .then(handleErrors)
         .then(getResponseBody)
-        .then(response => resolve(humps.camelizeKeys(response)))
-        .catch(error => reject(humps.camelizeKeys(error)));
+        .then((response) => {
+          resolve(humps.camelizeKeys(response));
+        })
+        .catch((error) => {
+          reject(humps.camelizeKeys(error));
+        });
     });
   }
 
-  static getTokenHeader() {
-    return new Promise((resolve, reject) => {
-      sessionService.loadSession()
-      .then((session) => {
-        const headers = {};
-        const { token, client, uid } = session;
-        headers['access-token'] = token;
-        headers.client = client;
-        headers.uid = uid;
-        resolve(headers);
-      }).catch(() => reject());
-    });
-  }
-
-  static get(uri, apiUrl = API_URL) {
+  static async buildRequestData(method, config, data) {
     const requestData = {
-      method: 'get',
+      method,
       headers: {
-        accept: 'application/json'
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+        ...config.headers
       }
     };
-    return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+    if (data) {
+      requestData.body = !config.disableTransformBody ? JSON.stringify(humps.decamelizeKeys(data)) : data;
+    }
+    const authHeaders = await Api.getTokenHeader();
+    requestData.headers = { ...requestData.headers, ...authHeaders };
+    return requestData;
   }
 
-  static post(uri, data, apiUrl = API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'post',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+  static async getTokenHeader() {
+    const headers = {};
+    const session = await sessionService.loadSession();
+    const { accessToken, tokenType } = session;
+    headers.Authorization = `${tokenType} ${accessToken}`;
+    return headers;
   }
 
-  static delete(uri, data, apiUrl = API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'delete',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+  static async get(uri, apiUrl = API_URL, config = {}) {
+    const requestData = await Api.buildRequestData('GET', config, null);
+    return Api.performRequest(uri, apiUrl, requestData);
   }
 
-  static put(uri, data, apiUrl = API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'put',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+  static async post(uri, data, apiUrl = API_URL, config = {}) {
+    const requestData = await Api.buildRequestData('POST', config, data);
+    return Api.performRequest(uri, apiUrl, requestData);
   }
 
-  static patch(uri, data, apiUrl = API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'patch',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+  static async delete(uri, data, apiUrl = API_URL, config = {}) {
+    const requestData = await Api.buildRequestData('DELETE', config, data);
+    return Api.performRequest(uri, apiUrl, requestData);
+  }
+
+  static async put(uri, data, apiUrl = API_URL, config = {}) {
+    const requestData = await Api.buildRequestData('PUT', config, data);
+    return Api.performRequest(uri, apiUrl, requestData);
+  }
+
+  static async patch(uri, data, apiUrl = API_URL, config = {}) {
+    const requestData = await Api.buildRequestData('PATCH', config, data);
+    return Api.performRequest(uri, apiUrl, requestData);
   }
 }
 
