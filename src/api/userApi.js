@@ -6,7 +6,7 @@ class Session {
     data = 'username='+ encodeURI(params.user.email) + '&' + 'grant_type=password&password=' + encodeURI(params.user.password);
     return api.post('/users/sign_in', data, API_URL, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-      notJson: true
+      disableTransformBody: true
     });
   }
 

@@ -3,6 +3,7 @@ import { sessionService } from 'redux-react-native-session';
 
 import userApi from '../api/userApi';
 import * as types from './actionTypes';
+import { alertErrors } from '../utils/helpers';
 
 export const loginSuccess = () => ({
   type: types.LOGIN_SUCCESS
@@ -21,11 +22,7 @@ export const login = user =>
         getUserData();
       });
     }, (err) => {
-      if(err.errors) {
-        throw new SubmissionError({
-          _error: err.errors[0]
-        });
-      }
+      alertErrors('loginError');
     });
 
 export const getUserData = user =>
@@ -35,7 +32,7 @@ export const getUserData = user =>
 
 export const logout = () =>
   (dispatch) => {
-      sessionService.deleteSession();
-      sessionService.deleteUser();
-      dispatch(logoutSuccess());
+    sessionService.deleteSession();
+    sessionService.deleteUser();
+    dispatch(logoutSuccess());
   };

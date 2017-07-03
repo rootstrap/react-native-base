@@ -14,13 +14,13 @@ const handleErrors = response => {
       resolve(response);
       return;
     }
-
     sessionService.loadSession()
     .then(() => {
-      debugger;
       if (response.status === 401) {
         sessionService.deleteSession();
       }
+    }, (err) => {
+      console.log(err);
     });
 
     response.json()
@@ -55,6 +55,27 @@ class Api {
     });
   }
 
+  static async buildRequestData(method, config, data){
+    const requestData = {
+      method: method,
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+        ...config.headers
+      }
+    };
+    if(data){
+      requestData.body = !config.disableTransformBody ? JSON.stringify(humps.decamelizeKeys(data)) : data
+    }
+    try {
+      authHeaders = await Api.getTokenHeader();
+    }catch(err) {
+      console.log(err);
+    }
+    requestData.headers = { ...requestData.headers, ...authHeaders };
+    return requestData;
+  }
+
   static async getTokenHeader() {
     const headers = {};
     try {
@@ -67,94 +88,29 @@ class Api {
     return headers;
   }
 
- static async get(uri, apiUrl = API_URL) {
-    const requestData = {
-      method: 'get',
-      headers: {
-        accept: 'application/json'
-      }
-    };
-    try {
-      headers = await Api.getTokenHeader();
-    }catch(a) {
-      console.log('bu');
-    }
-    requestData.headers = { ...requestData.headers, ...headers };
+  static async get(uri, apiUrl = API_URL, config = {}) {
+    const requestData = await Api.buildRequestData('GET', config, null)
     return Api.performRequest(uri, apiUrl, requestData);
   }
 
   static async post(uri, data, apiUrl = API_URL, config = {}) {
-    const requestData = {
-      method: 'post',
-      headers: {
-        accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-        ...config.headers
-      },
-      body: !config.notJson ? JSON.stringify(humps.decamelizeKeys(data)) : data
-    };
-    try {
-      headers = await Api.getTokenHeader();
-    }catch(err) {
-      console.log(err);
-    }
-    requestData.headers = { ...requestData.headers, ...headers };
+    const requestData = await Api.buildRequestData('POST', config, data)
     return Api.performRequest(uri, apiUrl, requestData);
   }
 
-  static async delete(uri, data, apiUrl = API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'delete',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    try {
-      headers = await Api.getTokenHeader();
-    }catch(err) {
-      console.log(err);
-    }
-    if (headers.client){
-      requestData.headers = { ...requestData.headers, ...headers };
-    }
+  static async delete(uri, data, apiUrl = API_URL, config = {}) {
+    const requestData = await Api.buildRequestData('DELETE', config, data)
     return Api.performRequest(uri, apiUrl, requestData);
   }
 
-  static async put(uri, data, apiUrl = API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'put',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+  static async put(uri, data, apiUrl = API_URL, config = {}) {
+    const requestData = await Api.buildRequestData('PUT', config, data);
+    return Api.performRequest(uri, apiUrl, requestData);
   }
 
-  static async patch(uri, data, apiUrl = API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'patch',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    },() => Api.performRequest(uri, apiUrl, requestData));
+  static async patch(uri, data, apiUrl = API_URL, config = {}) {
+    const requestData = await Api.buildRequestData('PATCH', config, data);
+    return Api.performRequest(uri, apiUrl, requestData);
   }
 }
 
