@@ -14,12 +14,12 @@ export const logoutSuccess = () => ({
 
 export const login = user =>
   dispatch =>
-    userApi.login({ user }).then(({ data }) => {
+    userApi.login({ user }).then((data) => {
       sessionService.saveUser(data)
       .then(() => dispatch(loginSuccess()));
     }).catch((err) => {
       throw new SubmissionError({
-        _error: err.errors[0]
+        _error: err.error,
       });
     });
 
