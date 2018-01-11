@@ -7,4 +7,9 @@
 
 ## Getting started
 1. Install dependencies: `yarn`
-2. Start on android or ios: `react-native run-android` or `react-native run-ios`
+2. Create a file named `.env` in the root directory of the project and define your config constants there, for example:
+```
+API_URL=https://rails5-api-base.herokuapp.com/api/v1
+SOME_OTHER_CONFIG=something
+```
+3. Start on android or ios: `react-native run-android` or `react-native run-ios`
