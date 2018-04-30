@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.11-browsers
+
+    steps:
+      - checkout
+      - run: echo 'export PATH=${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$PATH' >> $BASH_ENV
+      - run:
+          name: Install dependencies
+          command: yarn
+      - run:
+          name: Run tests
+          command: yarn test
+      - run:
+          name: Run linter
+          command: yarn run lint
+
+      - save_cache:
+          key: dependency-cache
+          paths:
+            - ~/.cache/yarn
