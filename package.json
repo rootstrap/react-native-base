@@ -39,16 +39,6 @@
 		"redux-logger": "^3.0.6"
 	},
 	"jest": {
-		"preset": "react-native",
-		"setupFiles": [
-			"<rootDir>/../../jest-setup.js"
-		],
-		"modulePathIgnorePatterns": [
-			"/node_modules/.*/react-native/",
-			"/node_modules/.*/react/"
-		],
-		"transformIgnorePatterns": [
-			"/node_modules/(?!react-native|react-navigation)/"
-		]
+		"preset": "react-native"
 	}
 }
