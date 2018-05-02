@@ -6,17 +6,20 @@ import _ from 'lodash';
 import AppReducer from '../reducers';
 
 export default function configureStore(initialState) {
-  const logger = createLogger({
-    collapsed: true,
-    predicate: (getState, { type }) => !_.startsWith(type, '@@redux-form'),
-    stateTransformer: state => (Iterable.isIterable(state) ? state.toJS() : state)
-  });
-  const middewares = [
-    thunkMiddleware,
-    logger
+  const middlewares = [
+    thunkMiddleware
   ];
 
-  const store = createStore(AppReducer, initialState, applyMiddleware(...middewares));
+  if (__DEV__) {
+    const logger = createLogger({
+      collapsed: true,
+      predicate: (getState, { type }) => !_.startsWith(type, '@@redux-form'),
+      stateTransformer: state => (Iterable.isIterable(state) ? state.toJS() : state)
+    });
+    middlewares.push(logger);
+  }
+
+  const store = createStore(AppReducer, initialState, applyMiddleware(...middlewares));
 
   return store;
 }
