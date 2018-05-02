@@ -94,6 +94,7 @@
     "react/no-array-index-key": 0
   },
   "globals": {
-    "fetch": true
+    "fetch": true,
+    "__DEV__": true
   }
 }
