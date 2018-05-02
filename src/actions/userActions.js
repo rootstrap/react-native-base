@@ -14,8 +14,8 @@ export const logoutSuccess = () => ({
 
 export const login = user =>
   dispatch =>
-    userApi.login({ user }).then((data) => {
-      sessionService.saveUser(data)
+    userApi.login({ user }).then((response) => {
+      sessionService.saveUser(response.user)
         .then(() => dispatch(loginSuccess()));
     }).catch((err) => {
       throw new SubmissionError({
