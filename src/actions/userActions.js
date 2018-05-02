@@ -16,7 +16,7 @@ export const login = user =>
   dispatch =>
     userApi.login({ user }).then((data) => {
       sessionService.saveUser(data)
-      .then(() => dispatch(loginSuccess()));
+        .then(() => dispatch(loginSuccess()));
     }).catch((err) => {
       throw new SubmissionError({
         _error: err.error,

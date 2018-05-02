@@ -27,11 +27,11 @@ const handleErrors = response =>
     }
 
     sessionService.loadSession()
-    .then(() => {
-      if (response.status === 401) {
-        sessionService.deleteSession();
-      }
-    });
+      .then(() => {
+        if (response.status === 401) {
+          sessionService.deleteSession();
+        }
+      });
 
     response.json()
       .then((json) => {
@@ -63,14 +63,14 @@ class Api {
   static getTokenHeader() {
     return new Promise((resolve, reject) => {
       sessionService.loadSession()
-      .then((session) => {
-        const headers = {};
-        const { token, client, uid } = session;
-        headers['access-token'] = token;
-        headers.client = client;
-        headers.uid = uid;
-        resolve(headers);
-      }).catch(() => reject());
+        .then((session) => {
+          const headers = {};
+          const { token, client, uid } = session;
+          headers['access-token'] = token;
+          headers.client = client;
+          headers.uid = uid;
+          resolve(headers);
+        }).catch(() => reject());
     });
   }
 
@@ -82,10 +82,10 @@ class Api {
       }
     };
     return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+      .then((headers) => {
+        requestData.headers = { ...requestData.headers, ...headers };
+        return Api.performRequest(uri, apiUrl, requestData);
+      }).catch(() => Api.performRequest(uri, apiUrl, requestData));
   }
 
   static post(uri, data, apiUrl = Config.API_URL) {
@@ -99,10 +99,10 @@ class Api {
       body: JSON.stringify(decamelizeData)
     };
     return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+      .then((headers) => {
+        requestData.headers = { ...requestData.headers, ...headers };
+        return Api.performRequest(uri, apiUrl, requestData);
+      }).catch(() => Api.performRequest(uri, apiUrl, requestData));
   }
 
   static delete(uri, data, apiUrl = Config.API_URL) {
@@ -116,10 +116,10 @@ class Api {
       body: JSON.stringify(decamelizeData)
     };
     return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+      .then((headers) => {
+        requestData.headers = { ...requestData.headers, ...headers };
+        return Api.performRequest(uri, apiUrl, requestData);
+      }).catch(() => Api.performRequest(uri, apiUrl, requestData));
   }
 
   static put(uri, data, apiUrl = Config.API_URL) {
@@ -133,10 +133,10 @@ class Api {
       body: JSON.stringify(decamelizeData)
     };
     return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+      .then((headers) => {
+        requestData.headers = { ...requestData.headers, ...headers };
+        return Api.performRequest(uri, apiUrl, requestData);
+      }).catch(() => Api.performRequest(uri, apiUrl, requestData));
   }
 
   static patch(uri, data, apiUrl = Config.API_URL) {
@@ -150,10 +150,10 @@ class Api {
       body: JSON.stringify(decamelizeData)
     };
     return Api.getTokenHeader()
-    .then((headers) => {
-      requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
-    }).catch(() => Api.performRequest(uri, apiUrl, requestData));
+      .then((headers) => {
+        requestData.headers = { ...requestData.headers, ...headers };
+        return Api.performRequest(uri, apiUrl, requestData);
+      }).catch(() => Api.performRequest(uri, apiUrl, requestData));
   }
 }
 
