@@ -13,23 +13,26 @@ export const logoutSuccess = () => ({
 });
 
 export const login = user =>
-  dispatch =>
-    userApi.login({ user }).then((response) => {
-      sessionService.saveUser(response.user)
-        .then(() => dispatch(loginSuccess()));
-    }).catch((err) => {
+  async (dispatch) => {
+    try {
+      const response = await userApi.login(user);
+      await sessionService.saveUser(response.user);
+      dispatch(loginSuccess());
+    } catch (err) {
       throw new SubmissionError({
         _error: err.error,
       });
-    });
+    }
+  };
 
 export const logout = () =>
-  (dispatch) => {
-    userApi.logout().then(() => {
+  async (dispatch) => {
+    try {
+      await userApi.logout();
       sessionService.deleteSession();
       sessionService.deleteUser();
       dispatch(logoutSuccess());
-    }).catch((err) => {
-      throw (err);
-    });
+    } catch (err) {
+      throw err;
+    }
   };
