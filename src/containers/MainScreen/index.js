@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 
-import { logout } from '../../actions/userActions';
+import { logout } from 'actions/userActions';
 import styles from './styles';
 
 const MainScreen = ({ logout }) => (

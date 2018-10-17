@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { View, Text, Button } from 'react-native';
 
-import Input from '../../common/Input';
-import * as constraints from '../../../utils/constraints';
+import * as constraints from 'utils/constraints';
+import Input from 'components/common/Input';
 import styles from './styles';
 
 const LoginForm = ({ handleSubmit, error }) => (

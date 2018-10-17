@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import Immutable from 'immutable';
 import { sessionService } from 'redux-react-native-session';
 
+import configureStore from 'store/configureStore';
 import registerScreens from '../screens';
-import configureStore from '../store/configureStore';
 
 const store = configureStore(Immutable.Map());
 registerScreens(store, Provider);
