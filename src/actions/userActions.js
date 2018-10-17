@@ -1,7 +1,7 @@
 import { SubmissionError } from 'redux-form';
 import { sessionService } from 'redux-react-native-session';
 
-import userApi from '../api/userApi';
+import userApi from 'api/userApi';
 import * as types from './actionTypes';
 
 export const loginSuccess = () => ({

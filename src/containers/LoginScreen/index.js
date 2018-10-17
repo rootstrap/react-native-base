@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
-import LoginForm from '../../components/user/LoginForm';
-import { login } from '../../actions/userActions';
+import LoginForm from 'components/user/LoginForm';
+import { login } from 'actions/userActions';
 import styles from './styles';
 
 const LoginScreen = ({ login }) => (
