@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 
 import { logout } from 'actions/userActions';
 import styles from './styles';
+import translate from '../../utils/i18n';
 
 const MainScreen = ({ logout }) => (
   <View style={styles.container}>
     <Text>You&#39;re logged in!</Text>
     <Button
       onPress={logout}
-      title="Logout"
+      title={translate('MAIN_SCREEN.logout')}
     />
   </View>
 );

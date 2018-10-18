@@ -9,6 +9,7 @@
           "api": "./src/api",
           "components": "./src/components",
           "containers": "./src/containers",
+          "locale": "./src/locale",
           "reducers": "./src/reducers",
           "store": "./src/store",
           "utils": "./src/utils"
