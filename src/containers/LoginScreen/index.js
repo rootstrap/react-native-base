@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 
 import LoginForm from 'components/user/LoginForm';
 import { login } from 'actions/userActions';
+import translate from 'utils/i18n';
 import styles from './styles';
 
 const LoginScreen = ({ login }) => (
   <View style={styles.container}>
     <Text style={styles.welcome}>
-      LOGIN
+      {translate('SIGN_IN.title')}
     </Text>
     <LoginForm onSubmit={user => login(user.toJS())} />
   </View>
