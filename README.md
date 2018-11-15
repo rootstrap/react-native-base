@@ -14,3 +14,9 @@ SOME_OTHER_CONFIG=something
 ```
 3. Rename your new project using react-native-rename (https://github.com/junedomingo/react-native-rename)
 4. Start on android or ios: `react-native run-android` or `react-native run-ios`
+
+## Troubleshooting
+
+### iOS not building on Xcode 10
+
+https://github.com/rootstrap/react-native-base/issues/40
