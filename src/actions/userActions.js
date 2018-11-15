@@ -15,7 +15,7 @@ export const logoutSuccess = () => ({
 export const login = user =>
   async (dispatch) => {
     try {
-      const response = await userApi.login(user);
+      const response = await userApi.login({ user });
       await sessionService.saveUser(response.user);
       dispatch(loginSuccess());
     } catch (err) {
