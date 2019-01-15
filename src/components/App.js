@@ -23,13 +23,10 @@ class App {
     const authenticated = session.get('authenticated');
     const user = session.get('user');
     const shouldUpdate = this.authenticated !== authenticated && (!authenticated || !user.isEmpty());
-    if (!this.appInitialized) {
-      const checked = session.get('userChecked');
-      if (checked) {
-        this.appInitialized = true;
-        this.authenticated = authenticated;
-        this.startApp(authenticated);
-      }
+    if (!this.appInitialized && session.get('userChecked')) {
+      this.appInitialized = true;
+      this.authenticated = authenticated;
+      this.startApp(authenticated);
     } else if (shouldUpdate) {
       this.authenticated = authenticated;
       this.startApp(authenticated);
