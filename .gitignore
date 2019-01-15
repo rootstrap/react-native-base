@@ -58,3 +58,6 @@ buck-out/
 
 # Constants location
 .env
+
+# Coverage
+coverage/
