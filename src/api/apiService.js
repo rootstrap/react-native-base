@@ -74,82 +74,28 @@ class Api {
     });
   }
 
-  static get(uri, apiUrl = Config.API_URL) {
+  static get = this.method('get');
+
+  static post = this.method('post');
+
+  static delete = this.method('delete');
+
+  static put = this.method('put');
+
+  static patch = this.method('patch');
+
+  static method = method => (uri, data, apiUrl = Config.API_URL) => {
+    const decamelizeData = humps.decamelizeKeys(data);
     const requestData = {
-      method: 'get',
+      method,
       headers: {
         accept: 'application/json',
         'Content-Type': 'application/json'
       }
     };
-    return Api.getTokenHeader()
-      .then((headers) => {
-        requestData.headers = { ...requestData.headers, ...headers };
-        return Api.performRequest(uri, apiUrl, requestData);
-      }).catch(() => Api.performRequest(uri, apiUrl, requestData));
-  }
-
-  static post(uri, data, apiUrl = Config.API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'post',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    return Api.getTokenHeader()
-      .then((headers) => {
-        requestData.headers = { ...requestData.headers, ...headers };
-        return Api.performRequest(uri, apiUrl, requestData);
-      }).catch(() => Api.performRequest(uri, apiUrl, requestData));
-  }
-
-  static delete(uri, data, apiUrl = Config.API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'delete',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    return Api.getTokenHeader()
-      .then((headers) => {
-        requestData.headers = { ...requestData.headers, ...headers };
-        return Api.performRequest(uri, apiUrl, requestData);
-      }).catch(() => Api.performRequest(uri, apiUrl, requestData));
-  }
-
-  static put(uri, data, apiUrl = Config.API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'put',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
-    return Api.getTokenHeader()
-      .then((headers) => {
-        requestData.headers = { ...requestData.headers, ...headers };
-        return Api.performRequest(uri, apiUrl, requestData);
-      }).catch(() => Api.performRequest(uri, apiUrl, requestData));
-  }
-
-  static patch(uri, data, apiUrl = Config.API_URL) {
-    const decamelizeData = humps.decamelizeKeys(data);
-    const requestData = {
-      method: 'patch',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(decamelizeData)
-    };
+    if (method != 'get') {
+      requestData.body = JSON.stringify(decamelizeData);
+    }
     return Api.getTokenHeader()
       .then((headers) => {
         requestData.headers = { ...requestData.headers, ...headers };
