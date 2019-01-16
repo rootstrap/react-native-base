@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest",
+		"test": "jest --silent",
 		"test:cover": "npm run test -- --coverage",
 		"lint": "eslint src/**"
 	},
@@ -33,6 +33,9 @@
 		"babel-jest": "20.0.3",
 		"babel-plugin-module-resolver": "^3.1.1",
 		"babel-preset-react-native": "2.0.0",
+		"enzyme": "^3.8.0",
+		"enzyme-adapter-react-16": "^1.7.1",
+		"enzyme-adapter-react-16.3": "^1.4.1",
 		"eslint": "^5.7.0",
 		"eslint-config-airbnb": "17.1.0",
 		"eslint-import-resolver-babel-module": "^4.0.0",
@@ -40,10 +43,17 @@
 		"eslint-plugin-jsx-a11y": "6.1.2",
 		"eslint-plugin-react": "7.11.1",
 		"jest": "20.0.4",
+		"jest-serializer-enzyme": "^1.0.0",
+		"jsdom": "^13.1.0",
+		"nock": "^10.0.6",
+		"react-addons-test-utils": "^15.6.2",
+		"react-dom": "^16.7.0",
 		"react-test-renderer": "16.0.0-alpha.12",
 		"redux-logger": "^3.0.6"
 	},
 	"jest": {
-		"preset": "react-native"
+		"preset": "react-native",
+		"testEnvironment": "jsdom",
+		"setupTestFrameworkScriptFile": "<rootDir>/tests/setup-tests.js"
 	}
 }
