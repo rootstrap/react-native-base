@@ -36,3 +36,15 @@ export const logout = () =>
       throw err;
     }
   };
+
+export const signUp = user =>
+  async () => {
+    try {
+      const response = await userApi.signUp({ user });
+      sessionService.saveUser(response.user);
+    } catch (err) {
+      throw new SubmissionError({
+        _error: err.error,
+      });
+    }
+  };
