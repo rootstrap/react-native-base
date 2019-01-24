@@ -8,5 +8,13 @@ export default {
 
   MAIN_SCREEN: {
     logout: 'Sign out'
+  },
+
+  SIGN_UP: {
+    title: 'Sign up',
+    email: 'Email',
+    password: 'Password',
+    passwordConfirmation: 'Password confirmation',
+    button: 'Sign up'
   }
 };
