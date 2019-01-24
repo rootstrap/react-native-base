@@ -9,7 +9,7 @@ import translate from 'utils/i18n';
 import styles from './styles';
 
 const LoginForm = ({ handleSubmit, error }) => (
-  <View style={styles.login} onSubmit={handleSubmit}>
+  <View onSubmit={handleSubmit}>
     {error && <Text>{error}</Text>}
     <Field
       name="email"
@@ -22,7 +22,9 @@ const LoginForm = ({ handleSubmit, error }) => (
       component={Input}
       password
     />
-    <Button title={translate('SIGN_IN.button')} onPress={handleSubmit} />
+    <View style={styles.button}>
+      <Button title={translate('SIGN_IN.button')} onPress={handleSubmit} />
+    </View>
   </View>
 );
 

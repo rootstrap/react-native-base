@@ -9,7 +9,7 @@ import translate from 'utils/i18n';
 import styles from './styles';
 
 const SignUpForm = ({ handleSubmit, error }) => (
-  <View style={styles.signUp} onSubmit={handleSubmit}>
+  <View onSubmit={handleSubmit}>
     {error && <Text>{error}</Text>}
     <Field
       name="email"
@@ -28,7 +28,9 @@ const SignUpForm = ({ handleSubmit, error }) => (
       component={Input}
       password
     />
-    <Button title={translate('SIGN_UP.button')} onPress={handleSubmit} />
+    <View style={styles.button}>
+      <Button title={translate('SIGN_UP.button')} onPress={handleSubmit} />
+    </View>
   </View>
 );
 
