@@ -1,3 +1,7 @@
+
+import { Navigation } from 'react-native-navigation';
 import App from 'components/App';
 
-const app = new App();
+Navigation.events().registerAppLaunchedListener(() => {
+  const app = new App();
+});

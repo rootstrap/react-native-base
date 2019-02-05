@@ -37,9 +37,15 @@ class App {
   }
 
   startAuthenticatedApp() {
-    Navigation.startSingleScreenApp({
-      screen: {
-        screen: 'reactnativebase.MainScreen'
+    Navigation.setRoot({
+      root: {
+        stack: {
+          children: [{
+            component: {
+              name: 'reactnativebase.MainScreen'
+            }
+          }]
+        }
       }
     });
   }
@@ -48,9 +54,15 @@ class App {
     if (authenticated) {
       this.startAuthenticatedApp();
     } else {
-      Navigation.startSingleScreenApp({
-        screen: {
-          screen: 'reactnativebase.LoginScreen'
+      Navigation.setRoot({
+        root: {
+          stack: {
+            children: [{
+              component: {
+                name: 'reactnativebase.LoginScreen'
+              }
+            }]
+          }
         }
       });
     }

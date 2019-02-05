@@ -5,9 +5,9 @@ import SignUpScreen from 'containers/SignUpScreen';
 import MainScreen from 'containers/MainScreen';
 
 const registerScreens = (store, Provider) => {
-  Navigation.registerComponent('reactnativebase.LoginScreen', () => LoginScreen, store, Provider);
-  Navigation.registerComponent('reactnativebase.MainScreen', () => MainScreen, store, Provider);
-  Navigation.registerComponent('reactnativebase.SignUpScreen', () => SignUpScreen, store, Provider);
+  Navigation.registerComponentWithRedux('reactnativebase.LoginScreen', () => LoginScreen, Provider, store);
+  Navigation.registerComponentWithRedux('reactnativebase.MainScreen', () => MainScreen, Provider, store);
+  Navigation.registerComponentWithRedux('reactnativebase.SignUpScreen', () => SignUpScreen, Provider, store);
 };
 
 export default registerScreens;

@@ -1,9 +1,11 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { Iterable } from 'immutable';
 import { createLogger } from 'redux-logger';
 import _ from 'lodash';
 import AppReducer from 'reducers';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default function configureStore(initialState) {
   const middlewares = [
@@ -19,7 +21,7 @@ export default function configureStore(initialState) {
     middlewares.push(logger);
   }
 
-  const store = createStore(AppReducer, initialState, applyMiddleware(...middlewares));
+  const store = createStore(AppReducer, initialState, composeEnhancers(applyMiddleware(...middlewares)));
 
   return store;
 }
