@@ -5,7 +5,9 @@ import { createLogger } from 'redux-logger';
 import _ from 'lodash';
 import AppReducer from 'reducers';
 
+/* eslint-disable */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
 
 export default function configureStore(initialState) {
   const middlewares = [
