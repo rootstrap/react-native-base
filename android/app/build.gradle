@@ -149,6 +149,7 @@ configurations.all {
 }
 
 dependencies {
+    implementation project(':react-native-i18n')
     implementation project(':react-native-config')
     implementation project(':react-native-navigation')
     implementation fileTree(dir: "libs", include: ["*.jar"])

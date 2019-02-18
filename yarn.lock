@@ -2358,6 +2358,11 @@ http-signature@~1.2.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+i18n-js@3.0.11:
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/i18n-js/-/i18n-js-3.0.11.tgz#f9e96bdb641c5b9d6be12759d7c422089987ef02"
+  integrity sha512-v7dG3kYJTQTyox3NqDabPDE/ZotWntyMI9kh4cYi+XlCSnsIR+KBTS2opPyObL8WndnklcLzbNU92FP/mLge3Q==
+
 iconv-lite@0.4.24, iconv-lite@^0.4.17, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
@@ -4544,6 +4549,13 @@ react-native-config@^0.11.7:
   version "0.11.7"
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-0.11.7.tgz#a2b323f2ecd76a4df88cbb6bc86eaa2ef9febee7"
   integrity sha512-dn5s+zhwLyE25vRT/vaEtLk/j8ZL1UZKvejORNDWakSwpOnLmFurFeaZV83IqkPlfWHXHFdsYe2IRYG1WN4WkQ==
+
+react-native-i18n@^2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-2.0.15.tgz#09b5a9836116fa7dbd0054c46e2d1014c1ef3c65"
+  integrity sha512-V8VwUP0TLda3oJvgt5tdnFaOV7WXPhTjCTLO7sXI3C2SHggSbD4bCUryMzNJhesimJidH21V2Owvj4zAylHoQQ==
+  dependencies:
+    i18n-js "3.0.11"
 
 react-native-navigation@^2.12.0:
   version "2.12.0"
