@@ -59,3 +59,4 @@ buck-out/
 *.jsbundle
 
 package-lock.json
+.env
