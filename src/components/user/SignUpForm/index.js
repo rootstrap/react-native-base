@@ -8,34 +8,40 @@ import Input from 'components/common/Input';
 import translate from 'utils/i18n';
 import styles from './styles';
 
-const LoginForm = ({ handleSubmit, error }) => (
+const SignUpForm = ({ handleSubmit, error }) => (
   <View onSubmit={handleSubmit}>
     {error && <Text>{error}</Text>}
     <Field
       name="email"
-      label={translate('SIGN_IN.email')}
+      label={translate('SIGN_UP.email')}
       component={Input}
     />
     <Field
       name="password"
-      label={translate('SIGN_IN.password')}
+      label={translate('SIGN_UP.password')}
+      component={Input}
+      password
+    />
+    <Field
+      name="passwordConfirmation"
+      label={translate('SIGN_UP.passwordConfirmation')}
       component={Input}
       password
     />
     <View style={styles.button}>
-      <Button title={translate('SIGN_IN.button')} onPress={handleSubmit} />
+      <Button title={translate('SIGN_UP.button')} onPress={handleSubmit} />
     </View>
   </View>
 );
 
 const { func, string } = PropTypes;
 
-LoginForm.propTypes = {
+SignUpForm.propTypes = {
   handleSubmit: func.isRequired,
   error: string
 };
 
 export default reduxForm({
-  form: 'login',
-  validate: constraints.validations(constraints.login)
-})(LoginForm);
+  form: 'signUp',
+  validate: constraints.validations(constraints.signUp)
+})(SignUpForm);
