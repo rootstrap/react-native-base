@@ -1,60 +1,23 @@
 {
-	"name": "ReactNativeBase",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest --silent",
-		"test:cover": "npm run test -- --coverage",
-		"lint": "eslint src"
-	},
-	"dependencies": {
-		"humps": "^2.0.1",
-		"i18n-js": "^3.2.1",
-		"immutable": "^3.8.1",
-		"lodash": "^4.17.4",
-		"prop-types": "^15.5.10",
-		"query-string": "^6.0.0",
-		"react": "16.3.1",
-		"react-native": "0.55.3",
-		"react-native-config": "^0.11.5",
-		"react-native-localize": "^1.1.2",
-		"react-native-navigation": "1.1.440",
-		"react-redux": "^5.0.5",
-		"redux": "^3.7.1",
-		"redux-form": "^6.8.0",
-		"redux-immutable": "^4.0.0",
-		"redux-react-native-session": "^1.0.5",
-		"redux-thunk": "^2.2.0",
-		"reselect": "^4.0.0",
-		"validate.js": "^0.11.1"
-	},
-	"devDependencies": {
-		"babel-eslint": "^7.2.3",
-		"babel-jest": "20.0.3",
-		"babel-plugin-module-resolver": "^3.1.1",
-		"babel-preset-react-native": "2.0.0",
-		"enzyme": "^3.8.0",
-		"enzyme-adapter-react-16": "^1.7.1",
-		"enzyme-adapter-react-16.3": "^1.4.1",
-		"eslint": "^5.7.0",
-		"eslint-config-airbnb": "17.1.0",
-		"eslint-import-resolver-babel-module": "^4.0.0",
-		"eslint-plugin-import": "^2.14.0",
-		"eslint-plugin-jsx-a11y": "6.1.2",
-		"eslint-plugin-react": "7.11.1",
-		"jest": "20.0.4",
-		"jest-serializer-enzyme": "^1.0.0",
-		"jsdom": "^13.1.0",
-		"nock": "^10.0.6",
-		"react-addons-test-utils": "^15.6.2",
-		"react-dom": "^16.7.0",
-		"react-test-renderer": "16.0.0-alpha.12",
-		"redux-logger": "^3.0.6"
-	},
-	"jest": {
-		"preset": "react-native",
-		"testEnvironment": "jsdom",
-		"setupTestFrameworkScriptFile": "<rootDir>/tests/setup-tests.js"
-	}
+  "name": "react-native-base",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.6.3",
+    "react-native": "0.58.4"
+  },
+  "devDependencies": {
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "24.1.0",
+    "jest": "24.1.0",
+    "metro-react-native-babel-preset": "0.51.1",
+    "react-test-renderer": "16.6.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
 }
