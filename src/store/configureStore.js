@@ -6,7 +6,7 @@ import _ from 'lodash';
 import AppReducer from 'reducers';
 
 /* eslint-disable */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = __DEV__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose : compose;
 /* eslint-enable */
 
 export default function configureStore(initialState) {

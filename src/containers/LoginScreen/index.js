@@ -16,11 +16,11 @@ const LoginScreen = ({ login, componentId }) => (
     </Text>
     <LoginForm onSubmit={user => login(user.toJS())} />
     <Button
-      title={translate('SIGN_UP.title')} onPress={() => Navigation.push(componentId, {
-        component: {
-          name: 'reactnativebase.SignUpScreen'
-        }
-      })}
+      title={translate('SIGN_UP.title')}
+      onPress={() => Navigation.push(
+        componentId,
+        { component: { name: 'reactnativebase.SignUpScreen' } }
+      )}
     />
   </View>
 );
