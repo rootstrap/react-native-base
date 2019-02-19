@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { func, string } from 'prop-types';
 import { Text, View, Button } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
@@ -25,8 +25,6 @@ const LoginScreen = ({ login, componentId }) => (
     />
   </View>
 );
-
-const { func, string } = PropTypes;
 
 LoginScreen.propTypes = {
   login: func.isRequired,

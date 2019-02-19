@@ -4,23 +4,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/maintainability)](https://codeclimate.com/github/rootstrap/react-native-base/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/test_coverage)](https://codeclimate.com/github/rootstrap/react-native-base/test_coverage)
 
-## Base dependencies
-- [React-Native-Navigation](https://github.com/wix/react-native-navigation)
-- [PropTypes](https://github.com/facebook/prop-types)
-- [React-Native-Config](https://github.com/luggit/react-native-config)
-- [React-Native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
-- [Redux](https://github.com/reduxjs/redux)
-- [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
-- [Redux-Form](https://github.com/erikras/redux-form)
-- [Redux-React-Native-Session](https://github.com/bernabe9/redux-react-native-session)
-- [Reselect](https://github.com/reduxjs/reselect)
-- [Redux-immutable](https://github.com/gajus/redux-immutable)
-- [humps](https://github.com/domchristie/humps)
-- [validate.js](https://github.com/ansman/validate.js)
-- [lodash](https://github.com/lodash/lodash)
-- [Jest](https://github.com/facebook/jest)
-- [Enzyme](https://github.com/airbnb/enzyme)
-
 ## Commands
 1. **Start the app**. `yarn start`
 2. **Lint the app**. `yarn lint`
@@ -61,3 +44,20 @@ SOME_OTHER_CONFIG=something
 ### iOS not building on Xcode 10
 
 https://github.com/rootstrap/react-native-base/issues/40
+
+## Base dependencies
+- [React-Native-Navigation](https://github.com/wix/react-native-navigation)
+- [PropTypes](https://github.com/facebook/prop-types)
+- [React-Native-Config](https://github.com/luggit/react-native-config)
+- [React-Native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
+- [Redux](https://github.com/reduxjs/redux)
+- [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
+- [Redux-Form](https://github.com/erikras/redux-form)
+- [Redux-React-Native-Session](https://github.com/bernabe9/redux-react-native-session)
+- [Reselect](https://github.com/reduxjs/reselect)
+- [Redux-immutable](https://github.com/gajus/redux-immutable)
+- [humps](https://github.com/domchristie/humps)
+- [validate.js](https://github.com/ansman/validate.js)
+- [lodash](https://github.com/lodash/lodash)
+- [Jest](https://github.com/facebook/jest)
+- [Enzyme](https://github.com/airbnb/enzyme)

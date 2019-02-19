@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { object, func } from 'prop-types';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,7 @@ import { logout } from 'actions/userActions';
 import translate from 'utils/i18n';
 import styles from './styles';
 
-const MainScreen = ({ email, logout }) => (
+const MainScreen = ({ user: { email }, logout }) => (
   <View style={styles.container}>
     <Text>Hey {email}, you&#39;re logged in!</Text>
     <Button
@@ -19,7 +19,7 @@ const MainScreen = ({ email, logout }) => (
 );
 
 MainScreen.propTypes = {
-  email: string.isRequired,
+  user: object.isRequired,
   logout: func.isRequired
 };
 
@@ -28,7 +28,7 @@ MainScreen.navigationOptions = {
 };
 
 const mapState = state => ({
-  email: getUser(state).email
+  user: getUser(state)
 });
 
 const mapDispatch = dispatch => ({
