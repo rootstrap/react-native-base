@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest --silent",
 		"test:cover": "yarn test -- --coverage",
-		"lint": "eslint src/**"
+    "lint": "eslint src/**",
+    "postinstall": "sed -i.bak -e 's/design:26.1.0/design:28.0.0/g' ./node_modules/react-native-navigation/lib/android/app/build.gradle && sed -i.bak -e 's/targetSdkVersion 25/targetSdkVersion 28/g' ./node_modules/react-native-navigation/lib/android/app/build.gradle && sed -i.bak -e 's/compileSdkVersion 26/compileSdkVersion 28/g' ./node_modules/react-native-navigation/lib/android/app/build.gradle && sed -i.bak -e \"s/buildToolsVersion '27.0.3'/buildToolsVersion '28.0.3'/g\" ./node_modules/react-native-navigation/lib/android/app/build.gradle"
   },
   "dependencies": {
     "humps": "^2.0.1",
