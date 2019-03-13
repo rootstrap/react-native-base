@@ -6,7 +6,7 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest --silent",
 		"test:cover": "npm run test -- --coverage",
-		"lint": "eslint src/**"
+		"lint": "eslint src"
 	},
 	"dependencies": {
 		"humps": "^2.0.1",
