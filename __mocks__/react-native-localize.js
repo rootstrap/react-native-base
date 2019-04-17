@@ -1,36 +1,21 @@
-const getLocales = () => [
+export const getLocales = () => [
   { countryCode: 'US', languageTag: 'en-US', languageCode: 'en', isRTL: false },
   { countryCode: 'EC', languageTag: 'es-EC', languageCode: 'es', isRTL: false },
 ];
 
-const findBestAvailableLanguage = () => ({ languageTag: 'es', isRTL: 'false' });
-const getNumberFormatSettings = () => ({
+export const findBestAvailableLanguage = () => ({ languageTag: 'es', isRTL: 'false' });
+export const getNumberFormatSettings = () => ({
   decimalSeparator: '.',
   groupingSeparator: ',',
 });
 
-const getCalendar = () => 'gregorian';
-const getCountry = () => 'ES';
-const getCurrencies = () => ['USD'];
-const getTemperatureUnit = () => 'celsius';
-const getTimeZone = () => 'Ecuador/Guayaquil';
-const uses24HourClock = () => true;
-const usesMetricSystem = () => true;
+export const getCalendar = () => 'gregorian';
+export const getCountry = () => 'ES';
+export const getCurrencies = () => ['USD'];
+export const getTemperatureUnit = () => 'celsius';
+export const getTimeZone = () => 'Ecuador/Guayaquil';
+export const uses24HourClock = () => true;
+export const usesMetricSystem = () => true;
 
-const addEventListener = jest.fn();
-const removeEventListener = jest.fn();
-
-export {
-  findBestAvailableLanguage,
-  getLocales,
-  getNumberFormatSettings,
-  getCalendar,
-  getCountry,
-  getCurrencies,
-  getTemperatureUnit,
-  getTimeZone,
-  uses24HourClock,
-  usesMetricSystem,
-  addEventListener,
-  removeEventListener,
-};
+export const addEventListener = jest.fn();
+export const removeEventListener = jest.fn();
