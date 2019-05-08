@@ -8,7 +8,7 @@ export default {
 
   MAIN_SCREEN: {
     logout: 'Sign out',
-    title: 'Home Screen'
+    title: 'Home Screen',
   },
 
   SIGN_UP: {

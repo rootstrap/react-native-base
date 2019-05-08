@@ -1,10 +1,12 @@
 import React from 'react';
-import { func, string, bool } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
-import { View, Text, Button, ActivityIndicator } from 'react-native';
+import {
+  ActivityIndicator, Button, Text, View,
+} from 'react-native';
 
-import * as constraints from 'utils/constraints';
 import Input from 'components/common/Input';
+import * as constraints from 'utils/constraints';
 import translate from 'utils/i18n';
 import styles from './styles';
 
@@ -31,7 +33,10 @@ const SignUpForm = ({ handleSubmit, error, submitting }) => (
     { submitting ?
       <ActivityIndicator /> :
       <View style={styles.button}>
-        <Button title={translate('SIGN_UP.button')} onPress={handleSubmit} />
+        <Button
+          title={translate('SIGN_UP.button')}
+          onPress={handleSubmit}
+        />
       </View>
     }
   </View>

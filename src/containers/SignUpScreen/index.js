@@ -1,8 +1,8 @@
 import React from 'react';
-import { func, string } from 'prop-types';
 import { Text, View, Button } from 'react-native';
-import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux';
+import { Navigation } from 'react-native-navigation';
+import { func, string } from 'prop-types';
 
 import SignUpForm from 'components/user/SignUpForm';
 import { signUp } from 'actions/userActions';
@@ -16,14 +16,15 @@ const SignUpScreen = ({ signUp, componentId }) => (
     </Text>
     <SignUpForm onSubmit={user => signUp(user.toJS())} />
     <Button
-      title={translate('SIGN_IN.title')} onPress={() => Navigation.pop(componentId)}
+      title={translate('SIGN_IN.title')}
+      onPress={() => Navigation.pop(componentId)}
     />
   </View>
 );
 
 SignUpScreen.propTypes = {
   signUp: func.isRequired,
-  componentId: string.isRequired
+  componentId: string.isRequired,
 };
 
 SignUpScreen.navigationOptions = {

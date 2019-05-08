@@ -1,32 +1,28 @@
 {
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
   "extends": [
     "eslint:recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "airbnb"
   ],
-  "plugins": [
-    "react"
-  ],
+  "globals": {
+    "fetch": true,
+    "__DEV__": true
+  },
   "parser": "babel-eslint",
   "parserOptions": {
-    "ecmaVersion": 7,
-    "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true,
-      "experimentalObjectRestSpread": true
-    }
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
-  "env": {
-    "es6": true,
-    "node": true,
-    "jest": true
-  },
-  "settings": {
-    "import/resolver": {
-      "babel-module": {}
-    }
-  },
+  "plugins": ["react"],
   "rules": {
     "no-class-assign": 0,
     "no-param-reassign": 0,
@@ -35,9 +31,20 @@
     "no-shadow": 0,
     "global-require": 0,
     "eqeqeq": 0,
-    "no-unused-expressions": [1, { "allowShortCircuit": true, "allowTernary": true }],
+    "no-unused-expressions": [
+      1,
+      {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
     "array-callback-return": 0,
-    "no-console": [1, { "allow": ["warn", "error"] }],
+    "no-console": [
+      1,
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
     "no-debugger": 1,
     "no-var": 1,
     "semi": [1, "always"],
@@ -51,16 +58,33 @@
     "block-spacing": 1,
     "brace-style": 1,
     "comma-dangle": 0,
-    "comma-spacing": [1, { "before": false, "after": true }],
+    "comma-spacing": [
+      1,
+      {
+        "before": false,
+        "after": true
+      }
+    ],
     "comma-style": 1,
     "key-spacing": 1,
-    "no-multiple-empty-lines": [1, { "max": 1 }],
+    "no-multiple-empty-lines": [
+      1,
+      {
+        "max": 1
+      }
+    ],
     "arrow-spacing": 1,
     "no-const-assign": 1,
     "object-curly-spacing": [1, "always"],
-    "space-before-blocks" : [1, "always"],
+    "space-before-blocks": [1, "always"],
     "keyword-spacing": 1,
-    "indent": [1, 2, { "SwitchCase": 1 }],
+    "indent": [
+      1,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
     "max-len": 0,
     "operator-linebreak": 0,
     "object-curly-newline": 0,
@@ -68,8 +92,18 @@
     "prefer-promise-reject-errors": 0,
     "jsx-a11y/label-has-for": 0,
     "jsx-a11y/no-static-element-interactions": 0,
-    "react/display-name": [ 1, { "ignoreTranspilerName": false }],
-    "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "react/display-name": [
+      1,
+      {
+        "ignoreTranspilerName": false
+      }
+    ],
+    "react/forbid-prop-types": [
+      1,
+      {
+        "forbid": ["any"]
+      }
+    ],
     "react/desctructuring-assignment": 0,
     "react/jsx-curly-spacing": 1,
     "react/jsx-one-expression-per-line": 0,
@@ -104,8 +138,9 @@
     "react/jsx-wrap-multilines": 0,
     "react/no-array-index-key": 0
   },
-  "globals": {
-    "fetch": true,
-    "__DEV__": true
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
   }
 }

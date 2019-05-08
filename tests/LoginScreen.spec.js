@@ -8,6 +8,8 @@ import nock from 'nock';
 import LoginScreen from 'containers/LoginScreen';
 import configureStore from 'store/configureStore';
 
+import './test-helper';
+
 describe('<LoginScreen />', () => {
   const userEmail = 'example@example.com';
   const userPassword = 'example';

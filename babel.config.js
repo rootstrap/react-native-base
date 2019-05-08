@@ -8,14 +8,15 @@ module.exports = {
           actions: './src/actions',
           api: './src/api',
           components: './src/components',
+          constants: './src/constants',
           containers: './src/containers',
           locale: './src/locale',
           reducers: './src/reducers',
+          screens: './src/screens',
           selectors: './src/selectors',
           store: './src/store',
           utils: './src/utils'
-        },
-        cwd: 'babelrc'
+        }
       }
     ]
   ]

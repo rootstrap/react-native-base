@@ -23,7 +23,11 @@ export default function configureStore(initialState) {
     middlewares.push(logger);
   }
 
-  const store = createStore(AppReducer, initialState, composeEnhancers(applyMiddleware(...middlewares)));
+  const store = createStore(
+    AppReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(...middlewares)),
+  );
 
   return store;
 }

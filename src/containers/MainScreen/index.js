@@ -1,7 +1,7 @@
 import React from 'react';
-import { object, func } from 'prop-types';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
+import { object, func } from 'prop-types';
 
 import { getUser } from 'selectors/sessionSelector';
 import { logout } from 'actions/userActions';

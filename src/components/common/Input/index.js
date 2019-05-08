@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, object, bool } from 'prop-types';
+import { bool, object, string } from 'prop-types';
 import { View, TextInput, Text } from 'react-native';
 import styles from './styles';
 
