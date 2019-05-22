@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
-import { View, Text, Button } from 'react-native';
+import {
+  ActivityIndicator, Button, Text, View,
+} from 'react-native';
 
-import * as constraints from 'utils/constraints';
 import Input from 'components/common/Input';
+import * as constraints from 'utils/constraints';
 import translate from 'utils/i18n';
 import styles from './styles';
 
-const SignUpForm = ({ handleSubmit, error }) => (
+const SignUpForm = ({ handleSubmit, error, submitting }) => (
   <View onSubmit={handleSubmit}>
     {error && <Text>{error}</Text>}
     <Field
@@ -28,16 +30,21 @@ const SignUpForm = ({ handleSubmit, error }) => (
       component={Input}
       password
     />
-    <View style={styles.button}>
-      <Button title={translate('SIGN_UP.button')} onPress={handleSubmit} />
-    </View>
+    { submitting ?
+      <ActivityIndicator /> :
+      <View style={styles.button}>
+        <Button
+          title={translate('SIGN_UP.button')}
+          onPress={handleSubmit}
+        />
+      </View>
+    }
   </View>
 );
 
-const { func, string } = PropTypes;
-
 SignUpForm.propTypes = {
   handleSubmit: func.isRequired,
+  submitting: bool.isRequired,
   error: string
 };
 
