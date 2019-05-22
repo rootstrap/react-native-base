@@ -4,7 +4,7 @@ jobs:
     environment:
       CC_TEST_REPORTER_ID: 61a3188d5e43ddaabd2bc378538388dfbe4b91df4015bf5af41696852eb2c3cf
     docker:
-      - image: circleci/node:8.11-browsers
+      - image: circleci/node:10.14.2-browsers
 
     steps:
       - checkout

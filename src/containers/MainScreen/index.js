@@ -1,16 +1,16 @@
 import React from 'react';
-import { string, func } from 'prop-types';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
+import { object, func } from 'prop-types';
 
 import { getUser } from 'selectors/sessionSelector';
 import { logout } from 'actions/userActions';
 import translate from 'utils/i18n';
 import styles from './styles';
 
-const MainScreen = ({ username, logout }) => (
+const MainScreen = ({ user: { email }, logout }) => (
   <View style={styles.container}>
-    <Text>Hey {username}, you&#39;re logged in!</Text>
+    <Text>Hey {email}, you&#39;re logged in!</Text>
     <Button
       onPress={logout}
       title={translate('MAIN_SCREEN.logout')}
@@ -19,16 +19,16 @@ const MainScreen = ({ username, logout }) => (
 );
 
 MainScreen.propTypes = {
-  username: string.isRequired,
+  user: object.isRequired,
   logout: func.isRequired
 };
 
 MainScreen.navigationOptions = {
-  title: 'Home Screen',
+  title: translate('MAIN_SCREEN.title'),
 };
 
 const mapState = state => ({
-  username: getUser(state).username
+  user: getUser(state)
 });
 
 const mapDispatch = dispatch => ({
