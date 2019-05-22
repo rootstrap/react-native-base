@@ -1,5 +1,4 @@
 import { Navigation } from 'react-native-navigation';
-import { Provider } from 'react-redux';
 import Immutable from 'immutable';
 import { sessionService } from 'redux-react-native-session';
 
@@ -8,7 +7,7 @@ import registerScreens from './screens';
 import { LOGIN_SCREEN, MAIN_SCREEN } from './constants/screens';
 
 const store = configureStore(Immutable.Map());
-registerScreens(Provider, store);
+registerScreens(store);
 
 class App {
   constructor() {
