@@ -2,8 +2,8 @@ import { sessionService } from 'redux-react-native-session';
 import humps from 'humps';
 import Config from 'react-native-config';
 
-import handleErrors from './utils/handleErrors';
-import getResponseBody from './utils/getResponseBody';
+import handleErrors from 'api/utils/handleErrors';
+import getResponseBody from 'api/utils/getResponseBody';
 
 const ACCESS_TOKEN = 'access-token';
 const APPLICATION_JSON = 'application/json';
@@ -18,55 +18,51 @@ const HTTP_VERB = {
 };
 
 class Api {
-  static get(uri, apiUrl = Config.API_URL) {
-    const requestData = this.buildRequestData(HTTP_VERB.GET);
-    return this.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  static async get(uri, apiUrl = Config.API_URL) {
+    const requestData = Api.buildRequestData(HTTP_VERB.GET);
+    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static post(uri, data, apiUrl = Config.API_URL) {
-    const requestData = this.buildRequestData(HTTP_VERB.POST, data);
-    return this.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  static async post(uri, data, apiUrl = Config.API_URL) {
+    const requestData = Api.buildRequestData(HTTP_VERB.POST, data);
+    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static delete(uri, data, apiUrl = Config.API_URL) {
-    const requestData = this.buildRequestData(HTTP_VERB.DELETE, data);
-    return this.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  static async delete(uri, data, apiUrl = Config.API_URL) {
+    const requestData = Api.buildRequestData(HTTP_VERB.DELETE, data);
+    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static put(uri, data, apiUrl = Config.API_URL) {
-    const requestData = this.buildRequestData(HTTP_VERB.PUT, data);
-    return this.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  static async put(uri, data, apiUrl = Config.API_URL) {
+    const requestData = Api.buildRequestData(HTTP_VERB.PUT, data);
+    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static patch(uri, data, apiUrl = Config.API_URL) {
-    const requestData = this.buildRequestData(HTTP_VERB.PATCH, data);
-    return this.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  static async patch(uri, data, apiUrl = Config.API_URL) {
+    const requestData = Api.buildRequestData(HTTP_VERB.PATCH, data);
+    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static buildRequestData(httpVerb, data = null) {
-    const requestData = {
+  static buildRequestData(httpVerb, data = undefined) {
+    return {
       method: httpVerb,
       headers: {
         accept: APPLICATION_JSON,
         [CONTENT_TYPE]: APPLICATION_JSON,
-      }
+      },
+      ...(data && { body: JSON.stringify(humps.decamelizeKeys(data)) }),
     };
-
-    if (data) {
-      const decamelizedData = humps.decamelizeKeys(data);
-      requestData.body = JSON.stringify(decamelizedData);
-    }
-
-    return requestData;
   }
 
-  static loadHeadersAndPerformRequest(uri, apiUrl, data) {
-    return this.getTokenHeader()
-      .then((headers) => {
-        data.headers = { ...data.headers, ...headers };
-        return this.performRequest(uri, apiUrl, data);
-      })
-      .catch(() => this.performRequest(uri, apiUrl, data));
+  static async loadHeadersAndPerformRequest(uri, apiUrl, data) {
+    const requestData = { ...data };
+    try {
+      const headers = await Api.getTokenHeader();
+      requestData.headers = { ...requestData.headers, ...headers };
+      return Api.performRequest(uri, apiUrl, requestData);
+    } catch (err) {
+      return Api.performRequest(uri, apiUrl, requestData);
+    }
   }
 
   static performRequest(uri, apiUrl, requestData = {}) {
@@ -80,18 +76,9 @@ class Api {
     });
   }
 
-  static getTokenHeader() {
-    return new Promise((resolve, reject) => {
-      sessionService.loadSession()
-        .then((session) => {
-          const headers = {};
-          const { token, client, uid } = session;
-          headers[ACCESS_TOKEN] = token;
-          headers.client = client;
-          headers.uid = uid;
-          resolve(headers);
-        }).catch(() => reject());
-    });
+  static async getTokenHeader() {
+    const { token, client, uid } = await sessionService.loadSession();
+    return { [ACCESS_TOKEN]: token, client, uid };
   }
 }
 
