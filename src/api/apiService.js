@@ -18,27 +18,27 @@ const HTTP_VERB = {
 };
 
 class Api {
-  static async get(uri, apiUrl = Config.API_URL) {
+  static get(uri, apiUrl = Config.API_URL) {
     const requestData = Api.buildRequestData(HTTP_VERB.GET);
     return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static async post(uri, data, apiUrl = Config.API_URL) {
+  static post(uri, data, apiUrl = Config.API_URL) {
     const requestData = Api.buildRequestData(HTTP_VERB.POST, data);
     return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static async delete(uri, data, apiUrl = Config.API_URL) {
+  static delete(uri, data, apiUrl = Config.API_URL) {
     const requestData = Api.buildRequestData(HTTP_VERB.DELETE, data);
     return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static async put(uri, data, apiUrl = Config.API_URL) {
+  static put(uri, data, apiUrl = Config.API_URL) {
     const requestData = Api.buildRequestData(HTTP_VERB.PUT, data);
     return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static async patch(uri, data, apiUrl = Config.API_URL) {
+  static patch(uri, data, apiUrl = Config.API_URL) {
     const requestData = Api.buildRequestData(HTTP_VERB.PATCH, data);
     return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
