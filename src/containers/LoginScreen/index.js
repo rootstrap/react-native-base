@@ -28,8 +28,12 @@ LoginScreen.propTypes = {
   componentId: string.isRequired,
 };
 
-LoginScreen.navigationOptions = {
-  title: translate('SIGN_UP.title'),
+LoginScreen.options = {
+  topBar: {
+    title: {
+      text: translate('SIGN_IN.title')
+    }
+  },
 };
 
 const mapDispatch = dispatch => ({

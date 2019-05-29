@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Provider } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 
@@ -7,12 +7,20 @@ const registerScreen = (
   Component,
   store,
 ) => {
-  const ConnectedComponent = props =>
-    <Provider store={store}>
-      <Component
-        {...props}
-      />
-    </Provider>;
+  class ConnectedComponent extends PureComponent {
+    static options = {
+      ...Component.options,
+    }
+
+    render() {
+      return (
+        <Provider store={store}>
+          {React.createElement(Component, this.props)}
+        </Provider>
+      );
+    }
+  }
+
   Navigation.registerComponent(name, () => ConnectedComponent);
 };
 
