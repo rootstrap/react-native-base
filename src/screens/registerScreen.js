@@ -9,10 +9,11 @@ const registerScreen = (
 ) => {
   const ConnectedComponent = props =>
     <Provider store={store}>
-      <Component
-        {...props}
-      />
+      <Component {...props} />
     </Provider>;
+
+  ConnectedComponent.options = Component.options;
+
   Navigation.registerComponent(name, () => ConnectedComponent);
 };
 
