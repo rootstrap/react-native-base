@@ -24,8 +24,9 @@ class App {
     const isAuthenticated = session.get('authenticated');
     const user = session.get('user');
 
-    const userLoggedOut = this.isAuthenticated !== isAuthenticated && !isAuthenticated;
-    const userLoggedIn = this.isAuthenticated !== isAuthenticated && !user.isEmpty();
+    const authenticationChanged = this.isAuthenticated !== isAuthenticated;
+    const userLoggedOut = authenticationChanged && !isAuthenticated;
+    const userLoggedIn = authenticationChanged && !user.isEmpty();
 
     if (!this.isRunning) {
       const wasAsyncStorageChecked = session.get('userChecked');
