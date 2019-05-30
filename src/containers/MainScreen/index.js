@@ -23,8 +23,12 @@ MainScreen.propTypes = {
   logout: func.isRequired
 };
 
-MainScreen.navigationOptions = {
-  title: translate('MAIN_SCREEN.title'),
+MainScreen.options = {
+  topBar: {
+    title: {
+      text: translate('MAIN_SCREEN.title')
+    }
+  },
 };
 
 const mapState = state => ({

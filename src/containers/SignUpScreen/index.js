@@ -27,8 +27,12 @@ SignUpScreen.propTypes = {
   componentId: string.isRequired,
 };
 
-SignUpScreen.navigationOptions = {
-  title: translate('SIGN_UP.title')
+SignUpScreen.options = {
+  topBar: {
+    title: {
+      text: translate('SIGN_UP.title')
+    }
+  },
 };
 
 const mapDispatch = dispatch => ({
