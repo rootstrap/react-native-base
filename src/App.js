@@ -23,17 +23,19 @@ class App {
     const session = store.getState().get('session');
     const isAuthenticated = session.get('authenticated');
     const user = session.get('user');
-    const shouldUpdate = this.isAuthenticated !== isAuthenticated && (!isAuthenticated || !user.isEmpty());
+
+    const userLoggedOut = this.isAuthenticated !== isAuthenticated && !isAuthenticated;
+    const userLoggedIn = this.isAuthenticated !== isAuthenticated && !user.isEmpty();
 
     if (!this.isRunning) {
-      const checked = session.get('userChecked');
+      const wasAsyncStorageChecked = session.get('userChecked');
 
-      if (checked) {
+      if (wasAsyncStorageChecked) {
         this.isRunning = true;
         this.isAuthenticated = isAuthenticated;
         this.start();
       }
-    } else if (shouldUpdate) {
+    } else if (userLoggedOut || userLoggedIn) {
       this.isAuthenticated = isAuthenticated;
       this.start();
     }
