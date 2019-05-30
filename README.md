@@ -11,12 +11,11 @@
 
 ## Getting started
 1. Install dependencies: `yarn`
-2. Create a file named `.env` in the root directory of the project and define your config constants there, for example:
-```
-API_URL=https://rails5-api-base.herokuapp.com/api/v1
-SOME_OTHER_CONFIG=something
-```
-3. Rename your new project using react-native-rename (https://github.com/junedomingo/react-native-rename)
+2. Create a `.env` file in the root directory of the project, based on the `.env.defaults` sample file and the extra constants that you may need.
+
+You can also create `.env.prod` and `.env.staging` to define environment variables for production and staging.
+
+3. Rename your new project using [react-native-rename](https://github.com/junedomingo/react-native-rename)
 4. Start on android or ios: `react-native run-android` or `react-native run-ios`
 
 ## Configuring Code Climate
@@ -26,7 +25,7 @@ SOME_OTHER_CONFIG=something
 
 ## Build Android Release
 1. Ask a developer for the release key and place it in `/android/app`
-2. Add the following variables in .env:
+2. Add the following variables in `.env.prod`:
  ```
   RELEASE_STORE_FILE
   RELEASE_STORE_PASSWORD
@@ -38,6 +37,20 @@ SOME_OTHER_CONFIG=something
 
 ## Build iOS Release
 1. Configure the release scheme: go to **Product** -> **Scheme** -> **Edit Scheme**, then select the Run tab in the sidebar, and set the Build Configuration dropdown to **Release**.
+
+## Managing multiple environments
+
+### Android
+
+By default the app loads `.env`, `.env.staging` or `.env.prod` files depending on the mode the build was executed (`debug`, `staging` or `release` respectively)
+
+### iOS
+
+You can add an schema in XCode and indicate which `.env` file to load there or doing it manually from the console by running
+
+```
+  ENVFILE=.env.staging react-native run-ios 
+```
 
 ## Troubleshooting
 

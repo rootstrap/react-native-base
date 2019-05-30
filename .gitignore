@@ -61,6 +61,8 @@ buck-out/
 
 # Constants location
 .env
+.env.staging
+.env.prod
 
 # Coverage
 coverage/
