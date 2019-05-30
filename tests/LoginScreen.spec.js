@@ -5,6 +5,7 @@ import { sessionService } from 'redux-react-native-session';
 import Config from 'react-native-config';
 import nock from 'nock';
 
+import withNavigation from 'components/hocs/withNavigation';
 import LoginScreen from 'containers/LoginScreen';
 import configureStore from 'store/configureStore';
 
@@ -22,9 +23,10 @@ describe('<LoginScreen />', () => {
 
   beforeEach(() => {
     const store = configureStore();
+    const NavigationLogin = withNavigation(LoginScreen);
     wrapper = mount(
       <Provider store={store}>
-        <LoginScreen />
+        <NavigationLogin />
       </Provider>
     );
 
