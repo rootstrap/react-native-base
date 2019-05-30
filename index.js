@@ -3,5 +3,4 @@ import App from './src/App';
 
 Navigation.events().registerAppLaunchedListener(() => {
   const app = new App();
-  app.start();
 });
