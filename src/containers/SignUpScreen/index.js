@@ -1,15 +1,14 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
-import { Navigation } from 'react-native-navigation';
-import { func, string } from 'prop-types';
+import { func, object } from 'prop-types';
 
 import SignUpForm from 'components/user/SignUpForm';
 import { signUp } from 'actions/userActions';
 import translate from 'utils/i18n';
 import styles from './styles';
 
-const SignUpScreen = ({ signUp, componentId }) => (
+const SignUpScreen = ({ signUp, navigation }) => (
   <View style={styles.container}>
     <Text style={styles.welcome}>
       {translate('SIGN_UP.title')}
@@ -17,14 +16,14 @@ const SignUpScreen = ({ signUp, componentId }) => (
     <SignUpForm onSubmit={user => signUp(user.toJS())} />
     <Button
       title={translate('SIGN_IN.title')}
-      onPress={() => Navigation.pop(componentId)}
+      onPress={navigation.pop}
     />
   </View>
 );
 
 SignUpScreen.propTypes = {
+  navigation: object.isRequired,
   signUp: func.isRequired,
-  componentId: string.isRequired,
 };
 
 SignUpScreen.options = {
