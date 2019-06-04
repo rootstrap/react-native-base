@@ -1,12 +1,11 @@
 import { Navigation } from 'react-native-navigation';
-import Immutable from 'immutable';
 import { sessionService } from 'redux-react-native-session';
 
 import configureStore from './store/configureStore';
 import registerScreens from './screens';
 import { LOGIN_SCREEN, MAIN_SCREEN } from './constants/screens';
 
-const store = configureStore(Immutable.Map());
+const store = configureStore({});
 registerScreens(store);
 
 class App {
@@ -20,16 +19,16 @@ class App {
   }
 
   onStoreUpdate() {
-    const session = store.getState().get('session');
-    const isAuthenticated = session.get('authenticated');
-    const user = session.get('user');
+    const { session } = store.getState();
+    const isAuthenticated = session.authenticated;
+    const { user } = session;
 
     const authenticationChanged = this.isAuthenticated !== isAuthenticated;
     const userLoggedOut = authenticationChanged && !isAuthenticated;
     const userLoggedIn = authenticationChanged && !user.isEmpty();
 
     if (!this.isRunning) {
-      const wasAsyncStorageChecked = session.get('userChecked');
+      const { userChecked: wasAsyncStorageChecked } = session;
 
       if (wasAsyncStorageChecked) {
         this.isRunning = true;
