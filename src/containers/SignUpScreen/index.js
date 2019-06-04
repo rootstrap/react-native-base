@@ -13,7 +13,7 @@ const SignUpScreen = ({ signUp, navigation }) => (
     <Text style={styles.welcome}>
       {translate('SIGN_UP.title')}
     </Text>
-    <SignUpForm onSubmit={user => signUp(user.toJS())} />
+    <SignUpForm onSubmit={user => signUp(user)} />
     <Button
       title={translate('SIGN_IN.title')}
       onPress={navigation.pop}

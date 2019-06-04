@@ -14,7 +14,7 @@ const LoginScreen = ({ login, navigation }) => (
     <Text style={styles.welcome}>
       {translate('SIGN_IN.title')}
     </Text>
-    <LoginForm onSubmit={user => login(user.toJS())} />
+    <LoginForm onSubmit={user => login(user)} />
     <Button
       title={translate('SIGN_UP.title')}
       onPress={() => navigation.push({ component: { name: SIGN_UP_SCREEN } })}
