@@ -1,6 +1,6 @@
 import React from 'react';
 import { bool, func, string } from 'prop-types';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm } from 'redux-form';
 import {
   ActivityIndicator, Button, Text, View,
 } from 'react-native';
