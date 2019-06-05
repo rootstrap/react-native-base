@@ -3,7 +3,6 @@ import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { object, func } from 'prop-types';
 
-import { getUser } from 'selectors/sessionSelector';
 import { logout } from 'actions/userActions';
 import translate from 'utils/i18n';
 import styles from './styles';
@@ -32,7 +31,7 @@ MainScreen.options = {
 };
 
 const mapState = state => ({
-  user: getUser(state)
+  user: state.session.user
 });
 
 const mapDispatch = dispatch => ({
