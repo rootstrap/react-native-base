@@ -12,6 +12,12 @@ const styles = StyleSheet.create({
     margin: 10,
     textAlign: 'center',
   },
+  image: {
+    height: 50,
+    width: 50,
+    backgroundColor: 'black',
+    alignSelf: 'center',
+  }
 });
 
 export default styles;

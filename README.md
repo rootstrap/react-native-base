@@ -49,7 +49,7 @@ By default the app loads `.env`, `.env.staging` or `.env.prod` files depending o
 You can add an schema in XCode and indicate which `.env` file to load there or doing it manually from the console by running
 
 ```
-  ENVFILE=.env.staging react-native run-ios 
+  ENVFILE=.env.staging react-native run-ios
 ```
 
 ## Troubleshooting
@@ -63,6 +63,7 @@ https://github.com/rootstrap/react-native-base/issues/40
 - [PropTypes](https://github.com/facebook/prop-types)
 - [React-Native-Config](https://github.com/luggit/react-native-config)
 - [React-Native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
+- [React-Native-Fast-Image](https://github.com/DylanVann/react-native-fast-image)
 - [Redux](https://github.com/reduxjs/redux)
 - [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
 - [Redux-Form](https://github.com/erikras/redux-form)

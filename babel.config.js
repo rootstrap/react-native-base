@@ -7,6 +7,7 @@ module.exports = {
         alias: {
           actions: './src/actions',
           api: './src/api',
+          assets: './src/assets',
           components: './src/components',
           constants: './src/constants',
           containers: './src/containers',

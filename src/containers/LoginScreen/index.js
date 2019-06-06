@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { func, object } from 'prop-types';
+import FastImage from 'react-native-fast-image';
 
 import LoginForm from 'components/user/LoginForm';
 import { login } from 'actions/userActions';
@@ -11,6 +12,10 @@ import styles from './styles';
 
 const LoginScreen = ({ login, navigation }) => (
   <View style={styles.container}>
+    <FastImage
+      style={styles.image}
+      source={require('assets/images/react-logo.png')}
+    />
     <Text style={styles.welcome}>
       {translate('SIGN_IN.title')}
     </Text>
