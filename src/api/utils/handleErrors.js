@@ -1,29 +1,26 @@
 import { sessionService } from 'redux-react-native-session';
 import saveSessionHeaders from './saveSessionHeaders';
 
-export default response =>
-  new Promise((resolve, reject) => {
-    if (!response) {
-      reject({ message: 'No response returned from fetch' });
-      return;
-    }
+export default async (response) => {
+  if (!response) {
+    throw new Error({ message: 'No response returned from fetch' });
+  }
 
-    if (response.ok) {
-      saveSessionHeaders(response.headers);
-      resolve(response);
-      return;
-    }
+  if (response.ok) {
+    await saveSessionHeaders(response.headers);
+    return response;
+  }
 
-    sessionService.loadSession()
+  try {
+    await sessionService.loadSession()
       .then(() => {
         if (response.status === 401) {
           sessionService.deleteSession();
         }
       });
+  } catch (e) {} // eslint-disable-line
 
-    response.json()
-      .then((json) => {
-        const error = json || { message: response.statusText };
-        reject(error);
-      }).catch(() => reject({ message: 'Response not JSON' }));
-  });
+  throw await response.json()
+    .then(json => json || { message: response.statusText })
+    .catch(() => ({ message: 'Response not JSON' }));
+};

@@ -12,6 +12,6 @@ export default (headers) => {
       client: headers.get(CLIENT),
     };
 
-    sessionService.saveSession(sessionHeaders);
+    return sessionService.saveSession(sessionHeaders);
   }
 };

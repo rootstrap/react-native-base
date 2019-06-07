@@ -65,15 +65,17 @@ class Api {
     }
   }
 
-  static performRequest(uri, apiUrl, requestData = {}) {
+  static async performRequest(uri, apiUrl, requestData = {}) {
     const url = `${apiUrl}${uri}`;
-    return new Promise((resolve, reject) => {
-      fetch(url, requestData)
-        .then(handleErrors)
-        .then(getResponseBody)
-        .then(response => resolve(humps.camelizeKeys(response)))
-        .catch(error => reject(humps.camelizeKeys(error)));
-    });
+
+    try {
+      const response = await fetch(url, requestData);
+      const processedResponse = await handleErrors(response);
+      const body = await getResponseBody(processedResponse);
+      return humps.camelizeKeys(body);
+    } catch (error) {
+      throw humps.camelizeKeys(error);
+    }
   }
 
   static async getTokenHeader() {
