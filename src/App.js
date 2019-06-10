@@ -25,7 +25,7 @@ class App {
 
     const authenticationChanged = this.isAuthenticated !== isAuthenticated;
     const userLoggedOut = authenticationChanged && !isAuthenticated;
-    const userLoggedIn = authenticationChanged && !user.isEmpty();
+    const userLoggedIn = authenticationChanged && Object.keys(user).length > 0;
 
     if (!this.isRunning) {
       const { userChecked: wasAsyncStorageChecked } = session;
