@@ -1,5 +1,6 @@
 import { Navigation } from 'react-native-navigation';
 import { sessionService } from 'redux-react-native-session';
+import isEmpty from 'lodash/isEmpty';
 
 import configureStore from './store/configureStore';
 import registerScreens from './screens';
@@ -25,7 +26,7 @@ class App {
 
     const authenticationChanged = this.isAuthenticated !== isAuthenticated;
     const userLoggedOut = authenticationChanged && !isAuthenticated;
-    const userLoggedIn = authenticationChanged && Object.keys(user).length > 0;
+    const userLoggedIn = authenticationChanged && !isEmpty(user);
 
     if (!this.isRunning) {
       const { userChecked: wasAsyncStorageChecked } = session;
