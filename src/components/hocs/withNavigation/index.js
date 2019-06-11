@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navigation } from 'react-native-navigation';
 
 import Context from 'screens/screenContext';
@@ -17,16 +17,14 @@ const withNavigation = Component => (props) => {
     dismissModal: () => Navigation.dismissModal(componentId),
   });
 
+  const componentId = useContext(Context);
+
   return (
-    <Context.Consumer>
-      {componentId =>
-        <Component
-          componentId={componentId}
-          navigation={navigation(componentId)}
-          {...props}
-        />
-      }
-    </Context.Consumer>
+    <Component
+      componentId={componentId}
+      navigation={navigation(componentId)}
+      {...props}
+    />
   );
 };
 
