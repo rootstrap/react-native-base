@@ -1,4 +1,5 @@
 import { sessionService } from 'redux-react-native-session';
+import parseError from './parseError';
 import saveSessionHeaders from './saveSessionHeaders';
 
 export default async (response) => {
@@ -12,15 +13,14 @@ export default async (response) => {
   }
 
   try {
-    await sessionService.loadSession()
-      .then(() => {
-        if (response.status === 401) {
-          sessionService.deleteSession();
-        }
-      });
-  } catch (e) {} // eslint-disable-line
+    await sessionService.loadSession();
 
-  throw await response.json()
-    .then(json => json || { message: response.statusText })
-    .catch(() => ({ message: 'Response not JSON' }));
+    if (response.status === 401) {
+      await sessionService.deleteSession();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  throw await parseError(response);
 };

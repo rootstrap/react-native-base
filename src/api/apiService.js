@@ -43,7 +43,7 @@ class Api {
     return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
-  static buildRequestData(httpVerb, data = undefined) {
+  static buildRequestData(httpVerb, data) {
     return {
       method: httpVerb,
       headers: {
@@ -65,6 +65,11 @@ class Api {
     }
   }
 
+  static async getTokenHeader() {
+    const { token, client, uid } = await sessionService.loadSession();
+    return { [ACCESS_TOKEN]: token, client, uid };
+  }
+
   static async performRequest(uri, apiUrl, requestData = {}) {
     const url = `${apiUrl}${uri}`;
 
@@ -76,11 +81,6 @@ class Api {
     } catch (error) {
       throw humps.camelizeKeys(error);
     }
-  }
-
-  static async getTokenHeader() {
-    const { token, client, uid } = await sessionService.loadSession();
-    return { [ACCESS_TOKEN]: token, client, uid };
   }
 }
 
