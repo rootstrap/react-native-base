@@ -1,25 +1,29 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, Button } from 'react-native';
-import { connect } from 'react-redux';
-import { object, func } from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 import { logout } from 'actions/userActions';
 import translate from 'utils/i18n';
+import useSession from 'hooks/useSession';
 import styles from './styles';
 
-const MainScreen = ({ user: { email }, logout }) => (
-  <View style={styles.container}>
-    <Text>Hey {email}, you&#39;re logged in!</Text>
-    <Button
-      onPress={logout}
-      title={translate('MAIN_SCREEN.logout')}
-    />
-  </View>
-);
+const MainScreen = () => {
+  const dispatch = useDispatch();
+  const logoutRequest = useCallback(
+    () => dispatch(logout()),
+    [dispatch]
+  );
 
-MainScreen.propTypes = {
-  user: object.isRequired,
-  logout: func.isRequired
+  const { user: { email } } = useSession();
+  return (
+    <View style={styles.container}>
+      <Text>Hey {email}, you&#39;re logged in!</Text>
+      <Button
+        onPress={logoutRequest}
+        title={translate('MAIN_SCREEN.logout')}
+      />
+    </View>
+  );
 };
 
 MainScreen.options = {
@@ -30,12 +34,4 @@ MainScreen.options = {
   },
 };
 
-const mapState = state => ({
-  user: state.session.user
-});
-
-const mapDispatch = dispatch => ({
-  logout: () => dispatch(logout())
-});
-
-export default connect(mapState, mapDispatch)(MainScreen);
+export default MainScreen;

@@ -1,29 +1,37 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { Text, View, Button } from 'react-native';
-import { connect } from 'react-redux';
-import { func, object } from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { object } from 'prop-types';
 
 import SignUpForm from 'components/user/SignUpForm';
 import { signUp } from 'actions/userActions';
 import translate from 'utils/i18n';
 import styles from './styles';
 
-const SignUpScreen = ({ signUp, navigation }) => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>
-      {translate('SIGN_UP.title')}
-    </Text>
-    <SignUpForm onSubmit={user => signUp(user)} />
-    <Button
-      title={translate('SIGN_IN.title')}
-      onPress={navigation.pop}
-    />
-  </View>
-);
+const SignUpScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+
+  const signUpRequest = useCallback(
+    user => dispatch(signUp(user)),
+    [dispatch]
+  );
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>
+        {translate('SIGN_UP.title')}
+      </Text>
+      <SignUpForm onSubmit={signUpRequest} />
+      <Button
+        title={translate('SIGN_IN.title')}
+        onPress={navigation.pop}
+      />
+    </View>
+  );
+};
 
 SignUpScreen.propTypes = {
-  navigation: object.isRequired,
-  signUp: func.isRequired,
+  navigation: object.isRequired
 };
 
 SignUpScreen.options = {
@@ -34,8 +42,4 @@ SignUpScreen.options = {
   },
 };
 
-const mapDispatch = dispatch => ({
-  signUp: user => dispatch(signUp(user))
-});
-
-export default connect(null, mapDispatch)(SignUpScreen);
+export default memo(SignUpScreen);
