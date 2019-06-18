@@ -9,6 +9,7 @@ import styles from './styles';
 
 const MainScreen = () => {
   const dispatch = useDispatch();
+
   const logoutRequest = useCallback(
     () => dispatch(logout()),
     [dispatch]
