@@ -6,28 +6,27 @@ import Config from 'react-native-config';
 import nock from 'nock';
 
 import withNavigation from 'components/hocs/withNavigation';
-import SignUpScreen from 'containers/SignUpScreen';
+import LoginScreen from 'containers/LoginScreen';
 import configureStore from 'store/configureStore';
 
-import './test-helper';
+import '../test-helper';
 
-describe('<SignUpScreen />', () => {
+describe('<LoginScreen />', () => {
   const userEmail = 'example@example.com';
   const userPassword = 'example';
   let wrapper;
   let emailInput;
   let passwordInput;
-  let passwordConfirmationInput;
   let submitButton;
   let response;
   let data;
 
   beforeEach(() => {
     const store = configureStore();
-    const NavigationSignUp = withNavigation(SignUpScreen);
+    const NavigationLogin = withNavigation(LoginScreen);
     wrapper = mount(
       <Provider store={store}>
-        <NavigationSignUp />
+        <NavigationLogin />
       </Provider>
     );
 
@@ -35,7 +34,6 @@ describe('<SignUpScreen />', () => {
       user: {
         email: userEmail,
         password: userPassword,
-        password_confirmation: userPassword,
       }
     };
 
@@ -51,7 +49,6 @@ describe('<SignUpScreen />', () => {
     sessionService.saveUser = jest.fn(() => Promise.resolve());
     emailInput = wrapper.find('TextInput').at(0);
     passwordInput = wrapper.find('TextInput').at(2);
-    passwordConfirmationInput = wrapper.find('TextInput').at(4);
     submitButton = wrapper.find('Button').at(0);
   });
 
@@ -63,19 +60,14 @@ describe('<SignUpScreen />', () => {
     expect(passwordInput.props().name).toEqual('password');
   });
 
-  it('should display a password confirmation input field', () => {
-    expect(passwordConfirmationInput.props().name).toEqual('passwordConfirmation');
-  });
-
-  describe('submit SignUp with valid email/password inputs', () => {
+  describe('submit Login with valid email/password inputs', () => {
     beforeEach(() => {
       nock(Config.API_URL)
-        .post('/users', data)
+        .post('/users/sign_in', data)
         .reply(200, response);
 
       emailInput.props().onChangeText(userEmail);
       passwordInput.props().onChangeText(userPassword);
-      passwordConfirmationInput.props().onChangeText(userPassword);
       submitButton.props().onPress();
     });
 
@@ -97,14 +89,13 @@ describe('<SignUpScreen />', () => {
     beforeEach(async () => {
       emailInput.props().onChangeText('no valid email');
       passwordInput.props().onChangeText(userPassword);
-      passwordConfirmationInput.props().onChangeText(userPassword);
       await submitButton.props().onPress();
       wrapper.update();
     });
 
     it('should be an invalid form', () => {
-      const signUpForm = wrapper.find('SignUpForm');
-      expect(signUpForm.props().valid).toEqual(false);
+      const loginForm = wrapper.find('LoginForm');
+      expect(loginForm.props().valid).toEqual(false);
     });
   });
 
@@ -112,14 +103,13 @@ describe('<SignUpScreen />', () => {
     beforeEach(async () => {
       emailInput.props().onChangeText('');
       passwordInput.props().onChangeText(userPassword);
-      passwordConfirmationInput.props().onChangeText(userPassword);
       await submitButton.props().onPress();
       wrapper.update();
     });
 
     it('should be an invalid form', () => {
-      const signUpForm = wrapper.find('SignUpForm');
-      expect(signUpForm.props().valid).toEqual(false);
+      const loginForm = wrapper.find('LoginForm');
+      expect(loginForm.props().valid).toEqual(false);
     });
   });
 
@@ -127,53 +117,36 @@ describe('<SignUpScreen />', () => {
     beforeEach(async () => {
       emailInput.props().onChangeText(userEmail);
       passwordInput.props().onChangeText('');
-      passwordConfirmationInput.props().onChangeText('');
       await submitButton.props().onPress();
       wrapper.update();
     });
 
     it('should be an invalid form', () => {
-      const signUpForm = wrapper.find('SignUpForm');
-      expect(signUpForm.props().valid).toEqual(false);
-    });
-  });
-
-  describe('submit with non matching passwords', () => {
-    beforeEach(async () => {
-      emailInput.props().onChangeText(userEmail);
-      passwordInput.props().onChangeText('password1');
-      passwordConfirmationInput.props().onChangeText('password2');
-      await submitButton.props().onPress();
-      wrapper.update();
-    });
-
-    it('should be an invalid form', () => {
-      const signUpForm = wrapper.find('SignUpForm');
-      expect(signUpForm.props().valid).toEqual(false);
+      const loginForm = wrapper.find('LoginForm');
+      expect(loginForm.props().valid).toEqual(false);
     });
   });
 
   describe('submit with errors from server', () => {
     beforeEach(async () => {
       response = {
-        error: 'Invalid signUp credentials. Please try again.'
+        error: 'Invalid login credentials. Please try again.'
       };
 
       nock(Config.API_URL)
-        .post('/users', data)
+        .post('/users/sign_in', data)
         .reply(401, response);
 
       emailInput.props().onChangeText(userEmail);
       passwordInput.props().onChangeText(userPassword);
-      passwordConfirmationInput.props().onChangeText(userPassword);
       await submitButton.props().onPress();
       wrapper.update();
     });
 
     it('should display the server error in the form', () => {
-      const signUpForm = wrapper.find('SignUpForm');
-      const error = 'Invalid signUp credentials. Please try again.';
-      expect(signUpForm.props().error).toEqual(error);
+      const loginForm = wrapper.find('LoginForm');
+      const error = 'Invalid login credentials. Please try again.';
+      expect(loginForm.props().error).toEqual(error);
     });
   });
 });
