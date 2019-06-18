@@ -8,6 +8,10 @@ export const loginSuccess = () => ({
   type: types.LOGIN_SUCCESS
 });
 
+export const loginRequest = () => ({
+  type: types.LOGIN_REQUEST
+});
+
 export const logoutSuccess = () => ({
   type: types.LOGOUT_SUCCESS
 });
@@ -15,6 +19,7 @@ export const logoutSuccess = () => ({
 export const login = user =>
   async (dispatch) => {
     try {
+      dispatch(loginRequest());
       const response = await userApi.login({ user });
       await sessionService.saveUser(response.user);
       dispatch(loginSuccess());

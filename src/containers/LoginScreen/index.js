@@ -6,6 +6,7 @@ import { object } from 'prop-types';
 import LoginForm from 'components/user/LoginForm';
 import { login } from 'actions/userActions';
 import translate from 'utils/i18n';
+import useLoading from 'hooks/useLoading';
 import { SIGN_UP_SCREEN } from 'constants/screens';
 import styles from './styles';
 
@@ -15,12 +16,14 @@ const LoginScreen = ({ navigation }) => {
     user => dispatch(login(user)),
     [dispatch]
   );
+  const isLoading = useLoading('LOGIN');
+
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>
         {translate('SIGN_IN.title')}
       </Text>
-      <LoginForm onSubmit={loginRequest} />
+      <LoginForm onSubmit={loginRequest} submitting={isLoading} />
       <Button
         title={translate('SIGN_UP.title')}
         onPress={() => navigation.push({ component: { name: SIGN_UP_SCREEN } })}
