@@ -10,6 +10,7 @@ module.exports = {
           components: './src/components',
           constants: './src/constants',
           containers: './src/containers',
+          hooks: './src/hooks',
           locale: './src/locale',
           reducers: './src/reducers',
           screens: './src/screens',
