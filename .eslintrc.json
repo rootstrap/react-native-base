@@ -4,12 +4,7 @@
     "node": true,
     "jest": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "airbnb"
-  ],
+  "extends": ["eslint:recommended", "plugin:import/errors", "plugin:import/warnings", "airbnb"],
   "globals": {
     "fetch": true,
     "__DEV__": true
@@ -22,7 +17,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "react-hooks"],
   "rules": {
     "no-class-assign": 0,
     "no-param-reassign": 0,
@@ -136,7 +131,8 @@
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
     "react/jsx-wrap-multilines": 0,
-    "react/no-array-index-key": 0
+    "react/no-array-index-key": 0,
+    "react-hooks/rules-of-hooks": "error"
   },
   "settings": {
     "import/resolver": {
