@@ -42,6 +42,7 @@
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-hooks": "1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "jest": "24.7.1",
     "jest-enzyme": "^7.0.2",
