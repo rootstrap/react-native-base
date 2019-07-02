@@ -16,7 +16,7 @@
     "prop-types": "^15.7.2",
     "query-string": "^6.5.0",
     "react": "16.8.3",
-    "react-native": "0.59.9",
+    "react-native": "0.59.10",
     "react-native-config": "^0.11.7",
     "react-native-localize": "^1.1.2",
     "react-native-navigation": "^2.18.4",
