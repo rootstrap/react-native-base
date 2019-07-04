@@ -904,6 +904,11 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^12.0.9"
 
+"@react-native-community/async-storage@^1.4.2", "@react-native-community/async-storage@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.5.0.tgz#647ffcd832272068b0be57332e08d73036ed391f"
+  integrity sha512-2yE4RzQ5IL+UTPhuMY0ykNRKHf1m90jOnmp8fcDPUun5U97cXlorjI4p66ovDgF0FuOv8ZpiUKvunGy3qqBxwg==
+
 "@react-native-community/cli@^1.2.1":
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli/-/cli-1.9.2.tgz#d033ab141df3a476e628aecd9c99534b5cb0d63e"
@@ -6126,10 +6131,10 @@ react-native-navigation@^2.18.4:
     react-lifecycles-compat "2.0.0"
     tslib "1.9.3"
 
-react-native@0.59.9:
-  version "0.59.9"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.59.9.tgz#c94ee4fa35121720c05235a2dd6cdd2784bf5177"
-  integrity sha512-/+8EgIZwFpYHyyJ7Zav7B6LHNrytwUQ+EKGT/QV7HSrgpf2Y5NZNeUYUHKiVKLYpBip1G32/LcAECQj37YRwGQ==
+react-native@0.59.10:
+  version "0.59.10"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.59.10.tgz#352f381e382f93a0403be499c9e384bf51c2591c"
+  integrity sha512-guB9YW+pBqS1dnfZ4ntzjINopiCUAbdmshU2wMWD1W32fRczLAopi/7Q2iHKP8LTCdxuYZV3fa9Mew5PSuANAw==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@react-native-community/cli" "^1.2.1"
@@ -6328,11 +6333,12 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-react-native-session@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/redux-react-native-session/-/redux-react-native-session-1.0.5.tgz#d97dbf6e6c418d958b1ce3f50f366360be240aed"
-  integrity sha512-DOriUg1CfmN9+8OFZCP46a76S0qR6uQWxtON1EWGnog0A0ATqv+aUxDNvc6olv+bA0i21xfQ5EtUfVuNkBc1tQ==
+redux-react-native-session@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/redux-react-native-session/-/redux-react-native-session-1.0.6.tgz#65676a714d2a6d5c2af4aa647b4491faa9e40731"
+  integrity sha512-aUo5WX/qz9H/jSoRINZNbzwrEKhrrfP2i7O+gLn3yj5KYmOE+v7GDOkb0o3hDdWw9729zClQbKCVM2vgZP4zmw==
   dependencies:
+    "@react-native-community/async-storage" "^1.4.2"
     immutable "3.8.1"
 
 redux-thunk@^2.3.0:
