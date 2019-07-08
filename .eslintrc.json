@@ -4,7 +4,8 @@
     "node": true,
     "jest": true
   },
-  "extends": ["eslint:recommended", "plugin:import/errors", "plugin:import/warnings", "airbnb"],
+  "extends": ["eslint:recommended", "plugin:import/errors", "plugin:import/warnings", "airbnb", "prettier",
+    "prettier/react"],
   "globals": {
     "fetch": true,
     "__DEV__": true
@@ -17,8 +18,9 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks"],
+  "plugins": ["react", "react-hooks", "prettier"],
   "rules": {
+    "prettier/prettier": ["error"],
     "no-class-assign": 0,
     "no-param-reassign": 0,
     "class-methods-use-this": 0,
@@ -132,7 +134,8 @@
     "react/sort-comp": 1,
     "react/jsx-wrap-multilines": 0,
     "react/no-array-index-key": 0,
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error",
+    "arrow-parens": 0
   },
   "settings": {
     "import/resolver": {
