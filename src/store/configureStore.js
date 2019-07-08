@@ -9,14 +9,12 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
 export default function configureStore(initialState) {
-  const middlewares = [
-    thunkMiddleware
-  ];
+  const middlewares = [thunkMiddleware];
 
   if (__DEV__) {
     const logger = createLogger({
       collapsed: true,
-      predicate: (getState, { type }) => !_.startsWith(type, '@@redux-form'),
+      predicate: (getState, { type }) => !_.startsWith(type, '@@redux-form')
     });
     middlewares.push(logger);
   }
@@ -24,7 +22,7 @@ export default function configureStore(initialState) {
   const store = createStore(
     AppReducer,
     initialState,
-    composeEnhancers(applyMiddleware(...middlewares)),
+    composeEnhancers(applyMiddleware(...middlewares))
   );
 
   return store;

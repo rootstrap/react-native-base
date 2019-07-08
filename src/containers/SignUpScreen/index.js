@@ -11,21 +11,13 @@ import styles from './styles';
 const SignUpScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
-  const signUpRequest = useCallback(
-    user => dispatch(signUp(user)),
-    [dispatch]
-  );
+  const signUpRequest = useCallback(user => dispatch(signUp(user)), [dispatch]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>
-        {translate('SIGN_UP.title')}
-      </Text>
+      <Text style={styles.welcome}>{translate('SIGN_UP.title')}</Text>
       <SignUpForm onSubmit={signUpRequest} />
-      <Button
-        title={translate('SIGN_IN.title')}
-        onPress={navigation.pop}
-      />
+      <Button title={translate('SIGN_IN.title')} onPress={navigation.pop} />
     </View>
   );
 };
@@ -39,7 +31,7 @@ SignUpScreen.options = {
     title: {
       text: translate('SIGN_UP.title')
     }
-  },
+  }
 };
 
 export default memo(SignUpScreen);

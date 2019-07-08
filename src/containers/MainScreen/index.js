@@ -10,19 +10,15 @@ import styles from './styles';
 const MainScreen = () => {
   const dispatch = useDispatch();
 
-  const logoutRequest = useCallback(
-    () => dispatch(logout()),
-    [dispatch]
-  );
+  const logoutRequest = useCallback(() => dispatch(logout()), [dispatch]);
 
-  const { user: { email } } = useSession();
+  const {
+    user: { email }
+  } = useSession();
   return (
     <View style={styles.container}>
       <Text>Hey {email}, you&#39;re logged in!</Text>
-      <Button
-        onPress={logoutRequest}
-        title={translate('MAIN_SCREEN.logout')}
-      />
+      <Button onPress={logoutRequest} title={translate('MAIN_SCREEN.logout')} />
     </View>
   );
 };
@@ -32,7 +28,7 @@ MainScreen.options = {
     title: {
       text: translate('MAIN_SCREEN.title')
     }
-  },
+  }
 };
 
 export default MainScreen;

@@ -2,7 +2,7 @@ import { sessionService } from 'redux-react-native-session';
 import parseError from './parseError';
 import saveSessionHeaders from './saveSessionHeaders';
 
-export default async (response) => {
+export default async response => {
   if (!response) {
     throw new Error({ message: 'No response returned from fetch' });
   }
