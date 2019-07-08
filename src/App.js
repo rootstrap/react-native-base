@@ -49,12 +49,12 @@ class App {
           children: [
             {
               component: {
-                name: this.isAuthenticated ? MAIN_SCREEN : LOGIN_SCREEN,
+                name: this.isAuthenticated ? MAIN_SCREEN : LOGIN_SCREEN
               }
             }
           ]
         }
-      },
+      }
     });
   }
 }

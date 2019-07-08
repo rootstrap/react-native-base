@@ -3,7 +3,12 @@ import { bool, object, string } from 'prop-types';
 import { View, TextInput, Text } from 'react-native';
 import styles from './styles';
 
-const Input = ({ input: { onChange, ...restInput }, password = false, label, meta: { touched, error } }) => (
+const Input = ({
+  input: { onChange, ...restInput },
+  password = false,
+  label,
+  meta: { touched, error }
+}) => (
   <View>
     {label && <Text>{label}</Text>}
     <View>
