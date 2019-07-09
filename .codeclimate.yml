@@ -52,6 +52,8 @@ checks:
 plugins:
   eslint:
     enabled: true
+    config:
+      config: ~/.eslintrc
 exclude_patterns:
   - "android/"
   - "ios/"

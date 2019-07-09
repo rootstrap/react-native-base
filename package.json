@@ -4,14 +4,29 @@
   "private": true,
   "scripts": {
     "lint": "eslint src",
+    "lint:fix": "eslint --fix src",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest --silent",
-    "test:cover": "yarn run test --coverage"
+    "test:cover": "yarn run test --coverage",
+    "prettier": "prettier --write './src/**/*.js'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "yarn lint:fix --quiet",
+      "git add"
+    ]
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.5.0",
     "humps": "^2.0.1",
     "i18n-js": "^3.2.1",
+    "eslint-plugin-prettier": "3.1.0",
     "immer": "^3.1.2",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
@@ -39,12 +54,15 @@
     "enzyme-adapter-react-16": "^1.12.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "6.0.0",
     "eslint-import-resolver-babel-module": "^5.1.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "1.0.0",
+    "husky": "3.0.0",
     "isomorphic-fetch": "^2.2.1",
+    "lint-staged": "9.0.2",
     "jest": "24.7.1",
     "jest-enzyme": "^7.0.2",
     "jsdom": "^15.0.0",
@@ -52,6 +70,7 @@
     "nock": "^10.0.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "16.8.3",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "prettier": "1.18.2"
   }
 }
