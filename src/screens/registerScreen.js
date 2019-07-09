@@ -6,11 +6,7 @@ import { string } from 'prop-types';
 import withNavigation from 'components/hocs/withNavigation';
 import Context from 'screens/screenContext';
 
-const registerScreen = (
-  name,
-  Component,
-  store,
-) => {
+const registerScreen = (name, Component, store) => {
   const ConnectedComponent = ({ componentId, ...props }) => {
     const NavigationComponent = withNavigation(Component);
     return (
@@ -25,7 +21,7 @@ const registerScreen = (
   ConnectedComponent.options = Component.options;
 
   ConnectedComponent.propTypes = {
-    componentId: string,
+    componentId: string
   };
 
   Navigation.registerComponent(name, () => ConnectedComponent);

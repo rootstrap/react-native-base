@@ -1,4 +1,4 @@
-export default async (response) => {
+export default async response => {
   try {
     const json = await response.json();
     return json || { message: response.statusText };

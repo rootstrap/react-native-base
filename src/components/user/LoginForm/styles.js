@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderColor: 'lightblue',
     borderRadius: 5,
-    borderWidth: 2,
+    borderWidth: 2
   }
 });
 

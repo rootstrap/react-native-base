@@ -11,15 +11,10 @@ import styles from './styles';
 
 const LoginScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-  const loginRequest = useCallback(
-    user => dispatch(login(user)),
-    [dispatch]
-  );
+  const loginRequest = useCallback(user => dispatch(login(user)), [dispatch]);
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>
-        {translate('SIGN_IN.title')}
-      </Text>
+      <Text style={styles.welcome}>{translate('SIGN_IN.title')}</Text>
       <LoginForm onSubmit={loginRequest} />
       <Button
         title={translate('SIGN_UP.title')}
@@ -38,7 +33,7 @@ LoginScreen.options = {
     title: {
       text: translate('SIGN_IN.title')
     }
-  },
+  }
 };
 
 export default memo(LoginScreen);

@@ -14,7 +14,7 @@ const HTTP_VERB = {
   POST: 'post',
   DELETE: 'delete',
   PUT: 'put',
-  PATCH: 'patch',
+  PATCH: 'patch'
 };
 
 class Api {
@@ -48,9 +48,9 @@ class Api {
       method: httpVerb,
       headers: {
         accept: APPLICATION_JSON,
-        [CONTENT_TYPE]: APPLICATION_JSON,
+        [CONTENT_TYPE]: APPLICATION_JSON
       },
-      ...(data && { body: JSON.stringify(humps.decamelizeKeys(data)) }),
+      ...(data && { body: JSON.stringify(humps.decamelizeKeys(data)) })
     };
   }
 
