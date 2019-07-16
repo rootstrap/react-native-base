@@ -197,6 +197,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		FE49EE5322DE3E5700F7545F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FE49EE5722DE3E5800F7545F /* libRNCAsyncStorage.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FE49EE9522DE496D00F7545F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FE49EE9A22DE496D00F7545F /* libRNGestureHandler.a */,
+				FE49EE9C22DE496D00F7545F /* libRNGestureHandler-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */

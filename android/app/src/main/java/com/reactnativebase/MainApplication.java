@@ -1,34 +1,47 @@
 package com.reactnativebase;
 
-import com.facebook.react.PackageList;
+import android.app.Application;
+
+import com.facebook.react.ReactApplication;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.reactnativenavigation.NavigationApplication;
-import com.reactnativenavigation.react.NavigationReactNativeHost;
-import com.reactnativenavigation.react.ReactGateway;
+import com.facebook.react.shell.MainReactPackage;
+import com.facebook.soloader.SoLoader;
 
+import com.reactcommunity.rnlocalize.RNLocalizePackage;
+
+import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends NavigationApplication {
-  @Override
-  protected ReactGateway createReactGateway() {
-    ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
-      @Override
-      protected String getJSMainModuleName() {
-        return "index";
-      }
-    };
+public class MainApplication extends Application implements ReactApplication {
+  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+    @Override
+    public boolean getUseDeveloperSupport() {
+      return BuildConfig.DEBUG;
+    }
 
-    return new ReactGateway(this, isDebug(), host);
+    @Override
+    protected List<ReactPackage> getPackages() {
+      return new PackageList(this).getPackages();
+    }
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
+    }
+  };
+
+  @Override
+  public ReactNativeHost getReactNativeHost() {
+    return mReactNativeHost;
   }
 
   @Override
-  public boolean isDebug() {
-    return BuildConfig.DEBUG;
-  }
-
-  @Override
-  public List<ReactPackage> createAdditionalReactPackages() {
-    return new PackageList(this).getPackages();
+  public void onCreate() {
+    super.onCreate();
+    SoLoader.init(this, /* native exopackage */ false);
   }
 }
