@@ -2,6 +2,7 @@ package com.reactnativebase;
 
 import android.app.Application;
 
+import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;

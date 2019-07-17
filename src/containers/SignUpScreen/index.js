@@ -2,13 +2,11 @@ import React, { memo, useCallback } from 'react';
 import { Text, View, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { object } from 'prop-types';
-import { isEmpty } from 'lodash';
 
 import SignUpForm from 'components/user/SignUpForm';
 import { signUp } from 'actions/userActions';
-import useSessionChangeEffect from 'hooks/useSessionChangeEffect';
+import useNavigateOnLoginEffect from 'hooks/useNavigateOnLoginEffect';
 import translate from 'utils/i18n';
-import { MAIN_SCREEN } from 'constants/screens';
 import styles from './styles';
 
 const SignUpScreen = memo(({ navigation }) => {
@@ -16,15 +14,7 @@ const SignUpScreen = memo(({ navigation }) => {
 
   const signUpRequest = useCallback(user => dispatch(signUp(user)), [dispatch]);
 
-  useSessionChangeEffect(
-    user => {
-      const userLoggedIn = !isEmpty(user);
-      if (userLoggedIn) {
-        navigation.navigate(MAIN_SCREEN);
-      }
-    },
-    [navigation]
-  );
+  useNavigateOnLoginEffect(navigation);
 
   return (
     <View style={styles.container}>
