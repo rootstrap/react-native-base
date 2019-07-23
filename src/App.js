@@ -19,6 +19,15 @@ class App {
     store.subscribe(this.onStoreUpdate.bind(this));
   }
 
+  setDefaultOptions() {
+    Navigation.setDefaultOptions({
+      layout: {
+        backgroundColor: '#FAFAFA',
+        orientation: ['portrait'],
+      },
+    });
+  }
+
   onStoreUpdate() {
     const { session } = store.getState();
     const isAuthenticated = session.authenticated;
@@ -43,18 +52,19 @@ class App {
   }
 
   start() {
+    this.setDefaultOptions();
     Navigation.setRoot({
       root: {
         stack: {
           children: [
             {
               component: {
-                name: this.isAuthenticated ? MAIN_SCREEN : LOGIN_SCREEN
-              }
-            }
-          ]
-        }
-      }
+                name: this.isAuthenticated ? MAIN_SCREEN : LOGIN_SCREEN,
+              },
+            },
+          ],
+        },
+      },
     });
   }
 }

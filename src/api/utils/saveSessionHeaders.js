@@ -9,7 +9,7 @@ export default headers => {
     const sessionHeaders = {
       token: headers.get(ACCESS_TOKEN),
       uid: headers.get(UID),
-      client: headers.get(CLIENT)
+      client: headers.get(CLIENT),
     };
 
     return sessionService.saveSession(sessionHeaders);

@@ -14,7 +14,7 @@ I18n.locale = LOCALES.length ? LOCALES[0].languageCode : DEFAULT_LOCALE;
 
 I18n.translations = {
   en,
-  es
+  es,
 };
 
 export const getCurrentLocale = () => I18n.locale;

@@ -25,15 +25,15 @@ const LoginScreen = ({ navigation }) => {
 };
 
 LoginScreen.propTypes = {
-  navigation: object.isRequired
+  navigation: object.isRequired,
 };
 
 LoginScreen.options = {
   topBar: {
     title: {
-      text: translate('SIGN_IN.title')
-    }
-  }
+      text: translate('SIGN_IN.title'),
+    },
+  },
 };
 
 export default memo(LoginScreen);

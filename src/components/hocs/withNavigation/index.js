@@ -13,7 +13,7 @@ const withNavigation = Component => props => {
 
     popToRoot: () => Navigation.popToRoot(componentId),
 
-    dismissModal: () => Navigation.dismissModal(componentId)
+    dismissModal: () => Navigation.dismissModal(componentId),
   });
 
   const componentId = useContext(Context);

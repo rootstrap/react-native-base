@@ -23,15 +23,15 @@ const SignUpScreen = ({ navigation }) => {
 };
 
 SignUpScreen.propTypes = {
-  navigation: object.isRequired
+  navigation: object.isRequired,
 };
 
 SignUpScreen.options = {
   topBar: {
     title: {
-      text: translate('SIGN_UP.title')
-    }
-  }
+      text: translate('SIGN_UP.title'),
+    },
+  },
 };
 
 export default memo(SignUpScreen);

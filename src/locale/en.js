@@ -3,12 +3,12 @@ export default {
     title: 'Sign in',
     email: 'Email',
     password: 'Password',
-    button: 'Sign in'
+    button: 'Sign in',
   },
 
   MAIN_SCREEN: {
     logout: 'Sign out',
-    title: 'Home Screen'
+    title: 'Home Screen',
   },
 
   SIGN_UP: {
@@ -16,6 +16,6 @@ export default {
     email: 'Email',
     password: 'Password',
     passwordConfirmation: 'Password confirmation',
-    button: 'Sign up'
-  }
+    button: 'Sign up',
+  },
 };

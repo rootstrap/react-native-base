@@ -1,8 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/backgroundColor</item>
     </style>
 
+    <!--This is your application's default background color.
+    It will be visible when the app is first opened (while the splash layout is visible)
+    and when transitioning between a destination a screen drawn under the StatusBar to
+    a destination drawn behind it-->
+    <item name="backgroundColor" type="color">#f00</item>
 </resources>

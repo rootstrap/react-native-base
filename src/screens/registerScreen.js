@@ -21,7 +21,7 @@ const registerScreen = (name, Component, store) => {
   ConnectedComponent.options = Component.options;
 
   ConnectedComponent.propTypes = {
-    componentId: string
+    componentId: string,
   };
 
   Navigation.registerComponent(name, () => ConnectedComponent);

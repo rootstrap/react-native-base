@@ -54,7 +54,6 @@
     "no-multi-spaces": 1,
     "block-spacing": 1,
     "brace-style": 1,
-    "comma-dangle": 0,
     "comma-spacing": [
       1,
       {

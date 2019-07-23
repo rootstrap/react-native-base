@@ -13,7 +13,7 @@ const MainScreen = () => {
   const logoutRequest = useCallback(() => dispatch(logout()), [dispatch]);
 
   const {
-    user: { email }
+    user: { email },
   } = useSession();
   return (
     <View style={styles.container}>
@@ -26,9 +26,9 @@ const MainScreen = () => {
 MainScreen.options = {
   topBar: {
     title: {
-      text: translate('MAIN_SCREEN.title')
-    }
-  }
+      text: translate('MAIN_SCREEN.title'),
+    },
+  },
 };
 
 export default MainScreen;

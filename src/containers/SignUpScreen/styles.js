@@ -5,13 +5,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 50
+    paddingHorizontal: 50,
   },
   welcome: {
     fontSize: 20,
     margin: 10,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 export default styles;

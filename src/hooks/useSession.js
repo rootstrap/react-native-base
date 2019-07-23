@@ -4,7 +4,7 @@ const useSession = () =>
   useSelector(({ session }) => ({
     authenticated: session.authenticated,
     userChecked: session.checked,
-    user: session.user
+    user: session.user,
   }));
 
 export default useSession;
