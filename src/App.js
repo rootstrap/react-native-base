@@ -5,6 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import configureStore from './store/configureStore';
 import registerScreens from './screens';
 import { LOGIN_SCREEN, MAIN_SCREEN } from './constants/screens';
+import { WHITE } from './constants/colors';
 
 const store = configureStore({});
 registerScreens(store);
@@ -22,7 +23,7 @@ class App {
   setDefaultOptions() {
     Navigation.setDefaultOptions({
       layout: {
-        backgroundColor: '#FAFAFA',
+        backgroundColor: WHITE,
         orientation: ['portrait'],
       },
     });
