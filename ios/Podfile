@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'ReactNativeBase' do
-  # Pods for ReactNativeBase
+def base_pods
+  # Base react pods
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -27,17 +27,42 @@ target 'ReactNativeBase' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+end
+
+target 'ReactNativeBase' do
+  # Pods for ReactNativeBase
+  base_pods
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
-
   pod 'RNLocalize', :path => '../node_modules/react-native-localize'
-
   pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
 
   target 'ReactNativeBaseTests' do
     inherit! :search_paths
     # Pods for testing
   end
+
+  use_native_modules!
+end
+
+target 'ReactNativeBase-Staging' do
+    # Pods for ReactNativeBase
+    base_pods
+
+    pod 'react-native-config', :path => '../node_modules/react-native-config'
+    pod 'RNLocalize', :path => '../node_modules/react-native-localize'
+    pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
+
+    use_native_modules!
+end
+
+target 'ReactNativeBase-Develop' do
+  # Pods for ReactNativeBase
+  base_pods
+
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+  pod 'RNLocalize', :path => '../node_modules/react-native-localize'
+  pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
 
   use_native_modules!
 end
