@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FAFAFA'
-  }
+    backgroundColor: '#FAFAFA',
+  },
 });
 
 export default function AppLoader({ navigation }) {
@@ -35,5 +35,5 @@ export default function AppLoader({ navigation }) {
 }
 
 AppLoader.propTypes = {
-  navigation: object.isRequired
+  navigation: object.isRequired,
 };

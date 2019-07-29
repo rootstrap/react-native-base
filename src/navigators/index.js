@@ -6,21 +6,21 @@ import AppLoader from 'containers/AppLoader';
 
 const AuthStack = createStackNavigator({
   LoginScreen,
-  SignUpScreen
+  SignUpScreen,
 });
 
 const AppStack = createStackNavigator({
-  MainScreen
+  MainScreen,
 });
 
 const AppNavigator = createSwitchNavigator(
   {
     AppLoader,
     AuthStack,
-    AppStack
+    AppStack,
   },
   {
-    initialRouteName: 'AppLoader'
+    initialRouteName: 'AppLoader',
   }
 );
 

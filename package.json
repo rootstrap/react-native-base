@@ -6,6 +6,9 @@
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "ios": "react-native run-ios --scheme ReactNativeBase",
+    "ios:develop": "react-native run-ios --scheme ReactNativeBase-Develop",
+    "ios:staging": "react-native run-ios --scheme ReactNativeBase-Staging",
     "test": "jest --silent",
     "test:cover": "yarn run test --coverage",
     "prettier": "prettier --write './src/**/*.js'"
