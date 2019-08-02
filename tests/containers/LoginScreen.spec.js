@@ -22,10 +22,13 @@ describe('<LoginScreen />', () => {
 
   beforeEach(() => {
     const store = configureStore();
-    const NavigationLogin = LoginScreen;
     wrapper = mount(
       <Provider store={store}>
-        <NavigationLogin />
+        <LoginScreen
+          navigation={{
+            navigate: () => null,
+          }}
+        />
       </Provider>
     );
 
@@ -33,7 +36,7 @@ describe('<LoginScreen />', () => {
       user: {
         email: userEmail,
         password: userPassword,
-      }
+      },
     };
 
     response = {
@@ -42,7 +45,7 @@ describe('<LoginScreen />', () => {
         password: null,
         id: 1,
         email: userEmail,
-      }
+      },
     };
 
     sessionService.saveUser = jest.fn(() => Promise.resolve());
@@ -74,7 +77,7 @@ describe('<LoginScreen />', () => {
       nock.cleanAll();
     });
 
-    it('should call redux-react-native-session to save the user data', (done) => {
+    it('should call redux-react-native-session to save the user data', done => {
       // wait for the call to save user
       sessionService.saveUser = jest.fn(() => {
         expect(sessionService.saveUser).toHaveBeenCalledWith(response.user);
@@ -129,7 +132,7 @@ describe('<LoginScreen />', () => {
   describe('submit with errors from server', () => {
     beforeEach(async () => {
       response = {
-        error: 'Invalid login credentials. Please try again.'
+        error: 'Invalid login credentials. Please try again.',
       };
 
       nock(Config.API_URL)

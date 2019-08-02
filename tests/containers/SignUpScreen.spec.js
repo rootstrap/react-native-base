@@ -23,10 +23,13 @@ describe('<SignUpScreen />', () => {
 
   beforeEach(() => {
     const store = configureStore();
-    const NavigationSignUp = SignUpScreen;
     wrapper = mount(
       <Provider store={store}>
-        <NavigationSignUp />
+        <SignUpScreen
+          navigation={{
+            navigate: () => null,
+          }}
+        />
       </Provider>
     );
 
@@ -35,7 +38,7 @@ describe('<SignUpScreen />', () => {
         email: userEmail,
         password: userPassword,
         password_confirmation: userPassword,
-      }
+      },
     };
 
     response = {
@@ -44,7 +47,7 @@ describe('<SignUpScreen />', () => {
         password: null,
         id: 1,
         email: userEmail,
-      }
+      },
     };
 
     sessionService.saveUser = jest.fn(() => Promise.resolve());
@@ -82,7 +85,7 @@ describe('<SignUpScreen />', () => {
       nock.cleanAll();
     });
 
-    it('should call redux-react-native-session to save the user data', (done) => {
+    it('should call redux-react-native-session to save the user data', done => {
       // wait for the call to save user
       sessionService.saveUser = jest.fn(() => {
         expect(sessionService.saveUser).toHaveBeenCalledWith(response.user);
@@ -155,7 +158,7 @@ describe('<SignUpScreen />', () => {
   describe('submit with errors from server', () => {
     beforeEach(async () => {
       response = {
-        error: 'Invalid signUp credentials. Please try again.'
+        error: 'Invalid signUp credentials. Please try again.',
       };
 
       nock(Config.API_URL)
