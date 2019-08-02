@@ -9,7 +9,10 @@ const store = configureStore({});
 
 export default function App() {
   useEffect(() => {
-    sessionService.initSessionService(store);
+    const initSession = async () => {
+      await sessionService.initSessionService(store);
+    };
+    initSession();
   }, []);
 
   return (

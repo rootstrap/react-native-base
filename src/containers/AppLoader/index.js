@@ -16,7 +16,9 @@ const styles = StyleSheet.create({
 
 export default function AppLoader({ navigation }) {
   useSessionChangeEffect(
-    user => {
+    ({ user, userChecked }) => {
+      if (!userChecked) return;
+
       const userLoggedIn = !isEmpty(user);
       if (userLoggedIn) {
         navigation.navigate(MAIN_SCREEN);
