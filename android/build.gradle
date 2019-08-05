@@ -15,7 +15,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0'
+        classpath("com.android.tools.build:gradle:3.4.1")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -34,23 +34,19 @@ allprojects {
         }
         maven { url 'https://jitpack.io' }
     }
-    subprojects { subproject ->
-        afterEvaluate {
-            if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
-                android {
-                    variantFilter { variant ->
-                        def names = variant.flavors*.name
-                        if (names.contains("reactNative51") || names.contains("reactNative55") || names.contains("reactNative56") || names.contains("reactNative57")) {
-                            setIgnore(true)
-                        }
+}
+
+subprojects { subproject ->
+    afterEvaluate {
+        if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
+            android {
+                variantFilter { variant ->
+                    def names = variant.flavors*.name
+                    if (names.contains("reactNative51") || names.contains("reactNative55") || names.contains("reactNative56") || names.contains("reactNative57") || names.contains("reactNative57_5")) {
+                        setIgnore(true)
                     }
                 }
             }
         }
     }
-}
-
-wrapper {
-    gradleVersion = '4.10.2'
-    distributionUrl = distributionUrl.replace("bin", "all")
 }

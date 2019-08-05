@@ -7,7 +7,7 @@ const Input = ({
   input: { onChange, ...restInput },
   password = false,
   label,
-  meta: { touched, error }
+  meta: { touched, error },
 }) => (
   <View>
     {label && <Text>{label}</Text>}
@@ -27,7 +27,7 @@ Input.propTypes = {
   input: object.isRequired,
   label: string,
   meta: object,
-  password: bool
+  password: bool,
 };
 
 export default Input;

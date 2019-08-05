@@ -14,7 +14,7 @@ export default function configureStore(initialState) {
   if (__DEV__) {
     const logger = createLogger({
       collapsed: true,
-      predicate: (getState, { type }) => !_.startsWith(type, '@@redux-form')
+      predicate: (getState, { type }) => !_.startsWith(type, '@@redux-form'),
     });
     middlewares.push(logger);
   }

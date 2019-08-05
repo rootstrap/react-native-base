@@ -5,11 +5,11 @@ import userApi from 'api/userApi';
 import * as types from './actionTypes';
 
 export const loginSuccess = () => ({
-  type: types.LOGIN_SUCCESS
+  type: types.LOGIN_SUCCESS,
 });
 
 export const logoutSuccess = () => ({
-  type: types.LOGOUT_SUCCESS
+  type: types.LOGOUT_SUCCESS,
 });
 
 export const login = user => async dispatch => {
@@ -19,7 +19,7 @@ export const login = user => async dispatch => {
     dispatch(loginSuccess());
   } catch (err) {
     throw new SubmissionError({
-      _error: err.error
+      _error: err.error,
     });
   }
 };
@@ -41,7 +41,7 @@ export const signUp = user => async () => {
     sessionService.saveUser(response.user);
   } catch (err) {
     throw new SubmissionError({
-      _error: err.error
+      _error: err.error,
     });
   }
 };
