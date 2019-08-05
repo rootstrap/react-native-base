@@ -46,11 +46,19 @@ By default the app loads `.env`, `.env.staging` or `.env.prod` files depending o
 
 ### iOS
 
+#### Using schemas
 You can add an schema in XCode and indicate which `.env` file to load there or doing it manually from the console by running
 
 ```
   ENVFILE=.env.staging react-native run-ios
 ```
+
+#### Using different build targets
+You can use build targets to configure different app-icons, splash, bundle-ids, etc. By default, `Staging` and `Develop` are already set up, just select the target's scheme that you want to build.
+
+- `Staging` and `Develop` targets search for `.env.staging` and `.env.develop` automatically (if the file it's not present, it will raise a build error). If you want to change the name of the file, go to `Edit Scheme -> Build -> Pre actions -> edit the name on the shell script`.
+
+- `npm run ios:staging` and `npm run ios:develop` are available if you want to run the targets from the CLI.
 
 ## Troubleshooting
 

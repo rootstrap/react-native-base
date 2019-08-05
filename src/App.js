@@ -1,62 +1,23 @@
-import { Navigation } from 'react-native-navigation';
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import { sessionService } from 'redux-react-native-session';
-import isEmpty from 'lodash/isEmpty';
 
+import AppContainer from './navigators';
 import configureStore from './store/configureStore';
-import registerScreens from './screens';
-import { LOGIN_SCREEN, MAIN_SCREEN } from './constants/screens';
 
 const store = configureStore({});
-registerScreens(store);
 
-class App {
-  constructor() {
-    this.isRunning = false;
-    this.isAuthenticated = false;
+export default function App() {
+  useEffect(() => {
+    const initSession = async () => {
+      await sessionService.initSessionService(store);
+    };
+    initSession();
+  }, []);
 
-    sessionService.initSessionService(store);
-
-    store.subscribe(this.onStoreUpdate.bind(this));
-  }
-
-  onStoreUpdate() {
-    const { session } = store.getState();
-    const isAuthenticated = session.authenticated;
-    const { user } = session;
-
-    const authenticationChanged = this.isAuthenticated !== isAuthenticated;
-    const userLoggedOut = authenticationChanged && !isAuthenticated;
-    const userLoggedIn = authenticationChanged && !isEmpty(user);
-
-    if (!this.isRunning) {
-      const { userChecked: wasAsyncStorageChecked } = session;
-
-      if (wasAsyncStorageChecked) {
-        this.isRunning = true;
-        this.isAuthenticated = isAuthenticated;
-        this.start();
-      }
-    } else if (userLoggedOut || userLoggedIn) {
-      this.isAuthenticated = isAuthenticated;
-      this.start();
-    }
-  }
-
-  start() {
-    Navigation.setRoot({
-      root: {
-        stack: {
-          children: [
-            {
-              component: {
-                name: this.isAuthenticated ? MAIN_SCREEN : LOGIN_SCREEN
-              }
-            }
-          ]
-        }
-      }
-    });
-  }
+  return (
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  );
 }
-
-export default App;

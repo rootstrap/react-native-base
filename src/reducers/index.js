@@ -4,7 +4,7 @@ import { sessionReducer as session } from 'redux-react-native-session';
 
 const AppReducer = combineReducers({
   form,
-  session
+  session,
 });
 
 export default AppReducer;

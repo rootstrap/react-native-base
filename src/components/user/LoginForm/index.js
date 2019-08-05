@@ -26,10 +26,10 @@ const LoginForm = ({ handleSubmit, error, submitting }) => (
 LoginForm.propTypes = {
   handleSubmit: func.isRequired,
   submitting: bool.isRequired,
-  error: string
+  error: string,
 };
 
 export default reduxForm({
   form: 'login',
-  validate: constraints.validations(constraints.login)
+  validate: constraints.validations(constraints.login),
 })(LoginForm);

@@ -3,12 +3,12 @@ export default {
     title: 'Iniciar sesión',
     email: 'Email',
     password: 'Contraseña',
-    button: 'Iniciar sesión'
+    button: 'Iniciar sesión',
   },
 
   MAIN_SCREEN: {
     logout: 'Cerrar sesión',
-    title: 'Pagina Principal'
+    title: 'Pagina Principal',
   },
 
   SIGN_UP: {
@@ -16,6 +16,6 @@ export default {
     email: 'Email',
     password: 'Contraseña',
     passwordConfirmation: 'Repetir contraseña',
-    button: 'Iniciar sesión'
-  }
+    button: 'Iniciar sesión',
+  },
 };

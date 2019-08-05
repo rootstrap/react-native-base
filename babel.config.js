@@ -16,9 +16,10 @@ module.exports = {
           screens: './src/screens',
           selectors: './src/selectors',
           store: './src/store',
-          utils: './src/utils'
-        }
-      }
-    ]
-  ]
+          utils: './src/utils',
+          navigators: './src/navigators',
+        },
+      },
+    ],
+  ],
 };

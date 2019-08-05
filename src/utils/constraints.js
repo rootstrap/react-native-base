@@ -3,25 +3,25 @@ import validate from 'validate.js';
 export const login = {
   email: {
     presence: true,
-    email: true
+    email: true,
   },
   password: {
-    presence: true
-  }
+    presence: true,
+  },
 };
 
 export const signUp = {
   email: {
     presence: true,
-    email: true
+    email: true,
   },
   password: {
-    presence: true
+    presence: true,
   },
   passwordConfirmation: {
     presence: true,
-    equality: { attribute: 'password' }
-  }
+    equality: { attribute: 'password' },
+  },
 };
 
 validate.validators.presence.options = { allowEmpty: false };
