@@ -13,10 +13,9 @@ import styles from './styles';
 const LoginScreen = memo(({ navigation }) => {
   const dispatch = useDispatch();
   const loginRequest = useCallback(user => dispatch(login(user)), [dispatch]);
+  const handleLogin = useCallback(() => navigation.push(SIGN_UP_SCREEN), [navigation]);
 
   useNavigateOnLoginEffect(navigation);
-
-  const handleLogin = useCallback(() => navigation.push(SIGN_UP_SCREEN), [navigation]);
 
   return (
     <View style={styles.container}>
