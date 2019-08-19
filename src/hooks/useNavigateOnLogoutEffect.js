@@ -4,11 +4,11 @@ import useSessionChangeEffect from './useSessionChangeEffect';
 
 export default navigation =>
   useSessionChangeEffect(
-    user => {
+    ({ user }) => {
       const userLoggedIn = !isEmpty(user);
       if (!userLoggedIn) {
         navigation.navigate(LOGIN_SCREEN);
       }
     },
-    [navigation]
+    [navigation],
   );

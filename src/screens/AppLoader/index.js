@@ -26,7 +26,7 @@ export default function AppLoader({ navigation }) {
         navigation.navigate(LOGIN_SCREEN);
       }
     },
-    [navigation]
+    [navigation],
   );
 
   return (

@@ -22,7 +22,7 @@ export default function configureStore(initialState) {
   const store = createStore(
     AppReducer,
     initialState,
-    composeEnhancers(applyMiddleware(...middlewares))
+    composeEnhancers(applyMiddleware(...middlewares)),
   );
 
   return store;

@@ -10,7 +10,8 @@ const store = configureStore({});
 export default function App() {
   useEffect(() => {
     const initSession = async () => {
-      await sessionService.initSessionService(store);
+      sessionService.initSessionService(store);
+      await sessionService.refreshFromLocalStorage();
     };
     initSession();
   }, []);
