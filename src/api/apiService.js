@@ -1,11 +1,9 @@
-import { sessionService } from 'redux-react-native-session';
 import humps from 'humps';
 import Config from 'react-native-config';
 
-import handleErrors from 'api/utils/handleErrors';
-import getResponseBody from 'api/utils/getResponseBody';
+import InterceptorManager from 'api/utils/InterceptorManager';
+import processResponse from 'api/utils/processResponse';
 
-const ACCESS_TOKEN = 'access-token';
 const APPLICATION_JSON = 'application/json';
 const CONTENT_TYPE = 'Content-Type';
 
@@ -18,70 +16,87 @@ const HTTP_VERB = {
 };
 
 class ApiService {
-  static get(uri, apiUrl = Config.API_URL) {
-    const requestData = ApiService.buildRequestData(HTTP_VERB.GET);
-    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  baseUrl = '';
+
+  headers = {};
+
+  requestInterceptors = new InterceptorManager();
+
+  responseInterceptors = new InterceptorManager();
+
+  constructor({ baseUrl, headers }) {
+    this.baseUrl = baseUrl;
+    this.headers = headers;
   }
 
-  static post(uri, data, apiUrl = Config.API_URL) {
-    const requestData = ApiService.buildRequestData(HTTP_VERB.POST, data);
-    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  get(uri) {
+    const requestData = this.buildRequestData(HTTP_VERB.GET);
+    return this.performRequest(uri, requestData);
   }
 
-  static delete(uri, data, apiUrl = Config.API_URL) {
-    const requestData = ApiService.buildRequestData(HTTP_VERB.DELETE, data);
-    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  post(uri, data) {
+    const requestData = this.buildRequestData(HTTP_VERB.POST, data);
+    return this.performRequest(uri, requestData);
   }
 
-  static put(uri, data, apiUrl = Config.API_URL) {
-    const requestData = ApiService.buildRequestData(HTTP_VERB.PUT, data);
-    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  delete(uri, data) {
+    const requestData = this.buildRequestData(HTTP_VERB.DELETE, data);
+    return this.performRequest(uri, requestData);
   }
 
-  static patch(uri, data, apiUrl = Config.API_URL) {
-    const requestData = ApiService.buildRequestData(HTTP_VERB.PATCH, data);
-    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+  put(uri, data) {
+    const requestData = this.buildRequestData(HTTP_VERB.PUT, data);
+    return this.performRequest(uri, requestData);
   }
 
-  static buildRequestData(httpVerb, data) {
+  patch(uri, data) {
+    const requestData = this.buildRequestData(HTTP_VERB.PATCH, data);
+    return this.performRequest(uri, requestData);
+  }
+
+  buildRequestData(httpVerb, data) {
     return {
       method: httpVerb,
-      headers: {
-        accept: APPLICATION_JSON,
-        [CONTENT_TYPE]: APPLICATION_JSON,
-      },
+      headers: this.headers,
       ...(data && { body: JSON.stringify(humps.decamelizeKeys(data)) }),
     };
   }
 
-  static async loadHeadersAndPerformRequest(uri, apiUrl, data) {
-    const requestData = { ...data };
-    try {
-      const headers = await ApiService.getTokenHeader();
-      requestData.headers = { ...requestData.headers, ...headers };
-      return ApiService.performRequest(uri, apiUrl, requestData);
-    } catch (err) {
-      return ApiService.performRequest(uri, apiUrl, requestData);
-    }
-  }
-
-  static async getTokenHeader() {
-    const { token, client, uid } = await sessionService.loadSession();
-    return { [ACCESS_TOKEN]: token, client, uid };
-  }
-
-  static async performRequest(uri, apiUrl, requestData = {}) {
-    const url = `${apiUrl}${uri}`;
+  async performRequest(uri, requestData = {}) {
+    const url = `${this.baseUrl}${uri}`;
 
     try {
-      const response = await fetch(url, requestData);
-      const processedResponse = await handleErrors(response);
-      const body = await getResponseBody(processedResponse);
-      return humps.camelizeKeys(body);
+      const request = await this.requestInterceptors.applyFullfillHandlers(requestData);
+      const response = await fetch(url, request);
+      if (!response) {
+        throw new Error({ message: 'No response returned from fetch' });
+      }
+
+      return this.handleResponse(response);
     } catch (error) {
-      throw humps.camelizeKeys(error);
+      return this.handleRequestError(error);
     }
+  }
+
+  async handleResponse(response) {
+    const processedResponse = await processResponse(response);
+    if (processedResponse.ok) {
+      return this.responseInterceptors.applyFullfillHandlers(processedResponse);
+    }
+    const processedErrorResponse = await this.responseInterceptors.applyFailureHandlers(
+      processedResponse,
+    );
+    throw processedErrorResponse;
+  }
+
+  async handleRequestError(error) {
+    const casedError = humps.camelizeKeys(error);
+    const processedErrorResponse = await this.requestInterceptors.applyFailureHandlers(casedError);
+    return processedErrorResponse;
   }
 }
 
-export default ApiService;
+export default new ApiService({
+  baseUrl: Config.API_URL,
+  headers: { accept: APPLICATION_JSON, [CONTENT_TYPE]: APPLICATION_JSON },
+});

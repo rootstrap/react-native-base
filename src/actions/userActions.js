@@ -18,8 +18,8 @@ export const logoutSuccess = () => ({
 
 export const login = user => async dispatch => {
   try {
-    const response = await userService.login({ user });
-    await sessionService.saveUser(response.user);
+    const { body } = await userService.login({ user });
+    await sessionService.saveUser(body.user);
     dispatch(loginSuccess());
   } catch (err) {
     throw new SubmissionError({
@@ -41,8 +41,8 @@ export const logout = () => async dispatch => {
 
 export const signUp = user => async () => {
   try {
-    const response = await userService.signUp({ user });
-    sessionService.saveUser(response.user);
+    const { body } = await userService.signUp({ user });
+    sessionService.saveUser(body.user);
   } catch (err) {
     throw new SubmissionError({
       _error: err.error,

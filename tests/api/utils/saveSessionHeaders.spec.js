@@ -28,7 +28,7 @@ describe('saveSessionHeaders', () => {
   });
 
   describe('with no ACCESS_TOKEN on the headers', () => {
-    it('doesn\'t call saveSession on sessionService', async () => {
+    it("doesn't call saveSession on sessionService", async () => {
       const headers = {
         get(key) {
           return this[key];
