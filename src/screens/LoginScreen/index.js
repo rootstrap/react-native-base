@@ -6,7 +6,8 @@ import { object } from 'prop-types';
 import LoginForm from 'components/LoginForm';
 import { login } from 'actions/userActions';
 import translate from 'utils/i18n';
-import { SIGN_UP_SCREEN, MAIN_SCREEN } from 'constants/screens';
+import { SIGN_UP_SCREEN } from 'constants/screens';
+import useNavigateOnLoginEffect from 'hooks/useNavigateOnLoginEffect';
 import styles from './styles';
 
 const LoginScreen = memo(({ navigation }) => {
@@ -14,10 +15,12 @@ const LoginScreen = memo(({ navigation }) => {
   const loginRequest = useCallback(
     async user => {
       await dispatch(login(user));
-      navigation.navigate(MAIN_SCREEN);
+      // navigation.navigate(MAIN_SCREEN);
     },
     [dispatch],
   );
+
+  useNavigateOnLoginEffect(navigation);
 
   const handleLogin = useCallback(() => navigation.push(SIGN_UP_SCREEN), [navigation]);
 
