@@ -1,7 +1,7 @@
 import Config from 'react-native-config';
 import nock from 'nock';
 import { sessionService } from 'redux-react-native-session';
-import ApiService from 'api/apiService';
+import ApiService from 'api';
 
 import '../test-helper';
 

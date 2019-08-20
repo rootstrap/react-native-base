@@ -1,11 +1,7 @@
 import humps from 'humps';
-import Config from 'react-native-config';
 
 import InterceptorManager from 'api/utils/InterceptorManager';
 import processResponse from 'api/utils/processResponse';
-
-const APPLICATION_JSON = 'application/json';
-const CONTENT_TYPE = 'Content-Type';
 
 const HTTP_VERB = {
   GET: 'get',
@@ -96,7 +92,4 @@ class ApiService {
   }
 }
 
-export default new ApiService({
-  baseUrl: Config.API_URL,
-  headers: { accept: APPLICATION_JSON, [CONTENT_TYPE]: APPLICATION_JSON },
-});
+export default ApiService;
