@@ -1,20 +1,24 @@
 import { SubmissionError } from 'redux-form';
 import { sessionService } from 'redux-react-native-session';
 
-import userApi from 'api/userApi';
-import * as types from './actionTypes';
+import userService from 'services/userService';
+
+export const actionTypes = {
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+};
 
 export const loginSuccess = () => ({
-  type: types.LOGIN_SUCCESS,
+  type: actionTypes.LOGIN_SUCCESS,
 });
 
 export const logoutSuccess = () => ({
-  type: types.LOGOUT_SUCCESS,
+  type: actionTypes.LOGOUT_SUCCESS,
 });
 
 export const login = user => async dispatch => {
   try {
-    const response = await userApi.login({ user });
+    const response = await userService.login({ user });
     await sessionService.saveUser(response.user);
     dispatch(loginSuccess());
   } catch (err) {
@@ -26,7 +30,7 @@ export const login = user => async dispatch => {
 
 export const logout = () => async dispatch => {
   try {
-    await userApi.logout();
+    await userService.logout();
     sessionService.deleteSession();
     sessionService.deleteUser();
     dispatch(logoutSuccess());
@@ -37,7 +41,7 @@ export const logout = () => async dispatch => {
 
 export const signUp = user => async () => {
   try {
-    const response = await userApi.signUp({ user });
+    const response = await userService.signUp({ user });
     sessionService.saveUser(response.user);
   } catch (err) {
     throw new SubmissionError({
