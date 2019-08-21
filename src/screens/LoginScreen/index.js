@@ -12,13 +12,7 @@ import styles from './styles';
 
 const LoginScreen = memo(({ navigation }) => {
   const dispatch = useDispatch();
-  const loginRequest = useCallback(
-    async user => {
-      await dispatch(login(user));
-      // navigation.navigate(MAIN_SCREEN);
-    },
-    [dispatch],
-  );
+  const loginRequest = useCallback(user => dispatch(login(user)), [dispatch]);
 
   useNavigateOnLoginEffect(navigation);
 
