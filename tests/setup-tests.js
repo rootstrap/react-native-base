@@ -25,7 +25,7 @@ copyProps(window, global);
 Enzyme.configure({ adapter: new Adapter() });
 
 const originalConsoleError = console.error;
-console.error = (message) => {
+console.error = message => {
   if (message.startsWith('Warning:')) {
     return;
   }

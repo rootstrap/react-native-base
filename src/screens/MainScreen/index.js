@@ -18,6 +18,7 @@ const MainScreen = ({ navigation }) => {
   const {
     user: { email },
   } = useSession();
+
   return (
     <View style={styles.container}>
       <Text>Hey {email}, you&#39;re logged in!</Text>

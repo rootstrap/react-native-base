@@ -17,30 +17,30 @@ const HTTP_VERB = {
   PATCH: 'patch',
 };
 
-class Api {
+class ApiService {
   static get(uri, apiUrl = Config.API_URL) {
-    const requestData = Api.buildRequestData(HTTP_VERB.GET);
-    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+    const requestData = ApiService.buildRequestData(HTTP_VERB.GET);
+    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
   static post(uri, data, apiUrl = Config.API_URL) {
-    const requestData = Api.buildRequestData(HTTP_VERB.POST, data);
-    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+    const requestData = ApiService.buildRequestData(HTTP_VERB.POST, data);
+    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
   static delete(uri, data, apiUrl = Config.API_URL) {
-    const requestData = Api.buildRequestData(HTTP_VERB.DELETE, data);
-    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+    const requestData = ApiService.buildRequestData(HTTP_VERB.DELETE, data);
+    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
   static put(uri, data, apiUrl = Config.API_URL) {
-    const requestData = Api.buildRequestData(HTTP_VERB.PUT, data);
-    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+    const requestData = ApiService.buildRequestData(HTTP_VERB.PUT, data);
+    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
   static patch(uri, data, apiUrl = Config.API_URL) {
-    const requestData = Api.buildRequestData(HTTP_VERB.PATCH, data);
-    return Api.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
+    const requestData = ApiService.buildRequestData(HTTP_VERB.PATCH, data);
+    return ApiService.loadHeadersAndPerformRequest(uri, apiUrl, requestData);
   }
 
   static buildRequestData(httpVerb, data) {
@@ -57,11 +57,11 @@ class Api {
   static async loadHeadersAndPerformRequest(uri, apiUrl, data) {
     const requestData = { ...data };
     try {
-      const headers = await Api.getTokenHeader();
+      const headers = await ApiService.getTokenHeader();
       requestData.headers = { ...requestData.headers, ...headers };
-      return Api.performRequest(uri, apiUrl, requestData);
+      return ApiService.performRequest(uri, apiUrl, requestData);
     } catch (err) {
-      return Api.performRequest(uri, apiUrl, requestData);
+      return ApiService.performRequest(uri, apiUrl, requestData);
     }
   }
 
@@ -84,4 +84,4 @@ class Api {
   }
 }
 
-export default Api;
+export default ApiService;

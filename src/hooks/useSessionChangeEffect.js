@@ -1,15 +1,9 @@
 import { useEffect } from 'react';
 import useSession from 'hooks/useSession';
 
-const useSessionChangeEffect = (effect, ...deps) => {
-  const { user, authenticated, userChecked } = useSession();
-
-  useEffect(() => effect({ user, authenticated, userChecked }), [
-    user,
-    authenticated,
-    userChecked,
-    ...deps,
-  ]);
+const useSessionChangeEffect = effect => {
+  const session = useSession();
+  useEffect(() => effect(session), [session]);
 };
 
 export default useSessionChangeEffect;

@@ -2,20 +2,48 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "*": ["src/*"],
-      "actions/*": ["src/actions/*"],
-      "api/*": ["src/api/*"],
-      "components/*": ["src/components/*"],
-      "constants/*": ["src/constants/*"],
-      "containers/*": ["src/containers/*"],
-      "hooks/*": ["src/hooks/*"],
-      "locale/*": ["src/locale/*"],
-      "reducers/*": ["src/reducers/*"],
-      "screens/*": ["src/screens/*"],
-      "selectors/*": ["src/selectors/*"],
-      "store/*": ["src/store/*"],
-      "utils/*": ["src/utils/*"],
-      "navigators/*": ["src/navigators/*"]
+      "*": [
+        "src/*"
+      ],
+      "actions/*": [
+        "src/actions/*"
+      ],
+      "api/*": [
+        "src/api/*"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "constants/*": [
+        "src/constants/*"
+      ],
+      "screens/*": [
+        "src/screens/*"
+      ],
+      "hooks/*": [
+        "src/hooks/*"
+      ],
+      "locale/*": [
+        "src/locale/*"
+      ],
+      "reducers/*": [
+        "src/reducers/*"
+      ],
+      "selectors/*": [
+        "src/selectors/*"
+      ],
+      "store/*": [
+        "src/store/*"
+      ],
+      "utils/*": [
+        "src/utils/*"
+      ],
+      "navigators/*": [
+        "src/navigators/*"
+      ],
+      "services/*": [
+        "src/services/*"
+      ]
     }
   }
 }
