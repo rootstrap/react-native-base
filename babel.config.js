@@ -18,6 +18,7 @@ module.exports = {
           store: './src/store',
           utils: './src/utils',
           navigators: './src/navigators',
+          validations: './src/validations',
         },
       },
     ],

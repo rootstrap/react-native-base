@@ -1,41 +1,55 @@
 import React from 'react';
-import { bool, func, string } from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
-import { ActivityIndicator, Button, Text, View } from 'react-native';
+import { func } from 'prop-types';
+import { Button, View } from 'react-native';
 
 import Input from 'components/common/Input';
-import * as constraints from 'utils/constraints';
 import strings from 'locale';
+import useForm from 'hooks/useForm';
+import useValidation from 'hooks/useValidation';
+import useTextInputProps from 'hooks/useTextInputProps';
+import signUpValidations from 'validations/signUpValidations';
+import ErrorView from 'components/common/ErrorView';
 import styles from './styles';
 
-const SignUpForm = ({ handleSubmit, error, submitting }) => (
-  <View onSubmit={handleSubmit}>
-    {error && <Text>{error}</Text>}
-    <Field name="email" label={strings.SIGN_UP.email} component={Input} />
-    <Field name="password" label={strings.SIGN_UP.password} component={Input} password />
-    <Field
-      name="passwordConfirmation"
-      label={strings.SIGN_UP.passwordConfirmation}
-      component={Input}
-      password
-    />
-    {submitting ? (
-      <ActivityIndicator />
-    ) : (
+const FIELDS = {
+  email: 'email',
+  password: 'password',
+  passwordConfirmation: 'passwordConfirmation',
+};
+
+const SignUpForm = ({ onSubmit }) => {
+  const validator = useValidation(signUpValidations);
+  const { values, errors, handleValueChange, handleSubmit, handleBlur } = useForm(
+    {
+      initialValues: {},
+      onSubmit,
+      validator,
+      validateOnBlur: true,
+    },
+    [onSubmit],
+  );
+
+  const inputProps = useTextInputProps(values, handleBlur, handleValueChange);
+
+  return (
+    <>
+      <Input label={strings.SIGN_UP.email} {...inputProps(FIELDS.email)} />
+      <Input label={strings.SIGN_UP.password} secureTextEntry {...inputProps(FIELDS.password)} />
+      <Input
+        label={strings.SIGN_UP.passwordConfirmation}
+        secureTextEntry
+        {...inputProps(FIELDS.passwordConfirmation)}
+      />
+      <ErrorView errors={errors} />
       <View style={styles.button}>
         <Button title={strings.SIGN_UP.button} onPress={handleSubmit} />
       </View>
-    )}
-  </View>
-);
-
-SignUpForm.propTypes = {
-  handleSubmit: func.isRequired,
-  submitting: bool.isRequired,
-  error: string,
+    </>
+  );
 };
 
-export default reduxForm({
-  form: 'signUp',
-  validate: constraints.validations(constraints.signUp),
-})(SignUpForm);
+SignUpForm.propTypes = {
+  onSubmit: func.isRequired,
+};
+
+export default SignUpForm;
