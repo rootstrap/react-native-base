@@ -70,7 +70,7 @@ describe('ApiService', () => {
           body: '{"data": 1}',
         });
 
-        expect(response.body).toEqual({ responseData: 1 });
+        expect(response.data).toEqual({ responseData: 1 });
       });
     });
 
@@ -93,10 +93,10 @@ describe('ApiService', () => {
               accept: 'application/json',
               'Content-Type': 'application/json',
             },
-            body: '{"data": 1}',
+            data: '{"data": 1}',
           });
         } catch (error) {
-          expect(error.body).toEqual({ error: 'Unauthorized' });
+          expect(error.data).toEqual({ error: 'Unauthorized' });
         }
       });
     });

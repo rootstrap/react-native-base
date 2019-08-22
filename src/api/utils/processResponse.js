@@ -6,10 +6,10 @@ export default async response => {
   try {
     const json = await response.json();
 
-    response.body = humps.camelizeKeys(json || { message: response.statusText });
+    response.data = humps.camelizeKeys(json || { message: response.statusText });
     return response;
   } catch (error) {
-    response.body = { message: 'Response not JSON' };
+    response.data = { message: 'Response not JSON' };
     return response;
   }
 };
