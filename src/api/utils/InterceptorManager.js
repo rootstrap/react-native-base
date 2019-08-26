@@ -1,9 +1,9 @@
 class InterceptorManager {
   handlers = [];
 
-  use(fullfill, failure) {
+  use(fulfill, failure) {
     this.handlers.push({
-      fullfill,
+      fulfill,
       failure,
     });
   }
@@ -12,13 +12,13 @@ class InterceptorManager {
     this.handlers.splice(index, 1);
   }
 
-  async applyFullfillHandlers(data) {
+  async applyFulfillHandlers(data) {
     let result = data;
 
     // eslint-disable-next-line
     for (const handler of this.handlers) {
-      const { fullfill } = handler;
-      result = fullfill ? await fullfill(result) : result; // eslint-disable-line
+      const { fulfill } = handler;
+      result = fulfill ? await fulfill(result) : result; // eslint-disable-line
     }
     return result;
   }

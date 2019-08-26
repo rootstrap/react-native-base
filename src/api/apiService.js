@@ -62,7 +62,7 @@ class ApiService {
     const url = `${this.baseUrl}${uri}`;
 
     try {
-      const request = await this.requestInterceptors.applyFullfillHandlers(requestData);
+      const request = await this.requestInterceptors.applyFulfillHandlers(requestData);
       const response = await fetch(url, request);
       if (!response) {
         throw new Error({ message: 'No response returned from fetch' });
@@ -77,7 +77,7 @@ class ApiService {
   async handleResponse(response) {
     const processedResponse = await processResponse(response);
     if (processedResponse.ok) {
-      return this.responseInterceptors.applyFullfillHandlers(processedResponse);
+      return this.responseInterceptors.applyFulfillHandlers(processedResponse);
     }
     const processedErrorResponse = await this.responseInterceptors.applyFailureHandlers(
       processedResponse,
