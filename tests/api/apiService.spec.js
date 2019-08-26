@@ -1,7 +1,7 @@
 import Config from 'react-native-config';
 import nock from 'nock';
 import { sessionService } from 'redux-react-native-session';
-import ApiService from 'api/apiService';
+import ApiService from 'api';
 
 import '../test-helper';
 
@@ -48,80 +48,6 @@ describe('ApiService', () => {
     });
   });
 
-  describe('loadHeadersAndPerformRequest', () => {
-    let performRequestSpy;
-
-    beforeEach(() => {
-      performRequestSpy = jest
-        .spyOn(ApiService, 'performRequest')
-        .mockImplementation(() => Promise.resolve());
-    });
-
-    afterEach(() => {
-      performRequestSpy.mockRestore();
-    });
-
-    describe('with session headers', () => {
-      let getTokenHeaderSpy;
-
-      beforeEach(() => {
-        getTokenHeaderSpy = jest
-          .spyOn(ApiService, 'getTokenHeader')
-          .mockImplementation(() => Promise.resolve({ token: 'test' }));
-      });
-
-      afterEach(() => {
-        getTokenHeaderSpy.mockRestore();
-      });
-
-      it('calls performRequest appending session headers', async () => {
-        await ApiService.loadHeadersAndPerformRequest('base-url', '/path', {
-          headers: { 'Content-Type': 'application/json' },
-        });
-
-        expect(ApiService.performRequest).toHaveBeenCalledWith('base-url', '/path', {
-          headers: { 'Content-Type': 'application/json', token: 'test' },
-        });
-      });
-    });
-
-    describe('with no session headers', () => {
-      let getTokenHeaderSpy;
-
-      beforeEach(() => {
-        getTokenHeaderSpy = jest
-          .spyOn(ApiService, 'getTokenHeader')
-          .mockImplementation(() => Promise.reject());
-      });
-
-      afterEach(() => {
-        getTokenHeaderSpy.mockRestore();
-      });
-
-      it('calls performRequest with the given data', async () => {
-        await ApiService.loadHeadersAndPerformRequest('base-url', '/path', {
-          headers: { 'Content-Type': 'application/json' },
-        });
-
-        expect(ApiService.performRequest).toHaveBeenCalledWith('base-url', '/path', {
-          headers: { 'Content-Type': 'application/json' },
-        });
-      });
-    });
-  });
-
-  describe('getTokenHeader', () => {
-    it('loads the headers from the session', async () => {
-      const headers = await ApiService.getTokenHeader();
-
-      expect(headers).toEqual({
-        'access-token': 'test-token',
-        client: 'test-client',
-        uid: 'test-uid',
-      });
-    });
-  });
-
   describe('performRequest', () => {
     describe('with success response', () => {
       beforeEach(() => {
@@ -135,7 +61,7 @@ describe('ApiService', () => {
       });
 
       it('returns the response camelized', async () => {
-        const response = await ApiService.performRequest('/path', Config.API_URL, {
+        const response = await ApiService.performRequest('/path', {
           method: 'post',
           headers: {
             accept: 'application/json',
@@ -144,7 +70,7 @@ describe('ApiService', () => {
           body: '{"data": 1}',
         });
 
-        expect(response).toEqual({ responseData: 1 });
+        expect(response.data).toEqual({ responseData: 1 });
       });
     });
 
@@ -161,16 +87,16 @@ describe('ApiService', () => {
 
       it('throws an error', async () => {
         try {
-          await ApiService.performRequest('/path', Config.API_URL, {
+          await ApiService.performRequest('/path', {
             method: 'post',
             headers: {
               accept: 'application/json',
               'Content-Type': 'application/json',
             },
-            body: '{"data": 1}',
+            data: '{"data": 1}',
           });
         } catch (error) {
-          expect(error).toEqual({ error: 'Unauthorized' });
+          expect(error.data).toEqual({ error: 'Unauthorized' });
         }
       });
     });
