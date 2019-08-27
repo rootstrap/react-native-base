@@ -5,7 +5,7 @@ import { object } from 'prop-types';
 
 import LoginForm from 'components/LoginForm';
 import { login } from 'actions/userActions';
-import translate from 'utils/i18n';
+import strings from 'locale';
 import { SIGN_UP_SCREEN } from 'constants/screens';
 import useNavigateOnLoginEffect from 'hooks/useNavigateOnLoginEffect';
 import styles from './styles';
@@ -19,9 +19,9 @@ const LoginScreen = memo(({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>{translate('SIGN_IN.title')}</Text>
+      <Text style={styles.welcome}>{strings.SIGN_IN.title}</Text>
       <LoginForm onSubmit={loginRequest} />
-      <Button title={translate('SIGN_UP.title')} onPress={handleLogin} />
+      <Button title={strings.SIGN_UP.title} onPress={handleLogin} />
     </View>
   );
 });
@@ -33,7 +33,7 @@ LoginScreen.propTypes = {
 LoginScreen.options = {
   topBar: {
     title: {
-      text: translate('SIGN_IN.title'),
+      text: strings.SIGN_IN.title,
     },
   },
 };
