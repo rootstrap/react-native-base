@@ -67,10 +67,10 @@ You can use build targets to configure different app-icons, splash, bundle-ids, 
 https://github.com/rootstrap/react-native-base/issues/40
 
 ## Base dependencies
-- [React-Native-Navigation](https://github.com/wix/react-native-navigation)
+- [React-Navigation](https://reactnavigation.org)
 - [PropTypes](https://github.com/facebook/prop-types)
 - [React-Native-Config](https://github.com/luggit/react-native-config)
-- [React-Native-i18n](https://github.com/AlexanderZaytsev/react-native-i18n)
+- [ReactNativeLocalization](https://github.com/stefalda/ReactNativeLocalization)
 - [Redux](https://github.com/reduxjs/redux)
 - [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
 - [Redux-Form](https://github.com/erikras/redux-form)

@@ -4,7 +4,7 @@ import { object } from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { logout } from 'actions/userActions';
-import translate from 'utils/i18n';
+import strings from 'locale';
 import useNavigateOnLogoutEffect from 'hooks/useNavigateOnLogoutEffect';
 import useSession from 'hooks/useSession';
 import styles from './styles';
@@ -22,7 +22,7 @@ const MainScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Hey {email}, you&#39;re logged in!</Text>
-      <Button onPress={logoutRequest} title={translate('MAIN_SCREEN.logout')} />
+      <Button onPress={logoutRequest} title={strings.MAIN_SCREEN.logout} />
     </View>
   );
 };
@@ -30,7 +30,7 @@ const MainScreen = ({ navigation }) => {
 MainScreen.options = {
   topBar: {
     title: {
-      text: translate('MAIN_SCREEN.title'),
+      text: strings.MAIN_SCREEN.title,
     },
   },
 };
