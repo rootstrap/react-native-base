@@ -33,7 +33,6 @@ target 'ReactNativeBase' do
   base_pods
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
-  pod 'RNLocalize', :path => '../node_modules/react-native-localize'
 
   target 'ReactNativeBaseTests' do
     inherit! :search_paths
@@ -48,7 +47,6 @@ target 'ReactNativeBase-Staging' do
     base_pods
 
     pod 'react-native-config', :path => '../node_modules/react-native-config'
-    pod 'RNLocalize', :path => '../node_modules/react-native-localize'
 
     use_native_modules!
 end
@@ -58,7 +56,6 @@ target 'ReactNativeBase-Develop' do
   base_pods
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
-  pod 'RNLocalize', :path => '../node_modules/react-native-localize'
 
   use_native_modules!
 end

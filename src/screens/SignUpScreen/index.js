@@ -5,8 +5,8 @@ import { object } from 'prop-types';
 
 import SignUpForm from 'components/SignUpForm';
 import { signUp } from 'actions/userActions';
+import strings from 'locale';
 import useNavigateOnLoginEffect from 'hooks/useNavigateOnLoginEffect';
-import translate from 'utils/i18n';
 import styles from './styles';
 
 const SignUpScreen = memo(({ navigation }) => {
@@ -18,9 +18,9 @@ const SignUpScreen = memo(({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>{translate('SIGN_UP.title')}</Text>
+      <Text style={styles.welcome}>{strings.SIGN_UP.title}</Text>
       <SignUpForm onSubmit={signUpRequest} />
-      <Button title={translate('SIGN_IN.title')} onPress={() => navigation.goBack()} />
+      <Button title={strings.SIGN_IN.title} onPress={() => navigation.goBack()} />
     </View>
   );
 });
@@ -32,7 +32,7 @@ SignUpScreen.propTypes = {
 SignUpScreen.options = {
   topBar: {
     title: {
-      text: translate('SIGN_UP.title'),
+      text: strings.SIGN_UP.title,
     },
   },
 };
