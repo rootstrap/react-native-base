@@ -1,0 +1,178 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+# CONFIG VARIABLES
+username = 'APPLE_ID' # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
+xcodeproj = 'XCODEPROJ' # The xcodeproj name eg: ReactNativeBase.xcodeproj
+workspace =  'XWORKSPACE' # The xworkspace name here eg: ReactNativeBase.xcworkspace
+certificates_git_url = 'GIT_CERTS_URL' # The git repo url (use ssh) to store the certificates eg: git@github.com:mcousillas6/fastlane-certs-test.git
+
+platform :ios do
+  lane :release_develop do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore'
+    )
+
+    ensure_git_status_clean
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    commit_version_bump(xcodeproj: xcodeproj)
+
+    add_git_tag
+
+    push_to_git_remote(remote_branch: 'develop')
+
+    build_app(
+      scheme: 'ReactNativeBase-Develop',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+
+    changelog_from_git_commits(
+      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
+    )
+
+    upload_to_testflight(username: username)
+  end
+
+  lane :release_staging do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore'
+    )
+
+    ensure_git_status_clean
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    commit_version_bump(xcodeproj: xcodeproj)
+
+    add_git_tag
+
+    push_to_git_remote(remote_branch: 'develop')
+
+    build_app(
+      scheme: 'ReactNativeBase-Staging',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+
+    changelog_from_git_commits(
+      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
+    )
+
+    upload_to_testflight(username: username)
+  end
+
+  lane :release_production do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore'
+    )
+
+    ensure_git_status_clean
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    commit_version_bump(xcodeproj: xcodeproj)
+
+    add_git_tag
+
+    push_to_git_remote(remote_branch: 'master')
+
+    build_app(
+      scheme: 'ReactNativeBase',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+
+    changelog_from_git_commits(
+      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
+    )
+
+    upload_to_testflight(username: username)
+  end
+
+  lane :build_develop do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore'
+    )
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    build_app(
+      scheme: 'ReactNativeBase-Develop',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+  end
+
+  lane :build_staging do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore'
+    )
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    build_app(
+      scheme: 'ReactNativeBase-Staging',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+  end
+
+  lane :build_production do
+    sync_code_signing(
+      git_url: certificates_git_url,
+      username: username,
+      type: 'appstore'
+    )
+
+    increment_build_number(xcodeproj: xcodeproj)
+
+    build_app(
+      scheme: 'ReactNativeBase',
+      workspace: workspace,
+      include_bitcode: true,
+      export_method: 'app-store'
+    )
+  end
+
+end
