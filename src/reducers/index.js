@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { sessionReducer as session } from 'redux-react-native-session';
+import session from 'reducers/sessionReducer';
 import actionStatus from 'reducers/statusReducer';
 
 const AppReducer = combineReducers({

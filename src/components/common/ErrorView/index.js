@@ -3,9 +3,15 @@ import { View, Text } from 'react-native';
 import { object } from 'prop-types';
 import styles from './styles';
 
-const ErrorView = ({ errors }) => {
-  const errorMessages = Object.values(errors).flat();
+const ErrorView = ({ errors = {} }) => {
+  const errorMessages = Object.values(errors)
+    .filter(error => !!error)
+    .reduce((acc, error) => {
+      error.forEach(e => acc.push(e));
+      return acc;
+    }, []);
   if (!errorMessages.length) return null;
+
   return (
     <View style={styles.container}>
       {errorMessages.map(error => (

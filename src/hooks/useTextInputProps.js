@@ -7,5 +7,5 @@ export default (handleValueChange, handleBlur, values) =>
       onChangeText: text => handleValueChange(fieldKey, text),
       onBlur: () => handleBlur(fieldKey),
     }),
-    [handleValueChange, values],
+    [handleBlur, handleValueChange, values],
   );

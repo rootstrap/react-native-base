@@ -9,6 +9,9 @@ import useValidation from 'hooks/useValidation';
 import useTextInputProps from 'hooks/useTextInputProps';
 import signUpValidations from 'validations/signUpValidations';
 import ErrorView from 'components/common/ErrorView';
+import useStatus from 'hooks/useStatus';
+import { actionTypes } from 'actions/userActions';
+import { LOADING } from 'constants/status';
 import styles from './styles';
 
 const FIELDS = {
@@ -18,6 +21,7 @@ const FIELDS = {
 };
 
 const SignUpForm = ({ onSubmit }) => {
+  const { error, status } = useStatus(actionTypes.SIGN_UP);
   const validator = useValidation(signUpValidations);
   const { values, errors, handleValueChange, handleSubmit, handleBlur } = useForm(
     {
@@ -29,7 +33,7 @@ const SignUpForm = ({ onSubmit }) => {
     [onSubmit],
   );
 
-  const inputProps = useTextInputProps(values, handleBlur, handleValueChange);
+  const inputProps = useTextInputProps(handleValueChange, handleBlur, values);
 
   return (
     <>
@@ -40,9 +44,12 @@ const SignUpForm = ({ onSubmit }) => {
         secureTextEntry
         {...inputProps(FIELDS.passwordConfirmation)}
       />
-      <ErrorView errors={errors} />
+      <ErrorView errors={{ ...errors, error }} />
       <View style={styles.button}>
-        <Button title={strings.SIGN_UP.button} onPress={handleSubmit} />
+        <Button
+          title={status === LOADING ? strings.COMMON.loading : strings.SIGN_UP.button}
+          onPress={handleSubmit}
+        />
       </View>
     </>
   );

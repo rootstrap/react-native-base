@@ -16,12 +16,18 @@ const useForm = (
 
   const handleSubmit = useCallback(() => {
     const newErrors = validator(values) || {};
-    const valid = !Object.values(newErrors).flat().length;
+    const valid = !Object.values(newErrors)
+      .filter(error => !!error)
+      .reduce((acc, error) => {
+        error.forEach(e => acc.push(e));
+        return acc;
+      }, []).length;
     if (valid) {
       onSubmit(values);
     } else {
       setErrors(newErrors);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values, setErrors, validator, onSubmit, ...dependencies]);
 
   const runValidations = useCallback(

@@ -8,6 +8,9 @@ import useValidation from 'hooks/useValidation';
 import loginValidations from 'validations/loginValidations';
 import ErrorView from 'components/common/ErrorView';
 import useTextInputProps from 'hooks/useTextInputProps';
+import useStatus from 'hooks/useStatus';
+import { actionTypes } from 'actions/userActions';
+import { LOADING } from 'constants/status';
 import strings from 'locale';
 import styles from './styles';
 
@@ -17,6 +20,7 @@ const FIELDS = {
 };
 
 const LoginForm = ({ onSubmit }) => {
+  const { error, status } = useStatus(actionTypes.LOGIN);
   const validator = useValidation(loginValidations);
   const { values, errors, handleValueChange, handleSubmit, handleBlur } = useForm(
     {
@@ -28,15 +32,18 @@ const LoginForm = ({ onSubmit }) => {
     [onSubmit],
   );
 
-  const inputProps = useTextInputProps(values, handleValueChange, handleBlur);
+  const inputProps = useTextInputProps(handleValueChange, handleBlur, values);
 
   return (
     <>
       <Input label={strings.SIGN_IN.email} {...inputProps(FIELDS.email)} />
       <Input label={strings.SIGN_IN.password} secureTextEntry {...inputProps(FIELDS.password)} />
-      <ErrorView errors={errors} />
+      <ErrorView errors={{ ...errors, error }} />
       <View style={styles.button}>
-        <Button title={strings.SIGN_IN.button} onPress={handleSubmit} />
+        <Button
+          title={status === LOADING ? strings.COMMON.loading : strings.SIGN_IN.button}
+          onPress={handleSubmit}
+        />
       </View>
     </>
   );

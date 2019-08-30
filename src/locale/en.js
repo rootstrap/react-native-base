@@ -1,4 +1,8 @@
 export default {
+  COMMON: {
+    loading: 'Loading',
+  },
+
   SIGN_IN: {
     title: 'Sign in',
     email: 'Email',
