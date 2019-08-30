@@ -63,7 +63,7 @@ export const login = user => async dispatch => {
   } catch (err) {
     dispatch(loginError(err));
     throw new SubmissionError({
-      _error: err.error,
+      _error: err.data.error,
     });
   }
 };
@@ -77,7 +77,7 @@ export const logout = () => async dispatch => {
     dispatch(logoutSuccess());
   } catch (err) {
     dispatch(logoutError(err));
-    throw err;
+    throw err.data.error;
   }
 };
 
@@ -90,7 +90,7 @@ export const signUp = user => async dispatch => {
   } catch (err) {
     dispatch(signUpError(err));
     throw new SubmissionError({
-      _error: err.error,
+      _error: err.data.error,
     });
   }
 };
