@@ -1,9 +1,9 @@
 apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
-    debug: ".env",
+    develop: ".env",
     staging: ".env.staging",
-    release: ".env.prod",
+    production: ".env.prod",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
@@ -128,6 +128,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", true);
 
 android {
+    flavorDimensions "default"
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
@@ -141,6 +142,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        resValue "string", "build_config_package", "com.reactnativebase"
     }
     splits {
         abi {
@@ -177,10 +179,23 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+    }
+    productFlavors {
+        production {
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
 
+        }
+        develop {
+            applicationIdSuffix '.develop'
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
+
+        }
         staging {
-            initWith release
-            matchingFallbacks = ['release', 'debug']
+            applicationIdSuffix '.staging'
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
         }
     }
     // applicationVariants are e.g. debug, release
