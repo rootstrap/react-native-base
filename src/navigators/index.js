@@ -1,4 +1,6 @@
-import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import LoginScreen from 'screens/LoginScreen';
 import MainScreen from 'screens/MainScreen';
 import SignUpScreen from 'screens/SignUpScreen';
@@ -13,7 +15,7 @@ const AppStack = createStackNavigator({
   MainScreen,
 });
 
-const AppNavigator = createSwitchNavigator(
+const AppNavigator = createAnimatedSwitchNavigator(
   {
     AppLoader,
     AuthStack,
