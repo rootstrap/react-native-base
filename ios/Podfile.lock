@@ -83,9 +83,11 @@ PODS:
     - React-Core (= 0.60.5)
   - ReactNativeLocalization (2.1.5):
     - React
-  - RNCAsyncStorage (1.6.1):
+  - RNCAsyncStorage (1.5.1):
     - React
   - RNGestureHandler (1.3.0):
+    - React
+  - RNReanimated (1.2.0):
     - React
   - yoga (0.60.5.React)
 
@@ -114,6 +116,7 @@ DEPENDENCIES:
   - ReactNativeLocalization (from `../node_modules/react-native-localization`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -169,6 +172,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -196,10 +201,11 @@ SPEC CHECKSUMS:
   React-RCTVibration: 2105b2e0e2b66a6408fc69a46c8a7fb5b2fdade0
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
   ReactNativeLocalization: b085fa2140d940c99c7cf5693f95d80edca5bcac
-  RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
+  RNCAsyncStorage: b63d6e83fc629b01df6b624688f17944cea5637f
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
+  RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
 PODFILE CHECKSUM: a669e448f36d616bfb547d3cc6b70bf81b6a2328
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.7.5
