@@ -74,7 +74,6 @@ https://github.com/rootstrap/react-native-base/issues/40
 - [Redux](https://github.com/reduxjs/redux)
 - [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
 - [Redux-Form](https://github.com/erikras/redux-form)
-- [Redux-React-Native-Session](https://github.com/bernabe9/redux-react-native-session)
 - [Reselect](https://github.com/reduxjs/reselect)
 - [humps](https://github.com/domchristie/humps)
 - [validate.js](https://github.com/ansman/validate.js)

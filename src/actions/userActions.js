@@ -1,22 +1,23 @@
-import { SubmissionError } from 'redux-form';
-import { sessionService } from 'redux-react-native-session';
-
 import userService from 'services/userService';
 
 export const actionTypes = {
+  LOGIN: 'LOGIN',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_REQUEST: 'LOGIN_REQUEST',
   LOGIN_ERROR: 'LOGIN_ERROR',
+  SIGN_UP: 'SIGN_UP',
   SIGN_UP_SUCCESS: 'SIGN_UP_SUCCESS',
   SIGN_UP_REQUEST: 'SIGN_UP_REQUEST',
   SIGN_UP_ERROR: 'SIGN_UP_ERROR',
   LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
   LOGOUT_REQUEST: 'LOGOUT_REQUEST',
   LOGOUT_ERROR: 'LOGOUT_ERROR',
+  UPDATE_SESSION: 'UPDATE_SESSION',
 };
 
-const loginSuccess = () => ({
+const loginSuccess = user => ({
   type: actionTypes.LOGIN_SUCCESS,
+  user,
 });
 
 const loginRequest = () => ({
@@ -41,8 +42,9 @@ const logoutError = error => ({
   error,
 });
 
-const signUpSuccess = () => ({
+const signUpSuccess = user => ({
   type: actionTypes.SIGN_UP_SUCCESS,
+  user,
 });
 
 const signUpRequest = () => ({
@@ -54,17 +56,18 @@ const signUpError = error => ({
   error,
 });
 
+export const updateSession = session => ({
+  type: actionTypes.UPDATE_SESSION,
+  session,
+});
+
 export const login = user => async dispatch => {
   try {
     dispatch(loginRequest());
     const { data } = await userService.login({ user });
-    await sessionService.saveUser(data.user);
-    dispatch(loginSuccess());
-  } catch (err) {
-    dispatch(loginError(err));
-    throw new SubmissionError({
-      _error: err.data.error,
-    });
+    dispatch(loginSuccess(data.user));
+  } catch ({ data }) {
+    dispatch(loginError(data && data.error));
   }
 };
 
@@ -72,12 +75,9 @@ export const logout = () => async dispatch => {
   try {
     dispatch(logoutRequest());
     await userService.logout();
-    sessionService.deleteSession();
-    sessionService.deleteUser();
     dispatch(logoutSuccess());
-  } catch (err) {
-    dispatch(logoutError(err));
-    throw err.data.error;
+  } catch ({ data }) {
+    dispatch(logoutError(data && data.error));
   }
 };
 
@@ -85,12 +85,8 @@ export const signUp = user => async dispatch => {
   try {
     dispatch(signUpRequest());
     const { data } = await userService.signUp({ user });
-    sessionService.saveUser(data.user);
-    dispatch(signUpSuccess());
-  } catch (err) {
-    dispatch(signUpError(err));
-    throw new SubmissionError({
-      _error: err.data.error,
-    });
+    dispatch(signUpSuccess(data.user));
+  } catch ({ data }) {
+    dispatch(signUpError(data && data.error));
   }
 };

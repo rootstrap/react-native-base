@@ -1,17 +1,17 @@
 import api from 'api';
 
 class UserService {
-  static login(user) {
+  login(user) {
     return api.post('/users/sign_in', user);
   }
 
-  static logout() {
+  logout() {
     return api.delete('/users/sign_out');
   }
 
-  static signUp(user) {
+  signUp(user) {
     return api.post('/users', user);
   }
 }
 
-export default UserService;
+export default new UserService();

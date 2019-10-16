@@ -1,26 +1,23 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { object } from 'prop-types';
-import isEmpty from 'lodash/isEmpty';
 import useSessionChangeEffect from 'hooks/useSessionChangeEffect';
 import { LOGIN_SCREEN, MAIN_SCREEN } from 'constants/screens';
+import { WHITE } from 'constants/colors';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FAFAFA',
+    backgroundColor: WHITE,
   },
 });
 
 export default function AppLoader({ navigation }) {
   useSessionChangeEffect(
-    ({ user, userChecked }) => {
-      if (!userChecked) return;
-
-      const userLoggedIn = !isEmpty(user);
-      if (userLoggedIn) {
+    ({ user, info }) => {
+      if (user && info) {
         navigation.navigate(MAIN_SCREEN);
       } else {
         navigation.navigate(LOGIN_SCREEN);
