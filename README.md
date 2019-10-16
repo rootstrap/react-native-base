@@ -18,6 +18,18 @@ You can also create `.env.prod` and `.env.staging` to define environment variabl
 3. Rename your new project using [react-native-rename](https://github.com/junedomingo/react-native-rename)
 4. Start on android or ios: `react-native run-android` or `react-native run-ios`
 
+## Steps for Android development
+1. Run the following command inside the `android/app` directory
+```
+keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000
+```
+
+## Steps for iOS development
+1. Run the following command inside the `ios` directory
+```
+pod install
+```
+
 ## Configuring Code Climate
 1. After adding the project to CC, go to `Repo Settings`
 2. On the `Test Coverage` tab, copy the `Test Reporter ID`
