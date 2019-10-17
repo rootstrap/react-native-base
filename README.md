@@ -73,6 +73,7 @@ https://github.com/rootstrap/react-native-base/issues/40
 - [ReactNativeLocalization](https://github.com/stefalda/ReactNativeLocalization)
 - [Redux](https://github.com/reduxjs/redux)
 - [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
+- [Redux-Persist](https://github.com/rt2zz/redux-persist)
 - [Redux-Form](https://github.com/erikras/redux-form)
 - [Reselect](https://github.com/reduxjs/reselect)
 - [humps](https://github.com/domchristie/humps)
@@ -81,3 +82,12 @@ https://github.com/rootstrap/react-native-base/issues/40
 - [lodash](https://github.com/lodash/lodash)
 - [Jest](https://github.com/facebook/jest)
 - [Enzyme](https://github.com/airbnb/enzyme)
+
+
+### Redux-Persist configuration
+The current configuration for redux-persist is on `store/configureStore.js`.
+
+The default configuration is the following:
+- There's a defined `whitelist` where all reducers that want to be persisted must be declared.
+- The `storage` engine is `AsyncStorage` but you can change it if needed, for example: https://github.com/CodingZeal/redux-persist-sensitive-storage if you need keychan storage on iOS.
+- If you ever need to set up migrations to keep your reducers up to date, please check [this link](https://github.com/rt2zz/redux-persist#migrations).
