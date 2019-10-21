@@ -10,9 +10,8 @@ const handleLoginSuccess = (state, { user }) => {
   state.user = user;
 };
 
-const handleLogoutSuccess = state => {
-  state.user = null;
-  state.info = null;
+const handleLogoutSuccess = () => {
+  return initialState;
 };
 
 const handleUpdateSession = (state, { session }) => {
