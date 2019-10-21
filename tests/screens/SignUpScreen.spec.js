@@ -4,7 +4,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
-import { sessionService } from 'redux-react-native-session';
 import Config from 'react-native-config';
 import nock from 'nock';
 
@@ -86,15 +85,6 @@ describe('<SignUpScreen />', () => {
 
     afterAll(() => {
       nock.cleanAll();
-    });
-
-    it('should call redux-react-native-session to save the user data', done => {
-      // wait for the call to save user
-      sessionService.saveUser = jest.fn(() => {
-        expect(sessionService.saveUser).toHaveBeenCalledWith(response.user);
-        done();
-        return Promise.resolve();
-      });
     });
   });
 
