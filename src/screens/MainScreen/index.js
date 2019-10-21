@@ -21,7 +21,7 @@ const MainScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Hey {email}, you&#39;re logged in!</Text>
+      <Text>Hey{` ${email}` || ''}, you&#39;re logged in!</Text>
       <Button onPress={logoutRequest} title={strings.MAIN_SCREEN.logout} />
     </View>
   );

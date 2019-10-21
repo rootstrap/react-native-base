@@ -837,7 +837,7 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@react-native-community/async-storage@1.6.1", "@react-native-community/async-storage@^1.4.2":
+"@react-native-community/async-storage@1.6.1":
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.6.1.tgz#19be07fc1d65c77bdeb20f46108ba12076aad1c5"
   integrity sha512-1WA28xfdhG+unkTEk/lXnqI2izv6belo0CYw7UdvaeHm8TIYT6eTmIIdGR7oiCa2xSKEnaPQqRMH6h7gyLNbww==
@@ -3697,11 +3697,6 @@ immer@3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/immer/-/immer-3.1.2.tgz#1f24f2e25433f5ff168a1ff6c8c6366d2106e61a"
   integrity sha512-pi8JuvJ9c+98DlpDms/o0YLLg5khP8Qzjd8CtIGc4qVm2eoLdQGivJL266nWccofKT/oBSxnhAh/o+nmOXtLXw==
-
-immutable@3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
-  integrity sha1-IAgH8Rqw9ycQ6khVQt4IgHX2jNI=
 
 import-fresh@^2.0.0:
   version "2.0.0"
@@ -6659,13 +6654,10 @@ redux-logger@3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-react-native-session@1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/redux-react-native-session/-/redux-react-native-session-1.0.6.tgz#65676a714d2a6d5c2af4aa647b4491faa9e40731"
-  integrity sha512-aUo5WX/qz9H/jSoRINZNbzwrEKhrrfP2i7O+gLn3yj5KYmOE+v7GDOkb0o3hDdWw9729zClQbKCVM2vgZP4zmw==
-  dependencies:
-    "@react-native-community/async-storage" "^1.4.2"
-    immutable "3.8.1"
+redux-persist@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-6.0.0.tgz#b4d2972f9859597c130d40d4b146fecdab51b3a8"
+  integrity sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==
 
 redux-thunk@2.3.0:
   version "2.3.0"
