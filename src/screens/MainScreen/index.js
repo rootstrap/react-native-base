@@ -27,12 +27,8 @@ const MainScreen = ({ navigation }) => {
   );
 };
 
-MainScreen.options = {
-  topBar: {
-    title: {
-      text: strings.MAIN_SCREEN.title,
-    },
-  },
+MainScreen.navigationOptions = {
+  title: strings.MAIN_SCREEN.title,
 };
 
 MainScreen.propTypes = {

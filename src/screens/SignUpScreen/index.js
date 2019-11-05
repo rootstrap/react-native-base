@@ -29,12 +29,8 @@ SignUpScreen.propTypes = {
   navigation: object.isRequired,
 };
 
-SignUpScreen.options = {
-  topBar: {
-    title: {
-      text: strings.SIGN_UP.title,
-    },
-  },
+SignUpScreen.navigationOptions = {
+  title: strings.SIGN_UP.title,
 };
 
 export default SignUpScreen;
