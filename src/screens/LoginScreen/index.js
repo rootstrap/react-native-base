@@ -30,12 +30,8 @@ LoginScreen.propTypes = {
   navigation: object.isRequired,
 };
 
-LoginScreen.options = {
-  topBar: {
-    title: {
-      text: strings.SIGN_IN.title,
-    },
-  },
+LoginScreen.navigationOption = {
+  title: strings.SIGN_IN.title,
 };
 
 export default LoginScreen;
