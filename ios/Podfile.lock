@@ -221,7 +221,7 @@ PODS:
     - ReactCommon/jscallinvoker (= 0.61.1)
   - ReactNativeLocalization (2.1.5):
     - React
-  - RNCAsyncStorage (1.6.1):
+  - RNCAsyncStorage (1.5.1):
     - React
   - RNGestureHandler (1.3.0):
     - React
@@ -357,7 +357,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 8be61459e3749d1fb02cf414edd05b3007622882
   ReactCommon: 4fba5be89efdf0b5720e0adb3d8d7edf6e532db0
   ReactNativeLocalization: b085fa2140d940c99c7cf5693f95d80edca5bcac
-  RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
+  RNCAsyncStorage: b63d6e83fc629b01df6b624688f17944cea5637f
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
   RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
   Yoga: d8c572ddec8d05b7dba08e4e5f1924004a177078

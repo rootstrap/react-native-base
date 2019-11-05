@@ -43,6 +43,9 @@
       ],
       "services/*": [
         "src/services/*"
+      ],
+      "validations/*": [
+        "src/validations/*"
       ]
     }
   }
