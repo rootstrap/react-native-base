@@ -1,35 +1,56 @@
 import React from 'react';
-import { bool, func, string } from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
-import { ActivityIndicator, Button, Text, View } from 'react-native';
+import { func } from 'prop-types';
+import { Button, View } from 'react-native';
 
 import Input from 'components/common/Input';
-import * as constraints from 'utils/constraints';
+import useForm from 'hooks/useForm';
+import useValidation from 'hooks/useValidation';
+import loginValidations from 'validations/loginValidations';
+import ErrorView from 'components/common/ErrorView';
+import useTextInputProps from 'hooks/useTextInputProps';
+import useStatus from 'hooks/useStatus';
+import { actionTypes } from 'actions/userActions';
+import { LOADING } from 'constants/status';
 import strings from 'locale';
 import styles from './styles';
 
-const LoginForm = ({ handleSubmit, error, submitting }) => (
-  <View onSubmit={handleSubmit}>
-    {error && <Text>{error}</Text>}
-    <Field name="email" label={strings.SIGN_IN.email} component={Input} />
-    <Field name="password" label={strings.SIGN_IN.password} component={Input} password />
-    {submitting ? (
-      <ActivityIndicator />
-    ) : (
-      <View style={styles.button}>
-        <Button title={strings.SIGN_IN.button} onPress={handleSubmit} />
-      </View>
-    )}
-  </View>
-);
-
-LoginForm.propTypes = {
-  handleSubmit: func.isRequired,
-  submitting: bool.isRequired,
-  error: string,
+const FIELDS = {
+  email: 'email',
+  password: 'password',
 };
 
-export default reduxForm({
-  form: 'login',
-  validate: constraints.validations(constraints.login),
-})(LoginForm);
+const LoginForm = ({ onSubmit }) => {
+  const { error, status } = useStatus(actionTypes.LOGIN);
+  const validator = useValidation(loginValidations);
+  const { values, errors, handleValueChange, handleSubmit, handleBlur } = useForm(
+    {
+      initialValues: {},
+      onSubmit,
+      validator,
+      validateOnBlur: true,
+    },
+    [onSubmit],
+  );
+
+  const inputProps = useTextInputProps(handleValueChange, handleBlur, values);
+
+  return (
+    <>
+      <Input label={strings.SIGN_IN.email} {...inputProps(FIELDS.email)} />
+      <Input label={strings.SIGN_IN.password} secureTextEntry {...inputProps(FIELDS.password)} />
+      <ErrorView errors={{ ...errors, error }} />
+      <View style={styles.button}>
+        <Button
+          title={status === LOADING ? strings.COMMON.loading : strings.SIGN_IN.button}
+          onPress={handleSubmit}
+        />
+      </View>
+    </>
+  );
+};
+
+LoginForm.propTypes = {
+  onSubmit: func.isRequired,
+};
+
+export default LoginForm;

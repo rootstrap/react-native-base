@@ -1,33 +1,21 @@
 import React from 'react';
-import { bool, object, string } from 'prop-types';
+import { string } from 'prop-types';
 import { View, TextInput, Text } from 'react-native';
 import styles from './styles';
 
-const Input = ({
-  input: { onChange, ...restInput },
-  password = false,
-  label,
-  meta: { touched, error },
-}) => (
+const Input = ({ label, error, ...props }) => (
   <View>
     {label && <Text>{label}</Text>}
     <View>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChange}
-        secureTextEntry={password}
-        {...restInput}
-      />
-      {touched && error && <Text>{error}</Text>}
+      <TextInput style={styles.input} {...props} />
+      {error && <Text>{error}</Text>}
     </View>
   </View>
 );
 
 Input.propTypes = {
-  input: object.isRequired,
   label: string,
-  meta: object,
-  password: bool,
+  error: string,
 };
 
 export default Input;
