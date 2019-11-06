@@ -24,7 +24,6 @@ const LoginForm = ({ onSubmit }) => {
   const validator = useValidation(loginValidations);
   const { values, errors, handleValueChange, handleSubmit, handleBlur } = useForm(
     {
-      initialValues: {},
       onSubmit,
       validator,
       validateOnBlur: true,
