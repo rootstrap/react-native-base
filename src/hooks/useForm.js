@@ -2,8 +2,8 @@ import { useState, useCallback } from 'react';
 
 const useForm = (
   {
-    initialValues,
     onSubmit,
+    initialValues = {},
     validator = () => {},
     validateOnChange = false,
     validateOnBlur = false,
