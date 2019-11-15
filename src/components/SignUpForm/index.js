@@ -1,7 +1,9 @@
 import React from 'react';
 import { func } from 'prop-types';
 import { Button, View } from 'react-native';
+import { useStatus, LOADING } from '@rootstrap/redux-tools';
 
+import { signUp } from 'actions/userActions';
 import Input from 'components/common/Input';
 import strings from 'locale';
 import useForm from 'hooks/useForm';
@@ -9,9 +11,6 @@ import useValidation from 'hooks/useValidation';
 import useTextInputProps from 'hooks/useTextInputProps';
 import signUpValidations from 'validations/signUpValidations';
 import ErrorView from 'components/common/ErrorView';
-import useStatus from 'hooks/useStatus';
-import { actionTypes } from 'actions/userActions';
-import { LOADING } from 'constants/status';
 import styles from './styles';
 
 const FIELDS = {
@@ -21,7 +20,7 @@ const FIELDS = {
 };
 
 const SignUpForm = ({ onSubmit }) => {
-  const { error, status } = useStatus(actionTypes.SIGN_UP);
+  const { error, status } = useStatus(signUp);
   const validator = useValidation(signUpValidations);
   const { values, errors, handleValueChange, handleSubmit, handleBlur } = useForm(
     {
