@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import session from 'reducers/sessionReducer';
-import actionStatus from 'reducers/statusReducer';
+import { statusReducer } from '@rootstrap/redux-tools';
 
 const AppReducer = combineReducers({
   session,
-  actionStatus,
+  actionStatus: statusReducer,
 });
 
 export default AppReducer;
