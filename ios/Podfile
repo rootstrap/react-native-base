@@ -38,7 +38,6 @@ target 'ReactNativeBase' do
   # Pods for ReactNativeBase
   base_pods
 
-  pod 'react-native-config', :path => '../node_modules/react-native-config'
 
   target 'ReactNativeBaseTests' do
     inherit! :search_paths
@@ -52,7 +51,6 @@ target 'ReactNativeBase-Staging' do
     # Pods for ReactNativeBase
     base_pods
 
-    pod 'react-native-config', :path => '../node_modules/react-native-config'
 
     use_native_modules!
 end
@@ -61,7 +59,6 @@ target 'ReactNativeBase-Develop' do
   # Pods for ReactNativeBase
   base_pods
 
-  pod 'react-native-config', :path => '../node_modules/react-native-config'
 
   use_native_modules!
 end
@@ -74,20 +71,4 @@ target 'ReactNativeBase-tvOS' do
     # Pods for testing
   end
 
-end
-
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    if target.name == 'react-native-config'
-      phase = target.project.new(Xcodeproj::Project::Object::PBXShellScriptBuildPhase)
-      phase.shell_script = "cd ../../"\
-                           " && RNC_ROOT=./node_modules/react-native-config/"\
-                           " && export SYMROOT=$RNC_ROOT/ios/ReactNativeConfig"\
-                           " && export BUILD_DIR=$RNC_ROOT/ios/ReactNativeConfig"\
-                           " && ruby $RNC_ROOT/ios/ReactNativeConfig/BuildDotenvConfig.ruby"
-
-      target.build_phases << phase
-      target.build_phases.move(phase,0)
-    end
-  end
 end
