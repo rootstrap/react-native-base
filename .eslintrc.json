@@ -44,7 +44,6 @@
     ],
     "no-debugger": 1,
     "no-var": 1,
-    "semi": [1, "always"],
     "no-trailing-spaces": 1,
     "eol-last": 1,
     "no-underscore-dangle": 0,
