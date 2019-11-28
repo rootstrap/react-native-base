@@ -1,16 +1,15 @@
 import React from 'react';
 import { func } from 'prop-types';
 import { Button, View } from 'react-native';
+import { useStatus, LOADING } from '@rootstrap/redux-tools';
 
+import { login } from 'actions/userActions';
 import Input from 'components/common/Input';
 import useForm from 'hooks/useForm';
 import useValidation from 'hooks/useValidation';
 import loginValidations from 'validations/loginValidations';
 import ErrorView from 'components/common/ErrorView';
 import useTextInputProps from 'hooks/useTextInputProps';
-import useStatus from 'hooks/useStatus';
-import { actionTypes } from 'actions/userActions';
-import { LOADING } from 'constants/status';
 import strings from 'locale';
 import styles from './styles';
 
@@ -20,7 +19,7 @@ const FIELDS = {
 };
 
 const LoginForm = ({ onSubmit }) => {
-  const { error, status } = useStatus(actionTypes.LOGIN);
+  const { error, status } = useStatus(login);
   const validator = useValidation(loginValidations);
   const { values, errors, handleValueChange, handleSubmit, handleBlur } = useForm(
     {
