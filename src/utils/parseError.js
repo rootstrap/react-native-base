@@ -14,6 +14,10 @@ const parseErrors = errors => {
       return firstMessage;
     }
 
+    if (Array.isArray(errors)) {
+      return errors[0];
+    }
+
     const errorKey = Object.keys(errors)[0];
     const error = errors[errorKey][0];
     return `${errorKey} ${error}`;
@@ -32,6 +36,7 @@ const parseErrors = errors => {
  *
  * If one of those keys is present, the first message on the array will be returned
  * in other case, the first key-value pair is returned as a string.
+ * Lastly, if `errors` is an array, the first value will be returned.
  *
  * ## Examples:
  *
@@ -42,6 +47,8 @@ const parseErrors = errors => {
  * 3- `{ errors: { base: ["User not found"]}}` returns `"User not found"`
  *
  * 4- `{ errors: { firstName: ["can't be blank"]}}` returns `"firstName can't be blank"`
+ *
+ * 5- `{ errors: ['Some error'] }` returns `"Some error"`
  */
 export default data => {
   if (!data) return strings.COMMON.somethingWentWrong;
