@@ -1,5 +1,6 @@
 import { createThunk, createAction } from '@rootstrap/redux-tools';
 import userService from 'services/userService';
+import parseError from 'utils/parseError';
 
 export const login = createThunk('LOGIN', async user => {
   try {
@@ -7,16 +8,16 @@ export const login = createThunk('LOGIN', async user => {
       data: { user: createdUser },
     } = await userService.login({ user });
     return createdUser;
-  } catch (err) {
-    throw err.data.error;
+  } catch ({ data }) {
+    throw parseError(data);
   }
 });
 
 export const logout = createThunk('LOGOUT', async () => {
   try {
     await userService.logout();
-  } catch (err) {
-    throw err.data.error;
+  } catch ({ data }) {
+    throw parseError(data);
   }
 });
 
@@ -26,8 +27,8 @@ export const signUp = createThunk('SIGNUP', async user => {
       data: { user: createdUser },
     } = await userService.signUp({ user });
     return createdUser;
-  } catch (err) {
-    throw err.data.error;
+  } catch ({ data }) {
+    throw parseError(data);
   }
 });
 

@@ -1,6 +1,7 @@
 export default {
   COMMON: {
     loading: 'Loading',
+    somethingWentWrong: 'Something Went Wrong',
   },
 
   SIGN_IN: {
