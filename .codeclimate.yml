@@ -54,6 +54,8 @@ plugins:
     enabled: true
     config:
       config: ~/.eslintrc
+  nodesecurity:
+    enabled: true
 exclude_patterns:
   - "android/"
   - "ios/"
