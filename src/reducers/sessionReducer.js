@@ -6,16 +6,16 @@ const initialState = {
   info: null,
 };
 
-const handleLoginSuccess = (state, { user }) => {
-  state.user = user;
+const handleLoginSuccess = (state, { payload }) => {
+  state.user = payload;
 };
 
 const handleLogoutSuccess = () => {
   return initialState;
 };
 
-const handleUpdateSession = (state, { session }) => {
-  state.info = session;
+const handleUpdateSession = (state, { payload }) => {
+  state.info = payload;
 };
 
 export default createReducer(initialState, {

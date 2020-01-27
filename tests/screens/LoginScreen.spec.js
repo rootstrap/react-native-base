@@ -16,7 +16,7 @@ describe('<LoginScreen />', () => {
   let passwordInput;
 
   beforeEach(() => {
-    const store = configureStore();
+    const { store } = configureStore();
     wrapper = mount(
       <Provider store={store}>
         <LoginScreen
