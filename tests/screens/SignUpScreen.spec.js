@@ -16,7 +16,7 @@ describe('<SignUpScreen />', () => {
   let passwordConfirmationInput;
 
   beforeEach(() => {
-    const store = configureStore();
+    const { store } = configureStore();
     wrapper = mount(
       <Provider store={store}>
         <SignUpScreen
