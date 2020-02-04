@@ -7,7 +7,7 @@ const ErrorView = ({ errors = {} }) => {
   const errorMessages = Object.values(errors)
     .filter(error => !!error)
     .reduce((acc, error) => {
-      error.forEach(e => acc.push(e));
+      acc.push(error);
       return acc;
     }, []);
   if (!errorMessages.length) return null;
