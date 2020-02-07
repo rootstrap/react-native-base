@@ -34,7 +34,12 @@ const LoginForm = ({ onSubmit }) => {
 
   return (
     <>
-      <Input label={strings.SIGN_IN.email} {...inputProps(FIELDS.email)} />
+      <Input
+        label={strings.SIGN_IN.email}
+        keyboardType="email-address"
+        autoCapitalize="none"
+        {...inputProps(FIELDS.email)}
+      />
       <Input label={strings.SIGN_IN.password} secureTextEntry {...inputProps(FIELDS.password)} />
       <ErrorView errors={{ ...errors, error }} />
       <View style={styles.button}>
