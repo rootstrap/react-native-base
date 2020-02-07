@@ -35,7 +35,12 @@ const SignUpForm = ({ onSubmit }) => {
 
   return (
     <>
-      <Input label={strings.SIGN_UP.email} {...inputProps(FIELDS.email)} />
+      <Input
+        label={strings.SIGN_UP.email}
+        keyboardType="email-address"
+        autoCapitalize="none"
+        {...inputProps(FIELDS.email)}
+      />
       <Input label={strings.SIGN_UP.password} secureTextEntry {...inputProps(FIELDS.password)} />
       <Input
         label={strings.SIGN_UP.passwordConfirmation}
