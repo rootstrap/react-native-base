@@ -1,29 +1,29 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
-import LoginScreen from 'screens/LoginScreen';
-import MainScreen from 'screens/MainScreen';
-import SignUpScreen from 'screens/SignUpScreen';
-import AppLoader from 'screens/AppLoader';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const AuthStack = createStackNavigator({
-  LoginScreen,
-  SignUpScreen,
-});
+import useSession from 'hooks/useSession';
+import { APP_STACK, AUTH_STACK } from 'constants/screens';
 
-const AppStack = createStackNavigator({
-  MainScreen,
-});
+import AppStack from './AppStack';
+import AuthStack from './AuthStack';
 
-const AppNavigator = createAnimatedSwitchNavigator(
-  {
-    AppLoader,
-    AuthStack,
-    AppStack,
-  },
-  {
-    initialRouteName: 'AppLoader',
-  },
-);
+const Stack = createStackNavigator();
 
-export default createAppContainer(AppNavigator);
+const Navigation = () => {
+  const { user, info } = useSession();
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator headerMode="none">
+        {user && info ? (
+          <Stack.Screen name={APP_STACK} component={AppStack} />
+        ) : (
+          <Stack.Screen name={AUTH_STACK} component={AuthStack} />
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default Navigation;

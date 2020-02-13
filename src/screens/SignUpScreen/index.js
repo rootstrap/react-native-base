@@ -6,15 +6,11 @@ import { object } from 'prop-types';
 import SignUpForm from 'components/SignUpForm';
 import { signUp } from 'actions/userActions';
 import strings from 'locale';
-import useNavigateOnLoginEffect from 'hooks/useNavigateOnLoginEffect';
 import styles from './styles';
 
 const SignUpScreen = memo(({ navigation }) => {
   const dispatch = useDispatch();
-
   const signUpRequest = useCallback(user => dispatch(signUp(user)), [dispatch]);
-
-  useNavigateOnLoginEffect(navigation);
 
   return (
     <View style={styles.container}>
