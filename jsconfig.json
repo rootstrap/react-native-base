@@ -8,8 +8,8 @@
       "actions/*": [
         "src/actions/*"
       ],
-      "api/*": [
-        "src/api/*"
+      "httpClient/*": [
+        "src/httpClient/*"
       ],
       "components/*": [
         "src/components/*"
