@@ -28,7 +28,6 @@
     "immer": "5.0.0",
     "lodash": "4.17.15",
     "prop-types": "15.7.2",
-    "query-string": "6.5.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-config": "0.12.0",
