@@ -15,7 +15,7 @@ const ErrorView = ({ errors = {} }) => {
   return (
     <View style={styles.container}>
       {errorMessages.map(error => (
-        <Text key={error} style={styles.error}>
+        <Text key={error} accessibilityLabel="form-error" style={styles.error}>
           {error}
         </Text>
       ))}
