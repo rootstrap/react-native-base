@@ -50,10 +50,10 @@ const parseErrors = errors => {
  *
  * 5- `{ errors: ['Some error'] }` returns `"Some error"`
  */
-export default data => {
-  if (!data) return strings.COMMON.somethingWentWrong;
+export default err => {
+  if (!err) return strings.COMMON.somethingWentWrong;
 
-  const { error, errors } = data;
+  const { error, errors } = err.data;
 
   if (error) return error;
 

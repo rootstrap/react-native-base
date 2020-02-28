@@ -1,0 +1,32 @@
+import { MAIN_SCREEN } from 'constants/screens';
+import MainScreen from 'screens/MainScreen';
+
+import { renderWithNavigation } from '../helpers';
+
+describe('<MainScreen />', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = renderWithNavigation(MainScreen, {
+      initialState: {
+        session: {
+          user: {
+            email: 'example@rootstrap.com',
+          },
+        },
+      },
+    });
+  });
+
+  it('should render the login screen', () => {
+    expect(wrapper.queryByTestId(MAIN_SCREEN)).toBeTruthy();
+  });
+
+  it('should render the logout', () => {
+    expect(wrapper.queryByTestId('logout-button')).toBeTruthy();
+  });
+
+  it('should render the welcome message in screen', () => {
+    expect(wrapper.queryByText("Hey example@rootstrap.com, you're logged in!")).toBeTruthy();
+  });
+});
