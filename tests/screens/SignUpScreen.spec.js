@@ -3,13 +3,15 @@ import { fireEvent, wait } from '@testing-library/react-native';
 import { SIGN_UP_SCREEN } from 'constants/screens';
 import SignUpScreen from 'screens/SignUpScreen';
 
-import { renderWithNavigation, mockedHttpClient } from '../helpers';
+import { renderWithNavigation, mockedHttpClient, configureStore } from '../helpers';
 
 describe('<SignUpScreen />', () => {
   let wrapper;
+  let store;
 
   beforeEach(() => {
-    wrapper = renderWithNavigation(SignUpScreen);
+    store = configureStore();
+    wrapper = renderWithNavigation(SignUpScreen, store);
   });
 
   it('should render the sign up screen', () => {
@@ -30,13 +32,13 @@ describe('<SignUpScreen />', () => {
 
   describe('when the user submits the form', () => {
     beforeEach(() => {
-      fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@example.com');
+      fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
       fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
       fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'password');
     });
 
     it('should show the loading spinner', () => {
-      mockedHttpClient()
+      mockedHttpClient(store)
         .onPost('/users')
         .reply(200);
       fireEvent.press(wrapper.queryByTestId('signup-submit-button'));
@@ -46,7 +48,7 @@ describe('<SignUpScreen />', () => {
 
     describe('if the user exist', () => {
       it('should show existing user errors', async () => {
-        mockedHttpClient()
+        mockedHttpClient(store)
           .onPost('/users')
           .reply(422, {
             errors: {
@@ -64,15 +66,23 @@ describe('<SignUpScreen />', () => {
 
     describe('if the user does not exist', () => {
       it('should show no errors', async () => {
-        mockedHttpClient()
+        mockedHttpClient(store)
           .onPost('/users')
-          .reply(200, {
-            user: {
-              id: 482,
-              email: 'example@rootstrap.com',
-              uid: 'example@rootstrap.com',
+          .reply(
+            200,
+            {
+              user: {
+                id: 482,
+                email: 'example@rootstrap.com',
+                uid: 'example@rootstrap.com',
+              },
             },
-          });
+            {
+              'access-token': 'token',
+              uid: 'example@rootstrap.com',
+              client: 'client',
+            },
+          );
         fireEvent.press(wrapper.queryByTestId('signup-submit-button'));
 
         await wait(() => expect(wrapper.queryAllByLabelText('form-error')).toEqual([]));
@@ -81,7 +91,7 @@ describe('<SignUpScreen />', () => {
 
     describe('if there is a network error', () => {
       it('should show no errors', async () => {
-        mockedHttpClient()
+        mockedHttpClient(store)
           .onPost('/users')
           .networkError();
         fireEvent.press(wrapper.queryByTestId('signup-submit-button'));

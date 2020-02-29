@@ -1,21 +1,21 @@
 import { MAIN_SCREEN } from 'constants/screens';
 import MainScreen from 'screens/MainScreen';
 
-import { renderWithNavigation } from '../helpers';
+import { renderWithNavigation, configureStore } from '../helpers';
 
 describe('<MainScreen />', () => {
   let wrapper;
+  let store;
 
   beforeEach(() => {
-    wrapper = renderWithNavigation(MainScreen, {
-      initialState: {
-        session: {
-          user: {
-            email: 'example@rootstrap.com',
-          },
+    store = configureStore({
+      session: {
+        user: {
+          email: 'example@rootstrap.com',
         },
       },
     });
+    wrapper = renderWithNavigation(MainScreen, store);
   });
 
   it('should render the login screen', () => {

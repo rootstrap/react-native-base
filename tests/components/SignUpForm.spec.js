@@ -2,16 +2,18 @@ import React from 'react';
 import SignUpForm from 'components/SignUpForm';
 import { fireEvent, wait } from '@testing-library/react-native';
 
-import { renderWithRedux } from '../helpers';
+import { renderWithRedux, configureStore } from '../helpers';
 
 describe('<SignUpForm />', () => {
   let wrapper;
+  let store;
   const props = {
     onSubmit: jest.fn(),
   };
 
   beforeEach(() => {
-    wrapper = renderWithRedux(<SignUpForm {...props} />);
+    store = configureStore();
+    wrapper = renderWithRedux(<SignUpForm {...props} />, store);
   });
 
   describe('Email Input', () => {
@@ -38,7 +40,7 @@ describe('<SignUpForm />', () => {
 
     describe('when the email input is valid', () => {
       beforeEach(() => {
-        fireEvent.changeText(input, 'example@example.com');
+        fireEvent.changeText(input, 'example@rootstrap.com');
         fireEvent.blur(input);
       });
 
@@ -149,7 +151,7 @@ describe('<SignUpForm />', () => {
 
     describe('and the passwords not match', () => {
       beforeEach(() => {
-        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@example.com');
+        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
         fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
         fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'confirm-password');
         fireEvent.press(submitButton);
@@ -170,7 +172,7 @@ describe('<SignUpForm />', () => {
 
     describe('and the form is valid', () => {
       beforeEach(() => {
-        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@example.com');
+        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
         fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
         fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'password');
         fireEvent.press(submitButton);

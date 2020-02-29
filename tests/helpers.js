@@ -9,12 +9,13 @@ import MockAdapter from 'axios-mock-adapter';
 
 import reducer from 'reducers';
 import httpClient from 'httpClient';
+import applyDefaultInterceptors from 'httpClient/applyDefaultInterceptors';
 
 const TEST_NAVIGATOR = 'TestNavigator';
 
 const Stack = createStackNavigator();
 
-export const testingStore = (initialState = {}) => {
+export const configureStore = (initialState = {}) => {
   const middlewares = [thunkMiddleware];
 
   const store = createStore(reducer, initialState, applyMiddleware(...middlewares));
@@ -22,21 +23,12 @@ export const testingStore = (initialState = {}) => {
   return store;
 };
 
-export const renderWithRedux = component => {
-  const store = testingStore();
+export const renderWithRedux = (component, store) => ({
+  ...render(<Provider store={store}>{component}</Provider>),
+  store,
+});
 
-  return {
-    ...render(<Provider store={store}>{component}</Provider>),
-    store,
-  };
-};
-
-export const renderWithNavigation = (
-  component,
-  { initialState = {}, navigatorConfig = {} } = {},
-) => {
-  const store = testingStore(initialState);
-
+export const renderWithNavigation = (component, store, { navigatorConfig = {} } = {}) => {
   const App = () => (
     <Provider store={store}>
       <NavigationContainer>
@@ -50,4 +42,8 @@ export const renderWithNavigation = (
   return { ...render(<App />) };
 };
 
-export const mockedHttpClient = (options = {}) => new MockAdapter(httpClient, options);
+export const mockedHttpClient = (store, options = {}) => {
+  applyDefaultInterceptors(store, httpClient);
+
+  return new MockAdapter(httpClient, options);
+};

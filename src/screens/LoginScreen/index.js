@@ -18,7 +18,7 @@ const LoginScreen = ({ navigation }) => {
     <View style={styles.container} testID={LOGIN_SCREEN}>
       <Text style={styles.welcome}>{strings.SIGN_IN.title}</Text>
       <LoginForm onSubmit={loginRequest} />
-      <Button title={strings.SIGN_UP.title} onPress={handleLogin} />
+      <Button testID="sign-up-button" title={strings.SIGN_UP.title} onPress={handleLogin} />
     </View>
   );
 };
