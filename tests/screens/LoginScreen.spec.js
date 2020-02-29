@@ -3,13 +3,15 @@ import { fireEvent, wait } from '@testing-library/react-native';
 import { LOGIN_SCREEN } from 'constants/screens';
 import LoginScreen from 'screens/LoginScreen';
 
-import { renderWithNavigation, mockedHttpClient } from '../helpers';
+import { renderWithNavigation, mockedHttpClient, configureStore } from '../helpers';
 
 describe('<LoginScreen />', () => {
   let wrapper;
+  let store;
 
   beforeEach(() => {
-    wrapper = renderWithNavigation(LoginScreen);
+    store = configureStore();
+    wrapper = renderWithNavigation(LoginScreen, store);
   });
 
   it('should render the login screen', () => {
@@ -26,12 +28,12 @@ describe('<LoginScreen />', () => {
 
   describe('when the user submits the form', () => {
     beforeEach(() => {
-      fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@example.com');
+      fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
       fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
     });
 
     it('should show the loading spinner', () => {
-      mockedHttpClient()
+      mockedHttpClient(store)
         .onPost('/users/sign_in')
         .reply(200);
       fireEvent.press(wrapper.queryByTestId('login-submit-button'));
@@ -41,15 +43,23 @@ describe('<LoginScreen />', () => {
 
     describe('if the user exist', () => {
       it('should show no errors', () => {
-        mockedHttpClient()
+        mockedHttpClient(store)
           .onPost('/users/sign_in')
-          .reply(200, {
-            user: {
-              id: 482,
-              email: 'example@rootstrap.com',
-              uid: 'example@rootstrap.com',
+          .reply(
+            200,
+            {
+              user: {
+                id: 482,
+                email: 'example@rootstrap.com',
+                uid: 'example@rootstrap.com',
+              },
             },
-          });
+            {
+              'access-token': 'token',
+              uid: 'example@rootstrap.com',
+              client: 'client',
+            },
+          );
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
         expect(wrapper.queryAllByLabelText('form-error')).toEqual([]);
@@ -58,7 +68,7 @@ describe('<LoginScreen />', () => {
 
     describe('if the user does not exist or has invalid credentials', () => {
       it('should show no errors', async () => {
-        mockedHttpClient()
+        mockedHttpClient(store)
           .onPost('/users/sign_in')
           .reply(401, {
             error: 'Invalid login credentials. Please try again.',
@@ -74,7 +84,7 @@ describe('<LoginScreen />', () => {
 
     describe('if there is a network error', () => {
       it('should show no errors', async () => {
-        mockedHttpClient()
+        mockedHttpClient(store)
           .onPost('/users/sign_in')
           .networkError();
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));

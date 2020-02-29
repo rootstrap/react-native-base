@@ -2,16 +2,18 @@ import React from 'react';
 import LoginForm from 'components/LoginForm';
 import { fireEvent, wait } from '@testing-library/react-native';
 
-import { renderWithRedux } from '../helpers';
+import { renderWithRedux, configureStore } from '../helpers';
 
 describe('<LoginForm />', () => {
   let wrapper;
+  let store;
   const props = {
     onSubmit: jest.fn(),
   };
 
   beforeEach(() => {
-    wrapper = renderWithRedux(<LoginForm {...props} />);
+    store = configureStore();
+    wrapper = renderWithRedux(<LoginForm {...props} />, store);
   });
 
   describe('Email Input', () => {
@@ -38,7 +40,7 @@ describe('<LoginForm />', () => {
 
     describe('when the email input is valid', () => {
       beforeEach(() => {
-        fireEvent.changeText(input, 'example@example.com');
+        fireEvent.changeText(input, 'example@rootstrap.com');
         fireEvent.blur(input);
       });
 
@@ -116,7 +118,7 @@ describe('<LoginForm />', () => {
 
     describe('and the form is valid', () => {
       beforeEach(() => {
-        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@example.com');
+        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
         fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
         fireEvent.press(submitButton);
       });
