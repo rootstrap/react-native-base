@@ -3,7 +3,12 @@ import { fireEvent, wait } from '@testing-library/react-native';
 import { SIGN_UP_SCREEN } from 'constants/screens';
 import SignUpScreen from 'screens/SignUpScreen';
 
-import { renderWithNavigation, mockedHttpClient, configureStore } from '../helpers';
+import {
+  renderWithNavigation,
+  mockedHttpClient,
+  configureStore,
+  AUTHENTICATED_RESPONSE_HEADERS,
+} from '../helpers';
 
 describe('<SignUpScreen />', () => {
   let wrapper;
@@ -77,11 +82,7 @@ describe('<SignUpScreen />', () => {
                 uid: 'example@rootstrap.com',
               },
             },
-            {
-              'access-token': 'token',
-              uid: 'example@rootstrap.com',
-              client: 'client',
-            },
+            AUTHENTICATED_RESPONSE_HEADERS,
           );
         fireEvent.press(wrapper.queryByTestId('signup-submit-button'));
 
@@ -90,7 +91,7 @@ describe('<SignUpScreen />', () => {
     });
 
     describe('if there is a network error', () => {
-      it('should show no errors', async () => {
+      it('should an error', async () => {
         mockedHttpClient(store)
           .onPost('/users')
           .networkError();

@@ -4,10 +4,16 @@ import { fireEvent, wait } from '@testing-library/react-native';
 import { LOGIN_SCREEN, MAIN_SCREEN } from 'constants/screens';
 import Navigator from 'navigators';
 
-import { renderWithRedux, mockedHttpClient, configureStore } from '../helpers';
+import {
+  renderWithRedux,
+  mockedHttpClient,
+  configureStore,
+  configureAuthenticatedStore,
+  AUTHENTICATED_RESPONSE_HEADERS,
+} from '../helpers';
 
 describe('Navigator', () => {
-  describe('when the is logged out', () => {
+  describe('when the user is logged out', () => {
     let wrapper;
     let store;
 
@@ -38,11 +44,7 @@ describe('Navigator', () => {
                 uid: 'example@rootstrap.com',
               },
             },
-            {
-              'access-token': 'token',
-              uid: 'example@rootstrap.com',
-              client: 'client',
-            },
+            AUTHENTICATED_RESPONSE_HEADERS,
           );
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
@@ -80,18 +82,7 @@ describe('Navigator', () => {
     let store;
 
     beforeEach(() => {
-      store = configureStore({
-        session: {
-          user: {
-            email: 'example@rootstrap.com',
-          },
-          info: {
-            token: 'token',
-            uid: 'example@rootstrap.com',
-            client: 'client',
-          },
-        },
-      });
+      store = configureAuthenticatedStore();
       wrapper = renderWithRedux(<Navigator />, store);
     });
 
@@ -103,15 +94,7 @@ describe('Navigator', () => {
       it('should redirect the user to the login screen', async () => {
         mockedHttpClient(store)
           .onDelete('/users/sign_out')
-          .reply(
-            200,
-            { success: true },
-            {
-              'access-token': 'token',
-              uid: 'example@rootstrap.com',
-              client: 'client',
-            },
-          );
+          .reply(200, { success: true }, {});
 
         fireEvent.press(wrapper.queryByTestId('logout-button'));
 

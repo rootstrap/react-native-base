@@ -13,6 +13,12 @@ import applyDefaultInterceptors from 'httpClient/applyDefaultInterceptors';
 
 const TEST_NAVIGATOR = 'TestNavigator';
 
+export const AUTHENTICATED_RESPONSE_HEADERS = {
+  'access-token': 'token',
+  uid: 'example@rootstrap.com',
+  client: 'client',
+};
+
 const Stack = createStackNavigator();
 
 export const configureStore = (initialState = {}) => {
@@ -22,6 +28,21 @@ export const configureStore = (initialState = {}) => {
 
   return store;
 };
+
+export const configureAuthenticatedStore = (initialState = {}) =>
+  configureStore({
+    session: {
+      user: {
+        email: 'example@rootstrap.com',
+      },
+      info: {
+        token: 'token',
+        uid: 'example@rootstrap.com',
+        client: 'client',
+      },
+    },
+    ...initialState,
+  });
 
 export const renderWithRedux = (component, store) => ({
   ...render(<Provider store={store}>{component}</Provider>),
