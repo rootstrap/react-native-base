@@ -26,18 +26,6 @@ describe('<SignUpForm />', () => {
       expect(input).toBeTruthy();
     });
 
-    describe('when the email input is not valid', () => {
-      beforeEach(() => {
-        fireEvent.changeText(input, 'example');
-        fireEvent.blur(input);
-      });
-
-      it('should show a email is not valid error', () => {
-        expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
-        expect(wrapper.queryByText('Email is not a valid email')).toBeTruthy();
-      });
-    });
-
     describe('when the email input is valid', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'example@rootstrap.com');
@@ -59,6 +47,18 @@ describe('<SignUpForm />', () => {
       it('should show a required error', () => {
         expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
         expect(wrapper.queryByText("Email can't be blank")).toBeTruthy();
+      });
+    });
+
+    describe('when the email input is not valid', () => {
+      beforeEach(() => {
+        fireEvent.changeText(input, 'example');
+        fireEvent.blur(input);
+      });
+
+      it('should show a email is not valid error', () => {
+        expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
+        expect(wrapper.queryByText('Email is not a valid email')).toBeTruthy();
       });
     });
   });
