@@ -3,7 +3,12 @@ import { fireEvent, wait } from '@testing-library/react-native';
 import { LOGIN_SCREEN } from 'constants/screens';
 import LoginScreen from 'screens/LoginScreen';
 
-import { renderWithNavigation, mockedHttpClient, configureStore } from '../helpers';
+import {
+  renderWithNavigation,
+  mockedHttpClient,
+  configureStore,
+  AUTHENTICATED_RESPONSE_HEADERS,
+} from '../helpers';
 
 describe('<LoginScreen />', () => {
   let wrapper;
@@ -54,11 +59,7 @@ describe('<LoginScreen />', () => {
                 uid: 'example@rootstrap.com',
               },
             },
-            {
-              'access-token': 'token',
-              uid: 'example@rootstrap.com',
-              client: 'client',
-            },
+            AUTHENTICATED_RESPONSE_HEADERS,
           );
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
