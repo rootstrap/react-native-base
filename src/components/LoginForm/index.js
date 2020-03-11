@@ -38,12 +38,19 @@ const LoginForm = ({ onSubmit }) => {
         label={strings.SIGN_IN.email}
         keyboardType="email-address"
         autoCapitalize="none"
+        testID="email-input"
         {...inputProps(FIELDS.email)}
       />
-      <Input label={strings.SIGN_IN.password} secureTextEntry {...inputProps(FIELDS.password)} />
+      <Input
+        label={strings.SIGN_IN.password}
+        testID="password-input"
+        secureTextEntry
+        {...inputProps(FIELDS.password)}
+      />
       <ErrorView errors={{ ...errors, error }} />
       <View style={styles.button}>
         <Button
+          testID="login-submit-button"
           title={status === LOADING ? strings.COMMON.loading : strings.SIGN_IN.button}
           onPress={handleSubmit}
         />
