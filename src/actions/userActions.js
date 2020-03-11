@@ -5,19 +5,19 @@ import parseError from 'utils/parseError';
 export const login = createThunk('LOGIN', async user => {
   try {
     const {
-      data: { data },
+      data: { user: loggedUser },
     } = await userService.login({ user });
-    return data;
-  } catch ({ response: { data } }) {
-    throw parseError(data);
+    return loggedUser;
+  } catch ({ response }) {
+    throw parseError(response);
   }
 });
 
 export const logout = createThunk('LOGOUT', async () => {
   try {
     await userService.logout();
-  } catch ({ response: { data } }) {
-    throw parseError(data);
+  } catch ({ response }) {
+    throw parseError(response);
   }
 });
 
@@ -25,8 +25,8 @@ export const signUp = createThunk('SIGNUP', async user => {
   try {
     const { data } = await userService.signUp({ user });
     return data;
-  } catch ({ response: { data } }) {
-    throw parseError(data);
+  } catch ({ response }) {
+    throw parseError(response);
   }
 });
 

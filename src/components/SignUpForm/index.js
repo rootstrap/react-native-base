@@ -39,17 +39,25 @@ const SignUpForm = ({ onSubmit }) => {
         label={strings.SIGN_UP.email}
         keyboardType="email-address"
         autoCapitalize="none"
+        testID="email-input"
         {...inputProps(FIELDS.email)}
       />
-      <Input label={strings.SIGN_UP.password} secureTextEntry {...inputProps(FIELDS.password)} />
+      <Input
+        label={strings.SIGN_UP.password}
+        secureTextEntry
+        testID="password-input"
+        {...inputProps(FIELDS.password)}
+      />
       <Input
         label={strings.SIGN_UP.passwordConfirmation}
         secureTextEntry
+        testID="confirm-password-input"
         {...inputProps(FIELDS.passwordConfirmation)}
       />
       <ErrorView errors={{ ...errors, error }} />
       <View style={styles.button}>
         <Button
+          testID="signup-submit-button"
           title={status === LOADING ? strings.COMMON.loading : strings.SIGN_UP.button}
           onPress={handleSubmit}
         />
