@@ -110,6 +110,14 @@ If you want to add a new env here are the steps to follow:
 6. (optional) go ahead and scripts in the `package.json` file for this new env. As you can see for the other envs there are scripts to run, build and build release, this will make your development workflow a lot easier.
 7. you might need to open the android folder in Android Studio and do **File** -> **Sync project with grade files**
 
+#### Manually set the env file
+
+If you are looking for something quick and easy in the short term, there is one more way you can run the app with a custom env file, just run:
+
+```
+  ENVFILE=.env.{env} react-native run-android
+```
+
 ### iOS
 
 #### Using different build targets
