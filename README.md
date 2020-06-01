@@ -107,7 +107,7 @@ If you want to add a new env here are the steps to follow:
 
 4. Inside `android/app/src` copy one of the existing env folders like `staging` and rename it with the name of your new flavor.
 5. In that new folder you will see a folder called `values` and inside a file called `strings.xml` there you can set the app name that is going to appear for this flavor. You can also set special app icons for each flavor inside `res` folder.
-6. (optional) go ahead and scripts in the `package.json` file for this new env. As you can see for the other envs there are scripts to run, build and build release, this will make your development workflow a lot easier.
+6. (optional) go ahead and add new scripts in the `package.json` file for this new env. As you can see, the other envs already have scripts to run, build and build release, this will make your development workflow a lot easier.
 7. you might need to open the android folder in Android Studio and do **File** -> **Sync project with grade files**
 
 #### Manually set the env file
