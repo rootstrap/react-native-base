@@ -79,7 +79,7 @@ pod install
 
 ## Build iOS Release
 
-1. Select the scheme of the build target you want to create the release for.
+1. Select on Xcode the scheme of the build target you want to create the release for.
 2. For the device select **generic iOS device**.
 3. Then go to **Product** -> **Archive**.
 4. After it is done processing and the archive succeeds the **organizer** will open. Here is where you can see all the previously generated archives.
