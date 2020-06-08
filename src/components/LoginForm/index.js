@@ -26,6 +26,7 @@ const LoginForm = ({ onSubmit }) => {
       onSubmit,
       validator,
       validateOnBlur: true,
+      validateOnChange: true,
     },
     [onSubmit],
   );
