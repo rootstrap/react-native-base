@@ -1,9 +1,9 @@
 apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
-    develop: ".env",
+    dev: ".env",
     staging: ".env.staging",
-    production: ".env.prod",
+    prod: ".env.prod",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
@@ -181,13 +181,13 @@ android {
         }
     }
     productFlavors {
-        production {
+        prod {
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
 
         }
-        develop {
-            applicationIdSuffix '.develop'
+        dev {
+            applicationIdSuffix '.dev'
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
 
