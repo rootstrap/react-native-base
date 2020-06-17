@@ -27,6 +27,7 @@ const SignUpForm = ({ onSubmit }) => {
       onSubmit,
       validator,
       validateOnBlur: true,
+      validateOnChange: true,
     },
     [onSubmit],
   );

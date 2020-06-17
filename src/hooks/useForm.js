@@ -13,6 +13,7 @@ const useForm = (
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [blurredFields, setBlurredFields] = useState({});
+  const [touched, setTouched] = useState({});
 
   const handleSubmit = useCallback(() => {
     const newErrors = validator(values) || {};
@@ -49,11 +50,11 @@ const useForm = (
         [key]: value,
       };
       setValues(newValues);
-      if (validateOnChange) {
+      if (validateOnChange && touched[key]) {
         runValidations(newValues, key);
       }
     },
-    [values, setValues, runValidations, validateOnChange],
+    [values, touched, setValues, runValidations, validateOnChange],
   );
 
   const handleBlur = useCallback(
@@ -63,8 +64,9 @@ const useForm = (
         [key]: true,
       });
       if (validateOnBlur) runValidations(values, key);
+      setTouched({ ...touched, [key]: true });
     },
-    [blurredFields, setBlurredFields, runValidations, values, validateOnBlur],
+    [blurredFields, setBlurredFields, runValidations, values, validateOnBlur, setTouched, touched],
   );
 
   return {
@@ -77,6 +79,7 @@ const useForm = (
     handleValueChange,
     handleSubmit,
     handleBlur,
+    touched,
   };
 };
 
