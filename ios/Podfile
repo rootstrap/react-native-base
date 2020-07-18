@@ -74,17 +74,6 @@ def base_pods
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 end
 
-def enable_flipper
-  # Enables Flipper.
-  #
-  # Note that if you have use_frameworks! enabled, Flipper will not work and
-  # you should disable these next few lines.
-  add_flipper_pods!
-  post_install do |installer|
-    flipper_post_install(installer)
-  end
-end
-
 target 'ReactNativeBase' do
   # Pods for ReactNativeBase
   base_pods
@@ -97,35 +86,40 @@ target 'ReactNativeBase' do
 
   use_native_modules!
 
-  enable_flipper
+  add_flipper_pods!
 end
 
 target 'ReactNativeBase-Staging' do
   # Pods for ReactNativeBase
   base_pods
-
-
+  
+  
   use_native_modules!
-
-  enable_flipper
+  
+  add_flipper_pods!
 end
 
 target 'ReactNativeBase-Develop' do
   # Pods for ReactNativeBase
   base_pods
-
-
+  
+  
   use_native_modules!
-
-  enable_flipper
+  
+  add_flipper_pods!
 end
 
 target 'ReactNativeBase-tvOS' do
   # Pods for ReactNativeBase-tvOS
-
+  
   target 'ReactNativeBase-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
   
+end
+
+
+post_install do |installer|
+  flipper_post_install(installer)
 end
