@@ -34,8 +34,8 @@
     "immer": "5.0.0",
     "lodash": "4.17.15",
     "prop-types": "15.7.2",
-    "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react": "16.11.0",
+    "react-native": "0.62.2",
     "react-native-config": "0.12.0",
     "react-native-gesture-handler": "^1.5.6",
     "react-native-localization": "2.1.5",
@@ -73,7 +73,7 @@
     "metro-react-native-babel-preset": "0.58.0",
     "prettier": "1.18.2",
     "react-dom": "16.9.0",
-    "react-test-renderer": "16.9.0",
+    "react-test-renderer": "16.11.0",
     "redux-logger": "3.0.6"
   },
   "husky": {
