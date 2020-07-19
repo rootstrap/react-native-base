@@ -52,8 +52,8 @@ public class MainApplication extends Application implements ReactApplication {
    * @param context
    * @param reactInstanceManager
    */
-  private static void initializeFlipper(
-      Context context, ReactInstanceManager reactInstanceManager)
+  private static void initializeFlipper( 
+      Context context, ReactInstanceManager reactInstanceManager){
     if (BuildConfig.DEBUG) {
       try {
         /*
