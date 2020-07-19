@@ -1434,6 +1434,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.3.tgz#27b3f40addaf2f580459fdb405222685542f907a"
   integrity sha512-3SiLAIBkDWDg6vFo0+5YJyHPWU9uwu40Qe+v+0MH8wRKYBimHvvAOyk3EzMrD/TrIlLYfXrqDqrg913PynrMJQ==
 
+"@types/node@^14.0.22":
+  version "14.0.23"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.23.tgz#676fa0883450ed9da0bb24156213636290892806"
+  integrity sha512-Z4U8yDAl5TFkmYsZdFPdjeMa57NOvnaf1tljHzhouaPEp7LCj2JKkejpI1ODviIAQuW4CcQmxkQ77rnLsOOoKw==
+
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
@@ -1558,6 +1563,11 @@ acorn@^7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.1.0.tgz#949d36f2c292535da602283586c2477c57eb2d6c"
   integrity sha512-kL5CuoXA/dgxlBbVrflsflzQ3PAas7RYZB52NOm/6839iVYJgKMJ3cQJD+t2i5+qFa8h3MDpEOJiS64E8JLnSQ==
+
+add@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/add/-/add-2.0.6.tgz#248f0a9f6e5a528ef2295dbeec30532130ae2235"
+  integrity sha1-JI8Kn25aUo7yKV2+7DBTITCuIjU=
 
 airbnb-prop-types@^2.13.2:
   version "2.15.0"
@@ -2590,6 +2600,11 @@ cssstyle@^2.0.0:
   dependencies:
     cssom "~0.3.6"
 
+cycle@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/cycle/-/cycle-1.0.3.tgz#21e80b2be8580f98b468f379430662b046c34ad2"
+  integrity sha1-IegLK+hYD5i0aPN5QwZisEbDStI=
+
 damerau-levenshtein@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.5.tgz#780cf7144eb2e8dbd1c3bb83ae31100ccc31a414"
@@ -2620,6 +2635,11 @@ dayjs@^1.8.15:
   version "1.8.16"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.16.tgz#2a3771de537255191b947957af2fd90012e71e64"
   integrity sha512-XPmqzWz/EJiaRHjBqSJ2s6hE/BUoCIHKgdS2QPtTQtKcS9E4/Qn0WomoH1lXanWCzri+g7zPcuNV4aTZ8PMORQ==
+
+dayjs@^1.8.29:
+  version "1.8.29"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.29.tgz#5d23e341de6bfbd206c01136d2fb0f01877820f5"
+  integrity sha512-Vm6teig8ZWK7rH/lxzVGxZJCljPdmUr6q/3f4fr5F0VWNGVkZEjZOQJsAN8hUHUqn+NK4XHNEpJZS1MwLyDcLw==
 
 debounce@^1.2.0:
   version "1.2.0"
@@ -6596,6 +6616,16 @@ react-native-config@0.12.0:
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-0.12.0.tgz#910e52226b60e0c9f2b648772eea2a93f8701751"
   integrity sha512-lC8QOZCGCXgFh74uWSVGMaChg+Qf2BScWzVd9C4yrFnfxrHSFyIekqOOq/sjE8Uu2ifgxZmSiK1Z8EEi78AmQA==
 
+react-native-flipper@^0.49.0:
+  version "0.49.0"
+  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.49.0.tgz#8fd19b7cd8af1e7772ece07e54366aa751a87016"
+  integrity sha512-Y0fIwEyEsouYKbyve71Ps7cUryDcEGLY2EOyve6p9gNMDdpVIfo040JgwCOD/2s+AjWK3C7F0wl4IXIrnF+wiA==
+
+react-native-flipper@^0.50.0:
+  version "0.50.0"
+  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.50.0.tgz#24c5e6bb11ebe3903f41a1f86feb13cea28fbaf1"
+  integrity sha512-hPfyVnYyWhOEvSzfDhos07piUmr+FULXwX2S/4SL+x49R32u7JNpYhTC2uFCehCka4SP/hZl5ID9L9qTLjQeUg==
+
 react-native-gesture-handler@^1.5.6:
   version "1.5.6"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.5.6.tgz#5d90145f624e3707db2930f43ab41579683e2375"
@@ -6765,6 +6795,16 @@ realpath-native@^1.1.0:
   integrity sha512-wlgPA6cCIIg9gKz0fgAPjnzh4yR/LnXovwuo9hvyGvx3h8nX4+/iLZplfUWasXpqD8BdnGnP5njOFjkUwPzvjA==
   dependencies:
     util.promisify "^1.0.0"
+
+redux-flipper@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/redux-flipper/-/redux-flipper-1.3.1.tgz#03795b42d6338ea1df1d5beae6bf714f92c6b3fb"
+  integrity sha512-xLhVl5ttrnDu5CjT/Nn0joMXHeAY1mL8eqXSoBb/VcgutUi/upjXhe7fVbBAKlXF4/e/d9NowiGjixOi9VWINw==
+  dependencies:
+    "@types/node" "^14.0.22"
+    cycle "^1.0.3"
+    dayjs "^1.8.29"
+    react-native-flipper "^0.49.0"
 
 redux-form@8.2.3:
   version "8.2.3"
@@ -8390,3 +8430,8 @@ yargs@^15.1.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^18.1.2"
+
+yarn@^1.22.4:
+  version "1.22.4"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.4.tgz#01c1197ca5b27f21edc8bc472cd4c8ce0e5a470e"
+  integrity sha512-oYM7hi/lIWm9bCoDMEWgffW8aiNZXCWeZ1/tGy0DWrN6vmzjCXIKu2Y21o8DYVBUtiktwKcNoxyGl/2iKLUNGA==

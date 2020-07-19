@@ -235,6 +235,8 @@ PODS:
   - React-jsinspector (0.62.2)
   - react-native-config (0.12.0):
     - React
+  - react-native-flipper (0.50.0):
+    - React
   - react-native-safe-area-context (0.7.2):
     - React
   - React-RCTActionSheet (0.62.2):
@@ -348,6 +350,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-config (from `../node_modules/react-native-config`)
+  - react-native-flipper (from `../node_modules/react-native-flipper`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -414,6 +417,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-config:
     :path: "../node_modules/react-native-config"
+  react-native-flipper:
+    :path: "../node_modules/react-native-flipper"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-RCTActionSheet:
@@ -478,6 +483,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 1540d1c01bb493ae3124ed83351b1b6a155db7da
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-config: f2c2ae45625a068c35681a16b9bfb1ca58b0adc7
+  react-native-flipper: b7340d18f1bf088de47fed2d77a729f2aa533854
   react-native-safe-area-context: 4b3d1b9ebb040a4814a222703e7434b20c95fcf5
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
