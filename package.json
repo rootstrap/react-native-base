@@ -28,7 +28,6 @@
     "@react-navigation/native": "^5.0.0",
     "@react-navigation/stack": "^5.0.0",
     "@rootstrap/redux-tools": "^0.4.2",
-    "add": "^2.0.6",
     "axios": "^0.19.2",
     "eslint-plugin-prettier": "3.1.0",
     "humps": "2.0.1",
@@ -38,7 +37,6 @@
     "react": "16.11.0",
     "react-native": "0.62.2",
     "react-native-config": "0.12.0",
-    "react-native-flipper": "^0.50.0",
     "react-native-gesture-handler": "^1.5.6",
     "react-native-localization": "2.1.5",
     "react-native-reanimated": "^1.7.0",
@@ -50,8 +48,7 @@
     "redux-form": "8.2.3",
     "redux-persist": "^6.0.0",
     "reselect": "4.0.0",
-    "validate.js": "0.12.0",
-    "yarn": "^1.22.4"
+    "validate.js": "0.12.0"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",
@@ -77,6 +74,7 @@
     "metro-react-native-babel-preset": "0.58.0",
     "prettier": "1.18.2",
     "react-dom": "16.9.0",
+    "react-native-flipper": "^0.50.0",
     "react-test-renderer": "16.11.0",
     "redux-logger": "3.0.6"
   },

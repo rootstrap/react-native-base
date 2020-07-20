@@ -92,7 +92,6 @@ target 'ReactNativeBase' do
   # Pods for ReactNativeBase
   base_pods
 
-
   target 'ReactNativeBaseTests' do
     inherit! :complete
     # Pods for testing
@@ -107,7 +106,6 @@ target 'ReactNativeBase-Staging' do
   # Pods for ReactNativeBase
   base_pods
   
-  
   use_native_modules!
   
   add_flipper_pods!
@@ -116,7 +114,6 @@ end
 target 'ReactNativeBase-Develop' do
   # Pods for ReactNativeBase
   base_pods
-  
   
   use_native_modules!
   
