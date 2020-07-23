@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { thunkMiddleware } from '@rootstrap/redux-tools';
 import { createLogger } from 'redux-logger';
+import createDebugger from 'redux-flipper';
 import { persistStore, persistReducer } from 'redux-persist';
 import AppReducer from 'reducers';
 
@@ -19,6 +20,7 @@ export default function configureStore(initialState) {
   const middlewares = [thunkMiddleware];
 
   if (__DEV__) {
+    middlewares.push(createDebugger());
     const logger = createLogger({
       collapsed: true,
     });
