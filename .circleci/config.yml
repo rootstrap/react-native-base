@@ -1,26 +1,23 @@
-version: 2
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
 jobs:
-  build:
+  build-lint-and-test:
     environment:
       CC_TEST_REPORTER_ID: 61a3188d5e43ddaabd2bc378538388dfbe4b91df4015bf5af41696852eb2c3cf
-    docker:
-      - image: circleci/node:10.14.2-browsers
-
+    executor:
+      name: node/default
     steps:
       - checkout
-      - run: echo 'export PATH=${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin:$PATH' >> $BASH_ENV
+      - node/with-cache:
+          steps:
+            - run: yarn
       - run:
-          name: Install dependencies
-          command: yarn
+          name: Run linter
+          command: yarn lint
       - run:
           name: Run tests
           command: yarn test:cover
-
-      - save_cache:
-          key: dependency-cache
-          paths:
-            - ~/.cache/yarn
-
       - run:
           name: Setup Code Climate test reporter
           command: |
@@ -28,3 +25,7 @@ jobs:
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
             ./cc-test-reporter after-build
+workflows:
+  build-and-test:
+    jobs:
+      - build-lint-and-test
