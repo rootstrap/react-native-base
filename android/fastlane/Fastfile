@@ -1,0 +1,180 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+skip_docs
+
+# CONFIG VARIABLES
+app_name = 'ReactNativeBase'          
+folder = ENV["FOLDER"]
+s3_bucket = ENV["BUILD_BUCKET"]
+s3_region = ENV["AWS_REGION"]
+s3_key = ENV["AWS_ACCESS_KEY_ID"]
+s3_secret_key = ENV["AWS_SECRET_ACCESS_KEY"]
+slack_url = ENV["SLACK_URL"]
+slack_channel = ENV["SLACK_CHANNEL"]
+json_key = ENV["JSON_KEYFILE"]
+
+default_platform(:android)
+
+lane :build do |options|
+  # increment version
+  version = get_version_name(
+      gradle_file_path: './app/build.gradle'
+  ).to_s
+  build_number = increment_version_code(
+      gradle_file_path: './app/build.gradle'
+  ).to_s
+  # clean
+  gradle(
+    task: "clean"
+  )
+  # dependencies
+  gradle(
+    task: 'androidDependencies'
+  )
+  # build
+  gradle(
+    task: 'assemble',
+    flavor: options[:flavor],
+    build_type: 'Release',
+  )
+end
+
+lane :debug_dev do
+  increment_version_code(
+    gradle_file_path: './app/build.gradle'
+  )
+  build(flavor: 'Dev')
+end
+
+lane :debug_staging do
+  increment_version_code(
+    gradle_file_path: './app/build.gradle'
+  )
+  build(flavor: 'Staging')
+end
+
+lane :debug_production do
+  increment_version_code(
+    gradle_file_path: './app/build.gradle'
+  )
+  build(flavor: 'Prod')
+end
+
+lane :release_qa_adhoc do
+  # get branch name
+  branch = git_branch()
+  # build
+  build(flavor: 'Dev')
+  # move .apk
+  apk_location = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+  sh(
+      command: "mv #{apk_location} ../#{app_name}.apk"
+  )
+  # push to S3
+  s3_path = folder+"/android/"+branch+"-"+version+"."+build_number+"/"
+  aws_s3(
+    access_key: s3_key,
+    secret_access_key: s3_secret_key,
+    bucket: s3_bucket,
+    region: s3_region,
+    apk: app_name+".apk",
+    path: s3_path,
+    acl: "private",
+    upload_metadata: true
+  )
+  # Slack
+  slack(
+    message: "Hi! A new Android QA build has been released for "+app_name,
+    payload: {
+      "Build Date" => Time.new.to_s,
+      "S3 location" => "s3://"+s3_bucket+"/"+folder+"/android/"+branch+"-"+version+"."+build_number,
+      "HTTP link" => lane_context[SharedValues::S3_IPA_OUTPUT_PATH]
+      },
+    channel: slack_channel,
+    slack_url: slack_url,
+    use_webhook_configured_username_and_icon: true,
+    fail_on_error: false,
+    success: true
+  )
+end
+
+lane :release_qa_appstore do
+  
+  build(flavor: 'Dev')
+  
+  upload_to_play_store(
+    track: 'internal',
+    json_key: json_key
+  )
+  
+  slack(
+    message: "Hi! A new Android QA build has been released for "+app_name,
+    payload: {
+      "Build Date" => Time.new.to_s
+    },
+    channel: slack_channel,
+    slack_url: slack_url,
+    use_webhook_configured_username_and_icon: true,
+    fail_on_error: false,
+    success: true
+  )
+end
+
+lane :release_staging do
+    
+  build(flavor: 'Staging')
+  
+  upload_to_play_store(
+    track: 'internal',
+    json_key: json_key
+  )
+  
+  slack(
+    message: "Hi! A new Android Staging build has been released for "+app_name,
+    payload: {
+      "Build Date" => Time.new.to_s
+    },
+    channel: slack_channel,
+    slack_url: slack_url,
+    use_webhook_configured_username_and_icon: true,
+    fail_on_error: false,
+    success: true
+  )
+end
+
+lane :release_production do
+  
+  build(flavor: 'Prod')
+  
+  upload_to_play_store(
+    track: 'internal',
+    json_key: json_key
+  )
+  
+  slack(
+    message: "Hi! A new Android Production build has been released for "+app_name,
+    payload: {
+      "Build Date" => Time.new.to_s
+    },
+    channel: slack_channel,
+    slack_url: slack_url,
+    use_webhook_configured_username_and_icon: true,
+    fail_on_error: false,
+    success: true
+  )
+end
