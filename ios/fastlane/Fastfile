@@ -15,164 +15,206 @@
 
 default_platform(:ios)
 
+skip_docs
+
 # CONFIG VARIABLES
-username = 'APPLE_ID' # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
-xcodeproj = 'XCODEPROJ' # The xcodeproj name eg: ReactNativeBase.xcodeproj
-workspace =  'XWORKSPACE' # The xworkspace name here eg: ReactNativeBase.xcworkspace
-certificates_git_url = 'GIT_CERTS_URL' # The git repo url (use ssh) to store the certificates eg: git@github.com:mcousillas6/fastlane-certs-test.git
+app_name = 'ReactNativeBase'          
+xcodeproj = app_name+'.xcodeproj'           # The xcodeproj name eg: ReactNativeBase.xcodeproj
+workspace =  app_name+'.xcworkspace'        # The xworkspace name here eg: ReactNativeBase.xcworkspace
+username = ENV["FASTLANE_USER"]             # The apple id that you are using to admin the certificates eg: toptiertest@gmail.com
+team_id = ENV["APPLE_TEAM_ID"]              # The organization's team id (you can leave this empty and select it on the CLI on each run)
+s3_bucket = ENV["BUILD_BUCKET"]
+folder = ENV["FOLDER"]                      # root folder in S3 to upload builds under
+cert = ENV["APPLE_CERT"]
+key = ENV["APPLE_KEY"]
+key_pwd = ENV["APPLE_KEY_PASSWORD"]
+s3_region = ENV["AWS_REGION"]
+s3_key = ENV["AWS_ACCESS_KEY_ID"]
+s3_secret_key = ENV["AWS_SECRET_ACCESS_KEY"]
+slack_url = ENV["SLACK_URL"]
+slack_channel = ENV["SLACK_CHANNEL"]
+
 
 platform :ios do
-  lane :release_develop do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'appstore'
+
+  lane :build_and_sign do |options|
+    # Create keychain - (Travis setup works for GitHhub Actions too)
+    setup_ci(
+      force: true,
+      provider: "travis"
     )
-
-    ensure_git_status_clean
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    commit_version_bump(xcodeproj: xcodeproj)
-
-    add_git_tag
-
-    push_to_git_remote(remote_branch: 'develop')
-
-    build_app(
-      scheme: 'ReactNativeBase-Develop',
+    # Unlock keychain and set as default
+    unlock_keychain(
+      path: "fastlane_tmp_keychain",
+      password: "",
+      set_default: true
+    )
+    # Import .cer and .p12 - this is a workaround for fastlane match when we retrieve certs from a custom location
+    import_certificate(
+      certificate_path: key,
+      certificate_password: key_pwd,
+      keychain_name: "fastlane_tmp_keychain",
+      keychain_password: "",
+      log_output: true
+    )
+    import_certificate(
+      certificate_path: cert,
+      keychain_name: "fastlane_tmp_keychain",
+      keychain_password: "",
+      log_output: true
+    )
+    # pod install
+    cocoapods(
+      repo_update: true
+    )
+    # Increase build number to avoid redundant errors (this is currently not committed)
+    increment_build_number
+    # Build and Archive app
+    gym(
+      scheme: options[:scheme],
       workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
+      export_method: options[:type],
+      clean: true,
+      output_name: options[:scheme]+".ipa",
+      export_team_id: team_id
     )
+  end
 
+  lane :publish do |options|
+    version = get_info_plist_value(
+      path: app_name+"/Info.plist",
+      key: "CFBundleShortVersionString"
+    )
+    build = get_info_plist_value(
+      path: app_name+"/Info.plist",
+      key: "CFBundleVersion"
+    )
     changelog_from_git_commits(
       pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
       date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
       match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
       merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
     )
+    upload_to_testflight(
+      username: username,
+      skip_waiting_for_build_processing: true
+    )
+    # send Slack notification - optional
+    slack(
+      message: "Hi! A new iOS "+options[:scheme]+" build has been submitted to TestFlight",
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Release Version" => version+"."+build
+      },
+      channel: slack_channel,
+      slack_url: slack_url,
+      use_webhook_configured_username_and_icon: true,
+      fail_on_error: false,
+      success: true
+    )  
+ 
+  end
 
-    upload_to_testflight(username: username)
+  lane :debug_develop do
+    build_and_sign(
+      type: 'adhoc',
+      scheme: app_name+'-Develop',
+      method: 'ad-hoc'
+    )
+  end
+
+  lane :debug_staging do
+    build_and_sign(
+      type: 'appstore',
+      scheme: app_name+'-Staging',
+      method: 'app-store'
+    )
+  end
+  
+  lane :debug_production do
+    build_and_sign(
+      type: 'appstore',
+      scheme: app_name,
+      method: 'app-store'
+    )
+  end
+
+  # Generate AdHoc build and push to S3 - modify scheme as appropiate
+  lane :release_qa_adhoc do  
+    
+    #ensure_git_status_clean
+    build_and_sign(
+      scheme: app_name+'-Develop',
+      type: 'ad-hoc'
+    )
+    # Push .ipa and metadata to S3
+    aws_s3(
+      access_key: s3_key,
+      secret_access_key: s3_secret_key,
+      bucket: s3_bucket,
+      region: s3_region,
+      ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
+      path: folder+"/ios/"+branch+"-{CFBundleShortVersionString}.{CFBundleVersion}/",
+      acl: "private",
+      upload_metadata: true
+    )
+    slack(
+      message: "Hi! A new iOS "+app_name+"-Develop build has been pushed to S3",
+      payload: {
+        "Build Date" => Time.new.to_s,
+        "Build Output" => "https://github.com/rootstrap/"+folder+"/actions",
+        "S3 location" => "s3://"+s3_bucket+"/"+folder+"/ios/"+branch+"-"+version+"."+build,
+        "HTTP link" => lane_context[SharedValues::S3_IPA_OUTPUT_PATH]
+      },
+      channel: slack_channel,
+      slack_url: slack_url,
+      use_webhook_configured_username_and_icon: true,
+      fail_on_error: false,
+      success: true
+    )
+  end
+
+  # Generate Appstore build and push to TestFlight - modify scheme as appropiate
+  lane :release_qa_appstore do
+    ensure_git_status_clean
+    build_and_sign(
+      type: 'appstore',
+      scheme: app_name+'-Develop',
+      method: 'app-store'
+    )
+    publish(
+      scheme: app_name+'-Develop'
+    )
+
   end
 
   lane :release_staging do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'appstore'
-    )
-
     ensure_git_status_clean
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    commit_version_bump(xcodeproj: xcodeproj)
-
-    add_git_tag
-
-    push_to_git_remote(remote_branch: 'develop')
-
-    build_app(
-      scheme: 'ReactNativeBase-Staging',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
+    build_and_sign(
+      type: 'appstore',
+      scheme: app_name+'-Staging',
+      method: 'app-store'
     )
-
-    changelog_from_git_commits(
-      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
-      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
-      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
-      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
+    publish(
+      scheme: app_name+'-Develop'
     )
-
-    upload_to_testflight(username: username)
   end
 
   lane :release_production do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'appstore'
-    )
-
     ensure_git_status_clean
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    commit_version_bump(xcodeproj: xcodeproj)
-
+    build_and_sign(
+      type: 'appstore',
+      scheme: app_name,
+      method: 'app-store'
+    )
+    # Create release tag and commit - see https://docs.fastlane.tools/actions/add_git_tag/ to adapt params as needed
     add_git_tag
-
     push_to_git_remote(remote_branch: 'master')
-
-    build_app(
-      scheme: 'ReactNativeBase-Prod',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
+    # publish to appstore
+    publish(
+      scheme: app_name
     )
 
-    changelog_from_git_commits(
-      pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
-      date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
-      match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
-      merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
-    )
-
-    upload_to_testflight(username: username)
-  end
-
-  lane :build_develop do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'appstore'
-    )
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    build_app(
-      scheme: 'ReactNativeBase-Develop',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
-    )
-  end
-
-  lane :build_staging do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'appstore'
-    )
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    build_app(
-      scheme: 'ReactNativeBase-Staging',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
-    )
-  end
-
-  lane :build_production do
-    sync_code_signing(
-      git_url: certificates_git_url,
-      username: username,
-      type: 'appstore'
-    )
-
-    increment_build_number(xcodeproj: xcodeproj)
-
-    build_app(
-      scheme: 'ReactNativeBase-Prod',
-      workspace: workspace,
-      include_bitcode: true,
-      export_method: 'app-store'
-    )
   end
 
 end
