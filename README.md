@@ -171,6 +171,12 @@ If you are looking for something quick and easy in the short term, there is one 
   ENVFILE=.env.{env} react-native run-ios
 ```
 
+
+## Automation with Fastlane
+
+This project provides configuration for automatic build and release using [Fastlane]((https://fastlane.tools)).
+For more details please check configuration and Readme files for [iOS](./ios/fastlane/README.md) and [Android](android/fastlane/README.md)
+
 ## Troubleshooting
 
 ### iOS not building on Xcode 10
