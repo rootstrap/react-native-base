@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, wait } from '@testing-library/react-native';
+import { fireEvent, waitFor } from '@testing-library/react-native';
 
 import { LOGIN_SCREEN, MAIN_SCREEN } from 'constants/screens';
 import Navigator from 'navigators';
@@ -48,7 +48,7 @@ describe('Navigator', () => {
           );
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
-        await wait(() => {
+        await waitFor(() => {
           expect(wrapper.queryByTestId(LOGIN_SCREEN)).toBeNull();
           expect(wrapper.queryByTestId(MAIN_SCREEN)).toBeTruthy();
         });
@@ -68,7 +68,7 @@ describe('Navigator', () => {
             });
           fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
-          await wait(() => {
+          await waitFor(() => {
             expect(wrapper.queryByTestId(LOGIN_SCREEN)).toBeTruthy();
             expect(wrapper.queryByTestId(MAIN_SCREEN)).toBeNull();
           });
@@ -98,7 +98,7 @@ describe('Navigator', () => {
 
         fireEvent.press(wrapper.queryByTestId('logout-button'));
 
-        await wait(() => {
+        await waitFor(() => {
           expect(wrapper.queryByTestId(LOGIN_SCREEN)).toBeTruthy();
           expect(wrapper.queryByTestId(MAIN_SCREEN)).toBeNull();
         });
