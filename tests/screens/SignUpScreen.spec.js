@@ -1,4 +1,4 @@
-import { fireEvent, wait } from '@testing-library/react-native';
+import { fireEvent, waitFor } from '@testing-library/react-native';
 
 import { SIGN_UP_SCREEN } from 'constants/screens';
 import SignUpScreen from 'screens/SignUpScreen';
@@ -42,13 +42,14 @@ describe('<SignUpScreen />', () => {
       fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'password');
     });
 
-    it('should show the loading spinner', () => {
+    it('should show the loading spinner', async () => {
       mockedHttpClient(store)
         .onPost('/users')
         .reply(200);
       fireEvent.press(wrapper.queryByTestId('signup-submit-button'));
 
       expect(wrapper.queryByText('Loading')).toBeTruthy();
+      await waitFor(() => expect(wrapper.queryByText('Loading')).toBeNull());
     });
 
     describe('if the user exist', () => {
@@ -62,7 +63,7 @@ describe('<SignUpScreen />', () => {
           });
         fireEvent.press(wrapper.queryByTestId('signup-submit-button'));
 
-        await wait(() => {
+        await waitFor(() => {
           expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
           expect(wrapper.queryByText('email has already been taken')).toBeTruthy();
         });
@@ -86,7 +87,7 @@ describe('<SignUpScreen />', () => {
           );
         fireEvent.press(wrapper.queryByTestId('signup-submit-button'));
 
-        await wait(() => expect(wrapper.queryAllByLabelText('form-error')).toEqual([]));
+        await waitFor(() => expect(wrapper.queryAllByLabelText('form-error')).toEqual([]));
       });
     });
 
@@ -97,7 +98,7 @@ describe('<SignUpScreen />', () => {
           .networkError();
         fireEvent.press(wrapper.queryByTestId('signup-submit-button'));
 
-        await wait(() => {
+        await waitFor(() => {
           expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
           expect(wrapper.queryByText('Something Went Wrong')).toBeTruthy();
         });

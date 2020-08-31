@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginForm from 'components/LoginForm';
-import { fireEvent, wait } from '@testing-library/react-native';
+import { fireEvent, waitFor } from '@testing-library/react-native';
 
 import { renderWithRedux, configureStore } from '../helpers';
 
@@ -29,7 +29,7 @@ describe('<LoginForm />', () => {
     describe('when the email input is valid', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'example@rootstrap.com');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a email is not valid error', () => {
@@ -41,7 +41,7 @@ describe('<LoginForm />', () => {
 
     describe('when the email input is not present', () => {
       beforeEach(() => {
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a required error', () => {
@@ -53,7 +53,7 @@ describe('<LoginForm />', () => {
     describe('when the email input is not valid', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'example');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a email is not valid error', () => {
@@ -76,7 +76,7 @@ describe('<LoginForm />', () => {
     describe('when the password input is present', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'password');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should not show a required error', () => {
@@ -87,7 +87,7 @@ describe('<LoginForm />', () => {
 
     describe('when the password input is not present', () => {
       beforeEach(() => {
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a required error', () => {
@@ -112,7 +112,7 @@ describe('<LoginForm />', () => {
       it('should not submit the form', async () => {
         fireEvent.press(submitButton);
 
-        await wait(() => expect(props.onSubmit).toHaveBeenCalledTimes(0));
+        await waitFor(() => expect(props.onSubmit).toHaveBeenCalledTimes(0));
       });
     });
 
@@ -124,7 +124,7 @@ describe('<LoginForm />', () => {
       });
 
       it('should submit the form', async () => {
-        await wait(() => expect(props.onSubmit).toHaveBeenCalled());
+        await waitFor(() => expect(props.onSubmit).toHaveBeenCalled());
       });
     });
   });

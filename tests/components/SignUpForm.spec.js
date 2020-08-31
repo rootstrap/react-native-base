@@ -1,6 +1,6 @@
 import React from 'react';
 import SignUpForm from 'components/SignUpForm';
-import { fireEvent, wait } from '@testing-library/react-native';
+import { fireEvent, waitFor } from '@testing-library/react-native';
 
 import { renderWithRedux, configureStore } from '../helpers';
 
@@ -29,7 +29,7 @@ describe('<SignUpForm />', () => {
     describe('when the email input is valid', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'example@rootstrap.com');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a email is not valid error', () => {
@@ -41,7 +41,7 @@ describe('<SignUpForm />', () => {
 
     describe('when the email input is not present', () => {
       beforeEach(() => {
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a required error', () => {
@@ -53,7 +53,7 @@ describe('<SignUpForm />', () => {
     describe('when the email input is not valid', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'example');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a email is not valid error', () => {
@@ -76,7 +76,7 @@ describe('<SignUpForm />', () => {
     describe('when the password input is present', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'password');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should not show a required error', () => {
@@ -87,7 +87,7 @@ describe('<SignUpForm />', () => {
 
     describe('when the password input is not present', () => {
       beforeEach(() => {
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a required error', () => {
@@ -110,7 +110,7 @@ describe('<SignUpForm />', () => {
     describe('when the confirm password input is present', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'confirm-password');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should not show a required error', () => {
@@ -120,7 +120,7 @@ describe('<SignUpForm />', () => {
 
     describe('when the confirm password input is not present', () => {
       beforeEach(() => {
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a required error', () => {
@@ -145,7 +145,7 @@ describe('<SignUpForm />', () => {
       it('should not submit the form', async () => {
         fireEvent.press(submitButton);
 
-        await wait(() => expect(props.onSubmit).toHaveBeenCalledTimes(0));
+        await waitFor(() => expect(props.onSubmit).toHaveBeenCalledTimes(0));
       });
     });
 
@@ -160,7 +160,7 @@ describe('<SignUpForm />', () => {
       it('should not submit the form', async () => {
         fireEvent.press(submitButton);
 
-        await wait(() => {
+        await waitFor(() => {
           expect(props.onSubmit).toHaveBeenCalledTimes(0);
           expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
           expect(
@@ -179,7 +179,7 @@ describe('<SignUpForm />', () => {
       });
 
       it('should submit the form', async () => {
-        await wait(() => expect(props.onSubmit).toHaveBeenCalled());
+        await waitFor(() => expect(props.onSubmit).toHaveBeenCalled());
       });
     });
   });

@@ -237,7 +237,7 @@ PODS:
     - React
   - react-native-flipper (0.50.0):
     - React
-  - react-native-safe-area-context (0.7.2):
+  - react-native-safe-area-context (0.7.3):
     - React
   - React-RCTActionSheet (0.62.2):
     - React-Core/RCTActionSheetHeaders (= 0.62.2)
@@ -302,13 +302,13 @@ PODS:
     - React
   - RNCAsyncStorage (1.7.1):
     - React
-  - RNCMaskedView (0.1.6):
+  - RNCMaskedView (0.1.10):
     - React
-  - RNGestureHandler (1.5.6):
+  - RNGestureHandler (1.7.0):
     - React
-  - RNReanimated (1.7.0):
+  - RNReanimated (1.13.0):
     - React
-  - RNScreens (2.0.0-beta.2):
+  - RNScreens (2.10.1):
     - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -484,7 +484,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-config: f2c2ae45625a068c35681a16b9bfb1ca58b0adc7
   react-native-flipper: b7340d18f1bf088de47fed2d77a729f2aa533854
-  react-native-safe-area-context: 4b3d1b9ebb040a4814a222703e7434b20c95fcf5
+  react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
   React-RCTBlob: a332773f0ebc413a0ce85942a55b064471587a71
@@ -495,15 +495,15 @@ SPEC CHECKSUMS:
   React-RCTText: fae545b10cfdb3d247c36c56f61a94cfd6dba41d
   React-RCTVibration: 4356114dbcba4ce66991096e51a66e61eda51256
   ReactCommon: ed4e11d27609d571e7eee8b65548efc191116eb3
-  ReactNativeLocalization: b085fa2140d940c99c7cf5693f95d80edca5bcac
-  RNCAsyncStorage: 44395cb9c7c1523104c2b499eb426ef7aff82bca
-  RNCMaskedView: a88953beefbd347a29072d9eba90e42945fe291e
-  RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
-  RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
-  RNScreens: 5e4758109c6d35f9a009ce72af873df907548020
+  ReactNativeLocalization: ced64c41959db9af8a52698752791291f20e9db8
+  RNCAsyncStorage: 8539fc80a0075fcc9c8e2dff84cd22dc5bf1dacf
+  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
+  RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
+  RNReanimated: 89f5e0a04d1dd52fbf27e7e7030d8f80a646a3fc
+  RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: c765efb9abf7503b7f30126a5bf2664c5bae87fb
+PODFILE CHECKSUM: 07c578b772e08e2f6ffd7b40f75ecd30d55b4e3c
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
