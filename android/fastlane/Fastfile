@@ -13,7 +13,7 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-default_platform(:ios)
+default_platform(:android)
 
 skip_docs
 
@@ -61,6 +61,13 @@ lane :debug_dev do
   build(flavor: 'Dev')
 end
 
+lane :debug_qa do
+  increment_version_code(
+    gradle_file_path: './app/build.gradle'
+  )
+  build(flavor: 'Qa')
+end
+
 lane :debug_staging do
   increment_version_code(
     gradle_file_path: './app/build.gradle'
@@ -79,7 +86,7 @@ lane :release_qa_adhoc do
   # get branch name
   branch = git_branch()
   # build
-  build(flavor: 'Dev')
+  build(flavor: 'Qa')
   # move .apk
   apk_location = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
   sh(
@@ -115,7 +122,7 @@ end
 
 lane :release_qa_appstore do
   
-  build(flavor: 'Dev')
+  build(flavor: 'Qa')
   
   upload_to_play_store(
     track: 'internal',
