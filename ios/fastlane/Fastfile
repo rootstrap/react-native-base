@@ -123,6 +123,14 @@ platform :ios do
     )
   end
 
+  lane :debug_qa do
+    build_and_sign(
+      type: 'adhoc',
+      scheme: app_name+'-QA',
+      method: 'ad-hoc'
+    )
+  end
+
   lane :debug_staging do
     build_and_sign(
       type: 'appstore',
@@ -144,7 +152,7 @@ platform :ios do
     
     #ensure_git_status_clean
     build_and_sign(
-      scheme: app_name+'-Develop',
+      scheme: app_name+'-QA',
       type: 'ad-hoc'
     )
     # Push .ipa and metadata to S3
@@ -159,7 +167,7 @@ platform :ios do
       upload_metadata: true
     )
     slack(
-      message: "Hi! A new iOS "+app_name+"-Develop build has been pushed to S3",
+      message: "Hi! A new iOS "+app_name+"-QA build has been pushed to S3",
       payload: {
         "Build Date" => Time.new.to_s,
         "Build Output" => "https://github.com/rootstrap/"+folder+"/actions",
@@ -179,11 +187,11 @@ platform :ios do
     ensure_git_status_clean
     build_and_sign(
       type: 'appstore',
-      scheme: app_name+'-Develop',
+      scheme: app_name+'-QA',
       method: 'app-store'
     )
     publish(
-      scheme: app_name+'-Develop'
+      scheme: app_name+'-QA'
     )
 
   end
@@ -196,7 +204,7 @@ platform :ios do
       method: 'app-store'
     )
     publish(
-      scheme: app_name+'-Develop'
+      scheme: app_name+'-Staging'
     )
   end
 
