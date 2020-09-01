@@ -19,7 +19,7 @@ skip_docs
 
 # CONFIG VARIABLES
 app_name = 'ReactNativeBase'          
-folder = ENV["FOLDER"]
+folder = 'react-native-base'
 s3_bucket = ENV["BUILD_BUCKET"]
 s3_region = ENV["AWS_REGION"]
 s3_key = ENV["AWS_ACCESS_KEY_ID"]
@@ -28,16 +28,7 @@ slack_url = ENV["SLACK_URL"]
 slack_channel = ENV["SLACK_CHANNEL"]
 json_key = ENV["JSON_KEYFILE"]
 
-default_platform(:android)
-
 lane :build do |options|
-  # increment version
-  version = get_version_name(
-      gradle_file_path: './app/build.gradle'
-  ).to_s
-  build_number = increment_version_code(
-      gradle_file_path: './app/build.gradle'
-  ).to_s
   # clean
   gradle(
     task: "clean"
@@ -54,39 +45,13 @@ lane :build do |options|
   )
 end
 
-lane :debug_dev do
-  increment_version_code(
+lane :publish_adhoc do |options|
+  # get version number
+  version = get_version_name(
     gradle_file_path: './app/build.gradle'
-  )
-  build(flavor: 'Dev')
-end
-
-lane :debug_qa do
-  increment_version_code(
-    gradle_file_path: './app/build.gradle'
-  )
-  build(flavor: 'Qa')
-end
-
-lane :debug_staging do
-  increment_version_code(
-    gradle_file_path: './app/build.gradle'
-  )
-  build(flavor: 'Staging')
-end
-
-lane :debug_production do
-  increment_version_code(
-    gradle_file_path: './app/build.gradle'
-  )
-  build(flavor: 'Prod')
-end
-
-lane :release_qa_adhoc do
+  ).to_s
   # get branch name
   branch = git_branch()
-  # build
-  build(flavor: 'Qa')
   # move .apk
   apk_location = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
   sh(
@@ -106,9 +71,10 @@ lane :release_qa_adhoc do
   )
   # Slack
   slack(
-    message: "Hi! A new Android QA build has been released for "+app_name,
+    message: "Hi! A new ad-hoc Android build has been uploaded for "+app_name+"-"+options[:flavor],
     payload: {
       "Build Date" => Time.new.to_s,
+      "Version" => version,
       "S3 location" => "s3://"+s3_bucket+"/"+folder+"/android/"+branch+"-"+version+"."+build_number,
       "HTTP link" => lane_context[SharedValues::S3_IPA_OUTPUT_PATH]
       },
@@ -120,68 +86,83 @@ lane :release_qa_adhoc do
   )
 end
 
-lane :release_qa_appstore do
-  
+lane :publish_appstore do |options|
+  # get version number
+  version = get_version_name(
+    gradle_file_path: './app/build.gradle'
+  ).to_s
+  # push to play store
+  upload_to_play_store(
+    track: 'internal',
+    json_key: json_key
+  )
+  # Slack
+  slack(
+    message: "Hi! A new Android build has been released to Play Store for "+app_name+"-"+options[:flavor],
+    payload: {
+      "Build Date" => Time.new.to_s
+      "Version" => version
+    },
+    channel: slack_channel,
+    slack_url: slack_url,
+    use_webhook_configured_username_and_icon: true,
+    fail_on_error: false,
+    success: true
+  )
+end
+
+lane :debug_dev do
+  build(flavor: 'Dev')
+end
+
+lane :debug_qa do
   build(flavor: 'Qa')
-  
-  upload_to_play_store(
-    track: 'internal',
-    json_key: json_key
-  )
-  
-  slack(
-    message: "Hi! A new Android QA build has been released for "+app_name,
-    payload: {
-      "Build Date" => Time.new.to_s
-    },
-    channel: slack_channel,
-    slack_url: slack_url,
-    use_webhook_configured_username_and_icon: true,
-    fail_on_error: false,
-    success: true
-  )
 end
 
-lane :release_staging do
-    
+lane :debug_staging do
   build(flavor: 'Staging')
-  
-  upload_to_play_store(
-    track: 'internal',
-    json_key: json_key
-  )
-  
-  slack(
-    message: "Hi! A new Android Staging build has been released for "+app_name,
-    payload: {
-      "Build Date" => Time.new.to_s
-    },
-    channel: slack_channel,
-    slack_url: slack_url,
-    use_webhook_configured_username_and_icon: true,
-    fail_on_error: false,
-    success: true
-  )
 end
 
-lane :release_production do
-  
+lane :debug_production do
   build(flavor: 'Prod')
-  
-  upload_to_play_store(
-    track: 'internal',
-    json_key: json_key
-  )
-  
-  slack(
-    message: "Hi! A new Android Production build has been released for "+app_name,
-    payload: {
-      "Build Date" => Time.new.to_s
-    },
-    channel: slack_channel,
-    slack_url: slack_url,
-    use_webhook_configured_username_and_icon: true,
-    fail_on_error: false,
-    success: true
-  )
+end
+
+lane :release_dev_adhoc do
+  build(flavor: 'Dev')
+  publish_adhoc(flavor: 'Dev')
+end
+
+lane :release_qa_adhoc do
+  build(flavor: 'QA')
+  publish_adhoc(flavor: 'QA')
+end
+
+lane :release_staging_adhoc do
+  build(flavor: 'Staging')
+  publish_adhoc(flavor: 'Staging')
+end
+
+lane :release_prod_adhoc do
+  build(flavor: 'Prod')
+  publish_adhoc(flavor: 'Prod')
+end
+
+lane :release_dev_appstore do
+  build(flavor: 'Dev')
+  publish_appstore(flavor: 'Dev')
+end
+
+lane :release_qa_appstore do
+  build(flavor: 'QA')
+  publish_appstore(flavor: 'QA')
+end
+
+lane :release_staging_appstore do
+  build(flavor: 'Staging')
+  publish_appstore(flavor: 'Staging')
+end
+
+lane :release_prod_appstore do
+  build(flavor: 'Prod')
+  publish_appstore(flavor: 'Prod')
 end
