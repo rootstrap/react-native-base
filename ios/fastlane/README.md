@@ -63,14 +63,20 @@ Builds Appstore for Production target
 fastlane ios debug_production
 ```
 
-### ios release_qa_adhoc
+### ios release_develop
 Builds Develop target for AdHoc distribution and pushes to S3 bucket specified by env vars.
+```
+fastlane ios release_develop
+```
+
+### ios release_qa_adhoc
+Builds QA target for AdHoc distribution and pushes to S3 bucket specified by env vars.
 ```
 fastlane ios release_qa_adhoc
 ```
 
 ### ios release_qa_appstore
-Builds Develop target for Appstore and pushes to TestFlight.
+Builds QA target for Appstore and pushes to TestFlight.
 ```
 fastlane ios release_qa_appstore
 ```
