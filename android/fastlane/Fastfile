@@ -100,7 +100,7 @@ lane :publish_appstore do |options|
   slack(
     message: "Hi! A new Android build has been released to Play Store for "+app_name+"-"+options[:flavor],
     payload: {
-      "Build Date" => Time.new.to_s
+      "Build Date" => Time.new.to_s,
       "Version" => version
     },
     channel: slack_channel,
