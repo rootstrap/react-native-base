@@ -123,11 +123,11 @@ platform :ios do
   # Generate Appstore build and push to TestFlight
   lane :publish_appstore do |options|
     version = get_info_plist_value(
-      path: app_name+"/Info.plist",
+      path: options[:scheme]+"-Info.plist",
       key: "CFBundleShortVersionString"
     )
     build = get_info_plist_value(
-      path: app_name+"/Info.plist",
+      path: options[:scheme]+"-Info.plist",
       key: "CFBundleVersion"
     )
     changelog_from_git_commits(
@@ -187,9 +187,8 @@ platform :ios do
 
   lane :release_dev do
     build_and_sign(
-      type: 'adhoc',
       scheme: app_name+'-Develop',
-      method: 'ad-hoc'
+      method: 'app-store'
     )
     publish_appstore(
       scheme: app_name+'-Develop'

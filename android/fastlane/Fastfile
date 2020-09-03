@@ -20,6 +20,7 @@ skip_docs
 # CONFIG VARIABLES
 app_name = 'ReactNativeBase'          
 folder = 'react-native-base'
+app_id_prefix = 'com.reactnativebase'
 s3_bucket = ENV["BUILD_BUCKET"]
 s3_region = ENV["AWS_REGION"]
 s3_key = ENV["AWS_ACCESS_KEY_ID"]
@@ -88,13 +89,12 @@ end
 
 lane :publish_appstore do |options|
   # get version number
-  version = get_version_name(
-    gradle_file_path: './app/build.gradle'
-  ).to_s
+  version = android_get_version_name+"."+android_get_version_code
   # push to play store
   upload_to_play_store(
     track: 'internal',
-    json_key: json_key
+    json_key: json_key,
+    package_name: app_id_prefix+options[:suffix]
   )
   # Slack
   slack(
@@ -149,20 +149,20 @@ end
 
 lane :release_dev_appstore do
   build(flavor: 'Dev')
-  publish_appstore(flavor: 'Dev')
+  publish_appstore(flavor: 'Dev', suffix: '.dev')
 end
 
 lane :release_qa_appstore do
   build(flavor: 'QA')
-  publish_appstore(flavor: 'QA')
+  publish_appstore(flavor: 'QA', suffix: '.qa')
 end
 
 lane :release_staging_appstore do
   build(flavor: 'Staging')
-  publish_appstore(flavor: 'Staging')
+  publish_appstore(flavor: 'Staging', suffix: '.staging')
 end
 
 lane :release_prod_appstore do
   build(flavor: 'Prod')
-  publish_appstore(flavor: 'Prod')
+  publish_appstore(flavor: 'Prod', suffix: '')
 end
