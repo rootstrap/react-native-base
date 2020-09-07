@@ -109,9 +109,9 @@ jobs:
         echo RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS >> .env.dev
         echo RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD >> .env.dev
 
-    - run: fastlane add_plugin versioning_android
+    - name: install gem dependencies
+      run: bundle update
       working-directory: android
-
     # Cleans workspace
     # Runs build with Gradle
     # Submits build to Play Store
