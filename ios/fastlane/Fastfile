@@ -19,6 +19,7 @@ skip_docs
 
 # CONFIG VARIABLES
 app_name = 'ReactNativeBase'          
+app_id = 'com.rootstrap.rn-base.develop'
 xcodeproj = app_name+'.xcodeproj'             # The xcodeproj name eg: ReactNativeBase.xcodeproj
 workspace =  app_name+'.xcworkspace'          # The xworkspace name here eg: ReactNativeBase.xcworkspace
 username = ENV["FASTLANE_USER"]               # The apple id used to manage the certificates and submit to TestFlight
@@ -26,6 +27,7 @@ team_id = ENV["APPLE_TEAM_ID"]                # The organization's team id in th
 cert = ENV["APPLE_CERT"]                      # Local path to distribution certificate file to be used for signing the build 
 key = ENV["APPLE_KEY"]                        # Private key (.p12 file) used for encrypting certificate
 key_pwd = ENV["APPLE_KEY_PASSWORD"]           # Password to private key file
+profile = 'AppStore '+app_id                  # Provisioning profile to use for signing
 s3_region = ENV["AWS_REGION"]                 # AWS authentication params
 s3_key = ENV["AWS_ACCESS_KEY_ID"]             #
 s3_secret_key = ENV["AWS_SECRET_ACCESS_KEY"]  #
@@ -38,6 +40,11 @@ slack_channel = ENV["SLACK_CHANNEL"]          #
 platform :ios do
 
   lane :prepare_keychain do
+    # disable xcode automatic code signing
+    disable_automatic_code_signing(
+      use_automatic_signing: false,
+      path: xcodeproj
+    )
     # Create keychain - (Travis setup works for GitHhub Actions too)
     setup_ci(
       force: true,
@@ -77,7 +84,13 @@ platform :ios do
       export_method: options[:method],
       clean: true,
       output_name: options[:scheme]+".ipa",
-      export_team_id: 'WNU857N39T'
+      export_team_id: 'WNU857N39T',
+      export_options: {
+        method: options[:method],
+        provisioningProfiles: {
+          options[:app_id] => profile
+        }
+      }
     )
   end
 
@@ -187,7 +200,8 @@ platform :ios do
   lane :release_dev_appstore do
     build_and_sign(
       scheme: app_name+'-Develop',
-      method: 'app-store'
+      method: 'app-store',
+      app_id: app_id
     )
     publish_appstore(
       scheme: app_name+'-Develop'
