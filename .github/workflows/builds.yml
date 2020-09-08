@@ -39,16 +39,11 @@ env:
 jobs:
 
   ios:
-    runs-on: macmini
+    runs-on: macos-latest
     timeout-minutes: 45
 
     steps:
-    
-    - name: Clean workspace
-      uses: AutoModality/action-clean@v1
-    - name: Delete keychain
-      run: rm -rf /Users/buildagent/Library/Keychains/fastlane_tmp_keychain-db
-    
+   
     - name: Checkout
       uses: actions/checkout@v2
     
