@@ -47,8 +47,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     
-    - run: rm -rf ~/Library/MobileDevice/Provisioning\ Profiles/*
-    - run: ls -ltr ~/Library/MobileDevice/Provisioning\ Profiles/
+    - name: Clean profiles
+      run: rm -rf ~/Library/MobileDevice/Provisioning\ Profiles/*
+    - run: security find-certificate -c "Rootstrap" -Z
+    - name: Remove certificates
+      run: security delete-certificate -c "Rootstrap" -Z 356B2FBA9802110E67702AC408A3A58BF0E96F7F
+    - run: security find-certificate -c "Rootstrap" -Z
     
     # This needs to match Node version in package.json
     - uses: actions/setup-node@v1
@@ -62,11 +66,7 @@ jobs:
         aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ ./ios --recursive
         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
         mv ./ios/$APPLE_PROFILE ~/Library/MobileDevice/Provisioning\ Profiles/$APPLE_PROFILE
-
-    - run: ls -ltr ~/Library/MobileDevice/Provisioning\ Profiles/
     
-    - run: security find-certificate -c Distribution -a
-
     - name: install Node dependencies
       run: yarn install
 
@@ -75,9 +75,9 @@ jobs:
         echo API_URL=$API_URL >> .env.dev
 
     # Create temporary keychain and import distribution cert
-    - name: Import certificate
-      run: fastlane prepare_keychain
-      working-directory: ios
+    #- name: Import certificate
+    #  run: fastlane prepare_keychain
+    #  working-directory: ios
     # Runs build and archives for Appstore distribution
     # Submits build to TestFlight
     # Sends Slack notification
