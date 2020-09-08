@@ -44,6 +44,11 @@ jobs:
 
     steps:
     
+    - name: Clean workspace
+      uses: AutoModality/action-clean@v1
+    - name: Delete keychain
+      run: rm -rf /Users/buildagent/Library/Keychains/fastlane_tmp_keychain-db
+    
     - name: Checkout
       uses: actions/checkout@v2
     
