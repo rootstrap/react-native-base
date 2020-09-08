@@ -39,7 +39,7 @@ env:
 jobs:
 
   ios:
-    runs-on: macos-latest
+    runs-on: macmini
     timeout-minutes: 45
 
     steps:
@@ -47,17 +47,25 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     
+    - run: rm -rf ~/Library/MobileDevice/Provisioning\ Profiles/*
+    - run: ls -ltr ~/Library/MobileDevice/Provisioning\ Profiles/
+    
     # This needs to match Node version in package.json
     - uses: actions/setup-node@v1
       with:
         node-version: '14.5.0'
-
+    
+    
     # Downloads certificate, private key and Firebase file
     - name: Download code signing items
       run: | 
         aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ ./ios --recursive
         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
         mv ./ios/$APPLE_PROFILE ~/Library/MobileDevice/Provisioning\ Profiles/$APPLE_PROFILE
+
+    - run: ls -ltr ~/Library/MobileDevice/Provisioning\ Profiles/
+    
+    - run: security find-certificate -c Distribution -a
 
     - name: install Node dependencies
       run: yarn install
