@@ -44,41 +44,24 @@ These scripts perform the following actions:
 
 ## Actions breakdown
 
-Modify the Fastfile as appropiate for your project.
-### ios debug_develop
-Builds AdHoc for Develop target
+Review and modify the Fastfile as appropiate for your project's targets and desired workflows.
+
+### ios debug_*
+Validates build for corresponding target 
 ```
 fastlane ios debug_develop
 ```
 
-### ios debug_staging
-Builds Appstore for Staging target
-```
-fastlane ios debug_staging
-```
-
-### ios debug_production
-Builds Appstore for Production target
-```
-fastlane ios debug_production
-```
-
-### ios release_develop
+### ios release_dev_s3
 Builds Develop target for AdHoc distribution and pushes to S3 bucket specified by env vars.
 ```
-fastlane ios release_develop
+fastlane ios release_dev_s3
 ```
 
-### ios release_qa_adhoc
-Builds QA target for AdHoc distribution and pushes to S3 bucket specified by env vars.
+### ios release_dev_appstore
+Builds Develop target for for Appstore and pushes to TestFlight.
 ```
-fastlane ios release_qa_adhoc
-```
-
-### ios release_qa_appstore
-Builds QA target for Appstore and pushes to TestFlight.
-```
-fastlane ios release_qa_appstore
+fastlane ios release_dev_appstore
 ```
 
 ### ios release_staging
