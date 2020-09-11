@@ -1,0 +1,54 @@
+name: CI Test 
+
+# Run for any commits to any branch
+on: [push, pull_request]
+
+env:
+  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  NODE_ENV: development
+
+jobs:
+
+  ci:
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # This needs to match Node version in package.json
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '14.5.0'
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+  
+    - name: Restore yarn cache
+      uses: actions/cache@v2.0.0
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-build-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-yarn-
+
+    - name: install Node dependencies
+      run: yarn install
+
+    - name: run Linter
+      run: yarn lint
+
+    - name: Run unit tests
+      run: yarn test:cover
+      
+    - name: Setup Code Climate test reporter
+      run: |
+        pwd
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
+        ./cc-test-reporter before-build
+        ./cc-test-reporter after-build
