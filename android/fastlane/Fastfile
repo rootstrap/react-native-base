@@ -48,9 +48,7 @@ end
 
 lane :publish_adhoc do |options|
   # get version number
-  version = get_version_name(
-    gradle_file_path: './app/build.gradle'
-  ).to_s
+  version = android_get_version_name+"."+android_get_version_code
   # get branch name
   branch = git_branch()
   # move .apk
@@ -59,7 +57,7 @@ lane :publish_adhoc do |options|
       command: "mv #{apk_location} ../#{app_name}.apk"
   )
   # push to S3
-  s3_path = s3_folder+"/android/"+branch+"-"+version+"."+build_number+"/"
+  s3_path = s3_folder+"/android/"+branch+"-"+version+"/"
   aws_s3(
     access_key: s3_key,
     secret_access_key: s3_secret_key,
@@ -76,7 +74,7 @@ lane :publish_adhoc do |options|
     payload: {
       "Build Date" => Time.new.to_s,
       "Version" => version,
-      "S3 location" => "s3://"+s3_bucket+"/"+s3_folder+"/android/"+branch+"-"+version+"."+build_number,
+      "S3 location" => "s3://"+s3_path,
       "HTTP link" => lane_context[SharedValues::S3_IPA_OUTPUT_PATH]
       },
     channel: slack_channel,
