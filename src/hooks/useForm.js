@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { isEmpty, pickBy } from 'lodash';
+import { isEmpty, pickBy, mapValues } from 'lodash';
 
 const useForm = (
   {
@@ -19,6 +19,9 @@ const useForm = (
 
   const handleSubmit = useCallback(() => {
     const newErrors = validator(values) || {};
+
+    setTouched(mapValues(newErrors, () => true));
+
     const valid = !Object.values(newErrors)
       .filter(error => !!error)
       .reduce((acc, error) => {
