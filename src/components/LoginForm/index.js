@@ -66,7 +66,7 @@ const LoginForm = ({ onSubmit }) => {
         secureTextEntry
         {...inputProps(FIELDS.password)}
       />
-      <ErrorView errors={{ ...errors, error }} />
+      <ErrorView errors={{ error }} />
       <View style={styles.button}>
         <Button
           testID="login-submit-button"
