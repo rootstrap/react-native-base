@@ -12,7 +12,7 @@ export default (
   useCallback(
     fieldKey => ({
       value: values[fieldKey] || '',
-      error: errors ? errors[fieldKey] : '',
+      error: Array.isArray(errors[fieldKey]) ? errors[fieldKey][0] : errors[fieldKey] || '',
       // Is currently active?
       active: activeFields[fieldKey] || false,
       // Has been touched?

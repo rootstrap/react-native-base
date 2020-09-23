@@ -20,7 +20,7 @@ const Input = ({ label, value, onChangeText, error, active, touched, ...props })
           onChangeText={onChangeText}
           {...props}
         />
-        {touched && error && <Text accessibilityLabel="form-error">{error}</Text>}
+        {touched && !!error && <Text accessibilityLabel="form-error">{error}</Text>}
       </View>
     </View>
   );
