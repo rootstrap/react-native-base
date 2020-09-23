@@ -13,6 +13,8 @@ import applyDefaultInterceptors from 'httpClient/applyDefaultInterceptors';
 
 const TEST_NAVIGATOR = 'TestNavigator';
 
+export const BUTTON_DISABLED_EXCEPTION = 'No handler function found for event: "press"';
+
 export const AUTHENTICATED_RESPONSE_HEADERS = {
   'access-token': 'token',
   uid: 'example@rootstrap.com',
