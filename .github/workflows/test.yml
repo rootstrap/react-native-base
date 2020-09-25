@@ -5,6 +5,9 @@ on: [push, pull_request]
 
 env:
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  SONAR_PROJECT: react-native-base
+  SONAR_URL: ${{ secrets.SONAR_URL }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   NODE_ENV: development
 
 jobs:
@@ -22,12 +25,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '14.5.0'
-
-    - name: Setup sonar scanner
-      uses: warchant/setup-sonar-scanner@v1
-
-    - name: Run Sonarqube analysis
-      run: sonar-scanner -Dsonar.qualitygate.wait=true -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.projectKey=react-native-base -Dsonar.scm.provider=git -Dsonar.java.binaries=/tmp -Dsonar.nodejs.executable=$(which node) -Dsonar.projectVersion=$(echo $GITHUB_SHA | cut -c1-8) -Dsonar.sources=. -Dsonar.projectBaseDir=. 
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
@@ -58,3 +55,21 @@ jobs:
         chmod +x ./cc-test-reporter
         ./cc-test-reporter before-build
         ./cc-test-reporter after-build
+
+    - name: Setup sonar scanner
+      uses: warchant/setup-sonar-scanner@v1
+
+    - name: Run Sonarqube analysis
+      run: |
+        sonar-scanner \
+          -Dsonar.qualitygate.wait=true \
+          -Dsonar.host.url=$SONAR_URL \
+          -Dsonar.login=$SONAR_TOKEN \
+          -Dsonar.projectKey=$SONAR_PROJECT \
+          -Dsonar.scm.provider=git \
+          -Dsonar.java.binaries=/tmp \
+          -Dsonar.nodejs.executable=$(which node) \
+          -Dsonar.projectVersion=$(echo $GITHUB_SHA | cut -c1-8) \
+          -Dsonar.sources=. \
+          -Dsonar.projectBaseDir=. \
+          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
