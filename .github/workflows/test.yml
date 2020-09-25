@@ -23,6 +23,12 @@ jobs:
       with:
         node-version: '14.5.0'
 
+    - name: Setup sonar scanner
+      uses: warchant/setup-sonar-scanner@v1
+
+    - name: Run Sonarqube analysis
+      run: sonar-scanner -Dsonar.qualitygate.wait=true -Dsonar.host.url=${{ secrets.SONAR_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Dsonar.projectKey=react-native-base -Dsonar.scm.provider=git -Dsonar.java.binaries=/tmp -Dsonar.nodejs.executable=$(which node) -Dsonar.projectVersion=$(echo $GITHUB_SHA | cut -c1-8) -Dsonar.sources=. -Dsonar.projectBaseDir=. 
+
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -44,7 +50,7 @@ jobs:
 
     - name: Run unit tests
       run: yarn test:cover
-      
+    
     - name: Setup Code Climate test reporter
       run: |
         pwd
