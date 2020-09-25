@@ -18,10 +18,9 @@ default_platform(:ios)
 skip_docs
 
 # CONFIG VARIABLES
-app_name      = 'ReactNativeBase'          
+app_name      = 'ReactNativeBase'                 # The canonical project name
 xcodeproj     = app_name+'.xcodeproj'             # The xcodeproj name eg: ReactNativeBase.xcodeproj
 workspace     = app_name+'.xcworkspace'           # The xworkspace name here eg: ReactNativeBase.xcworkspace
-username      = ENV["FASTLANE_USER"]              # The apple id used to manage the certificates and submit to TestFlight
 team_id       = ENV["APPLE_TEAM_ID"]              # The organization's team id in the Apple Developer portal
 cert          = ENV["APPLE_CERT"]                 # Local path to distribution certificate file to be used for signing the build 
 key           = ENV["APPLE_KEY"]                  # Private key (.p12 file) used for encrypting certificate
@@ -137,7 +136,6 @@ platform :ios do
     )
     # Submit to TestFlight - Requires FASTLANE_USER and FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD environment variables
     upload_to_testflight(
-      username: username,
       skip_waiting_for_build_processing: true
     )
     # send Slack notification - optional
@@ -152,8 +150,7 @@ platform :ios do
       use_webhook_configured_username_and_icon: true,
       fail_on_error: false,
       success: true
-    )  
- 
+    )   
   end
 
   lane :debug_develop do

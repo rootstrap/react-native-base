@@ -1,6 +1,8 @@
 # iOS Fastlane configuration
 ============================
 
+We use [Fastlane](https://docs.fastlane.tools/) for automating the iOS application build and submission
+
 ## Installation and requirements
 
 * Make sure you have the latest version of the Xcode command line tools installed:
@@ -20,6 +22,17 @@ or alternatively using `brew cask install fastlane`
 * Valid Mobile provisioning profiles should be associated to the corresponding target and placed in `~/Library/MobileDevice/Provisioning Profiles/`
 
 * Appropiate `.env` file should be present in `ios` folder as with a manual build
+
+* In addition the following environment variables should be available to Fastlane
+
+```
+FASTLANE_USER                                   : Your App Store Connect / Apple Developer Portal id used for managing certificates and submitting to the App Store
+FASTLANE_PASSWORD                               : Password for FASTLANE_USER
+FASTLANE_TEAM_ID                                : The organization's team id in the Apple Developer portal
+FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD    : Application specific password generated for FASTLANE_USER, required to upload a binary to App Store Connect
+FASTLANE_ITC_TEAM_ID                            : App Store Connect team id, required for binary submission
+LANG,LC_ALL                                     : These set up the locale your shell and all the commands you execute run at. Set to `en_US.UTF-8`
+```
 
 ## General workflow
 
@@ -52,31 +65,17 @@ Validates build for corresponding target
 fastlane ios debug_develop
 ```
 
-### ios release_dev_s3
-Builds Develop target for AdHoc distribution and pushes to S3 bucket specified by env vars.
+### ios release_*_s3
+Builds corresponding target for AdHoc distribution and pushes to S3 bucket specified by env vars -requires AdHoc provisioning profile associated to Certificate
 ```
 fastlane ios release_dev_s3
 ```
 
-### ios release_dev_appstore
-Builds Develop target for for Appstore and pushes to TestFlight.
+### ios release_*_appstore
+Builds corresponding target for for Appstore and pushes to TestFlight -requires AppStore provisioning profile associated to Certificate
 ```
 fastlane ios release_dev_appstore
 ```
-
-### ios release_staging
-Builds Staging target for Appstore and pushes to TestFlight.
-```
-fastlane ios release_staging
-```
-
-### ios release_production
-Builds Production target for Appstore and pushes to TestFlight.
-
-```
-fastlane ios release_production
-```
-
 
 ----
 More information about fastlane can be found on [fastlane.tools](https://fastlane.tools).
