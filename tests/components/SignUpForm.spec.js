@@ -2,7 +2,7 @@ import React from 'react';
 import SignUpForm from 'components/SignUpForm';
 import { fireEvent, waitFor } from '@testing-library/react-native';
 
-import { renderWithRedux, configureStore } from '../helpers';
+import { renderWithRedux, configureStore, BUTTON_DISABLED_EXCEPTION } from '../helpers';
 
 describe('<SignUpForm />', () => {
   let wrapper;
@@ -143,9 +143,7 @@ describe('<SignUpForm />', () => {
 
     describe('and the form is empty', () => {
       it('should not submit the form', async () => {
-        fireEvent.press(submitButton);
-
-        await waitFor(() => expect(props.onSubmit).toHaveBeenCalledTimes(0));
+        expect(() => fireEvent.press(submitButton)).toThrow(BUTTON_DISABLED_EXCEPTION);
       });
     });
 
@@ -154,19 +152,16 @@ describe('<SignUpForm />', () => {
         fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
         fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
         fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'confirm-password');
-        fireEvent.press(submitButton);
+        fireEvent(wrapper.queryByTestId('confirm-password-input'), 'blur');
       });
 
       it('should not submit the form', async () => {
-        fireEvent.press(submitButton);
+        expect(() => fireEvent.press(submitButton)).toThrow(BUTTON_DISABLED_EXCEPTION);
+      });
 
-        await waitFor(() => {
-          expect(props.onSubmit).toHaveBeenCalledTimes(0);
-          expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
-          expect(
-            wrapper.queryByText('Password confirmation is not equal to password'),
-          ).toBeTruthy();
-        });
+      it('should display an error message', async () => {
+        expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
+        expect(wrapper.queryByText('Password confirmation is not equal to password')).toBeTruthy();
       });
     });
 

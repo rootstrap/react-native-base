@@ -22,7 +22,17 @@ const FIELDS = {
 const SignUpForm = ({ onSubmit }) => {
   const { error, status } = useStatus(signUp);
   const validator = useValidation(signUpValidations);
-  const { values, errors, handleValueChange, handleSubmit, handleBlur } = useForm(
+  const {
+    values,
+    errors,
+    handleValueChange,
+    handleSubmit,
+    handleFocus,
+    handleBlur,
+    activeFields,
+    touched,
+    formHasErrors,
+  } = useForm(
     {
       onSubmit,
       validator,
@@ -32,7 +42,15 @@ const SignUpForm = ({ onSubmit }) => {
     [onSubmit],
   );
 
-  const inputProps = useTextInputProps(handleValueChange, handleBlur, values);
+  const inputProps = useTextInputProps(
+    handleValueChange,
+    handleFocus,
+    handleBlur,
+    values,
+    errors,
+    activeFields,
+    touched,
+  );
 
   return (
     <>
@@ -55,12 +73,13 @@ const SignUpForm = ({ onSubmit }) => {
         testID="confirm-password-input"
         {...inputProps(FIELDS.passwordConfirmation)}
       />
-      <ErrorView errors={{ ...errors, error }} />
+      <ErrorView errors={{ error }} />
       <View style={styles.button}>
         <Button
           testID="signup-submit-button"
           title={status === LOADING ? strings.COMMON.loading : strings.SIGN_UP.button}
           onPress={handleSubmit}
+          disabled={formHasErrors}
         />
       </View>
     </>
