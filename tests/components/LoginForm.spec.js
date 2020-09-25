@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from 'components/LoginForm';
 import { fireEvent, waitFor } from '@testing-library/react-native';
 
-import { renderWithRedux, configureStore } from '../helpers';
+import { renderWithRedux, configureStore, BUTTON_DISABLED_EXCEPTION } from '../helpers';
 
 describe('<LoginForm />', () => {
   let wrapper;
@@ -110,9 +110,7 @@ describe('<LoginForm />', () => {
 
     describe('and the form is empty', () => {
       it('should not submit the form', async () => {
-        fireEvent.press(submitButton);
-
-        await waitFor(() => expect(props.onSubmit).toHaveBeenCalledTimes(0));
+        expect(() => fireEvent.press(submitButton)).toThrow(BUTTON_DISABLED_EXCEPTION);
       });
     });
 
