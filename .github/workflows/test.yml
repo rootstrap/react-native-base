@@ -20,7 +20,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
+    # workaround to issue with checkout action which performs shallow checkout, this causes Sonarqube to fail to detect new code
+    - name: Fetch unshallow
+      run: git fetch --unshallow
     # This needs to match Node version in package.json
     - uses: actions/setup-node@v1
       with:
