@@ -5,7 +5,7 @@ on: [push, pull_request]
 
 env:
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-  SONAR_PROJECT: react-native-base
+  SONAR_PROJECT: ${{ secrets.SONAR_PROJECT }}
   SONAR_URL: ${{ secrets.SONAR_URL }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   NODE_ENV: development
