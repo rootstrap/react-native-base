@@ -219,7 +219,6 @@ https://github.com/rootstrap/react-native-base/issues/40
 - [Redux](https://github.com/reduxjs/redux)
 - [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
 - [Redux-Persist](https://github.com/rt2zz/redux-persist)
-- [Reselect](https://github.com/reduxjs/reselect)
 - [humps](https://github.com/domchristie/humps)
 - [validate.js](https://github.com/ansman/validate.js)
 - [immer](https://github.com/immerjs/immer)
