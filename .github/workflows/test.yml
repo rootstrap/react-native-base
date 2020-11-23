@@ -59,7 +59,7 @@ jobs:
         ./cc-test-reporter after-build
 
     - name: Setup sonar scanner
-      uses: warchant/setup-sonar-scanner@v1
+      uses: warchant/setup-sonar-scanner@v3
 
     - name: Run Sonarqube analysis
       run: |
