@@ -1,4 +1,4 @@
-import { fireEvent, wait } from '@testing-library/react-native';
+import { fireEvent, waitFor } from '@testing-library/react-native';
 
 import { LOGIN_SCREEN } from 'constants/screens';
 import LoginScreen from 'screens/LoginScreen';
@@ -37,17 +37,18 @@ describe('<LoginScreen />', () => {
       fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
     });
 
-    it('should show the loading spinner', () => {
+    it('should show the loading spinner', async () => {
       mockedHttpClient(store)
         .onPost('/users/sign_in')
         .reply(200);
       fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
       expect(wrapper.queryByText('Loading')).toBeTruthy();
+      await waitFor(() => expect(wrapper.queryByText('Loading')).toBeNull());
     });
 
     describe('if the user exist', () => {
-      it('should show no errors', () => {
+      it('should show no errors', async () => {
         mockedHttpClient(store)
           .onPost('/users/sign_in')
           .reply(
@@ -64,6 +65,7 @@ describe('<LoginScreen />', () => {
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
         expect(wrapper.queryAllByLabelText('form-error')).toEqual([]);
+        await waitFor(() => expect(wrapper.queryByText('Loading')).toBeNull());
       });
     });
 
@@ -76,7 +78,7 @@ describe('<LoginScreen />', () => {
           });
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
-        await wait(() => {
+        await waitFor(() => {
           expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
           expect(wrapper.queryByText('Invalid login credentials. Please try again.')).toBeTruthy();
         });
@@ -90,7 +92,7 @@ describe('<LoginScreen />', () => {
           .networkError();
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
-        await wait(() => {
+        await waitFor(() => {
           expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
           expect(wrapper.queryByText('Something Went Wrong')).toBeTruthy();
         });

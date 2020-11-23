@@ -1,8 +1,8 @@
 import React from 'react';
 import SignUpForm from 'components/SignUpForm';
-import { fireEvent, wait } from '@testing-library/react-native';
+import { fireEvent, waitFor } from '@testing-library/react-native';
 
-import { renderWithRedux, configureStore } from '../helpers';
+import { renderWithRedux, configureStore, BUTTON_DISABLED_EXCEPTION } from '../helpers';
 
 describe('<SignUpForm />', () => {
   let wrapper;
@@ -29,7 +29,7 @@ describe('<SignUpForm />', () => {
     describe('when the email input is valid', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'example@rootstrap.com');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a email is not valid error', () => {
@@ -41,7 +41,7 @@ describe('<SignUpForm />', () => {
 
     describe('when the email input is not present', () => {
       beforeEach(() => {
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a required error', () => {
@@ -53,7 +53,7 @@ describe('<SignUpForm />', () => {
     describe('when the email input is not valid', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'example');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a email is not valid error', () => {
@@ -76,7 +76,7 @@ describe('<SignUpForm />', () => {
     describe('when the password input is present', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'password');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should not show a required error', () => {
@@ -87,7 +87,7 @@ describe('<SignUpForm />', () => {
 
     describe('when the password input is not present', () => {
       beforeEach(() => {
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a required error', () => {
@@ -110,7 +110,7 @@ describe('<SignUpForm />', () => {
     describe('when the confirm password input is present', () => {
       beforeEach(() => {
         fireEvent.changeText(input, 'confirm-password');
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should not show a required error', () => {
@@ -120,7 +120,7 @@ describe('<SignUpForm />', () => {
 
     describe('when the confirm password input is not present', () => {
       beforeEach(() => {
-        fireEvent.blur(input);
+        fireEvent(input, 'blur');
       });
 
       it('should show a required error', () => {
@@ -143,9 +143,7 @@ describe('<SignUpForm />', () => {
 
     describe('and the form is empty', () => {
       it('should not submit the form', async () => {
-        fireEvent.press(submitButton);
-
-        await wait(() => expect(props.onSubmit).toHaveBeenCalledTimes(0));
+        expect(() => fireEvent.press(submitButton)).toThrow(BUTTON_DISABLED_EXCEPTION);
       });
     });
 
@@ -154,19 +152,16 @@ describe('<SignUpForm />', () => {
         fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
         fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
         fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'confirm-password');
-        fireEvent.press(submitButton);
+        fireEvent(wrapper.queryByTestId('confirm-password-input'), 'blur');
       });
 
       it('should not submit the form', async () => {
-        fireEvent.press(submitButton);
+        expect(() => fireEvent.press(submitButton)).toThrow(BUTTON_DISABLED_EXCEPTION);
+      });
 
-        await wait(() => {
-          expect(props.onSubmit).toHaveBeenCalledTimes(0);
-          expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
-          expect(
-            wrapper.queryByText('Password confirmation is not equal to password'),
-          ).toBeTruthy();
-        });
+      it('should display an error message', async () => {
+        expect(wrapper.queryAllByLabelText('form-error')).toHaveLength(1);
+        expect(wrapper.queryByText('Password confirmation is not equal to password')).toBeTruthy();
       });
     });
 
@@ -179,7 +174,7 @@ describe('<SignUpForm />', () => {
       });
 
       it('should submit the form', async () => {
-        await wait(() => expect(props.onSubmit).toHaveBeenCalled());
+        await waitFor(() => expect(props.onSubmit).toHaveBeenCalled());
       });
     });
   });
