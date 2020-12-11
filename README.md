@@ -18,7 +18,10 @@
 
 You can also create `.env.prod` and `.env.staging` to define environment variables for production and staging.
 
-3. Rename your new project using [react-native-rename](https://github.com/junedomingo/react-native-rename)
+3. Rename your new project using [react-native-rename](https://github.com/junedomingo/react-native-rename). You will also need to rename other files manually. For this you will need to look for the following patterns inside your project files: `ReactNativeBase`, `react-native-base`, `reactnativebase`, `RNBase`.
+Replace them to your corresponding project name (following each corresponding naming convention).
+When looking for the patterns remember to have the `matching case` option enabled and remember to also check for these patterns in your file names.
+
 4. Start on android or ios: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`, `staging`, and `prod`)
 
 If you don't want to make use of the Android Flavors and iOS Build Targets then you can run these commands instead:
