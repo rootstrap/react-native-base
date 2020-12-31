@@ -31,8 +31,7 @@ If you don't want to make use of the Android Flavors and iOS Build Targets then 
 **For develop**
 
 ```
-react-native run-android
-react-native run-ios
+yarn run android:dev
 ```
 
 **For other envs**
