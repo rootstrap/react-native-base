@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "lint": "eslint src",
-    "lint:fix": "eslint --fix src",
+    "lint": "eslint src tests",
+    "lint:fix": "eslint --fix src tests",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "ios:dev": "react-native run-ios --scheme ReactNativeBase-Develop",
     "ios:staging": "react-native run-ios --scheme ReactNativeBase-Staging",
