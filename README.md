@@ -1,7 +1,5 @@
 # React Native Base
 
-![GHA CI Test](https://github.com/rootstrap/react-native-base/workflows/CI%20Test/badge.svg)
-[![Maintainability](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/maintainability)](https://codeclimate.com/github/rootstrap/react-native-base/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/test_coverage)](https://codeclimate.com/github/rootstrap/react-native-base/test_coverage)
 
 ## Commands
@@ -14,12 +12,10 @@
 ## Getting started
 
 1. Install dependencies: `yarn`
-2. Create a `.env` file in the root directory of the project, based on the `.env.defaults` sample file and the extra constants that you may need. This will be your development env.
-
-You can also create `.env.prod` and `.env.staging` to define environment variables for production and staging.
+2. Create a `.env` file in the root directory of the project, based on the `.env.defaults` sample file and the extra constants that you may need. This will be your development env. You can also create `.env.prod` and `.env.staging` to define environment variables for production and staging.
 
 3. Rename your new project using [react-native-rename](https://github.com/junedomingo/react-native-rename). You will also need to rename other files manually.
-Look for `develop` and `staging`'s schemes and `{BuildTarged}-Info.plist`s. You will also need to look for the following patterns inside your project files: `ReactNativeBase`, `react-native-base`, `reactnativebase`, `RNBase`.
+>>>Look for `develop` and `staging`'s schemes and `{BuildTarged}-Info.plist`s. You will also need to look for the following patterns inside your project files: `ReactNativeBase`, `react-native-base`, `reactnativebase`, `RNBase`.
 Replace them to your corresponding project name (following each corresponding naming convention).
 **Important**
 When looking for the patterns remember to have the `matching case` option enabled and remember to also check for these patterns in your file names.
@@ -39,6 +35,10 @@ yarn run android:dev
 ```
 ENVFILE=.env.{env} react-native run-ios
 ```
+
+### Running the Mock Service
+
+See [Rails Docker Service](https://github.com/rootstrap/rails_api_base#how-to-use-with-docker)
 
 ### Steps for Android development
 
