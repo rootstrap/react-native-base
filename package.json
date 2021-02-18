@@ -18,6 +18,7 @@
     "android:bundle:dev": "cd android && ./gradlew bundleDevRelease",
     "android:bundle:staging": "cd android && ./gradlew bundleStagingRelease",
     "android:bundle:prod": "cd android && ./gradlew bundleProdRelease",
+    "bump": "./rnbv.js",
     "test": "jest",
     "test:cover": "yarn run test --coverage",
     "prettier": "prettier --write './src/**/*.js'"
