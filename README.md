@@ -19,10 +19,10 @@
 You can also create `.env.prod` and `.env.staging` to define environment variables for production and staging.
 
 3. Rename your new project using [react-native-rename](https://github.com/junedomingo/react-native-rename). You will also need to rename other files manually.
-Look for `develop` and `staging`'s schemes and `{BuildTarged}-Info.plist`s. You will also need to look for the following patterns inside your project files: `ReactNativeBase`, `react-native-base`, `reactnativebase`, `RNBase`.
-Replace them to your corresponding project name (following each corresponding naming convention).
-**Important**
-When looking for the patterns remember to have the `matching case` option enabled and remember to also check for these patterns in your file names.
+   Look for `develop` and `staging`'s schemes and `{BuildTarged}-Info.plist`s. You will also need to look for the following patterns inside your project files: `ReactNativeBase`, `react-native-base`, `reactnativebase`, `RNBase`.
+   Replace them to your corresponding project name (following each corresponding naming convention).
+   **Important**
+   When looking for the patterns remember to have the `matching case` option enabled and remember to also check for these patterns in your file names.
 
 4. Start on android or ios: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`, `staging`, and `prod`)
 
@@ -67,14 +67,14 @@ The repo includes configuration for using GitHub Actions to run unit tests and c
 2. On the `Test Coverage` tab, copy the `Test Reporter ID`
 3. Set the copied value as environment variable `CC_TEST_REPORTER_ID` (and repo Secrets)
 
-
 ## Sonarqube Integration
 
 1. Log into Sonarqube console (`SONAR_URL`) and create new Project key(`SONAR_PROJECT`)
 2. Generate a token for the new project and copy
 3. Set the token value as environment variable `SONAR_TOKEN`
 
-### Usage 
+### Usage
+
 ```
 sonar-scanner \
   -Dsonar.qualitygate.wait=true \
@@ -90,12 +90,35 @@ sonar-scanner \
   -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
 ```
 
+## Bump the app version
+
+We have a nifty script that bumps the app version for you!
+
+If it's your first time using it please check that the `rnbv.config.js` is correctly configured, if in doubt you can refer to the [original file](https://github.com/rootstrap/react-native-base/blob/master/rnbv.config.js) at the `react-native-base` repo.
+The iosPaths should match the envs of your repo. This should have already been changed in the rename project steps.
+
+To run the script use the following command:
+
+```
+yarn bump
+```
+
+You should see something as follows:
+
+![bump options](https://user-images.githubusercontent.com/9297073/108426679-cc770380-721a-11eb-9a3c-f42a6248648c.png)
+
+Follow the instructions in the prompt to select the version bump that you want and press enter to run it.
+
+As a result you should see something like this (example is minor bump):
+![bump results](https://user-images.githubusercontent.com/9297073/108426803-fb8d7500-721a-11eb-985d-edf56e07da5b.png)
+
 ## Build Android Release
 
 ### Configuration
 
-1. Ask a developer for the release key and place it in `/android/app`
-2. Add the following variables in `.env.prod`:
+1. Make sure that the version was already bumped if it applies. You might want to check the [bump the app version](#bump-the-app-version) section
+2. Ask a developer for the release key and place it in `/android/app`
+3. Add the following variables in `.env.prod`:
 
 ```
  RELEASE_STORE_FILE
@@ -111,10 +134,11 @@ sonar-scanner \
 
 ## Build iOS Release
 
-1. Select on Xcode the scheme of the build target you want to create the release for.
-2. For the device select **generic iOS device**.
-3. Then go to **Product** -> **Archive**.
-4. After it is done processing and the archive succeeds the **organizer** will open. Here is where you can see all the previously generated archives.
+1. Make sure that the version was already bumped if it applies. You might want to check the [bump the app version](#bump-the-app-version) section
+2. Select on Xcode the scheme of the build target you want to create the release for.
+3. For the device select **generic iOS device**.
+4. Then go to **Product** -> **Archive**.
+5. After it is done processing and the archive succeeds the **organizer** will open. Here is where you can see all the previously generated archives.
 
 ## Managing multiple environments
 
@@ -203,10 +227,9 @@ If you are looking for something quick and easy in the short term, there is one 
   ENVFILE=.env.{env} react-native run-ios
 ```
 
-
 ## Automation with Fastlane
 
-This project provides configuration for automatic build and release using [Fastlane]((https://fastlane.tools)).
+This project provides configuration for automatic build and release using [Fastlane](<(https://fastlane.tools)>).
 For more details please check configuration and Readme files for [iOS](./ios/fastlane/README.md) and [Android](android/fastlane/README.md)
 
 ## Troubleshooting
@@ -240,4 +263,3 @@ The default configuration is the following:
 - There's a defined `whitelist` where all reducers that want to be persisted must be declared.
 - The `storage` engine is `AsyncStorage` but you can change it if needed, for example: https://github.com/CodingZeal/redux-persist-sensitive-storage if you need keychan storage on iOS.
 - If you ever need to set up migrations to keep your reducers up to date, please check [this link](https://github.com/rt2zz/redux-persist#migrations).
-
