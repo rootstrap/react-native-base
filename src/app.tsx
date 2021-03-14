@@ -12,12 +12,20 @@ const { store, persistor } = configureStore({});
 
 applyDefaultInterceptors(store, httpClient);
 
-const App = () => (
-  <Provider store={store}>
-    <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
-      <Navigation />
-    </PersistGate>
-  </Provider>
-);
+export interface Props {}
+export interface State {}
+
+
+export class App extends React.Component<Props, State> {
+  render() {
+    return (
+      <Provider store={store}>
+        <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
+          <Navigation />
+        </PersistGate>
+      </Provider>
+    );
+  }
+}
 
 export default App;

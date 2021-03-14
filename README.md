@@ -215,5 +215,5 @@ The default configuration is the following:
 
 ### TODOS
 
-[] Convert files to TypeScript - https://medium.com/@patngo/transitioning-a-react-native-app-to-typescript-in-2019-f61c5acb8e1e
-[] Rename project
+- [] Convert files to TypeScript - https://medium.com/@patngo/transitioning-a-react-native-app-to-typescript-in-2019-f61c5acb8e1e
+- [] Rename project
