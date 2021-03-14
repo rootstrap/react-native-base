@@ -60,34 +60,6 @@ pod install
 
 The repo includes configuration for using GitHub Actions to run unit tests and code analysis: `.github/workflows/test.yml`. This can be adapted as needed for specifics of each project. Both CodeClimate and Sonarqube integrations are included in the workflow and their required environment settings should be retrieved from the repo Secrets.
 
-## Configuring Code Climate
-
-1. After adding the project to CC, go to `Repo Settings`
-2. On the `Test Coverage` tab, copy the `Test Reporter ID`
-3. Set the copied value as environment variable `CC_TEST_REPORTER_ID` (and repo Secrets)
-
-
-## Sonarqube Integration
-
-1. Log into Sonarqube console (`SONAR_URL`) and create new Project key(`SONAR_PROJECT`)
-2. Generate a token for the new project and copy
-3. Set the token value as environment variable `SONAR_TOKEN`
-
-### Usage 
-```
-sonar-scanner \
-  -Dsonar.qualitygate.wait=true \
-  -Dsonar.host.url=$SONAR_URL \
-  -Dsonar.login=$SONAR_TOKEN \
-  -Dsonar.projectKey=$SONAR_PROJECT \
-  -Dsonar.scm.provider=git \
-  -Dsonar.java.binaries=/tmp \
-  -Dsonar.nodejs.executable=$(which node) \
-  -Dsonar.projectVersion=$(echo $GITHUB_SHA | cut -c1-8) \
-  -Dsonar.sources=. \
-  -Dsonar.projectBaseDir=. \
-  -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-```
 
 ## Build Android Release
 
@@ -240,3 +212,8 @@ The default configuration is the following:
 - The `storage` engine is `AsyncStorage` but you can change it if needed, for example: https://github.com/CodingZeal/redux-persist-sensitive-storage if you need keychan storage on iOS.
 - If you ever need to set up migrations to keep your reducers up to date, please check [this link](https://github.com/rt2zz/redux-persist#migrations).
 
+
+### TODOS
+
+[] Convert files to TypeScript - https://medium.com/@patngo/transitioning-a-react-native-app-to-typescript-in-2019-f61c5acb8e1e
+[] Rename project
