@@ -212,8 +212,16 @@ The default configuration is the following:
 - The `storage` engine is `AsyncStorage` but you can change it if needed, for example: https://github.com/CodingZeal/redux-persist-sensitive-storage if you need keychan storage on iOS.
 - If you ever need to set up migrations to keep your reducers up to date, please check [this link](https://github.com/rt2zz/redux-persist#migrations).
 
+### Typescript
+
+> This project was converted to Typescript, in order to sync missing `@types` for these node modules, run the following:
+
+```bash
+yarn global add typesync
+npx typesync [path/to/package.json] [--dry]
+
+```
 
 ### TODOS
 
-- [] Convert files to TypeScript - https://medium.com/@patngo/transitioning-a-react-native-app-to-typescript-in-2019-f61c5acb8e1e
 - [] Rename project
