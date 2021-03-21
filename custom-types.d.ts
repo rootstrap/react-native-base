@@ -1,0 +1,6 @@
+declare module "httpClient"
+declare module "redux-persist"
+declare module "navigators"
+declare module "redux-persist/integration/react"
+declare module "httpClient/applyDefaultInterceptors"
+declare module "store/configureStore"
