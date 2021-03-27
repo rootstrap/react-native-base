@@ -29,6 +29,7 @@
     "@react-navigation/stack": "5.0.0",
     "@rootstrap/redux-tools": "^0.4.2",
     "@rootstrap/validate": "^1.0.0",
+    "@types/humps": "^2.0.0",
     "@types/jest": "^26.0.20",
     "@types/react": "^17.0.3",
     "@types/react-native": "^0.63.51",

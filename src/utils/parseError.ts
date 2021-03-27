@@ -1,6 +1,6 @@
-import strings from 'locale';
+import strings from '../locale/index';
 
-const parseErrors = errors => {
+const parseErrors = (errors: { fullMessages: string[], base: string[]}) => {
   if (errors) {
     const { fullMessages, base } = errors;
 
@@ -19,11 +19,11 @@ const parseErrors = errors => {
     }
 
     const errorKey = Object.keys(errors)[0];
-    const error = errors[errorKey][0];
+    const error = errors['fullMessages'][0];
     return `${errorKey} ${error}`;
   }
 
-  return strings.COMMON.somethingWentWrong;
+  return (strings as any).COMMON.somethingWentWrong;
 };
 
 /**
@@ -50,8 +50,8 @@ const parseErrors = errors => {
  *
  * 5- `{ errors: ['Some error'] }` returns `"Some error"`
  */
-export default err => {
-  if (!err) return strings.COMMON.somethingWentWrong;
+export default (err: { data: { error: any; errors: any; }; }) => {
+  if (!err) return (strings as any).COMMON.somethingWentWrong;
 
   const { error, errors } = err.data;
 

@@ -1,7 +1,7 @@
-import httpClient from 'httpClient';
+import httpClient from '../httpClient';
 
 class UserService {
-  login(user) {
+  login(user: { user: any; }) {
     return httpClient.post('/users/sign_in', user);
   }
 
@@ -9,7 +9,7 @@ class UserService {
     return httpClient.delete('/users/sign_out', { data: {} });
   }
 
-  signUp(user) {
+  signUp(user: { user: any; }) {
     return httpClient.post('/users', user);
   }
 }

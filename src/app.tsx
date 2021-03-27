@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import httpClient from './httpClient';
 import applyDefaultInterceptors from './httpClient/applyDefaultInterceptors';
 
-import Navigation from 'navigators';
+import Navigation from './navigators';
 import configureStore from 'store/configureStore';
 
 const { store, persistor } = configureStore({});
