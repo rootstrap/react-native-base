@@ -1,8 +1,8 @@
 import { createThunk, createAction } from '@rootstrap/redux-tools';
-import userService from 'services/userService';
-import parseError from 'utils/parseError';
+import userService from '../services/userService';
+import parseError from '../utils/parseError';
 
-export const login = createThunk('LOGIN', async user => {
+export const login = createThunk('LOGIN', async (user: any) => {
   try {
     const {
       data: { user: loggedUser },
@@ -21,7 +21,7 @@ export const logout = createThunk('LOGOUT', async () => {
   }
 });
 
-export const signUp = createThunk('SIGNUP', async user => {
+export const signUp = createThunk('SIGNUP', async (user: any) => {
   try {
     const { data } = await userService.signUp({ user });
     return data;
