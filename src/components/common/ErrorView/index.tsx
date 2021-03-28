@@ -4,9 +4,9 @@ import { object } from 'prop-types';
 import styles from './styles';
 
 const ErrorView = ({ errors = {} }) => {
-  const errorMessages = Object.values(errors)
+  const errorMessages: any = Object.values(errors)
     .filter(error => !!error)
-    .reduce((acc, error) => {
+    .reduce((acc: any, error) => {
       acc.push(error);
       return acc;
     }, []);
@@ -14,7 +14,7 @@ const ErrorView = ({ errors = {} }) => {
 
   return (
     <View style={styles.container}>
-      {errorMessages.map(error => (
+      {errorMessages.map((error: string) => (
         <Text key={error} accessibilityLabel="form-error" style={styles.error}>
           {error}
         </Text>

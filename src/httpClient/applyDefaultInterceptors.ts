@@ -1,4 +1,5 @@
 import humps from 'humps';
+import { Store } from 'redux';
 import { updateSession, logout } from '../actions/userActions';
 
 const ACCESS_TOKEN = 'access-token';
@@ -7,8 +8,18 @@ const CLIENT = 'client';
 
 const UNAUTHORIZED = 401;
 
-export default (store: { getState: () => { (): any; new(): any; session: { info: any; }; }; dispatch: (arg0: any) => void; }, client: { interceptors: { request: { use: (arg0: (config: any) => any) => void; }; response: { use: (arg0: (response: any) => Promise<any>, arg1: (error: any) => Promise<never>) => void; }; }; }) => {
-  client.interceptors.request.use((config: { headers: any; data: any; }) => {
+export default (
+  store: Store,
+  client: {
+    interceptors: {
+      request: { use: (arg0: (config: any) => any) => void };
+      response: {
+        use: (arg0: (response: any) => Promise<any>, arg1: (error: any) => Promise<never>) => void;
+      };
+    };
+  },
+) => {
+  client.interceptors.request.use((config: { headers: any; data: any }) => {
     const { info } = store.getState().session;
     const { data, headers } = config;
     if (info) {
@@ -25,7 +36,7 @@ export default (store: { getState: () => { (): any; new(): any; session: { info:
   });
 
   client.interceptors.response.use(
-    async (response: { data: any; headers?: any; }) => {
+    async (response: { data: any; headers?: any }) => {
       const { headers, data } = response;
       const token = headers[ACCESS_TOKEN];
       if (token) {
@@ -39,7 +50,7 @@ export default (store: { getState: () => { (): any; new(): any; session: { info:
       response.data = humps.camelizeKeys(data);
       return response;
     },
-    (    error: { response: { status: number; }; }) => {
+    (error: { response: { status: number } }) => {
       if (error.response && error.response.status === UNAUTHORIZED) {
         store.dispatch(logout());
       }

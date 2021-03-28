@@ -3,7 +3,7 @@ import { arrayOf, bool, func, oneOfType, string } from 'prop-types';
 import { View, TextInput, Text } from 'react-native';
 import styles from './styles';
 
-const Input = ({ label, value, onChangeText, error, active, touched, ...props }) => {
+const Input = ({ label, value, onChangeText, error, active, touched, ...props }: any) => {
   // Register field in the form
   useEffect(() => {
     onChangeText(value, true);

@@ -4,10 +4,10 @@ import { thunkMiddleware } from '@rootstrap/redux-tools';
 import { createLogger } from 'redux-logger';
 import createDebugger from 'redux-flipper';
 import { persistStore, persistReducer } from 'redux-persist';
-import AppReducer from 'reducers';
+import AppReducer from '../reducers';
 
 /* eslint-disable */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
 const persistConfig = {
@@ -16,7 +16,7 @@ const persistConfig = {
   whitelist: ['session'],
 };
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState: object) {
   const middlewares = [thunkMiddleware];
 
   if (__DEV__) {

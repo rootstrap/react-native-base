@@ -2,8 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import useSession from 'hooks/useSession';
-import { APP_STACK, AUTH_STACK } from 'constants/screens';
+import useSession from '../hooks/useSession';
+import { APP_STACK, AUTH_STACK } from '../constants/screens';
 
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
@@ -17,7 +17,7 @@ const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator headerMode="none">
         {user && info ? (
-          <Stack.Screen name={APP_STACK}        ) : (
+          <Stack.Screen name={APP_STACK} component={AppStack} /> ) : (
           <Stack.Screen name={AUTH_STACK} component={AuthStack} />
         )}
       </Stack.Navigator>

@@ -1,16 +1,14 @@
 import React from 'react';
-import { func } from 'prop-types';
 import { Button, View } from 'react-native';
 import { useStatus, LOADING } from '@rootstrap/redux-tools';
-
-import { login } from 'actions/userActions';
-import Input from 'components/common/Input';
-import useForm from 'hooks/useForm';
-import useValidation from 'hooks/useValidation';
-import loginValidations from 'validations/loginValidations';
-import ErrorView from 'components/common/ErrorView';
-import useTextInputProps from 'hooks/useTextInputProps';
-import strings from 'locale';
+import { login } from '../../actions/userActions';
+import Input from '../../components/common/Input';
+import useForm from '../../hooks/useForm';
+import useValidation from '../../hooks/useValidation';
+import loginValidations from '../../validations/loginValidations';
+import ErrorView from '../../components/common/ErrorView';
+import useTextInputProps from '../../hooks/useTextInputProps';
+import strings from '../../locale';
 import styles from './styles';
 
 const FIELDS = {
@@ -18,7 +16,7 @@ const FIELDS = {
   password: 'password',
 };
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit }: any) => {
   const { error, status } = useStatus(login);
   const validator = useValidation(loginValidations);
   const {
@@ -55,22 +53,22 @@ const LoginForm = ({ onSubmit }) => {
     <>
       <Input
         label={strings.SIGN_IN.email}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        testID="email-input"
+        // keyboardType="email-address"
+        // autoCapitalize="none"
+        // testID="email-input"
         {...inputProps(FIELDS.email)}
       />
       <Input
         label={strings.SIGN_IN.password}
-        testID="password-input"
-        secureTextEntry
+        // testID="password-input"
+        // secureTextEntry
         {...inputProps(FIELDS.password)}
       />
       <ErrorView errors={{ error }} />
       <View style={styles.button}>
         <Button
           testID="login-submit-button"
-          title={status === LOADING ? strings.COMMON.loading : strings.SIGN_IN.button}
+          title={status === LOADING ? (strings as any).COMMON.loading : strings.SIGN_IN.button}
           onPress={handleSubmit}
           disabled={formHasErrors}
         />
@@ -79,8 +77,8 @@ const LoginForm = ({ onSubmit }) => {
   );
 };
 
-LoginForm.propTypes = {
-  onSubmit: func.isRequired,
-};
+// LoginForm.propTypes = {
+//   onSubmit: func.isRequired,
+// };
 
 export default LoginForm;

@@ -2,10 +2,10 @@ import React, { useCallback } from 'react';
 import { View, Text, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import { logout } from 'actions/userActions';
-import { MAIN_SCREEN } from 'constants/screens';
-import strings from 'locale';
-import useSession from 'hooks/useSession';
+import { logout } from '../../actions/userActions';
+import { MAIN_SCREEN } from '../../constants/screens';
+import strings from '../../locale';
+import useSession from '../../hooks/useSession';
 import styles from './styles';
 
 const MainScreen = () => {
