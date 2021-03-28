@@ -1,15 +1,13 @@
 import React, { memo, useCallback } from 'react';
 import { Text, View, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { object } from 'prop-types';
-
-import SignUpForm from 'components/SignUpForm';
-import { SIGN_UP_SCREEN } from 'constants/screens';
-import { signUp } from 'actions/userActions';
-import strings from 'locale';
+import SignUpForm from '../../components/SignUpForm';
+import { SIGN_UP_SCREEN } from '../../constants/screens';
+import { signUp } from '../../actions/userActions';
+import strings from '../../locale';
 import styles from './styles';
 
-const SignUpScreen = memo(({ navigation }) => {
+const SignUpScreen = memo(({ navigation }: { navigation: { goBack: Function }}) => {
   const dispatch = useDispatch();
   const signUpRequest = useCallback(user => dispatch(signUp(user)), [dispatch]);
 
@@ -22,12 +20,12 @@ const SignUpScreen = memo(({ navigation }) => {
   );
 });
 
-SignUpScreen.propTypes = {
-  navigation: object.isRequired,
-};
+// SignUpScreen.propTypes = {
+//   navigation: object.isRequired,
+// };
 
-SignUpScreen.navigationOptions = {
-  title: strings.SIGN_UP.title,
-};
+// SignUpScreen.navigationOptions = {
+//   title: strings.SIGN_UP.title,
+// };
 
 export default SignUpScreen;

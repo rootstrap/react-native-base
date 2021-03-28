@@ -6,7 +6,7 @@ import httpClient from './httpClient';
 import applyDefaultInterceptors from './httpClient/applyDefaultInterceptors';
 
 import Navigation from './navigators';
-import configureStore from 'store/configureStore';
+import configureStore from './store/configureStore';
 
 const { store, persistor } = configureStore({});
 

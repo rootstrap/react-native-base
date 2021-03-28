@@ -222,6 +222,11 @@ npx typesync [path/to/package.json] [--dry]
 
 ```
 
+The following guide provides a detailed run through on how to [convert a react-native app to _TypeScript_](https://medium.com/@patngo/transitioning-a-react-native-app-to-typescript-in-2019-f61c5acb8e1e)
+
+
+
+
 ### TODOS
 
 - [] Rename project

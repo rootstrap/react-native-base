@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import useSession from 'hooks/useSession';
+import useSession from '../hooks/useSession';
 
-const useSessionChangeEffect = effect => {
+const useSessionChangeEffect = (effect: any) => {
   const { user, info } = useSession();
   useEffect(() => effect({ user, info }), [effect, user, info]);
 };

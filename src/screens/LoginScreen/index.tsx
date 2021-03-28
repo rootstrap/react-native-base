@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { Text, View, Button } from 'react-native';
 import { object } from 'prop-types';
 
-import LoginForm from 'components/LoginForm';
-import { login } from 'actions/userActions';
-import strings from 'locale';
-import { SIGN_UP_SCREEN, LOGIN_SCREEN } from 'constants/screens';
+import LoginForm from '../../components/LoginForm';
+import { login } from '../../actions/userActions';
+import strings from '../../locale';
+import { SIGN_UP_SCREEN, LOGIN_SCREEN } from '../../constants/screens';
 import styles from './styles';
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation }: any) => {
   const dispatch = useDispatch();
   const loginRequest = useCallback(user => dispatch(login(user)), [dispatch]);
   const handleLogin = useCallback(() => navigation.push(SIGN_UP_SCREEN), [navigation]);

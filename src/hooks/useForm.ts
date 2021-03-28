@@ -3,14 +3,14 @@ import { isEmpty, pickBy, mapValues } from 'lodash';
 
 const useForm = (
   {
-    onSubmit, // Callback for when the form submits
+    onSubmit = Function, // Callback for when the form submits
     initialValues = {}, // Initial values that the form should load with
     validator = () => {}, // validation function that already contains the appropriate constraints
     validateOnChange = false, // should validate on change?
     validateOnBlur = false, // should validate on blur?
     validateAll = false, // should validate all when one field changes? Set it to true for forms with fields that depend on other fields
-  },
-  ...dependencies
+  }: any,
+  ...dependencies: any[]
 ) => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
@@ -18,14 +18,14 @@ const useForm = (
   const [touched, setTouched] = useState({});
 
   const handleSubmit = useCallback(() => {
-    const newErrors = validator(values) || {};
+    const newErrors: object = validator(values) || {};
 
     setTouched(mapValues(newErrors, () => true));
 
     const valid = !Object.values(newErrors)
       .filter(error => !!error)
       .reduce((acc, error) => {
-        error.forEach(e => acc.push(e));
+        error.forEach((e: any) => acc.push(e));
         return acc;
       }, []).length;
     if (valid) {
