@@ -1,9 +1,25 @@
 import React, { useEffect } from 'react';
-import { arrayOf, bool, func, oneOfType, string } from 'prop-types';
 import { View, TextInput, Text } from 'react-native';
 import styles from './styles';
 
-const Input = ({ label, value, onChangeText, error, active, touched, ...props }: any) => {
+interface Props {
+  label: string;
+  value: string;
+  onChangeText: Function;
+  error: string[];
+  active: boolean;
+  touched: boolean;
+}
+
+const Input: React.FC<Props> = ({
+  label,
+  value,
+  onChangeText,
+  error,
+  active,
+  touched,
+  ...props
+}: any) => {
   // Register field in the form
   useEffect(() => {
     onChangeText(value, true);
@@ -24,15 +40,6 @@ const Input = ({ label, value, onChangeText, error, active, touched, ...props }:
       </View>
     </View>
   );
-};
-
-Input.propTypes = {
-  label: string,
-  value: string,
-  onChangeText: func.isRequired,
-  error: oneOfType([arrayOf(string), string]),
-  active: bool.isRequired,
-  touched: bool.isRequired,
 };
 
 export default Input;

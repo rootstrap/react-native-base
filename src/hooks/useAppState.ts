@@ -1,7 +1,11 @@
 import { useCallback, useEffect } from 'react';
 import { AppState } from 'react-native';
 
-const useAppState = (settings: {onChange: Function, onForeground: Function, onBackground: Function}) => {
+const useAppState = (settings: {
+  onChange: Function;
+  onForeground: Function;
+  onBackground: Function;
+}) => {
   const { onChange, onForeground, onBackground } = settings || {};
 
   const isValidFunction = (func: Function) => {

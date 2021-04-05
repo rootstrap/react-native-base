@@ -7,6 +7,6 @@ const AppReducer = combineReducers({
   actionStatus: statusReducer,
 });
 
-export type RootState = ReturnType<typeof AppReducer>
+export type RootState = ReturnType<typeof AppReducer>;
 
 export default AppReducer;
