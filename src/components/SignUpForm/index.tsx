@@ -3,14 +3,14 @@ import { func } from 'prop-types';
 import { Button, View } from 'react-native';
 import { useStatus, LOADING } from '@rootstrap/redux-tools';
 
-import { signUp } from 'actions/userActions';
-import Input from 'components/common/Input';
-import strings from 'locale';
-import useForm from 'hooks/useForm';
-import useValidation from 'hooks/useValidation';
-import useTextInputProps from 'hooks/useTextInputProps';
-import signUpValidations from 'validations/signUpValidations';
-import ErrorView from 'components/common/ErrorView';
+import { signUp } from '../../actions/userActions';
+import Input from '../../components/common/Input';
+import strings from '../../locale';
+import useForm from '../../hooks/useForm';
+import useValidation from '../../hooks/useValidation';
+import useTextInputProps from '../../hooks/useTextInputProps';
+import signUpValidations from '../../validations/signUpValidations';
+import ErrorView from '../../components/common/ErrorView';
 import styles from './styles';
 
 const FIELDS = {
@@ -19,7 +19,11 @@ const FIELDS = {
   passwordConfirmation: 'passwordConfirmation',
 };
 
-const SignUpForm = ({ onSubmit }) => {
+interface Props {
+  onSubmit: Function;
+}
+
+const SignUpForm: React.FC<Props> = ({ onSubmit }) => {
   const { error, status } = useStatus(signUp);
   const validator = useValidation(signUpValidations);
   const {
@@ -77,7 +81,7 @@ const SignUpForm = ({ onSubmit }) => {
       <View style={styles.button}>
         <Button
           testID="signup-submit-button"
-          title={status === LOADING ? strings.COMMON.loading : strings.SIGN_UP.button}
+          title={status === LOADING ? (strings as any).COMMON.loading : strings.SIGN_UP.button}
           onPress={handleSubmit}
           disabled={formHasErrors}
         />

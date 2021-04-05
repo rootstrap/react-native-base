@@ -68,6 +68,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.8.4",
+    "@babel/preset-env": "^7.13.12",
     "@babel/runtime": "7.8.4",
     "@react-native-community/eslint-config": "1.1.0",
     "@testing-library/react-native": "7.0.0",
@@ -110,45 +111,6 @@
       "prettier --write",
       "yarn lint:fix --quiet",
       "git add"
-    ]
-  },
-  "jest": {
-    "preset": "react-native",
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest",
-      "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest"
-    },
-    "testRegex": "(/src/.*\\.(test|spec))\\.(jsx?|tsx?)$",
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*)|bs-platform|@rootstrap/redux-tools)"
-    ],
-    "setupFiles": [
-      "./tests/__mocks__/index.js",
-      "<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js"
-    ],
-    "moduleNameMapper": {
-      "actions": "<rootDir>/src/actions",
-      "httpClient": "<rootDir>/src/httpClient",
-      "services": "<rootDir>/src/services",
-      "components": "<rootDir>/src/components",
-      "constants": "<rootDir>/src/constants",
-      "screens": "<rootDir>/src/screens",
-      "hooks": "<rootDir>/src/hooks",
-      "locale": "<rootDir>/src/locale",
-      "reducers": "<rootDir>/src/reducers",
-      "selectors": "<rootDir>/src/selectors",
-      "store": "<rootDir>/src/store",
-      "utils": "<rootDir>/src/utils",
-      "navigators": "<rootDir>/src/navigators",
-      "validations": "<rootDir>/src/validations"
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
     ]
   }
 }
