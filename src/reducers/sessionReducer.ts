@@ -12,7 +12,7 @@ interface Session {
   info: string;
 }
 
-const handleLoginSuccess = (state: Session, payload: string  ) => {
+const handleLoginSuccess = (state: Session, payload: string) => {
   state.user = payload;
 };
 
@@ -20,7 +20,7 @@ const handleLogoutSuccess = () => {
   return initialState;
 };
 
-const handleUpdateSession = (state: Session,  payload: string ) => {
+const handleUpdateSession = (state: Session, payload: string) => {
   state.info = payload;
 };
 

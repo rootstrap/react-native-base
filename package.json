@@ -20,7 +20,7 @@
     "android:bundle:prod": "cd android && ./gradlew bundleProdRelease",
     "test": "jest",
     "test:cover": "yarn run test --coverage",
-    "prettier": "prettier --write './src/**/*.js'"
+    "prettier": "prettier --write './src/**/*.ts'"
   },
   "dependencies": {
     "@react-native-community/async-storage": "1.7.1",

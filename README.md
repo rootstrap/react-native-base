@@ -214,6 +214,7 @@ The default configuration is the following:
 
 ### Typescript
 
+#### Adding missing modules types
 > This project was converted to Typescript, in order to sync missing `@types` for these node modules, run the following:
 
 ```bash
@@ -222,6 +223,9 @@ npx typesync [path/to/package.json] [--dry]
 
 ```
 
+Or add a types placeholder to `./custom-types.d.ts` file.
+
+#### How the app was converted to TSX and TS
 The following guide provides a detailed run through on how to [convert a react-native app to _TypeScript_](https://medium.com/@patngo/transitioning-a-react-native-app-to-typescript-in-2019-f61c5acb8e1e)
 
 
