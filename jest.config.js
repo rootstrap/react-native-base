@@ -3,7 +3,7 @@ module.exports =  {
     transform: {
       "^.+\\.tsx?$": "ts-jest",
       "^.+\\.(js|jsx)$": "babel-jest",
-      "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest"
+      "node_modules/variables/.+\\.(j|t)sx?$": "babel-jest"
     },
     testRegex: "(/src/.*\\.(test|spec))\\.(jsx?|tsx?|ts|js)$",
     transformIgnorePatterns: [
