@@ -9,6 +9,10 @@ interface Props {
   error: string[];
   active: boolean;
   touched: boolean;
+  secureTextEntry?: boolean;
+  testID?: string;
+  keyboardType?: string;
+  autoCapitalize?: string;
 }
 
 const Input: React.FC<Props> = ({
