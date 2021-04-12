@@ -19,7 +19,7 @@ const parseErrors = (errors: { fullMessages: string[]; base: string[] }) => {
     }
 
     const errorKey = Object.keys(errors)[0];
-    const error = errors['fullMessages'][0];
+    const error = errors[errorKey][0];
     return `${errorKey} ${error}`;
   }
 
