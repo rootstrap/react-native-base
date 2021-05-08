@@ -240,7 +240,7 @@ PODS:
     - React
   - react-native-flipper (0.54.0):
     - React
-  - react-native-safe-area-context (0.7.3):
+  - react-native-safe-area-context (0.7.2):
     - React
   - React-RCTActionSheet (0.63.2):
     - React-Core/RCTActionSheetHeaders (= 0.63.2)
@@ -306,13 +306,15 @@ PODS:
     - React
   - RNCAsyncStorage (1.7.1):
     - React
-  - RNCMaskedView (0.1.10):
+  - RNCMaskedView (0.1.6):
     - React
-  - RNGestureHandler (1.8.0):
+  - RNGestureHandler (1.5.6):
     - React
-  - RNReanimated (1.13.0):
+  - RNReanimated (1.7.0):
     - React
-  - RNScreens (2.11.0):
+  - RNScreens (2.0.0-beta.2):
+    - React
+  - RNSVG (12.1.0):
     - React
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -374,6 +376,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -460,6 +463,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -492,7 +497,7 @@ SPEC CHECKSUMS:
   React-jsinspector: b14e62ebe7a66e9231e9581279909f2fc3db6606
   react-native-config: f2c2ae45625a068c35681a16b9bfb1ca58b0adc7
   react-native-flipper: 2581111fb26a2485eb71d2b0caf4b4a21c3ba151
-  react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
+  react-native-safe-area-context: 4b3d1b9ebb040a4814a222703e7434b20c95fcf5
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
   React-RCTBlob: 39cf0ece1927996c4466510e25d2105f67010e13
@@ -503,15 +508,16 @@ SPEC CHECKSUMS:
   React-RCTText: 1b6773e776e4b33f90468c20fe3b16ca3e224bb8
   React-RCTVibration: 4d2e726957f4087449739b595f107c0d4b6c2d2d
   ReactCommon: a0a1edbebcac5e91338371b72ffc66aa822792ce
-  ReactNativeLocalization: ced64c41959db9af8a52698752791291f20e9db8
-  RNCAsyncStorage: 8539fc80a0075fcc9c8e2dff84cd22dc5bf1dacf
-  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
-  RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
-  RNReanimated: 89f5e0a04d1dd52fbf27e7e7030d8f80a646a3fc
-  RNScreens: 0e91da98ab26d5d04c7b59a9b6bd694124caf88c
+  ReactNativeLocalization: b085fa2140d940c99c7cf5693f95d80edca5bcac
+  RNCAsyncStorage: 44395cb9c7c1523104c2b499eb426ef7aff82bca
+  RNCMaskedView: a88953beefbd347a29072d9eba90e42945fe291e
+  RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
+  RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
+  RNScreens: 5e4758109c6d35f9a009ce72af873df907548020
+  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 2201fe0fc2e938788106159bc13e156eae3be2d7
+PODFILE CHECKSUM: 8fb9a29f44c1b7c570692c079f0d61e4f1cb9180
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
