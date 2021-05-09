@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* ReactNativeBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ReactNativeBaseTests.m */; };
+		00E356F31AD99517003FC87E /* EasyStocksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* EasyStocksTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* ReactNativeBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ReactNativeBaseTests.m */; };
-		361D1608F8727C66FB0DE8CB /* libPods-ReactNativeBase-ReactNativeBaseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AC18E667F4EDFD330B4527 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* EasyStocksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* EasyStocksTests.m */; };
+		361D1608F8727C66FB0DE8CB /* libPods-EasyStocks-EasyStocksTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AC18E667F4EDFD330B4527 /* libPods-EasyStocks-EasyStocksTests.a */; };
 		5537A5DC24376A1800F9B9FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */; };
 		5537A5DD24376A1800F9B9FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */; };
 		5537A5DE24376A1800F9B9FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */; };
-		9B0243531F270CBB6E36495A /* libPods-ReactNativeBase-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FFF1A0A0D79A52FA343994E /* libPods-ReactNativeBase-tvOSTests.a */; };
-		9CEB73B58FB152FDD74F0720 /* libPods-ReactNativeBase-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44697982F9284E7E43F44305 /* libPods-ReactNativeBase-tvOS.a */; };
-		BBCDE83BA965486201CF31AB /* libPods-ReactNativeBase-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1AB4DBFE1058BF55733D8B /* libPods-ReactNativeBase-Develop.a */; };
-		D35AFCB0D169AD30C275822B /* libPods-ReactNativeBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C7C84CAE6734BF690017FE /* libPods-ReactNativeBase.a */; };
-		E77860054D22D4DDB9D5F9AA /* libPods-ReactNativeBase-Staging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5194B9636EC5B962F89DA5B8 /* libPods-ReactNativeBase-Staging.a */; };
+		9B0243531F270CBB6E36495A /* libPods-EasyStocks-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FFF1A0A0D79A52FA343994E /* libPods-EasyStocks-tvOSTests.a */; };
+		9CEB73B58FB152FDD74F0720 /* libPods-EasyStocks-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44697982F9284E7E43F44305 /* libPods-EasyStocks-tvOS.a */; };
+		BBCDE83BA965486201CF31AB /* libPods-EasyStocks-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1AB4DBFE1058BF55733D8B /* libPods-EasyStocks-Develop.a */; };
+		D35AFCB0D169AD30C275822B /* libPods-EasyStocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C7C84CAE6734BF690017FE /* libPods-EasyStocks.a */; };
+		E77860054D22D4DDB9D5F9AA /* libPods-EasyStocks-Staging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5194B9636EC5B962F89DA5B8 /* libPods-EasyStocks-Staging.a */; };
 		FE002AFE22E9DCD20027B199 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		FE002AFF22E9DCD20027B199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		FE002B0322E9DCD20027B199 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -38,60 +38,60 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = ReactNativeBase;
+			remoteInfo = EasyStocks;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "ReactNativeBase-tvOS";
+			remoteInfo = "EasyStocks-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00AC18E667F4EDFD330B4527 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-ReactNativeBaseTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		00E356EE1AD99517003FC87E /* ReactNativeBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactNativeBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00AC18E667F4EDFD330B4527 /* libPods-EasyStocks-EasyStocksTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyStocks-EasyStocksTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* EasyStocksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyStocksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* ReactNativeBaseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeBaseTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* ReactNativeBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactNativeBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ReactNativeBase/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ReactNativeBase/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ReactNativeBase/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ReactNativeBase/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ReactNativeBase/main.m; sourceTree = "<group>"; };
-		1C98C079CDC74151BC1BE98E /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOSTests/Pods-ReactNativeBase-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		1FF6942EBA95C3A6D7CF89DD /* Pods-ReactNativeBase-Develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Develop.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop.debug.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* ReactNativeBase-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactNativeBase-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* ReactNativeBase-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReactNativeBase-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D7C75E124C2820E00CBB15B /* ReactNativeBase-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReactNativeBase-Bridging-Header.h"; sourceTree = "<group>"; };
-		2D7C75E224C2820E00CBB15B /* ReactNativeBase-Staging-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReactNativeBase-Staging-Bridging-Header.h"; sourceTree = "<group>"; };
-		2D7C75E324C2820E00CBB15B /* ReactNativeBase-Develop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReactNativeBase-Develop-Bridging-Header.h"; sourceTree = "<group>"; };
-		44697982F9284E7E43F44305 /* libPods-ReactNativeBase-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AA7982FEEB6DA2C52ACBD5E /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig"; sourceTree = "<group>"; };
-		5194B9636EC5B962F89DA5B8 /* libPods-ReactNativeBase-Staging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-Staging.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* EasyStocksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EasyStocksTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* EasyStocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyStocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = EasyStocks/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = EasyStocks/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = EasyStocks/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = EasyStocks/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = EasyStocks/main.m; sourceTree = "<group>"; };
+		1C98C079CDC74151BC1BE98E /* Pods-EasyStocks-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-EasyStocks-tvOSTests/Pods-EasyStocks-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		1FF6942EBA95C3A6D7CF89DD /* Pods-EasyStocks-Develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-Develop.debug.xcconfig"; path = "Target Support Files/Pods-EasyStocks-Develop/Pods-EasyStocks-Develop.debug.xcconfig"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* EasyStocks-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyStocks-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* EasyStocks-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EasyStocks-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D7C75E124C2820E00CBB15B /* EasyStocks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EasyStocks-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D7C75E224C2820E00CBB15B /* EasyStocks-Staging-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EasyStocks-Staging-Bridging-Header.h"; sourceTree = "<group>"; };
+		2D7C75E324C2820E00CBB15B /* EasyStocks-Develop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EasyStocks-Develop-Bridging-Header.h"; sourceTree = "<group>"; };
+		44697982F9284E7E43F44305 /* libPods-EasyStocks-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyStocks-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AA7982FEEB6DA2C52ACBD5E /* Pods-EasyStocks-EasyStocksTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-EasyStocksTests.release.xcconfig"; path = "Target Support Files/Pods-EasyStocks-EasyStocksTests/Pods-EasyStocks-EasyStocksTests.release.xcconfig"; sourceTree = "<group>"; };
+		5194B9636EC5B962F89DA5B8 /* libPods-EasyStocks-Staging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyStocks-Staging.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5FFF1A0A0D79A52FA343994E /* libPods-ReactNativeBase-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		83ACE6892685D8C6AAE6DA9C /* Pods-ReactNativeBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase.release.xcconfig"; sourceTree = "<group>"; };
-		8BE8208158E18B7F778E5A71 /* Pods-ReactNativeBase-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		972824CB458A25B53AC1EFEA /* Pods-ReactNativeBase-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Staging.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging.release.xcconfig"; sourceTree = "<group>"; };
-		A5F764061187CD576D860FC4 /* Pods-ReactNativeBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase.debug.xcconfig"; sourceTree = "<group>"; };
-		A6D74305879FCEDD3E81ED1B /* Pods-ReactNativeBase-Develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Develop.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop.release.xcconfig"; sourceTree = "<group>"; };
-		ABEEF0B1DB8EDFD53517D32C /* Pods-ReactNativeBase-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOSTests/Pods-ReactNativeBase-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AE1AB4DBFE1058BF55733D8B /* libPods-ReactNativeBase-Develop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-Develop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD532F9B2E00989E2D8BF49D /* Pods-ReactNativeBaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBaseTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBaseTests/Pods-ReactNativeBaseTests.release.xcconfig"; sourceTree = "<group>"; };
-		C759D31818F4F72821F8604D /* Pods-ReactNativeBase-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		DD77FD7C5108B7A4A649604F /* Pods-ReactNativeBaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBaseTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBaseTests/Pods-ReactNativeBaseTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E280833A393130671A73F396 /* Pods-ReactNativeBase-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Staging.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging.debug.xcconfig"; sourceTree = "<group>"; };
+		5FFF1A0A0D79A52FA343994E /* libPods-EasyStocks-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyStocks-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83ACE6892685D8C6AAE6DA9C /* Pods-EasyStocks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks.release.xcconfig"; path = "Target Support Files/Pods-EasyStocks/Pods-EasyStocks.release.xcconfig"; sourceTree = "<group>"; };
+		8BE8208158E18B7F778E5A71 /* Pods-EasyStocks-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-tvOS.release.xcconfig"; path = "Target Support Files/Pods-EasyStocks-tvOS/Pods-EasyStocks-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		972824CB458A25B53AC1EFEA /* Pods-EasyStocks-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-Staging.release.xcconfig"; path = "Target Support Files/Pods-EasyStocks-Staging/Pods-EasyStocks-Staging.release.xcconfig"; sourceTree = "<group>"; };
+		A5F764061187CD576D860FC4 /* Pods-EasyStocks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks.debug.xcconfig"; path = "Target Support Files/Pods-EasyStocks/Pods-EasyStocks.debug.xcconfig"; sourceTree = "<group>"; };
+		A6D74305879FCEDD3E81ED1B /* Pods-EasyStocks-Develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-Develop.release.xcconfig"; path = "Target Support Files/Pods-EasyStocks-Develop/Pods-EasyStocks-Develop.release.xcconfig"; sourceTree = "<group>"; };
+		ABEEF0B1DB8EDFD53517D32C /* Pods-EasyStocks-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-EasyStocks-tvOSTests/Pods-EasyStocks-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AE1AB4DBFE1058BF55733D8B /* libPods-EasyStocks-Develop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyStocks-Develop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD532F9B2E00989E2D8BF49D /* Pods-EasyStocksTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocksTests.release.xcconfig"; path = "Target Support Files/Pods-EasyStocksTests/Pods-EasyStocksTests.release.xcconfig"; sourceTree = "<group>"; };
+		C759D31818F4F72821F8604D /* Pods-EasyStocks-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-EasyStocks-tvOS/Pods-EasyStocks-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		DD77FD7C5108B7A4A649604F /* Pods-EasyStocksTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocksTests.debug.xcconfig"; path = "Target Support Files/Pods-EasyStocksTests/Pods-EasyStocksTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E280833A393130671A73F396 /* Pods-EasyStocks-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-Staging.debug.xcconfig"; path = "Target Support Files/Pods-EasyStocks-Staging/Pods-EasyStocks-Staging.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F7C7C84CAE6734BF690017FE /* libPods-ReactNativeBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9EB8F114CD0FD664770E646 /* Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig"; sourceTree = "<group>"; };
-		FE002B0922E9DCD20027B199 /* ReactNativeBase-Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactNativeBase-Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE002B0A22E9DCD20027B199 /* ReactNativeBase-Staging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ReactNativeBase-Staging-Info.plist"; path = "/Users/mauriciocousillas/projects/react-native-base/ios/ReactNativeBase-Staging-Info.plist"; sourceTree = "<absolute>"; };
-		FE002B1A22EA13BF0027B199 /* ReactNativeBase-Develop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactNativeBase-Develop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE002B1B22EA13C00027B199 /* ReactNativeBase-Develop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ReactNativeBase-Develop-Info.plist"; path = "/Users/mauriciocousillas/projects/react-native-base/ios/ReactNativeBase-Develop-Info.plist"; sourceTree = "<absolute>"; };
+		F7C7C84CAE6734BF690017FE /* libPods-EasyStocks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EasyStocks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9EB8F114CD0FD664770E646 /* Pods-EasyStocks-EasyStocksTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyStocks-EasyStocksTests.debug.xcconfig"; path = "Target Support Files/Pods-EasyStocks-EasyStocksTests/Pods-EasyStocks-EasyStocksTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FE002B0922E9DCD20027B199 /* EasyStocks-Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyStocks-Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE002B0A22E9DCD20027B199 /* EasyStocks-Staging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyStocks-Staging-Info.plist"; path = "/Users/mauriciocousillas/projects/react-native-base/ios/EasyStocks-Staging-Info.plist"; sourceTree = "<absolute>"; };
+		FE002B1A22EA13BF0027B199 /* EasyStocks-Develop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyStocks-Develop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE002B1B22EA13C00027B199 /* EasyStocks-Develop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EasyStocks-Develop-Info.plist"; path = "/Users/mauriciocousillas/projects/react-native-base/ios/EasyStocks-Develop-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				361D1608F8727C66FB0DE8CB /* libPods-ReactNativeBase-ReactNativeBaseTests.a in Frameworks */,
+				361D1608F8727C66FB0DE8CB /* libPods-EasyStocks-EasyStocksTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D35AFCB0D169AD30C275822B /* libPods-ReactNativeBase.a in Frameworks */,
+				D35AFCB0D169AD30C275822B /* libPods-EasyStocks.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CEB73B58FB152FDD74F0720 /* libPods-ReactNativeBase-tvOS.a in Frameworks */,
+				9CEB73B58FB152FDD74F0720 /* libPods-EasyStocks-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B0243531F270CBB6E36495A /* libPods-ReactNativeBase-tvOSTests.a in Frameworks */,
+				9B0243531F270CBB6E36495A /* libPods-EasyStocks-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E77860054D22D4DDB9D5F9AA /* libPods-ReactNativeBase-Staging.a in Frameworks */,
+				E77860054D22D4DDB9D5F9AA /* libPods-EasyStocks-Staging.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,20 +139,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBCDE83BA965486201CF31AB /* libPods-ReactNativeBase-Develop.a in Frameworks */,
+				BBCDE83BA965486201CF31AB /* libPods-EasyStocks-Develop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* ReactNativeBaseTests */ = {
+		00E356EF1AD99517003FC87E /* EasyStocksTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* ReactNativeBaseTests.m */,
+				00E356F21AD99517003FC87E /* EasyStocksTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = ReactNativeBaseTests;
+			path = EasyStocksTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -163,7 +163,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* ReactNativeBase */ = {
+		13B07FAE1A68108700A75B9A /* EasyStocks */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -173,11 +173,11 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */,
-				2D7C75E124C2820E00CBB15B /* ReactNativeBase-Bridging-Header.h */,
-				2D7C75E224C2820E00CBB15B /* ReactNativeBase-Staging-Bridging-Header.h */,
-				2D7C75E324C2820E00CBB15B /* ReactNativeBase-Develop-Bridging-Header.h */,
+				2D7C75E124C2820E00CBB15B /* EasyStocks-Bridging-Header.h */,
+				2D7C75E224C2820E00CBB15B /* EasyStocks-Staging-Bridging-Header.h */,
+				2D7C75E324C2820E00CBB15B /* EasyStocks-Develop-Bridging-Header.h */,
 			);
-			name = ReactNativeBase;
+			name = EasyStocks;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -185,12 +185,12 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				F7C7C84CAE6734BF690017FE /* libPods-ReactNativeBase.a */,
-				44697982F9284E7E43F44305 /* libPods-ReactNativeBase-tvOS.a */,
-				5FFF1A0A0D79A52FA343994E /* libPods-ReactNativeBase-tvOSTests.a */,
-				AE1AB4DBFE1058BF55733D8B /* libPods-ReactNativeBase-Develop.a */,
-				5194B9636EC5B962F89DA5B8 /* libPods-ReactNativeBase-Staging.a */,
-				00AC18E667F4EDFD330B4527 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */,
+				F7C7C84CAE6734BF690017FE /* libPods-EasyStocks.a */,
+				44697982F9284E7E43F44305 /* libPods-EasyStocks-tvOS.a */,
+				5FFF1A0A0D79A52FA343994E /* libPods-EasyStocks-tvOSTests.a */,
+				AE1AB4DBFE1058BF55733D8B /* libPods-EasyStocks-Develop.a */,
+				5194B9636EC5B962F89DA5B8 /* libPods-EasyStocks-Staging.a */,
+				00AC18E667F4EDFD330B4527 /* libPods-EasyStocks-EasyStocksTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -205,14 +205,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* ReactNativeBase */,
+				13B07FAE1A68108700A75B9A /* EasyStocks */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* ReactNativeBaseTests */,
+				00E356EF1AD99517003FC87E /* EasyStocksTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D61026C4A3CF4DDFB97A0F07 /* Pods */,
-				FE002B0A22E9DCD20027B199 /* ReactNativeBase-Staging-Info.plist */,
-				FE002B1B22EA13C00027B199 /* ReactNativeBase-Develop-Info.plist */,
+				FE002B0A22E9DCD20027B199 /* EasyStocks-Staging-Info.plist */,
+				FE002B1B22EA13C00027B199 /* EasyStocks-Develop-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -222,12 +222,12 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* ReactNativeBase.app */,
-				00E356EE1AD99517003FC87E /* ReactNativeBaseTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* ReactNativeBase-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* ReactNativeBase-tvOSTests.xctest */,
-				FE002B0922E9DCD20027B199 /* ReactNativeBase-Staging.app */,
-				FE002B1A22EA13BF0027B199 /* ReactNativeBase-Develop.app */,
+				13B07F961A680F5B00A75B9A /* EasyStocks.app */,
+				00E356EE1AD99517003FC87E /* EasyStocksTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* EasyStocks-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* EasyStocks-tvOSTests.xctest */,
+				FE002B0922E9DCD20027B199 /* EasyStocks-Staging.app */,
+				FE002B1A22EA13BF0027B199 /* EasyStocks-Develop.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,20 +235,20 @@
 		D61026C4A3CF4DDFB97A0F07 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C759D31818F4F72821F8604D /* Pods-ReactNativeBase-tvOS.debug.xcconfig */,
-				8BE8208158E18B7F778E5A71 /* Pods-ReactNativeBase-tvOS.release.xcconfig */,
-				ABEEF0B1DB8EDFD53517D32C /* Pods-ReactNativeBase-tvOSTests.debug.xcconfig */,
-				1C98C079CDC74151BC1BE98E /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */,
-				DD77FD7C5108B7A4A649604F /* Pods-ReactNativeBaseTests.debug.xcconfig */,
-				BD532F9B2E00989E2D8BF49D /* Pods-ReactNativeBaseTests.release.xcconfig */,
-				A5F764061187CD576D860FC4 /* Pods-ReactNativeBase.debug.xcconfig */,
-				83ACE6892685D8C6AAE6DA9C /* Pods-ReactNativeBase.release.xcconfig */,
-				E280833A393130671A73F396 /* Pods-ReactNativeBase-Staging.debug.xcconfig */,
-				972824CB458A25B53AC1EFEA /* Pods-ReactNativeBase-Staging.release.xcconfig */,
-				1FF6942EBA95C3A6D7CF89DD /* Pods-ReactNativeBase-Develop.debug.xcconfig */,
-				A6D74305879FCEDD3E81ED1B /* Pods-ReactNativeBase-Develop.release.xcconfig */,
-				F9EB8F114CD0FD664770E646 /* Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig */,
-				4AA7982FEEB6DA2C52ACBD5E /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */,
+				C759D31818F4F72821F8604D /* Pods-EasyStocks-tvOS.debug.xcconfig */,
+				8BE8208158E18B7F778E5A71 /* Pods-EasyStocks-tvOS.release.xcconfig */,
+				ABEEF0B1DB8EDFD53517D32C /* Pods-EasyStocks-tvOSTests.debug.xcconfig */,
+				1C98C079CDC74151BC1BE98E /* Pods-EasyStocks-tvOSTests.release.xcconfig */,
+				DD77FD7C5108B7A4A649604F /* Pods-EasyStocksTests.debug.xcconfig */,
+				BD532F9B2E00989E2D8BF49D /* Pods-EasyStocksTests.release.xcconfig */,
+				A5F764061187CD576D860FC4 /* Pods-EasyStocks.debug.xcconfig */,
+				83ACE6892685D8C6AAE6DA9C /* Pods-EasyStocks.release.xcconfig */,
+				E280833A393130671A73F396 /* Pods-EasyStocks-Staging.debug.xcconfig */,
+				972824CB458A25B53AC1EFEA /* Pods-EasyStocks-Staging.release.xcconfig */,
+				1FF6942EBA95C3A6D7CF89DD /* Pods-EasyStocks-Develop.debug.xcconfig */,
+				A6D74305879FCEDD3E81ED1B /* Pods-EasyStocks-Develop.release.xcconfig */,
+				F9EB8F114CD0FD664770E646 /* Pods-EasyStocks-EasyStocksTests.debug.xcconfig */,
+				4AA7982FEEB6DA2C52ACBD5E /* Pods-EasyStocks-EasyStocksTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -256,9 +256,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* ReactNativeBaseTests */ = {
+		00E356ED1AD99517003FC87E /* EasyStocksTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ReactNativeBaseTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "EasyStocksTests" */;
 			buildPhases = (
 				E85214077ADDC0852F02FDB6 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -271,14 +271,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = ReactNativeBaseTests;
-			productName = ReactNativeBaseTests;
-			productReference = 00E356EE1AD99517003FC87E /* ReactNativeBaseTests.xctest */;
+			name = EasyStocksTests;
+			productName = EasyStocksTests;
+			productReference = 00E356EE1AD99517003FC87E /* EasyStocksTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* ReactNativeBase */ = {
+		13B07F861A680F5B00A75B9A /* EasyStocks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ReactNativeBase" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "EasyStocks" */;
 			buildPhases = (
 				37D0E53BA7A052DA1ACCEE02 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -292,14 +292,14 @@
 			);
 			dependencies = (
 			);
-			name = ReactNativeBase;
-			productName = ReactNativeBase;
-			productReference = 13B07F961A680F5B00A75B9A /* ReactNativeBase.app */;
+			name = EasyStocks;
+			productName = EasyStocks;
+			productReference = 13B07F961A680F5B00A75B9A /* EasyStocks.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* ReactNativeBase-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* EasyStocks-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ReactNativeBase-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "EasyStocks-tvOS" */;
 			buildPhases = (
 				0204927EA819631EC89086FC /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -312,14 +312,14 @@
 			);
 			dependencies = (
 			);
-			name = "ReactNativeBase-tvOS";
-			productName = "ReactNativeBase-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* ReactNativeBase-tvOS.app */;
+			name = "EasyStocks-tvOS";
+			productName = "EasyStocks-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* EasyStocks-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* ReactNativeBase-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* EasyStocks-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ReactNativeBase-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "EasyStocks-tvOSTests" */;
 			buildPhases = (
 				D97A05D59F5E54F4D781A792 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -331,14 +331,14 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "ReactNativeBase-tvOSTests";
-			productName = "ReactNativeBase-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* ReactNativeBase-tvOSTests.xctest */;
+			name = "EasyStocks-tvOSTests";
+			productName = "EasyStocks-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* EasyStocks-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FE002AFA22E9DCD20027B199 /* ReactNativeBase-Staging */ = {
+		FE002AFA22E9DCD20027B199 /* EasyStocks-Staging */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FE002B0622E9DCD20027B199 /* Build configuration list for PBXNativeTarget "ReactNativeBase-Staging" */;
+			buildConfigurationList = FE002B0622E9DCD20027B199 /* Build configuration list for PBXNativeTarget "EasyStocks-Staging" */;
 			buildPhases = (
 				27E75E17105192B75AF11FF9 /* [CP] Check Pods Manifest.lock */,
 				FE002AFC22E9DCD20027B199 /* Start Packager */,
@@ -352,14 +352,14 @@
 			);
 			dependencies = (
 			);
-			name = "ReactNativeBase-Staging";
-			productName = ReactNativeBase;
-			productReference = FE002B0922E9DCD20027B199 /* ReactNativeBase-Staging.app */;
+			name = "EasyStocks-Staging";
+			productName = EasyStocks;
+			productReference = FE002B0922E9DCD20027B199 /* EasyStocks-Staging.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FE002B0B22EA13BF0027B199 /* ReactNativeBase-Develop */ = {
+		FE002B0B22EA13BF0027B199 /* EasyStocks-Develop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FE002B1722EA13BF0027B199 /* Build configuration list for PBXNativeTarget "ReactNativeBase-Develop" */;
+			buildConfigurationList = FE002B1722EA13BF0027B199 /* Build configuration list for PBXNativeTarget "EasyStocks-Develop" */;
 			buildPhases = (
 				FE002B0C22EA13BF0027B199 /* [CP] Check Pods Manifest.lock */,
 				FE002B0D22EA13BF0027B199 /* Start Packager */,
@@ -373,9 +373,9 @@
 			);
 			dependencies = (
 			);
-			name = "ReactNativeBase-Develop";
-			productName = ReactNativeBase;
-			productReference = FE002B1A22EA13BF0027B199 /* ReactNativeBase-Develop.app */;
+			name = "EasyStocks-Develop";
+			productName = EasyStocks;
+			productReference = FE002B1A22EA13BF0027B199 /* EasyStocks-Develop.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -411,7 +411,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ReactNativeBase" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "EasyStocks" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -425,12 +425,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* ReactNativeBase */,
-				00E356ED1AD99517003FC87E /* ReactNativeBaseTests */,
-				2D02E47A1E0B4A5D006451C7 /* ReactNativeBase-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* ReactNativeBase-tvOSTests */,
-				FE002AFA22E9DCD20027B199 /* ReactNativeBase-Staging */,
-				FE002B0B22EA13BF0027B199 /* ReactNativeBase-Develop */,
+				13B07F861A680F5B00A75B9A /* EasyStocks */,
+				00E356ED1AD99517003FC87E /* EasyStocksTests */,
+				2D02E47A1E0B4A5D006451C7 /* EasyStocks-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* EasyStocks-tvOSTests */,
+				FE002AFA22E9DCD20027B199 /* EasyStocks-Staging */,
+				FE002B0B22EA13BF0027B199 /* EasyStocks-Develop */,
 			);
 		};
 /* End PBXProject section */
@@ -517,7 +517,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-EasyStocks-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -539,7 +539,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-Staging-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-EasyStocks-Staging-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -575,7 +575,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-EasyStocks-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -588,7 +588,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EasyStocks/Pods-EasyStocks-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -597,7 +597,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EasyStocks/Pods-EasyStocks-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		985CD8B7DA948AB0ECA77E52 /* [CP] Copy Pods Resources */ = {
@@ -606,7 +606,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EasyStocks-Staging/Pods-EasyStocks-Staging-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -615,7 +615,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EasyStocks-Staging/Pods-EasyStocks-Staging-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D97A05D59F5E54F4D781A792 /* [CP] Check Pods Manifest.lock */ = {
@@ -633,7 +633,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-EasyStocks-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -646,7 +646,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EasyStocks-EasyStocksTests/Pods-EasyStocks-EasyStocksTests-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -655,7 +655,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EasyStocks-EasyStocksTests/Pods-EasyStocks-EasyStocksTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E85214077ADDC0852F02FDB6 /* [CP] Check Pods Manifest.lock */ = {
@@ -673,7 +673,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-ReactNativeBaseTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-EasyStocks-EasyStocksTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -686,7 +686,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EasyStocks-Develop/Pods-EasyStocks-Develop-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -695,7 +695,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EasyStocks-Develop/Pods-EasyStocks-Develop-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -784,7 +784,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-Develop-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-EasyStocks-Develop-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -831,7 +831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* ReactNativeBaseTests.m in Sources */,
+				00E356F31AD99517003FC87E /* EasyStocksTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,7 +857,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* ReactNativeBaseTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* EasyStocksTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,12 +884,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* ReactNativeBase */;
+			target = 13B07F861A680F5B00A75B9A /* EasyStocks */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* ReactNativeBase-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* EasyStocks-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -897,14 +897,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9EB8F114CD0FD664770E646 /* Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig */;
+			baseConfigurationReference = F9EB8F114CD0FD664770E646 /* Pods-EasyStocks-EasyStocksTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ReactNativeBaseTests/Info.plist;
+				INFOPLIST_FILE = EasyStocksTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = (
@@ -918,17 +918,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactNativeBase.app/ReactNativeBase";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyStocks.app/EasyStocks";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AA7982FEEB6DA2C52ACBD5E /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */;
+			baseConfigurationReference = 4AA7982FEEB6DA2C52ACBD5E /* Pods-EasyStocks-EasyStocksTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = ReactNativeBaseTests/Info.plist;
+				INFOPLIST_FILE = EasyStocksTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = (
@@ -942,20 +942,20 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactNativeBase.app/ReactNativeBase";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyStocks.app/EasyStocks";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5F764061187CD576D860FC4 /* Pods-ReactNativeBase.debug.xcconfig */;
+			baseConfigurationReference = A5F764061187CD576D860FC4 /* Pods-EasyStocks.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = ReactNativeBase/Info.plist;
+				INFOPLIST_FILE = EasyStocks/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
@@ -970,8 +970,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ReactNativeBase;
-				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Bridging-Header.h";
+				PRODUCT_NAME = EasyStocks;
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyStocks-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -980,13 +980,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83ACE6892685D8C6AAE6DA9C /* Pods-ReactNativeBase.release.xcconfig */;
+			baseConfigurationReference = 83ACE6892685D8C6AAE6DA9C /* Pods-EasyStocks.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = ReactNativeBase/Info.plist;
+				INFOPLIST_FILE = EasyStocks/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
@@ -1001,8 +1001,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ReactNativeBase;
-				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Bridging-Header.h";
+				PRODUCT_NAME = EasyStocks;
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyStocks-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1010,7 +1010,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C759D31818F4F72821F8604D /* Pods-ReactNativeBase-tvOS.debug.xcconfig */;
+			baseConfigurationReference = C759D31818F4F72821F8604D /* Pods-EasyStocks-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1021,7 +1021,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ReactNativeBase-tvOS/Info.plist";
+				INFOPLIST_FILE = "EasyStocks-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1032,7 +1032,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ReactNativeBase-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.EasyStocks-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1042,7 +1042,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BE8208158E18B7F778E5A71 /* Pods-ReactNativeBase-tvOS.release.xcconfig */;
+			baseConfigurationReference = 8BE8208158E18B7F778E5A71 /* Pods-EasyStocks-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1053,7 +1053,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ReactNativeBase-tvOS/Info.plist";
+				INFOPLIST_FILE = "EasyStocks-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1064,7 +1064,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ReactNativeBase-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.EasyStocks-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1074,7 +1074,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABEEF0B1DB8EDFD53517D32C /* Pods-ReactNativeBase-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = ABEEF0B1DB8EDFD53517D32C /* Pods-EasyStocks-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1084,7 +1084,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ReactNativeBase-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "EasyStocks-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1095,17 +1095,17 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ReactNativeBase-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.EasyStocks-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactNativeBase-tvOS.app/ReactNativeBase-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyStocks-tvOS.app/EasyStocks-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C98C079CDC74151BC1BE98E /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 1C98C079CDC74151BC1BE98E /* Pods-EasyStocks-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1115,7 +1115,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ReactNativeBase-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "EasyStocks-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1126,10 +1126,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ReactNativeBase-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.EasyStocks-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactNativeBase-tvOS.app/ReactNativeBase-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyStocks-tvOS.app/EasyStocks-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1251,14 +1251,14 @@
 		};
 		FE002B0722E9DCD20027B199 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E280833A393130671A73F396 /* Pods-ReactNativeBase-Staging.debug.xcconfig */;
+			baseConfigurationReference = E280833A393130671A73F396 /* Pods-EasyStocks-Staging.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = "ReactNativeBase-Staging-Info.plist";
+				INFOPLIST_FILE = "EasyStocks-Staging-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
@@ -1274,7 +1274,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Staging-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyStocks-Staging-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1283,13 +1283,13 @@
 		};
 		FE002B0822E9DCD20027B199 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 972824CB458A25B53AC1EFEA /* Pods-ReactNativeBase-Staging.release.xcconfig */;
+			baseConfigurationReference = 972824CB458A25B53AC1EFEA /* Pods-EasyStocks-Staging.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "ReactNativeBase-Staging-Info.plist";
+				INFOPLIST_FILE = "EasyStocks-Staging-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
@@ -1305,7 +1305,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Staging-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyStocks-Staging-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1313,14 +1313,14 @@
 		};
 		FE002B1822EA13BF0027B199 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FF6942EBA95C3A6D7CF89DD /* Pods-ReactNativeBase-Develop.debug.xcconfig */;
+			baseConfigurationReference = 1FF6942EBA95C3A6D7CF89DD /* Pods-EasyStocks-Develop.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/ReactNativeBase-Develop-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/EasyStocks-Develop-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
@@ -1334,9 +1334,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.ReactNativeBase-Develop";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.EasyStocks-Develop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Develop-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyStocks-Develop-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1345,13 +1345,13 @@
 		};
 		FE002B1922EA13BF0027B199 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6D74305879FCEDD3E81ED1B /* Pods-ReactNativeBase-Develop.release.xcconfig */;
+			baseConfigurationReference = A6D74305879FCEDD3E81ED1B /* Pods-EasyStocks-Develop.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "$(SRCROOT)/ReactNativeBase-Develop-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/EasyStocks-Develop-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
@@ -1365,9 +1365,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.ReactNativeBase-Develop";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.EasyStocks-Develop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Develop-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "EasyStocks-Develop-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1376,7 +1376,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ReactNativeBaseTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "EasyStocksTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1385,7 +1385,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ReactNativeBase" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "EasyStocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1394,7 +1394,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ReactNativeBase-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "EasyStocks-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1403,7 +1403,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ReactNativeBase-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "EasyStocks-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1412,7 +1412,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ReactNativeBase" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "EasyStocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
@@ -1421,7 +1421,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FE002B0622E9DCD20027B199 /* Build configuration list for PBXNativeTarget "ReactNativeBase-Staging" */ = {
+		FE002B0622E9DCD20027B199 /* Build configuration list for PBXNativeTarget "EasyStocks-Staging" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FE002B0722E9DCD20027B199 /* Debug */,
@@ -1430,7 +1430,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FE002B1722EA13BF0027B199 /* Build configuration list for PBXNativeTarget "ReactNativeBase-Develop" */ = {
+		FE002B1722EA13BF0027B199 /* Build configuration list for PBXNativeTarget "EasyStocks-Develop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FE002B1822EA13BF0027B199 /* Debug */,
