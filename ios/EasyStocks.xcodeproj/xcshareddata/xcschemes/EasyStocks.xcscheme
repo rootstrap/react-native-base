@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "ReactNativeBase-tvOS.app"
-               BlueprintName = "ReactNativeBase-tvOS"
-               ReferencedContainer = "container:ReactNativeBase.xcodeproj">
+               BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+               BuildableName = "EasyStocks.app"
+               BlueprintName = "EasyStocks"
+               ReferencedContainer = "container:EasyStocks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "ReactNativeBase-tvOSTests.xctest"
-               BlueprintName = "ReactNativeBase-tvOSTests"
-               ReferencedContainer = "container:ReactNativeBase.xcodeproj">
+               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
+               BuildableName = "EasyStocksTests.xctest"
+               BlueprintName = "EasyStocksTests"
+               ReferencedContainer = "container:EasyStocks.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -50,16 +50,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "ReactNativeBase-tvOS.app"
-            BlueprintName = "ReactNativeBase-tvOS"
-            ReferencedContainer = "container:ReactNativeBase.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -67,16 +57,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "ReactNativeBase-tvOS.app"
-            BlueprintName = "ReactNativeBase-tvOS"
-            ReferencedContainer = "container:ReactNativeBase.xcodeproj">
+            BlueprintIdentifier = "83CBBA2D1A601D0E00E9B192"
+            BuildableName = "libReact.a"
+            BlueprintName = "React"
+            ReferencedContainer = "container:../node_modules/react-native/React/React.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
