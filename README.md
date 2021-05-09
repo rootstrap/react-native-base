@@ -61,36 +61,6 @@ pod install
 The repo includes configuration for using GitHub Actions to run unit tests and code analysis: `.github/workflows/test.yml`. This can be adapted as needed for specifics of each project. Both CodeClimate and Sonarqube integrations are included in the workflow and their required environment settings should be retrieved from the repo Secrets.
 
 
-## Configuring Code Climate
-
-1. After adding the project to CC, go to `Repo Settings`
-2. On the `Test Coverage` tab, copy the `Test Reporter ID`
-3. Set the copied value as environment variable `CC_TEST_REPORTER_ID` (and repo Secrets)
-
-## Sonarqube Integration
-
-1. Log into Sonarqube console (`SONAR_URL`) and create new Project key(`SONAR_PROJECT`)
-2. Generate a token for the new project and copy
-3. Set the token value as environment variable `SONAR_TOKEN`
-
-### Usage
-
-```
-sonar-scanner \
-  -Dsonar.qualitygate.wait=true \
-  -Dsonar.host.url=$SONAR_URL \
-  -Dsonar.login=$SONAR_TOKEN \
-  -Dsonar.projectKey=$SONAR_PROJECT \
-  -Dsonar.scm.provider=git \
-  -Dsonar.java.binaries=/tmp \
-  -Dsonar.nodejs.executable=$(which node) \
-  -Dsonar.projectVersion=$(echo $GITHUB_SHA | cut -c1-8) \
-  -Dsonar.sources=. \
-  -Dsonar.projectBaseDir=. \
-  -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-```
-
-
 ## Bump the app version
 
 We have a nifty script that bumps the app version for you!
@@ -131,7 +101,7 @@ As a result you should see something like this (example is minor bump):
 ### Create release
 
 1. Run `yarn android:release:{env}`
-2. The generated APK can be found under `android/app/build/outputs/apk/{env}/app-release.apk`
+2. The generated APK can be found under **`android/app/build/outputs/apk/{env}/app-release.apk`**
 
 ## Build iOS Release
 
@@ -285,5 +255,5 @@ The following guide provides a detailed run through on how to [convert a react-n
 
 ### TODOS
 
-- [] Rename project
+[todo's list](./todo.md)
 
