@@ -201,7 +201,12 @@ If you are looking for something quick and easy in the short term, there is one 
 ## Automation with Fastlane
 
 This project provides configuration for automatic build and release using [Fastlane](<(https://fastlane.tools)>).
-For more details please check configuration and Readme files for [iOS](./ios/fastlane/README.md) and [Android](android/fastlane/README.md)
+For more details please check configuration and Readme files for [iOS](./ios/fastlane/README.md) and [Android](android/fastlane/README.md) or [fastlane docs](https://docs.fastlane.tools/getting-started/android/setup/)
+
+
+  - Every time you run fastlane, use bundle exec fastlane [lane]
+  - On your CI, add bundle install as your first build step
+  - To update fastlane, just run bundle update fastlane
 
 ## Troubleshooting
 
@@ -237,6 +242,8 @@ The default configuration is the following:
 
 ### Typescript
 
+> The following guide provides a detailed run through on how to [convert a react-native app to _TypeScript_](https://medium.com/@patngo/transitioning-a-react-native-app-to-typescript-in-2019-f61c5acb8e1e)
+
 #### Adding missing modules types
 > This project was converted to Typescript, in order to sync missing `@types` for these node modules, run the following:
 
@@ -246,11 +253,7 @@ npx typesync [path/to/package.json] [--dry]
 
 ```
 
-Or add a types placeholder to `./custom-types.d.ts` file.
-
-#### How the app was converted to TSX and TS
-The following guide provides a detailed run through on how to [convert a react-native app to _TypeScript_](https://medium.com/@patngo/transitioning-a-react-native-app-to-typescript-in-2019-f61c5acb8e1e)
-
+Or add unavilable type definitions placeholder to `./custom-types.d.ts` file.
 
 
 ### TODOS
