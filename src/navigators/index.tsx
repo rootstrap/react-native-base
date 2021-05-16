@@ -16,10 +16,11 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator headerMode="none">
-        {user && info ? (
+        {/* {user && info ? (
           <Stack.Screen name={APP_STACK} component={AppStack} /> ) : (
           <Stack.Screen name={AUTH_STACK} component={AuthStack} />
-        )}
+        )} */}
+        <Stack.Screen name={APP_STACK} component={AppStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );

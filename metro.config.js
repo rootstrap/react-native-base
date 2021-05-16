@@ -7,6 +7,7 @@
 
 module.exports = {
   transformer: {
+    babelTransformerPath: require.resolve("./postcss-transformer.js"),
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,
@@ -17,7 +18,7 @@ module.exports = {
       return require.resolve('react-native-typescript-transformer');
     },
     getSourceExts() {
-      return ['ts', 'tsx', 'js', 'jsx'];
+      return ['ts', 'tsx', 'js', 'jsx', "css", "pcss"];
     }
   },
 };
