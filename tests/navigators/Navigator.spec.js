@@ -90,7 +90,7 @@ describe('Navigator', () => {
       expect(wrapper.queryByTestId(MAIN_SCREEN)).toBeTruthy();
     });
 
-    describe('when the user press the logout button', () => {
+    xdescribe('when the user press the logout button', () => {
       it('should redirect the user to the login screen', async () => {
         mockedHttpClient(store)
           .onDelete('/users/sign_out')
