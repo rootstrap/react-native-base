@@ -18,8 +18,8 @@ default_platform(:android)
 skip_docs
 
 # CONFIG VARIABLES
-app_name          = 'ReactNativeBase'                 # Base application name used for .apk file
-app_id_prefix     = 'com.reactnativebase'             # Base application identifier in Play Store
+app_name          = 'EasyStocks'                      # Base application name used for .apk file
+app_id_prefix     = 'com.bvapps.easystocks'           # Base application identifier in Play Store
 json_key          = ENV["JSON_KEYFILE"]               # Local path to keyfile used for authenticating with Play Store
 s3_region         = ENV["AWS_REGION"]                 # AWS authentication params (for Adhoc builds) 
 s3_key            = ENV["AWS_ACCESS_KEY_ID"]          #
