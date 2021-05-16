@@ -24,11 +24,11 @@ def base_pods
 
 end
 
-target 'ReactNativeBase' do
-  # Pods for ReactNativeBase
+target 'EasyStocks' do
+  # Pods for EasyStocks
   base_pods
 
-  target 'ReactNativeBaseTests' do
+  target 'EasyStocksTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -37,26 +37,26 @@ target 'ReactNativeBase' do
   use_react_native!(:path => config["reactNativePath"])
 end
 
-target 'ReactNativeBase-Staging' do
-  # Pods for ReactNativeBase
+target 'EasyStocks-Staging' do
+  # Pods for EasyStocks
   base_pods
   
   config = use_native_modules!
   use_react_native!(:path => config["reactNativePath"])
 end
 
-target 'ReactNativeBase-Develop' do
-  # Pods for ReactNativeBase
+target 'EasyStocks-Develop' do
+  # Pods for EasyStocks
   base_pods
   
   config = use_native_modules!
   use_react_native!(:path => config["reactNativePath"])
 end
 
-target 'ReactNativeBase-tvOS' do
-  # Pods for ReactNativeBase-tvOS
+target 'EasyStocks-tvOS' do
+  # Pods for EasyStocks-tvOS
   
-  target 'ReactNativeBase-tvOSTests' do
+  target 'EasyStocks-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

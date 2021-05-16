@@ -1,7 +1,7 @@
 apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
-    dev: ".env",
+    dev: ".env.dev",
     staging: ".env.staging",
     prod: ".env.prod",
 ]
@@ -138,12 +138,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.reactnativebase"
+        applicationId "com.bvapps.easystocks"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
-        resValue "string", "build_config_package", "com.reactnativebase"
+        resValue "string", "build_config_package", "com.bvapps.easystocks"
     }
     splits {
         abi {
@@ -163,10 +163,12 @@ android {
             }
         }
         debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            if (project.env.get('RELEASE_STORE_FILE')) {
+                storeFile file(project.env.get('RELEASE_STORE_FILE'))
+                storePassword project.env.get('RELEASE_STORE_PASSWORD')
+                keyAlias project.env.get('RELEASE_KEY_ALIAS')
+                keyPassword project.env.get('RELEASE_KEY_PASSWORD')
+            }
         }
     }
     buildTypes {
