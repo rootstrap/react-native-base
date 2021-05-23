@@ -13,7 +13,7 @@ import {
 } from '../helpers';
 
 describe('Navigator', () => {
-  describe('when the user is logged out', () => {
+  xdescribe('when the user is logged out', () => {
     let wrapper;
     let store;
 
@@ -26,7 +26,7 @@ describe('Navigator', () => {
       expect(wrapper.queryByTestId(LOGIN_SCREEN)).toBeTruthy();
     });
 
-    describe('when the user logs in correctly', () => {
+    xdescribe('when the user logs in correctly', () => {
       beforeEach(() => {
         fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
         fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
@@ -54,7 +54,7 @@ describe('Navigator', () => {
         });
       });
 
-      describe('when the user fails to logs in', () => {
+      xdescribe('when the user fails to logs in', () => {
         beforeEach(() => {
           fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
           fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
@@ -88,21 +88,6 @@ describe('Navigator', () => {
 
     it('should render the main screen', () => {
       expect(wrapper.queryByTestId(MAIN_SCREEN)).toBeTruthy();
-    });
-
-    xdescribe('when the user press the logout button', () => {
-      it('should redirect the user to the login screen', async () => {
-        mockedHttpClient(store)
-          .onDelete('/users/sign_out')
-          .reply(200, { success: true }, {});
-
-        fireEvent.press(wrapper.queryByTestId('logout-button'));
-
-        await waitFor(() => {
-          expect(wrapper.queryByTestId(LOGIN_SCREEN)).toBeTruthy();
-          expect(wrapper.queryByTestId(MAIN_SCREEN)).toBeNull();
-        });
-      });
     });
   });
 });
