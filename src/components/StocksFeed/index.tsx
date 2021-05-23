@@ -4,7 +4,7 @@ import styles from './styles.css';
 import GridLayout from 'react-grid-layout';
 
 interface StocksFeedProps {
-  layout: any[];
+  layout?: GridLayout.Layout[];
 }
 
 const layout = [
@@ -17,11 +17,16 @@ const StocksFeed = (props: StocksFeedProps) => {
   return (
     <View style={componentStyles.container}>
       <Text>StocksFeed</Text>
-      {/* <GridLayout className="layout" layout={props.layout || layout} cols={12} rowHeight={30} width={1200}>
-                <div key="a">a</div>
-                <div key="b">b</div>
-                <div key="c">c</div>
-            </GridLayout> */}
+      <GridLayout
+        className="layout"
+        layout={props.layout || layout}
+        cols={12}
+        rowHeight={30}
+        width={1200}>
+        <div key="a">a</div>
+        <div key="b">b</div>
+        <div key="c">c</div>
+      </GridLayout>
     </View>
   );
 };
