@@ -1269,7 +1269,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.rn-base.develop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.rootstrap.rn-base.develop";
+				PROVISIONING_PROFILE_SPECIFIER = "WNU857N39T.com.rootstrap.rn-base.develop.adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Develop-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1304,7 +1304,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.rn-base.develop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "AppStore com.rootstrap.rn-base.develop";
+				PROVISIONING_PROFILE_SPECIFIER = "WNU857N39T.com.rootstrap.rn-base.develop.adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Develop-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

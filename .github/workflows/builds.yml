@@ -3,7 +3,7 @@ name: Dev Releases
 on:
   push:
     branches:
-      - temp/cicd
+      - feature/cicd
 
 env:
   LANG: en_US.UTF-8
@@ -16,9 +16,10 @@ env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   KEYS_BUCKET: ${{ secrets.AWS_S3_KEYS_BUCKET }}
+  BUILDS_BUCKET: ${{ secrets.AWS_S3_BUILDS_BUCKET }}
   # iOS Release
-  APPLE_PROFILE: AppStore_comrootstraprnbasedevelop.mobileprovision
-  APPLE_CERT: distribution.cer
+  APPLE_PROFILE: ${{ secrets.APPLE_DEV_PROFILE }}
+  APPLE_CERT: ios_distribution.cer
   APPLE_KEY: Certificates.p12
   APPLE_KEY_PASSWORD: ${{ secrets.APPLE_KEY_PASSWORD }}  
   APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID}}
@@ -67,19 +68,16 @@ jobs:
       run: |
         echo API_URL=$API_URL >> .env.dev
 
-    # Create temporary keychain and import distribution cert
-    - name: Import certificate
-      run: fastlane prepare_keychain
-      working-directory: ios
-    # Runs build and archives for Appstore distribution
-    # Submits build to TestFlight
+    # Runs build and archives for AdHoc distribution
+    # Pushes build to AWS S3
     # Sends Slack notification
     - name: Build with Fastlane
-      run: fastlane release_dev_appstore
+      run: bundle exec fastlane share_develop
       working-directory: ios
 
 
   android:
+    if: false
     runs-on: macos-latest
     timeout-minutes: 45
 
