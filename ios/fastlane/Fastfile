@@ -114,7 +114,7 @@ platform :ios do
       in_house: false # determines this is an AppStore team
     )
     # Submit to TestFlight with the previous token
-    upload_to_testflight(
+    pilot(
       api_key: api_key,
       skip_waiting_for_build_processing: true
     )
