@@ -27,7 +27,7 @@ LoginScreen.propTypes = {
   navigation: object.isRequired,
 };
 
-LoginScreen.navigationOption = {
+LoginScreen.navigationOptions = {
   title: strings.SIGN_IN.title,
 };
 
