@@ -172,10 +172,15 @@ If you are looking for something quick and easy in the short term, there is one 
 ```
 
 
-## Automation with Fastlane
+## Automation with Fastlane and GitHub Actions
 
 This project provides configuration for automatic build and release using [Fastlane]((https://fastlane.tools)).
 For more details please check configuration and Readme files for [iOS](./ios/fastlane/README.md) and [Android](android/fastlane/README.md)
+
+
+Builds can be automatically triggered by [GitHub Actions](https://github.com/features/actions) upon pushes or PRs to specific branches. In `.github/workflows/builds.yml` we have an example that runs the build for the Dev targets in an ubuntu cloud runner (Android) and a self-hosted runner on a macmini (***NOTE***: this will not work for repos outside of Rootstrap's org). 
+
+Both the Fastlane and GHA configuration should be adapted to fit each specific project.
 
 ## Troubleshooting
 

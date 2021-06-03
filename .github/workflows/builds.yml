@@ -3,7 +3,7 @@ name: Dev Releases
 on:
   push:
     branches:
-      - feature/cicd
+      - dev
 
 env:
   LANG: en_US.UTF-8
@@ -77,8 +77,7 @@ jobs:
 
 
   android:
-    if: false
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 45
 
     steps:
