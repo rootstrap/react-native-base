@@ -240,7 +240,7 @@ PODS:
     - React
   - react-native-flipper (0.54.0):
     - React
-  - react-native-safe-area-context (0.7.2):
+  - react-native-safe-area-context (0.7.3):
     - React
   - React-RCTActionSheet (0.63.2):
     - React-Core/RCTActionSheetHeaders (= 0.63.2)
@@ -306,11 +306,11 @@ PODS:
     - React
   - RNCAsyncStorage (1.7.1):
     - React
-  - RNCMaskedView (0.1.6):
+  - RNCMaskedView (0.1.10):
     - React
   - RNGestureHandler (1.8.0):
     - React
-  - RNReanimated (1.7.0):
+  - RNReanimated (1.13.0):
     - React
   - RNScreens (2.11.0):
     - React
@@ -514,4 +514,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2201fe0fc2e938788106159bc13e156eae3be2d7
 
-COCOAPODS: 1.9.2
+COCOAPODS: 1.9.3
