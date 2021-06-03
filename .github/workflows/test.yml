@@ -1,11 +1,13 @@
-name: Test 
+name: CI Test 
 
-on:
-  # Run for any commits to any branch
-  push:
+# Run for any commits to any branch
+on: [push, pull_request]
 
 env:
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  SONAR_PROJECT: ${{ secrets.SONAR_PROJECT }}
+  SONAR_URL: ${{ secrets.SONAR_URL }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   NODE_ENV: development
 
 jobs:
@@ -18,7 +20,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
+    # workaround to issue with checkout action which performs shallow checkout, this causes Sonarqube to fail to detect new code
+    - name: Fetch unshallow
+      run: git fetch --unshallow
     # This needs to match Node version in package.json
     - uses: actions/setup-node@v1
       with:
@@ -45,7 +49,6 @@ jobs:
 
     - name: Run unit tests
       run: yarn test:cover
-      
     - name: Setup Code Climate test reporter
       run: |
         pwd
@@ -53,3 +56,21 @@ jobs:
         chmod +x ./cc-test-reporter
         ./cc-test-reporter before-build
         ./cc-test-reporter after-build
+
+    - name: Setup sonar scanner
+      uses: warchant/setup-sonar-scanner@v3
+
+    - name: Run Sonarqube analysis
+      run: |
+        sonar-scanner \
+          -Dsonar.qualitygate.wait=true \
+          -Dsonar.host.url=$SONAR_URL \
+          -Dsonar.login=$SONAR_TOKEN \
+          -Dsonar.projectKey=$SONAR_PROJECT \
+          -Dsonar.scm.provider=git \
+          -Dsonar.java.binaries=/tmp \
+          -Dsonar.nodejs.executable=$(which node) \
+          -Dsonar.projectVersion=$(echo $GITHUB_SHA | cut -c1-8) \
+          -Dsonar.sources=. \
+          -Dsonar.projectBaseDir=. \
+          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info

@@ -13,6 +13,7 @@
 ```
 or alternatively using `brew cask install fastlane`
 
+
 * Appropiate `.env` file should be present in `android` folder as with a manual build
 
 ## General workflow
@@ -35,17 +36,11 @@ fastlane lane_name
 ### debug_*
 Builds and archive corresponding flavor for local use
 
-### release_qa_adhoc
-Builds Dev flavor and pushes to S3
+### release_*_s3
+Builds corresponding flavor and pushes to S3
 
-### release_qa_appstore
-Builds Dev flavor and pushes to Play Store
-
-### release_staging
-Builds Staging flavor and pushes to Play Store
-
-### release_production
-Builds Prod flavor and pushes to Play Store
+### release_*_appstore
+Builds corresponding flavor and pushes to Play Store
 
 
 ----

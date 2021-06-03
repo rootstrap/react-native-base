@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import validate from 'validate.js';
+import validate from '@rootstrap/validate';
 
 validate.validators.presence.options = { allowEmpty: false };
 

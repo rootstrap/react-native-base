@@ -221,6 +221,14 @@ platform :ios do
     publish_appstore(
       scheme: app_name+'-Staging'
     )
+    # Create release tag and commit - see https://docs.fastlane.tools/actions/add_git_tag/ to adapt params as needed
+    add_git_tag
+    push_to_git_remote(remote_branch: 'master')
+    # publish to appstore
+    publish_appstore(
+      scheme: app_name
+    )
+
   end
 
 end

@@ -1,16 +1,16 @@
 fastlane documentation
-================
+
 We use [Fastlane](https://docs.fastlane.tools/) for automating the iOS application build and submission
 
-# Installation
+## Installation and requirements
 
-Make sure you have the latest version of the Xcode command line tools installed:
+* Make sure you have the latest version of the Xcode command line tools installed:
 
 ```
 xcode-select --install
 ```
 
-Install _fastlane_ using
+* Install _fastlane_ using
 ```
 [sudo] gem install fastlane -NV
 ```
