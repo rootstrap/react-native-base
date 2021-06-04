@@ -22,11 +22,11 @@ env:
   APPLE_CERT: ios_distribution.cer
   APPLE_KEY: Certificates.p12
   APPLE_KEY_PASSWORD: ${{ secrets.APPLE_KEY_PASSWORD }}  
-  APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID}}
-  FASTLANE_ITC_TEAM_ID: ${{ secrets.APPLE_TEAM_ITC_ID}}
+  FASTLANE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID}}
   FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
-  FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}  
-  FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+  APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+  APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+  APP_STORE_CONNECT_API_KEY_FILE: ${{ secrets.APP_STORE_CONNECT_API_KEY_FILE }}
   # Android Release
   JSON_KEYFILE: api-rootstrap.json
   RELEASE_STORE_FILE: debug.keystore
@@ -115,5 +115,5 @@ jobs:
     # Submits build to Play Store
     # Sends Slack notification
     - name: Build with Fastlane
-      run: bundle exec fastlane release_dev_appstore
+      run: bundle exec fastlane release_develop
       working-directory: android
