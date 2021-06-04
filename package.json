@@ -21,8 +21,7 @@
     "bump": "./rnbv.js",
     "test": "jest",
     "test:cover": "yarn run test --coverage",
-    "prettier": "prettier --write './src/**/*.js'",
-    "postinstall": "patch-package"
+    "prettier": "prettier --write './src/**/*.js'"
   },
   "dependencies": {
     "@react-native-community/async-storage": "1.7.1",
@@ -74,10 +73,9 @@
     "metro-react-native-babel-preset": "0.59.0",
     "prettier": "1.18.2",
     "react-dom": "16.9.0",
-    "react-native-flipper": "^0.50.0",
-    "react-test-renderer": "16.11.0",
-    "redux-logger": "3.0.6",
-    "patch-package": "6.2.2"
+    "react-native-flipper": "^0.54.0",
+    "react-test-renderer": "16.13.1",
+    "redux-logger": "3.0.6"
   },
   "husky": {
     "hooks": {
