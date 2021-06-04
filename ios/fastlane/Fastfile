@@ -23,8 +23,6 @@ skip_docs
 # FASTLANE_PASSWORD                             : Your App Store Connect / Apple Developer Portal password, usually only needed if you also set the FASTLANE_USER variable
 # MATCH_PASSWORD                                : Password used for match encryption
 # FASTLANE_TEAM_ID                              : Developer Portal team id
-# FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD  : Application specific password for FASTLANE_USER, required to upload a binary to App Store Connect
-# FASTLANE_ITC_TEAM_ID                          : App Store Connect team id, required for binary submission
 # LANG and LC_ALL                               : These set up the locale your shell and all the commands you execute run at. These need to be set to UTF-8 to work correctly,for example en_US.UTF-8
 
 # CONFIG VARIABLES
@@ -33,8 +31,8 @@ app_name              = 'ReactNativeBase'
 team_id               = ENV["FASTLANE_TEAM_ID"]                             # The organization's team id in the Apple Developer portal
 cert                  = ENV["APPLE_CERT"]                                   # Local path to distribution certificate file to be used for signing the build 
 key                   = ENV["APPLE_KEY"]                                    # Private key (.p12 file) used for encrypting certificate
-key_pwd               = ""                                                  # Password to private key file
-appstore_key_id       = ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"]             # AppStore Connect API id and issuer
+key_pwd               = ENV["APPLE_KEY_PASSWORD"]                           # Password to private key file
+appstore_key_id       = ENV["APP_STORE_CONNECT_API_KEY_ID"]                 # AppStore Connect API id and issuer
 appstore_issuer_id    = ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"]          # 
 appstore_key_filepath = ENV["APP_STORE_CONNECT_API_KEY_FILE"]               # location of .p8 API key file
 # S3
