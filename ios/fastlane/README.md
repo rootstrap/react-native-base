@@ -26,7 +26,6 @@ or alternatively using `brew cask install fastlane`
 # Required environment variables
 
 * `FASTLANE_USER`                         : Your App Store Connect / Apple Developer Portal id used for managing certificates and submitting to the App Store
-* `FASTLANE_PASSWORD`                     : Your App Store Connect / Apple Developer Portal password, usually only needed if you also set the 
 * `FASTLANE_TEAM_ID`                      : Developer Portal team id
 * `LANG` and `LC_ALL`                     : These set up the locale your shell and all the commands you execute run at. These need to be set to UTF-8 to work correctly,for example en_US.UTF-8
 * `APPLE_CERT`                            : Local path to distribution certificate file to be used for signing the build 
