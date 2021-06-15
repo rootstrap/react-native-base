@@ -1,0 +1,25 @@
+# app_identifier("[[APP_IDENTIFIER]]") # The bundle identifier of your app
+# apple_id("[[FASTLANE_USER]]") # Your Apple email address
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
+
+for_platform :ios do
+
+  apple_id(ENV['FASTLANE_USER'])
+
+  team_id(ENV['FASTLANE_TEAM_ID'])
+
+  for_lane :build_develop do
+    app_identifier('com.rootstrap.rn-base.develop')
+  end
+
+  for_lane :release_develop do
+    app_identifier('com.rootstrap.rn-base.develop')
+  end
+
+  for_lane :share_develop do
+    app_identifier('com.rootstrap.rn-base.develop')
+  end
+
+end

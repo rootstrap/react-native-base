@@ -1,5 +1,4 @@
-# iOS Fastlane configuration
-============================
+fastlane documentation
 
 We use [Fastlane](https://docs.fastlane.tools/) for automating the iOS application build and submission
 
@@ -17,66 +16,55 @@ xcode-select --install
 ```
 or alternatively using `brew cask install fastlane`
 
-* Automatic code signing should be disabled in project
+# Project setup
 
-* Valid Mobile provisioning profiles should be associated to the corresponding target and placed in `~/Library/MobileDevice/Provisioning Profiles/`
+1. Generate certificate and profiles for each target
+2. [Disable automatic signing](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Procedures/Procedures.html#//apple_ref/doc/uid/TP40005929-CH4-SW7) for each target in XCode and associate to the right provisioning profile
+3. For uploading the builds to TestFlight, [AppStore Connect API](https://developer.apple.com/documentation/appstoreconnectapi/creating_api_keys_for_app_store_connect_api) keys are required
+4. For uploading the builds to S3, [AWS keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) with valid permissions are required
 
-* Appropiate `.env` file should be present in `ios` folder as with a manual build
+# Required environment variables
 
-* In addition the following environment variables should be available to Fastlane
+* `FASTLANE_USER`                         : Your App Store Connect / Apple Developer Portal id used for managing certificates and submitting to the App Store
+* `FASTLANE_TEAM_ID`                      : Developer Portal team id
+* `LANG` and `LC_ALL`                     : These set up the locale your shell and all the commands you execute run at. These need to be set to UTF-8 to work correctly,for example en_US.UTF-8
+* `APPLE_CERT`                            : Local path to distribution certificate file to be used for signing the build 
+* `APPLE_KEY`                             : Private key (.p12 file) used for encrypting certificate
+* `APP_STORE_CONNECT_API_KEY_KEY_ID`      : AppStore Connect API ID
+* `APP_STORE_CONNECT_API_KEY_ISSUER_ID`   : AppStore Connect issuer ID
+* `APP_STORE_CONNECT_API_KEY_FILE`        : location of .p8 API key file
+* `AWS_ACCESS_KEY_ID`                     : credentials for uploading files to S3
+* `AWS_SECRET_ACCESS_KEY`
+* `AWS_REGION`
+* `BUILDS_BUCKET`                         : S3 bucket to upload the build to
+* `SLACK_CHANNEL`                         : Slack webhook url for sending notifications upon completion  
+* `SLACK_URL`                             : Slack channel name
 
+# Available Actions
+
+## build_*
+* Runs `pod install`
+* If needed downloads and installs the corresponding distribution certificate and profile
+* Builds and archive corresponding target (.ipa file is kept locally)
 ```
-FASTLANE_USER                                   : Your App Store Connect / Apple Developer Portal id used for managing certificates and submitting to the App Store
-FASTLANE_PASSWORD                               : Password for FASTLANE_USER
-FASTLANE_TEAM_ID                                : The organization's team id in the Apple Developer portal
-FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD    : Application specific password generated for FASTLANE_USER, required to upload a binary to App Store Connect
-FASTLANE_ITC_TEAM_ID                            : App Store Connect team id, required for binary submission
-LANG,LC_ALL                                     : These set up the locale your shell and all the commands you execute run at. Set to `en_US.UTF-8`
-```
-
-## General workflow
-
-* Run `pod install`
-* Build and sign Archive file
-* Publish to TestFlight (including changelog) and commit a new release tag (production only)
-* (alternatively) Push adhoc build to S3 (requires `BUILD_BUCKET` as well as AWS credentials defined in environment vars)
-* (optionally) Send Slack notification to the webhook and channel specified by env vars `SLACK_URL` and `SLACK_CHANNEL`
-
-## Build signing
-
-These scripts perform the following actions:
-* Create temporary keychain
-* Import Certificate and Private key file as defined by env vars (APPLE_CERT,APPLE_KEY,APPLE_KEY_PASSWORD) into temporary keychain
-* Build and sign the archive with the proper certificate
-
-## TestFlight submission
-
-* Requires Apple Developer portal user defined by env var: `FASTLANE_USER`
-* Requires an Apple application-specific password for use of Fastlane defined by env var: `FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD`
-* First time execution on a new machine will require a prompt due to 2FA authentication. Subsequent runs should be able to run fully non-interactively
-
-## Actions breakdown
-
-Review and modify the Fastfile as appropiate for your project's targets and desired workflows.
-
-### ios debug_*
-Validates build for corresponding target 
-```
-fastlane ios debug_develop
+fastlane build_develop
 ```
 
-### ios release_*_s3
-Builds corresponding target for AdHoc distribution and pushes to S3 bucket specified by env vars -requires AdHoc provisioning profile associated to Certificate
+## share_*
+* Runs the build steps for the corresponding target
+* Gathers build version
+* Uploads the resulting .ipa to S3
+* Sends a Slack notification
 ```
-fastlane ios release_dev_s3
-```
-
-### ios release_*_appstore
-Builds corresponding target for for Appstore and pushes to TestFlight -requires AppStore provisioning profile associated to Certificate
-```
-fastlane ios release_dev_appstore
+fastlane share_develop
 ```
 
-----
-More information about fastlane can be found on [fastlane.tools](https://fastlane.tools).
-The documentation of fastlane can be found on [docs.fastlane.tools](https://docs.fastlane.tools).
+## release_*
+* Checks for the Git status
+* Runs the build steps for the corresponding target
+* Generates changelog
+* Pushes the resulting .ipa to TestFlight
+* Sends a Slack notification
+```
+fastlane release_develop
+```

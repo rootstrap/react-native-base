@@ -403,7 +403,9 @@
 						LastSwiftMigration = 1150;
 					};
 					FE002B0B22EA13BF0027B199 = {
+						DevelopmentTeam = WNU857N39T;
 						LastSwiftMigration = 1150;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -878,8 +880,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = ReactNativeBase/Info.plist;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
 				INFOPLIST_PREPROCESS = NO;
@@ -1242,8 +1244,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = WNU857N39T;
 				INFOPLIST_FILE = "$(SRCROOT)/ReactNativeBase-Develop-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -1258,8 +1263,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.ReactNativeBase-Develop";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.rn-base.develop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "WNU857N39T.com.rootstrap.rn-base.develop.adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Develop-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1274,7 +1280,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNU857N39T;
 				INFOPLIST_FILE = "$(SRCROOT)/ReactNativeBase-Develop-Info.plist";
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "";
 				INFOPLIST_PREFIX_HEADER = "";
@@ -1289,8 +1298,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.ReactNativeBase-Develop";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.rn-base.develop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "WNU857N39T.com.rootstrap.rn-base.develop.adhoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "ReactNativeBase-Develop-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

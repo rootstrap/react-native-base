@@ -7,10 +7,12 @@
 
 * Ensure proper version of Android SDK command line tools is installed
 
-* Run bundler to install Fastlane and required plugins
+* Install _fastlane_ using
 ```
-[sudo] bundle update
+[sudo] gem install fastlane -NV
 ```
+or alternatively using `brew cask install fastlane`
+
 
 * Appropiate `.env` file should be present in `android` folder as with a manual build
 

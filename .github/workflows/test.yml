@@ -49,7 +49,6 @@ jobs:
 
     - name: Run unit tests
       run: yarn test:cover
-
     - name: Setup Code Climate test reporter
       run: |
         pwd

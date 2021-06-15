@@ -48,7 +48,9 @@ end
 
 lane :publish_adhoc do |options|
   # get version number
-  version = android_get_version_name+"."+android_get_version_code
+  version = get_version_name(
+    gradle_file_path: './app/build.gradle'
+  ).to_s
   # get branch name
   branch = git_branch()
   # move .apk
