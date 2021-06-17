@@ -6,6 +6,6 @@ module.exports = {
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup-tests.js'],
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*)|bs-platform|@rootstrap/redux-tools)',
+    'node_modules/(?!(jest-)?(@react-native|react-native)|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*)|bs-platform|@rootstrap/redux-tools)',
   ],
 };
