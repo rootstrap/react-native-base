@@ -1,8 +1,9 @@
 import humps from 'humps';
 import { Store } from 'redux';
 import { updateSession, logout } from '../actions/userActions';
+import Config from 'react-native-config';
 
-const ACCESS_TOKEN = 'access-token';
+const ACCESS_TOKEN = 'token';
 const UID = 'uid';
 const CLIENT = 'client';
 
@@ -19,17 +20,17 @@ export default (
     };
   },
 ) => {
-  client.interceptors.request.use((config: { headers: any; data: any }) => {
+  client.interceptors.request.use((config: { headers: any; data: any; params: any }) => {
     const { info } = store.getState().session;
     const { data, headers } = config;
     if (info) {
-      const { token, client, uid } = info;
+      const { client, uid } = info;
       config.headers = {
         ...headers,
-        [ACCESS_TOKEN]: token,
         client,
         uid,
       };
+      config.params = { [ACCESS_TOKEN]: Config.IEX_TOKEN };
     }
     config.data = humps.decamelizeKeys(data);
     return config;
@@ -41,7 +42,6 @@ export default (
       const token = headers[ACCESS_TOKEN];
       if (token) {
         const session = {
-          token,
           uid: headers[UID],
           client: headers[CLIENT],
         };

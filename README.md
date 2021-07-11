@@ -260,3 +260,20 @@ Or add unavilable type definitions placeholder to `./custom-types.d.ts` file.
 
 [todo's list](./todo.md)
 
+
+### IEX Cloud API
+
+1. Sign up on - https://iexcloud.io/cloud-login?r=https%3A%2F%2Fiexcloud.io%2Fconsole%2F#/
+2. Create an api token and add to your CI environment vars.
+3. `services/stocksService/` handles servicing the requests to the IEX Cloud API.
+4. Requests follow the following format:
+
+```
+https: //cloud.iexapis.com/stable/stock/symbol/quote? token = YOUR_KEY`
+
+```
+
+5. Reference projects: https://github.com/diogobh93/IEX-Cloud
+
+
+
