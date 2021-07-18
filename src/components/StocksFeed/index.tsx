@@ -11,7 +11,7 @@ interface StocksFeedProps {}
 
 const StocksFeed = (props: StocksFeedProps) => {
   const dispatch = useDispatch();
-  const stocksFeedRequest = useCallback(() => dispatch(getStockFeed()), [dispatch]);
+  const stocksFeedRequest = useCallback(() => dispatch(getStockFeed('FB')), [dispatch]);
 
   const { stockData } = useStockFeedState();
 

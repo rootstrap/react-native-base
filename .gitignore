@@ -64,6 +64,7 @@ buck-out/
 .env
 .env.staging
 .env.prod
+.env.dev
 
 # Coverage
 coverage/
