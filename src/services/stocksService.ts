@@ -1,4 +1,6 @@
 import httpClient from '../httpClient';
+import Config from 'react-native-config';
+
 
 /**
  * Reference Links:
@@ -7,7 +9,7 @@ import httpClient from '../httpClient';
  */
 class UserService {
   getStockSymbolData(symbol: string) {
-    return httpClient.get(`/stock/${symbol}/quote`);
+    return httpClient.get(`/stock/${symbol?.toLocaleLowerCase()}/quote?token=${Config.IEX_TOKEN}`);
   }
 }
 

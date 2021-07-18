@@ -256,6 +256,17 @@ npx typesync [path/to/package.json] [--dry]
 Or add unavilable type definitions placeholder to `./custom-types.d.ts` file.
 
 
+Using Custom react debugger
+
+> The following debugger can be installed and associated env var set to enable
+better debugging and netqork request tracking. See: https://github.com/jhen0409/react-native-debugger/blob/master/docs/getting-started.md
+
+
+```bash
+$ REACT_DEBUGGER="open -g 'rndebugger://set-debugger-loc?port=8001' ||" react-native start
+
+```
+
 ### TODOS
 
 [todo's list](./todo.md)

@@ -30,7 +30,6 @@ export default (
         client,
         uid,
       };
-      config.params = { [ACCESS_TOKEN]: Config.IEX_TOKEN };
     }
     config.data = humps.decamelizeKeys(data);
     return config;
