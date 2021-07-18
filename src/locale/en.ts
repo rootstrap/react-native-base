@@ -16,6 +16,10 @@ export default {
     title: 'Home Screen',
   },
 
+  STOCKS_FEED: {
+    fetchStocks: 'Fetch Stocks',
+  },
+
   SIGN_UP: {
     title: 'Sign up',
     email: 'Email',

@@ -11,6 +11,10 @@ export default {
     title: 'Pagina Principal',
   },
 
+  STOCKS_FEED: {
+    fetchStocks: 'Fetch Stocks',
+  },
+
   SIGN_UP: {
     title: 'Registro',
     email: 'Email',

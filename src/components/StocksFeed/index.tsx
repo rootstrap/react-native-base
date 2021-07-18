@@ -1,10 +1,20 @@
-import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { FlatGrid } from 'react-native-super-grid';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import strings from 'locale';
+
+import { getStockFeed } from 'actions/stocksFeedActions';
+import useStockFeedState from 'hooks/useStockFeedState';
 
 interface StocksFeedProps {}
 
 const StocksFeed = (props: StocksFeedProps) => {
+  const dispatch = useDispatch();
+  const stocksFeedRequest = useCallback(() => dispatch(getStockFeed()), [dispatch]);
+
+  const { stockData } = useStockFeedState();
+
   const [items, setItems] = React.useState([
     { name: 'TURQUOISE', code: '#1abc9c' },
     { name: 'EMERALD', code: '#2ecc71' },
@@ -42,6 +52,8 @@ const StocksFeed = (props: StocksFeedProps) => {
           <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
             <Text style={styles.itemName}>{item.name}</Text>
             <Text style={styles.itemCode}>{item.code}</Text>
+            <Button onPress={stocksFeedRequest} title={strings.STOCKS_FEED.fetchStocks}></Button>
+            <Text>{JSON.stringify(stockData)}</Text>
           </View>
         )}
       />
