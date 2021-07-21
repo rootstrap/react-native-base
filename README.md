@@ -270,3 +270,23 @@ The default configuration is the following:
 - There's a defined `whitelist` where all reducers that want to be persisted must be declared.
 - The `storage` engine is `AsyncStorage` but you can change it if needed, for example: https://github.com/CodingZeal/redux-persist-sensitive-storage if you need keychan storage on iOS.
 - If you ever need to set up migrations to keep your reducers up to date, please check [this link](https://github.com/rt2zz/redux-persist#migrations).
+
+### Adding a Splash Screen
+
+It was used the package [react-native-splash-screen](https://github.com/crazycodeboy/react-native-splash-screen) to add the splash screen functionality with placeholder images.
+
+#### Updating the images
+
+For android the assets can be found in:
+
+```
+android/app/src/main/res
+```
+
+And iOs in:
+
+```
+ios/ReactNativeBase/Images.xcassets/LaunchImage.launchimage
+```
+
+The images must be replaced with the correct resolutions and sizes. This can be accomplished using the tool [generator-rn-toolbox](https://github.com/bamlab/generator-rn-toolbox/blob/master/generators/assets/README.md).
