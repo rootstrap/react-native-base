@@ -259,6 +259,7 @@ https://github.com/rootstrap/react-native-base/issues/40
 - [lodash](https://github.com/lodash/lodash)
 - [Jest](https://github.com/facebook/jest)
 - [Enzyme](https://github.com/airbnb/enzyme)
+- [React-Splash-Screen](https://github.com/crazycodeboy/react-native-splash-screen)
 
 ### Redux-Persist configuration
 
