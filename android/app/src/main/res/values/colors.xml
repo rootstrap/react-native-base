@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- White background for splash screen -->
+    <color name="bootsplash_background">#000000</color>
+</resources>

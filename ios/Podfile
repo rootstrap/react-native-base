@@ -63,7 +63,12 @@ target 'ReactNativeBase-tvOS' do
   
 end
 
-use_flipper!
+# Flipper doesn't build with Xcode 12.5. See: https://github.com/facebook/flipper/issues/2215
+# Temporary solution:
+# `use_flipper!({ 'Flipper-Folly' => '2.5.3', 'Flipper' => '0.75.1', 'Flipper-RSocket' => '1.3.1' })`
+# instead of `use_flipper!`
+
+use_flipper!({'Flipper' => '0.75.1', 'Flipper-Folly' => '2.5.3', 'Flipper-RSocket' => '1.3.1'})
 
 post_install do |installer|
   flipper_post_install(installer)

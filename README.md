@@ -259,6 +259,7 @@ https://github.com/rootstrap/react-native-base/issues/40
 - [lodash](https://github.com/lodash/lodash)
 - [Jest](https://github.com/facebook/jest)
 - [Enzyme](https://github.com/airbnb/enzyme)
+- [React-Native-Bootsplash](https://github.com/zoontek/react-native-bootsplash)
 
 ### Redux-Persist configuration
 
@@ -269,3 +270,11 @@ The default configuration is the following:
 - There's a defined `whitelist` where all reducers that want to be persisted must be declared.
 - The `storage` engine is `AsyncStorage` but you can change it if needed, for example: https://github.com/CodingZeal/redux-persist-sensitive-storage if you need keychan storage on iOS.
 - If you ever need to set up migrations to keep your reducers up to date, please check [this link](https://github.com/rt2zz/redux-persist#migrations).
+
+### Adding a Splash Screen
+
+The package used to add the splash screen functionality was [react-native-bootsplash](https://github.com/zoontek/react-native-bootsplash) and uses placeholder images.
+
+#### Updating the images
+
+The images must be replaced with the correct resolutions and sizes. This can be accomplished following [this guide](https://github.com/zoontek/react-native-bootsplash#assets-generation).
