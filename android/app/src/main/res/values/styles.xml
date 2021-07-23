@@ -5,4 +5,7 @@
         <item name="android:windowDisablePreview">true</item>
         <!-- Customize your theme here. -->
     </style>
+        <style name="BootTheme" parent="AppTheme">
+        <item name="android:background">@drawable/bootsplash</item>
+    </style>
 </resources>

@@ -7,7 +7,7 @@ import applyDefaultInterceptors from 'httpClient/applyDefaultInterceptors';
 
 import Navigation from 'navigators';
 import configureStore from 'store/configureStore';
-import SplashScreen from 'react-native-splash-screen';
+import RNBootSplash from 'react-native-bootsplash';
 
 const { store, persistor } = configureStore({});
 
@@ -16,8 +16,7 @@ applyDefaultInterceptors(store, httpClient);
 const App = () => {
   useEffect(() => {
     setTimeout(() => {
-      // Timeout to avoid a white screen after the splash screen is shown
-      SplashScreen.hide();
+      RNBootSplash.hide();
     }, 100);
   }, []);
 

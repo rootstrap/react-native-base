@@ -259,7 +259,7 @@ https://github.com/rootstrap/react-native-base/issues/40
 - [lodash](https://github.com/lodash/lodash)
 - [Jest](https://github.com/facebook/jest)
 - [Enzyme](https://github.com/airbnb/enzyme)
-- [React-Native-Splash-Screen](https://github.com/crazycodeboy/react-native-splash-screen)
+- [React-Native-Bootsplash](https://github.com/zoontek/react-native-bootsplash)
 
 ### Redux-Persist configuration
 
@@ -273,20 +273,8 @@ The default configuration is the following:
 
 ### Adding a Splash Screen
 
-The package used to add the splash screen functionality was [react-native-splash-screen](https://github.com/crazycodeboy/react-native-splash-screen) and uses placeholder images.
+The package used to add the splash screen functionality was [react-native-bootsplash](https://github.com/zoontek/react-native-bootsplash) and uses placeholder images.
 
 #### Updating the images
 
-For android the assets can be found in:
-
-```
-android/app/src/main/res
-```
-
-And for iOs in:
-
-```
-ios/ReactNativeBase/Images.xcassets/LaunchImage.launchimage
-```
-
-The images must be replaced with the correct resolutions and sizes. This can be accomplished using the tool [generator-rn-toolbox](https://github.com/bamlab/generator-rn-toolbox/blob/master/generators/assets/README.md).
+The images must be replaced with the correct resolutions and sizes. This can be accomplished following [this guide](https://github.com/zoontek/react-native-bootsplash#assets-generation).

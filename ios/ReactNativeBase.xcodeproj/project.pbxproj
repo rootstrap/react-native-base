@@ -16,9 +16,9 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ReactNativeBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ReactNativeBaseTests.m */; };
 		361D1608F8727C66FB0DE8CB /* libPods-ReactNativeBase-ReactNativeBaseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AC18E667F4EDFD330B4527 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */; };
-		5537A5DC24376A1800F9B9FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */; };
-		5537A5DD24376A1800F9B9FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */; };
-		5537A5DE24376A1800F9B9FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */; };
+		5537A5DC24376A1800F9B9FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
+		5537A5DD24376A1800F9B9FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
+		5537A5DE24376A1800F9B9FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
 		9B0243531F270CBB6E36495A /* libPods-ReactNativeBase-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FFF1A0A0D79A52FA343994E /* libPods-ReactNativeBase-tvOSTests.a */; };
 		9CEB73B58FB152FDD74F0720 /* libPods-ReactNativeBase-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44697982F9284E7E43F44305 /* libPods-ReactNativeBase-tvOS.a */; };
 		BBCDE83BA965486201CF31AB /* libPods-ReactNativeBase-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1AB4DBFE1058BF55733D8B /* libPods-ReactNativeBase-Develop.a */; };
@@ -71,7 +71,7 @@
 		44697982F9284E7E43F44305 /* libPods-ReactNativeBase-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AA7982FEEB6DA2C52ACBD5E /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		5194B9636EC5B962F89DA5B8 /* libPods-ReactNativeBase-Staging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-Staging.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BootSplash.storyboard; sourceTree = "<group>"; };
 		5FFF1A0A0D79A52FA343994E /* libPods-ReactNativeBase-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83ACE6892685D8C6AAE6DA9C /* Pods-ReactNativeBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase.release.xcconfig"; sourceTree = "<group>"; };
 		8BE8208158E18B7F778E5A71 /* Pods-ReactNativeBase-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,7 +172,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				5537A5DB24376A1800F9B9FE /* LaunchScreen.storyboard */,
+				5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */,
 				2D7C75E124C2820E00CBB15B /* ReactNativeBase-Bridging-Header.h */,
 				2D7C75E224C2820E00CBB15B /* ReactNativeBase-Staging-Bridging-Header.h */,
 				2D7C75E324C2820E00CBB15B /* ReactNativeBase-Develop-Bridging-Header.h */,
@@ -461,7 +461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				5537A5DC24376A1800F9B9FE /* LaunchScreen.storyboard in Resources */,
+				5537A5DC24376A1800F9B9FE /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,7 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE002B0322E9DCD20027B199 /* Images.xcassets in Resources */,
-				5537A5DD24376A1800F9B9FE /* LaunchScreen.storyboard in Resources */,
+				5537A5DD24376A1800F9B9FE /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE002B1422EA13BF0027B199 /* Images.xcassets in Resources */,
-				5537A5DE24376A1800F9B9FE /* LaunchScreen.storyboard in Resources */,
+				5537A5DE24376A1800F9B9FE /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1008,7 +1008,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = ReactNativeBaseTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1032,7 +1032,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = ReactNativeBaseTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = (
 					"$(inherited)",
@@ -1055,7 +1055,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1092,7 +1092,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1126,7 +1126,7 @@
 			baseConfigurationReference = C759D31818F4F72821F8604D /* Pods-ReactNativeBase-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -1158,7 +1158,7 @@
 			baseConfigurationReference = 8BE8208158E18B7F778E5A71 /* Pods-ReactNativeBase-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -1372,7 +1372,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -1405,7 +1405,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = "ReactNativeBase-Staging-Info.plist";
@@ -1436,7 +1436,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -1473,7 +1473,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;

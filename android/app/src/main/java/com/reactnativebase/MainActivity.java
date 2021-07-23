@@ -5,16 +5,14 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
-import org.devio.rn.splashscreen.SplashScreen;
-
+import com.zoontek.rnbootsplash.RNBootSplash;
 
 public class MainActivity extends ReactActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-      // Second parameter should be true if status bar is expecte to be hidden when splash screen is active
-      SplashScreen.show(this, false);
-      super.onCreate(savedInstanceState);
+    super.onCreate(savedInstanceState);
+    RNBootSplash.init(R.drawable.bootsplash, MainActivity.this); 
   }
 
   @Override
