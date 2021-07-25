@@ -9,7 +9,6 @@ import memoize from "fast-memoize";
 import { getStockFeed } from 'actions/stocksFeedActions';
 
 import useStockFeedState from 'hooks/useStockFeedState';
-import { symbol } from 'prop-types';
 
 interface StocksFeedProps {}
 
