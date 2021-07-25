@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { FlatGrid } from 'react-native-super-grid';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import strings from 'locale';
+import memoize from "fast-memoize";
+
 
 import { getStockFeed } from 'actions/stocksFeedActions';
 
@@ -12,7 +14,10 @@ interface StocksFeedProps {}
 
 const StocksFeed = (props: StocksFeedProps) => {
   const dispatch = useDispatch();
-  const stocksFeedRequest = useCallback(() => dispatch(getStockFeed('fb')), [dispatch]);
+  const stocksFeedRequest = React.useCallback(
+    memoize((symbol) => () => dispatch(getStockFeed(symbol))),
+    []
+  );
 
   const { stockData } = useStockFeedState();
 
@@ -39,7 +44,7 @@ const StocksFeed = (props: StocksFeedProps) => {
         renderItem={({ item }) => (
           <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
             <Text style={styles.itemName}>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
-            <Button onPress={stocksFeedRequest} title={strings.STOCKS_FEED.fetchStocks}></Button>
+            <Button onPress={stocksFeedRequest(item.symbol)} title={strings.STOCKS_FEED.fetchStocks}></Button>
             <Text>{`52 Week high: ${stockData?.payload?.week52High}`}</Text>
             <Text>{`52 Week low: ${stockData?.payload?.week52Low}`}</Text>
           </View>
