@@ -9,7 +9,7 @@ import Config from 'react-native-config';
  */
 class UserService {
   getStockSymbolData(symbol: string) {
-    return httpClient.get(`/stock/${symbol?.toLocaleLowerCase()}/quote?token=${Config.IEX_TOKEN}`);
+    return httpClient.get(`/stock/${symbol?.toLocaleLowerCase()}/quote`);
   }
 }
 
