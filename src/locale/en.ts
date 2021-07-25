@@ -13,11 +13,11 @@ export default {
 
   MAIN_SCREEN: {
     logout: 'Sign out',
-    title: 'Home Screen',
+    title: 'Stocks Feed',
   },
 
   STOCKS_FEED: {
-    fetchStocks: 'Fetch Stocks',
+    fetchStocks: 'Refresh',
   },
 
   SIGN_UP: {
