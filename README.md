@@ -263,7 +263,7 @@ better debugging and netqork request tracking. See: https://github.com/jhen0409/
 
 
 ```bash
-$ REACT_DEBUGGER="open -g 'rndebugger://set-debugger-loc?port=8001' ||" react-native start
+open "rndebugger://set-debugger-loc?host=localhost&port=8081"
 
 ```
 
