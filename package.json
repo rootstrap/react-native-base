@@ -41,6 +41,7 @@
     "@types/redux-logger": "^3.0.8",
     "axios": "^0.19.2",
     "eslint-plugin-prettier": "3.1.0",
+    "fast-memoize": "^2.5.2",
     "humps": "2.0.1",
     "immer": "5.0.0",
     "install": "^0.13.0",
