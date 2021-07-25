@@ -9,6 +9,7 @@ import memoize from "fast-memoize";
 import { getStockFeed } from 'actions/stocksFeedActions';
 
 import useStockFeedState from 'hooks/useStockFeedState';
+import { symbol } from 'prop-types';
 
 interface StocksFeedProps {}
 
@@ -19,7 +20,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     []
   );
 
-  const { stockData } = useStockFeedState();
+  const { data } = useStockFeedState();
 
   // todo: provide symbol list or provide defaul view
   // todo: of popular blue chip stocks
@@ -34,6 +35,10 @@ const StocksFeed = (props: StocksFeedProps) => {
     { symbol: 'msft', code: '#2980b9' },
   ]);
 
+  const getDataBySymbolKey = (data: any[], symbol: string) => { 
+    return data.find(item => item.id.toLocaleLowerCase()  === symbol.toLocaleLowerCase())?.metrics;
+  };
+
   return (
     <View>
       <FlatGrid
@@ -45,8 +50,8 @@ const StocksFeed = (props: StocksFeedProps) => {
           <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
             <Text style={styles.itemName}>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
             <Button onPress={stocksFeedRequest(item.symbol)} title={strings.STOCKS_FEED.fetchStocks}></Button>
-            <Text>{`52 Week high: ${stockData?.payload?.week52High}`}</Text>
-            <Text>{`52 Week low: ${stockData?.payload?.week52Low}`}</Text>
+            <Text>{`52 Week high: ${getDataBySymbolKey(data, item.symbol)?.week52High || ""}`}</Text>
+            <Text>{`52 Week low: ${getDataBySymbolKey(data, item.symbol)?.week52Low || ""}`}</Text>
           </View>
         )}
       />
