@@ -3,7 +3,7 @@ import { RootState } from '../reducers';
 
 const useStockFeedState = () =>
   useSelector((state: RootState) => ({
-    stockData: (state as any).session.user || {},
+    stockData: (state as any).stockFeed.data || {},
   }));
 
 export default useStockFeedState;
