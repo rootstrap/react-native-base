@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FlatGrid } from 'react-native-super-grid';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import strings from 'locale';
-import memoize from "fast-memoize";
-
-
+import memoize from 'fast-memoize';
+import MultiSelect from 'react-native-multiple-select';
+import { Button, Icon, Overlay } from 'react-native-elements';
 import { getStockFeed } from 'actions/stocksFeedActions';
 
 import useStockFeedState from 'hooks/useStockFeedState';
@@ -16,13 +16,11 @@ const StocksFeed = (props: StocksFeedProps) => {
   const dispatch = useDispatch();
   const stocksFeedRequest = React.useCallback(
     memoize((symbol) => () => dispatch(getStockFeed(symbol))),
-    []
+    [],
   );
 
-  const { data } = useStockFeedState();
+  const [settingsVisible, setSettingsVisible] = useState(false);
 
-  // todo: provide symbol list or provide defaul view
-  // todo: of popular blue chip stocks
   const [items, setItems] = React.useState([
     { symbol: 'fb', code: '#1abc9c' },
     { symbol: 'aapl', code: '#2ecc71' },
@@ -34,8 +32,41 @@ const StocksFeed = (props: StocksFeedProps) => {
     { symbol: 'msft', code: '#2980b9' },
   ]);
 
-  const getDataBySymbolKey = (data: any[], symbol: string) => { 
-    return data.find(item => item.id.toLocaleLowerCase()  === symbol.toLocaleLowerCase())?.metrics;
+  const [settingsOptions, setSettingsOptions] = React.useState([{ id: 0, name: 'none' }]);
+
+  let settingsList: Object[] = [];
+
+  useEffect(() => {
+    let mappedOptions = data?.length
+      ? Object.keys(data[0]?.metrics).map((key, index) => ({ id: `${index}-${key}`, name: key }))
+      : [];
+    // setSettingsOptions(mappedOptions);
+    if (!settingsList?.length) {
+      settingsList = mappedOptions;
+      console.log(settingsList);
+    }
+  }, [settingsList]);
+
+  const { data } = useStockFeedState();
+
+  let selectedSymbol: string;
+  let dataKeysBySymbolMap = {};
+
+  const getDataBySymbolKey = (data: any[], symbol: string) => {
+    return data.find((item) => item.id.toLocaleLowerCase() === symbol.toLocaleLowerCase())?.metrics;
+  };
+
+  const toggleSettings = (symbol?: string) => {
+    if (symbol) {
+      selectedSymbol = symbol;
+    }
+    setSettingsVisible(!settingsVisible);
+  };
+
+  const setSelectedSymbolConfig = (config: any) => {
+    if (selectedSymbol) {
+      dataKeysBySymbolMap[selectedSymbol] = config;
+    }
   };
 
   return (
@@ -48,12 +79,58 @@ const StocksFeed = (props: StocksFeedProps) => {
         renderItem={({ item }) => (
           <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
             <Text style={styles.itemName}>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
-            <Button onPress={stocksFeedRequest(item.symbol)} title={strings.STOCKS_FEED.fetchStocks}></Button>
-            <Text>{`52 Week high: ${getDataBySymbolKey(data, item.symbol)?.week52High || ""}`}</Text>
-            <Text>{`52 Week low: ${getDataBySymbolKey(data, item.symbol)?.week52Low || ""}`}</Text>
+            <Button
+              icon={{
+                name: 'refresh',
+                size: 15,
+                color: 'white',
+              }}
+              onPress={stocksFeedRequest(item.symbol)}
+              raised={true}
+              type="clear"></Button>
+            {/* todo: display data keys based on dataKeysBySymbolMap[symbol] */}
+            <Text>{`52 Week high: ${
+              getDataBySymbolKey(data, item.symbol)?.week52High || ''
+            }`}</Text>
+            <Text>{`52 Week low: ${getDataBySymbolKey(data, item.symbol)?.week52Low || ''}`}</Text>
+            <Icon
+              name="gear"
+              type="font-awesome"
+              color="white"
+              onPress={() => toggleSettings(item.symbol)}
+            />
           </View>
         )}
       />
+      <Overlay
+        isVisible={settingsVisible}
+        fullScreen={true}
+        style={[styles.overlayContainer]}
+        onBackdropPress={toggleSettings}>
+        <View style={[styles.overlayContainer]}>
+          <MultiSelect
+            hideTags
+            items={settingsList}
+            uniqueKey="id"
+            onSelectedItemsChange={setSelectedSymbolConfig}
+            //selectedItems={selectedDataKeys}
+            selectText="Pick Labels"
+            searchInputPlaceholderText="Search labels..."
+            altFontFamily="ProximaNova-Light"
+            tagRemoveIconColor="#CCC"
+            tagBorderColor="#CCC"
+            tagTextColor="#CCC"
+            selectedItemTextColor="#CCC"
+            selectedItemIconColor="#CCC"
+            itemTextColor="#000"
+            displayKey="name"
+            searchInputStyle={{ color: '#CCC' }}
+            submitButtonColor="#CCC"
+            submitButtonText="Submit"
+          />
+          <Text>{JSON.stringify(settingsList)}</Text>
+        </View>
+      </Overlay>
     </View>
   );
 };
@@ -64,6 +141,10 @@ const styles = StyleSheet.create({
   gridView: {
     marginTop: 10,
     flex: 1,
+  },
+  overlayContainer: {
+    flex: 0.9,
+    alignSelf: 'stretch',
   },
   itemContainer: {
     justifyContent: 'flex-start',
