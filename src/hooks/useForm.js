@@ -38,11 +38,11 @@ const useForm = (
 
   const runValidations = useCallback(
     (newValues, key) => {
-      const validations = validator(newValues) || {};
+      const result = validator(newValues) || {};
       if (!validateAll && key) {
-        setErrors({ ...errors, [key]: validations[key] });
+        setErrors({ ...errors, [key]: result[key] });
       } else {
-        setErrors(validator(newValues));
+        setErrors(result);
       }
     },
     [validator, errors, setErrors, validateAll],
