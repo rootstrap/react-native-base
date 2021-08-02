@@ -6,7 +6,7 @@ import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
 import { getStockFeed, getStockConfig } from 'actions/stocksFeedActions';
-
+import Select2 from 'react-native-select-two';
 import { useStockFeedState, useStockConfigState } from 'hooks/useStockFeedState';
 
 interface StocksFeedProps {}
@@ -55,6 +55,12 @@ const StocksFeed = (props: StocksFeedProps) => {
     };
 
     const setSelectedSymbolConfig = (config: any) => {
+        if (selectedSymbol) {
+            dataConfigBySymbolMap[selectedSymbol] = config;
+        }
+    };
+
+    const removeSelectedSymbolConfig = (config: any) => {
         if (selectedSymbol) {
             dataConfigBySymbolMap[selectedSymbol] = config;
         }
@@ -109,26 +115,19 @@ const StocksFeed = (props: StocksFeedProps) => {
                 style={[styles.overlayContainer]}
                 onBackdropPress={toggleSettings}>
                 <View style={[styles.overlayContainer]}>
-                    <MultiSelect
-                        hideTags
-                        items={configLabels}
-                        uniqueKey="id"
-                        onSelectedItemsChange={setSelectedSymbolConfig}
-                        //selectedItems={selectedDataKeys}
-                        selectText="Pick Labels"
-                        searchInputPlaceholderText="Search labels..."
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        itemTextColor="#000"
-                        displayKey="name"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Submit"
-                    />
+                    {/* <Select2
+                        isSelectSingle={false}
+                        colorTheme="blue"
+                        popupTitle="Select labels"
+                        title="Select labels"
+                        data={configLabels}
+                        onSelect={(data: Object) => {
+                            setSelectedSymbolConfig({ data });
+                        }}
+                        onRemoveItem={(data: Object) => {
+                            removeSelectedSymbolConfig({ data });
+                        }}
+                    /> */}
                     <View style={[styles.overlayDismissContainer]}>
                         <TouchableOpacity
                             onPressOut={() => toggleSettings}
