@@ -18,8 +18,8 @@ export const getStockConfig = createThunk('GET_STOCKS_CONFIG', async () => {
         const { data } = await stocksService.getStockSymbolData(DEFAULT_SYMBOL);
         // Return property names from request payload
         // used in displaying available labels on stock tile
-        const config = data?.length
-            ? Object.keys(data[0]?.metrics).map((key, index) => ({
+        const config = data
+            ? Object.keys(data).map((key, index) => ({
                   id: `${index}-${key}`,
                   name: key,
               }))

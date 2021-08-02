@@ -1,9 +1,10 @@
 import { createReducer } from '@rootstrap/redux-tools';
-import { getStocksFeedSuccess } from '../actions/stocksFeedActions';
+import { getStocksFeedSuccess, getStocksConfigSuccess } from '../actions/stocksFeedActions';
 import update from 'immutability-helper';
 
 const initialState = {
     data: [],
+    config: [],
 };
 
 interface FeedItem {
@@ -12,6 +13,7 @@ interface FeedItem {
 }
 interface StocksFeed {
     data: FeedItem[];
+    config: Object[];
 }
 
 // *Success type actions handle updating state from request payload
@@ -32,6 +34,14 @@ const handleGetStocksFeedSuccess = (
     }
 };
 
+const handleGetStocksConfigSuccess = (
+    state: StocksFeed,
+    data: { payload: { [key: string]: string }[] },
+) => {
+    state.config = [...data?.payload];
+};
+
 export default createReducer(initialState, {
     [getStocksFeedSuccess]: handleGetStocksFeedSuccess,
+    [getStocksConfigSuccess]: handleGetStocksConfigSuccess,
 });

@@ -19,7 +19,9 @@ const StocksFeed = (props: StocksFeedProps) => {
     );
 
     // Called 'once' on init to get stock config labels
-    useEffect(() => dispatch(getStockConfig()), []);
+    useEffect(() => {
+        dispatch(getStockConfig());
+    }, [dispatch]);
 
     const [settingsVisible, setSettingsVisible] = useState(false);
     const { data } = useStockFeedState();
@@ -41,7 +43,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     let dataConfigBySymbolMap = {};
 
     const getDataBySymbolKey = (data: any[], symbol: string) => {
-        return data.find((item) => item.id.toLocaleLowerCase() === symbol.toLocaleLowerCase())
+        return data.find((item) => item.id?.toLocaleLowerCase() === symbol?.toLocaleLowerCase())
             ?.metrics;
     };
 
@@ -127,7 +129,6 @@ const StocksFeed = (props: StocksFeedProps) => {
                         submitButtonColor="#CCC"
                         submitButtonText="Submit"
                     />
-                    <Text>{JSON.stringify(configLabels)}</Text>
                     <View style={[styles.overlayDismissContainer]}>
                         <TouchableOpacity
                             onPressOut={() => toggleSettings}
