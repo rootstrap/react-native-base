@@ -1,9 +1,14 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
 
-const useStockFeedState = () =>
-  useSelector((state: RootState) => ({
-    data: (state as any).stockFeed.data || {},
-  }));
+export const useStockFeedState = () =>
+    useSelector((state: RootState) => ({
+        data: (state as any).stockFeed.data || {},
+    }));
 
-export default useStockFeedState;
+export const useStockConfigState = () =>
+    useSelector((state: RootState) => ({
+        configLabels: (state as any).stockFeed.config || {},
+    }));
+
+export default { useStockFeedState, useStockConfigState };

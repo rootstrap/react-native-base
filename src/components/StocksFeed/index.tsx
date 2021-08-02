@@ -1,25 +1,29 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FlatGrid } from 'react-native-super-grid';
-import { View, Text, StyleSheet } from 'react-native';
-import strings from 'locale';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
-import { getStockFeed } from 'actions/stocksFeedActions';
+import { getStockFeed, getStockConfig } from 'actions/stocksFeedActions';
 
-import useStockFeedState from 'hooks/useStockFeedState';
+import { useStockFeedState, useStockConfigState } from 'hooks/useStockFeedState';
 
 interface StocksFeedProps {}
 
 const StocksFeed = (props: StocksFeedProps) => {
     const dispatch = useDispatch();
-    const stocksFeedRequest = React.useCallback(
+    const stocksFeedRequest = useCallback(
         memoize((symbol) => () => dispatch(getStockFeed(symbol))),
         [],
     );
 
+    // Called 'once' on init to get stock config labels
+    useEffect(() => dispatch(getStockConfig()), []);
+
     const [settingsVisible, setSettingsVisible] = useState(false);
+    const { data } = useStockFeedState();
+    const { configLabels } = useStockConfigState();
 
     const [items, setItems] = React.useState([
         { symbol: 'fb', code: '#1abc9c' },
@@ -32,28 +36,9 @@ const StocksFeed = (props: StocksFeedProps) => {
         { symbol: 'msft', code: '#2980b9' },
     ]);
 
-    const [settingsOptions, setSettingsOptions] = React.useState([{ id: 0, name: 'none' }]);
-
-    let settingsList: Object[] = [];
-
-    useEffect(() => {
-        let mappedOptions = data?.length
-            ? Object.keys(data[0]?.metrics).map((key, index) => ({
-                  id: `${index}-${key}`,
-                  name: key,
-              }))
-            : [];
-        // setSettingsOptions(mappedOptions);
-        if (!settingsList?.length) {
-            settingsList = mappedOptions;
-            console.log(settingsList);
-        }
-    }, [settingsList]);
-
-    const { data } = useStockFeedState();
-
     let selectedSymbol: string;
-    let dataKeysBySymbolMap = {};
+    // todo: move to store to allow persisting to storage or cache
+    let dataConfigBySymbolMap = {};
 
     const getDataBySymbolKey = (data: any[], symbol: string) => {
         return data.find((item) => item.id.toLocaleLowerCase() === symbol.toLocaleLowerCase())
@@ -69,7 +54,7 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     const setSelectedSymbolConfig = (config: any) => {
         if (selectedSymbol) {
-            dataKeysBySymbolMap[selectedSymbol] = config;
+            dataConfigBySymbolMap[selectedSymbol] = config;
         }
     };
 
@@ -82,30 +67,37 @@ const StocksFeed = (props: StocksFeedProps) => {
                 spacing={10}
                 renderItem={({ item }) => (
                     <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                        <Text
-                            style={styles.itemName}>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
-                        <Button
-                            icon={{
-                                name: 'refresh',
-                                size: 15,
-                                color: 'white',
-                            }}
-                            onPress={stocksFeedRequest(item.symbol)}
-                            raised={true}
-                            type="clear"></Button>
+                        <View style={styles.header}>
+                            <Text
+                                style={
+                                    styles.itemName
+                                }>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
+                            <Button
+                                icon={{
+                                    name: 'refresh',
+                                    size: 20,
+                                    color: 'white',
+                                }}
+                                onPress={stocksFeedRequest(item.symbol)}
+                                raised={true}
+                                type="clear"></Button>
+                        </View>
                         {/* todo: display data keys based on dataKeysBySymbolMap[symbol] */}
-                        <Text>{`52 Week high: ${
+                        <Text style={styles.dataLabel}>{`52 Week high: ${
                             getDataBySymbolKey(data, item.symbol)?.week52High || ''
                         }`}</Text>
-                        <Text>{`52 Week low: ${
+                        <Text style={styles.dataLabel}>{`52 Week low: ${
                             getDataBySymbolKey(data, item.symbol)?.week52Low || ''
                         }`}</Text>
-                        <Icon
-                            name="gear"
-                            type="font-awesome"
-                            color="white"
-                            onPress={() => toggleSettings(item.symbol)}
-                        />
+                        <View style={styles.settingsButtonContainer}>
+                            <Icon
+                                name="gear"
+                                type="font-awesome"
+                                color="white"
+                                size={22}
+                                onPress={() => toggleSettings(item.symbol)}
+                            />
+                        </View>
                     </View>
                 )}
             />
@@ -117,7 +109,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                 <View style={[styles.overlayContainer]}>
                     <MultiSelect
                         hideTags
-                        items={settingsList}
+                        items={configLabels}
                         uniqueKey="id"
                         onSelectedItemsChange={setSelectedSymbolConfig}
                         //selectedItems={selectedDataKeys}
@@ -135,8 +127,12 @@ const StocksFeed = (props: StocksFeedProps) => {
                         submitButtonColor="#CCC"
                         submitButtonText="Submit"
                     />
-
-                    <Text>{JSON.stringify(settingsList)}</Text>
+                    <Text>{JSON.stringify(configLabels)}</Text>
+                    <View style={[styles.overlayDismissContainer]}>
+                        <TouchableOpacity
+                            onPressOut={() => toggleSettings}
+                            onPress={() => toggleSettings}></TouchableOpacity>
+                    </View>
                 </View>
             </Overlay>
         </View>
@@ -150,9 +146,24 @@ const styles = StyleSheet.create({
         marginTop: 10,
         flex: 1,
     },
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'baseline',
+    },
     overlayContainer: {
-        flex: 0.9,
+        display: 'flex',
         alignSelf: 'stretch',
+    },
+    overlayDismissContainer: {
+        flex: 1,
+    },
+    settingsButtonContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignSelf: 'flex-end',
+        marginTop: 24,
     },
     itemContainer: {
         justifyContent: 'flex-start',
@@ -169,5 +180,8 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 12,
         color: '#fff',
+    },
+    dataLabel: {
+        color: 'white',
     },
 });

@@ -10,22 +10,18 @@ import styles from './styles';
 import StocksFeed from 'components/StocksFeed';
 
 const MainScreen = () => {
-  const dispatch = useDispatch();
-  const logoutRequest = useCallback(() => dispatch(logout()), [dispatch]);
+    const dispatch = useDispatch();
+    const logoutRequest = useCallback(() => dispatch(logout()), [dispatch]);
 
-  // const {
-  //   user: { email },
-  // } = useSession();
-
-  return (
-    <View style={styles.container} testID={MAIN_SCREEN}>
-      <StocksFeed></StocksFeed>
-    </View>
-  );
+    return (
+        <View style={styles.container} testID={MAIN_SCREEN}>
+            <StocksFeed></StocksFeed>
+        </View>
+    );
 };
 
 MainScreen.navigationOptions = {
-  title: strings.MAIN_SCREEN.title,
+    title: strings.MAIN_SCREEN.title,
 };
 
 export default MainScreen;
