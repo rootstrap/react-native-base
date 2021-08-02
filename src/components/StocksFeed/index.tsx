@@ -135,6 +135,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         submitButtonColor="#CCC"
                         submitButtonText="Submit"
                     />
+
                     <Text>{JSON.stringify(settingsList)}</Text>
                 </View>
             </Overlay>
