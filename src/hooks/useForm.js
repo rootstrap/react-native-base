@@ -42,7 +42,7 @@ const useForm = (
       if (!validateAll && key) {
         setErrors({ ...errors, [key]: validations[key] });
       } else {
-        setErrors(validator(newValues));
+        setErrors(validations);
       }
     },
     [validator, errors, setErrors, validateAll],
