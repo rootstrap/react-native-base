@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { logout } from 'actions/userActions';
 import { MAIN_SCREEN } from 'constants/screens';
-import strings from 'locale';
+import strings from 'localization';
 import useSession from 'hooks/useSession';
 import styles from './styles';
 

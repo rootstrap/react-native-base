@@ -5,7 +5,7 @@ import { object } from 'prop-types';
 
 import LoginForm from 'components/LoginForm';
 import { login } from 'actions/userActions';
-import strings from 'locale';
+import strings from 'localization';
 import { SIGN_UP_SCREEN, LOGIN_SCREEN } from 'constants/screens';
 import styles from './styles';
 

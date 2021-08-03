@@ -10,7 +10,7 @@ import useValidation from 'hooks/useValidation';
 import loginValidations from 'validations/loginValidations';
 import ErrorView from 'components/common/ErrorView';
 import useTextInputProps from 'hooks/useTextInputProps';
-import strings from 'locale';
+import strings from 'localization';
 import styles from './styles';
 
 const FIELDS = {
