@@ -23,8 +23,8 @@
       "hooks/*": [
         "src/hooks/*"
       ],
-      "locale/*": [
-        "src/locale/*"
+      "localization/*": [
+        "src/localization/*"
       ],
       "reducers/*": [
         "src/reducers/*"

@@ -1,4 +1,4 @@
-import strings from 'locale';
+import strings from 'localization';
 
 const parseErrors = errors => {
   if (errors) {

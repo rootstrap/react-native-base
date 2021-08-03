@@ -12,7 +12,7 @@ module.exports = {
           constants: './src/constants',
           screens: './src/screens',
           hooks: './src/hooks',
-          locale: './src/locale',
+          localization: './src/localization',
           reducers: './src/reducers',
           selectors: './src/selectors',
           store: './src/store',

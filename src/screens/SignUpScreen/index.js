@@ -6,7 +6,7 @@ import { object } from 'prop-types';
 import SignUpForm from 'components/SignUpForm';
 import { SIGN_UP_SCREEN } from 'constants/screens';
 import { signUp } from 'actions/userActions';
-import strings from 'locale';
+import strings from 'localization';
 import styles from './styles';
 
 const SignUpScreen = memo(({ navigation }) => {

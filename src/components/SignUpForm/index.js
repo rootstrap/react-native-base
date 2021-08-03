@@ -5,7 +5,7 @@ import { useStatus, LOADING } from '@rootstrap/redux-tools';
 
 import { signUp } from 'actions/userActions';
 import Input from 'components/common/Input';
-import strings from 'locale';
+import strings from 'localization';
 import useForm from 'hooks/useForm';
 import useValidation from 'hooks/useValidation';
 import useTextInputProps from 'hooks/useTextInputProps';
