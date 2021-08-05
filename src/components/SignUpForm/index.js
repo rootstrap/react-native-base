@@ -1,16 +1,18 @@
 import React from 'react';
-import { func } from 'prop-types';
 import { Button, View } from 'react-native';
+import { func } from 'prop-types';
+import { useForm } from 'react-hook-form';
 import { useStatus, LOADING } from '@rootstrap/redux-tools';
 
 import { signUp } from 'actions/userActions';
-import Input from 'components/common/Input';
-import strings from 'localization';
-import useForm from 'hooks/useForm';
-import useValidation from 'hooks/useValidation';
-import useTextInputProps from 'hooks/useTextInputProps';
-import signUpValidations from 'validations/signUpValidations';
+
+import TextInput from 'components/form/TextInput';
 import ErrorView from 'components/common/ErrorView';
+
+import validations from 'validations/signUpValidations';
+
+import strings from 'localization';
+
 import styles from './styles';
 
 const FIELDS = {
@@ -21,65 +23,50 @@ const FIELDS = {
 
 const SignUpForm = ({ onSubmit }) => {
   const { error, status } = useStatus(signUp);
-  const validator = useValidation(signUpValidations);
-  const {
-    values,
-    errors,
-    handleValueChange,
-    handleSubmit,
-    handleFocus,
-    handleBlur,
-    activeFields,
-    touched,
-    formHasErrors,
-  } = useForm(
-    {
-      onSubmit,
-      validator,
-      validateOnBlur: true,
-      validateOnChange: true,
-    },
-    [onSubmit],
-  );
 
-  const inputProps = useTextInputProps(
-    handleValueChange,
-    handleFocus,
-    handleBlur,
-    values,
-    errors,
-    activeFields,
-    touched,
-  );
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm();
 
   return (
     <>
-      <Input
+      <TextInput
+        name={FIELDS.email}
         label={strings.SIGN_UP.email}
+        control={control}
+        rules={validations.email}
+        errors={errors}
         keyboardType="email-address"
         autoCapitalize="none"
         testID="email-input"
-        {...inputProps(FIELDS.email)}
       />
-      <Input
+      <TextInput
+        name={FIELDS.password}
         label={strings.SIGN_UP.password}
+        control={control}
+        rules={validations.password}
+        errors={errors}
         secureTextEntry
         testID="password-input"
-        {...inputProps(FIELDS.password)}
       />
-      <Input
+      <TextInput
+        name={FIELDS.passwordConfirmation}
         label={strings.SIGN_UP.passwordConfirmation}
+        control={control}
+        rules={validations.passwordConfirmation}
+        errors={errors}
         secureTextEntry
         testID="confirm-password-input"
-        {...inputProps(FIELDS.passwordConfirmation)}
       />
       <ErrorView errors={{ error }} />
       <View style={styles.button}>
         <Button
           testID="signup-submit-button"
           title={status === LOADING ? strings.COMMON.loading : strings.SIGN_UP.button}
-          onPress={handleSubmit}
-          disabled={formHasErrors}
+          onPress={handleSubmit(onSubmit)}
+          disabled={!isDirty || !isValid}
         />
       </View>
     </>
