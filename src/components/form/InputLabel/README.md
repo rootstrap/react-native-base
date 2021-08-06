@@ -1,4 +1,4 @@
-# ErrorMessage Component
+# InputLabel Component
 
 Simple Label component to standardize it across all components.
 

@@ -4,7 +4,7 @@ import { bool, func, shape, string } from 'prop-types';
 
 import Text from 'components/common/Text';
 
-import { inputA11yHint } from '../../../utils/accessibility';
+import { inputA11yHint } from 'utils/accessibility';
 
 import InputLabel from '../InputLabel';
 import ErrorMessage from '../ErrorMessage';

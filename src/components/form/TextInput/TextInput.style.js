@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 import { BLACK, RED } from 'constants/colors';
 
 export default StyleSheet.create({
-  container: {},
   input: { borderColor: BLACK, borderWidth: 1, minHeight: 44 },
   inputFocused: { borderWidth: 3 },
   inputWithError: { borderColor: RED },
