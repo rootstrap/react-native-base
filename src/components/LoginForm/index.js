@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { func } from 'prop-types';
 import { Button, View } from 'react-native';
 import { useForm } from 'react-hook-form';
@@ -25,37 +25,50 @@ const LoginForm = ({ onSubmit }) => {
   const {
     control,
     handleSubmit,
+    setFocus,
     formState: { errors, isDirty, isValid },
   } = useForm();
+
+  const disabled = !isDirty || !isValid;
+
+  const onEmailSubmitEditing = useCallback(() => setFocus(FIELDS.password), [setFocus]);
+  const onPasswordSubmitEditing = useCallback(() => !disabled && handleSubmit(onSubmit), [
+    disabled,
+    handleSubmit,
+    onSubmit,
+  ]);
 
   return (
     <>
       <TextInput
+        testID="email-input"
         name={FIELDS.email}
         label={strings.SIGN_IN.email}
         control={control}
         rules={validations.email}
         errors={errors}
+        onSubmitEditing={onEmailSubmitEditing}
         keyboardType="email-address"
         autoCapitalize="none"
-        testID="email-input"
       />
       <TextInput
+        testID="password-input"
         name={FIELDS.password}
         label={strings.SIGN_IN.password}
         control={control}
         rules={validations.password}
         errors={errors}
-        testID="password-input"
+        onSubmitEditing={onPasswordSubmitEditing}
+        returnKeyType="done"
         secureTextEntry
       />
       <ErrorView errors={{ error }} />
       <View style={styles.button}>
         <Button
+          testID="login-submit-button"
           title={status === LOADING ? strings.COMMON.loading : strings.SIGN_IN.button}
           onPress={handleSubmit(onSubmit)}
-          disabled={!isDirty || !isValid}
-          testID="login-submit-button"
+          disabled={disabled}
         />
       </View>
     </>

@@ -1,4 +1,8 @@
 export default {
+  COMMON: {
+    loading: 'Cargando',
+    somethingWentWrong: 'Algo salió mal',
+  },
   SIGN_IN: {
     title: 'Iniciar sesión',
     email: 'Email',

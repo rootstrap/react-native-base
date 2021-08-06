@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Button, View } from 'react-native';
 import { func } from 'prop-types';
 import { useForm } from 'react-hook-form';
@@ -26,39 +26,62 @@ const SignUpForm = ({ onSubmit }) => {
 
   const {
     control,
+    getValues,
     handleSubmit,
+    setFocus,
     formState: { errors, isDirty, isValid },
-  } = useForm();
+  } = useForm({
+    mode: 'all',
+  });
+
+  const disabled = !isDirty || !isValid;
+
+  const onEmailSubmitEditing = useCallback(() => setFocus(FIELDS.password), [setFocus]);
+  const onPasswordSubmitEditing = useCallback(() => setFocus(FIELDS.passwordConfirmation), [
+    setFocus,
+  ]);
+
+  const onConfirmationPasswordSubmitEditing = useCallback(
+    () => !disabled && handleSubmit(onSubmit),
+    [disabled, handleSubmit, onSubmit],
+  );
 
   return (
     <>
       <TextInput
+        testID="email-input"
         name={FIELDS.email}
         label={strings.SIGN_UP.email}
         control={control}
         rules={validations.email}
         errors={errors}
+        onSubmitEditing={onEmailSubmitEditing}
         keyboardType="email-address"
         autoCapitalize="none"
-        testID="email-input"
+        required
       />
       <TextInput
+        testID="password-input"
         name={FIELDS.password}
         label={strings.SIGN_UP.password}
         control={control}
         rules={validations.password}
         errors={errors}
+        onSubmitEditing={onPasswordSubmitEditing}
         secureTextEntry
-        testID="password-input"
+        required
       />
       <TextInput
+        testID="confirm-password-input"
         name={FIELDS.passwordConfirmation}
         label={strings.SIGN_UP.passwordConfirmation}
         control={control}
-        rules={validations.passwordConfirmation}
+        rules={validations.passwordConfirmation(getValues(FIELDS.password))}
         errors={errors}
+        onSubmitEditing={onConfirmationPasswordSubmitEditing}
+        returnKeyType="done"
         secureTextEntry
-        testID="confirm-password-input"
+        required
       />
       <ErrorView errors={{ error }} />
       <View style={styles.button}>
@@ -66,7 +89,7 @@ const SignUpForm = ({ onSubmit }) => {
           testID="signup-submit-button"
           title={status === LOADING ? strings.COMMON.loading : strings.SIGN_UP.button}
           onPress={handleSubmit(onSubmit)}
-          disabled={!isDirty || !isValid}
+          disabled={disabled}
         />
       </View>
     </>
