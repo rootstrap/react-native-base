@@ -1,7 +1,7 @@
 # Easy Stocks
 
 > Stocks digest app connected to IEX Cloud API. Using the latest
-React Native version and React Native Elements.
+React Native version and React Native Elements. Work in progress..
 
 This project is forked from react-native-base.
 
