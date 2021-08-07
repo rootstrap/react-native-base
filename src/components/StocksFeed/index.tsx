@@ -6,7 +6,6 @@ import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
 import { getStockFeed, getStockConfig } from 'actions/stocksFeedActions';
-import Select2 from 'react-native-select-two';
 import { useStockFeedState, useStockConfigState } from 'hooks/useStockFeedState';
 
 interface StocksFeedProps {}
@@ -114,26 +113,14 @@ const StocksFeed = (props: StocksFeedProps) => {
                 fullScreen={true}
                 style={[styles.overlayContainer]}
                 onBackdropPress={toggleSettings}>
-                <View style={[styles.overlayContainer]}>
-                    {/* <Select2
-                        isSelectSingle={false}
-                        colorTheme="blue"
-                        popupTitle="Select labels"
-                        title="Select labels"
-                        data={configLabels}
-                        onSelect={(data: Object) => {
-                            setSelectedSymbolConfig({ data });
-                        }}
-                        onRemoveItem={(data: Object) => {
-                            removeSelectedSymbolConfig({ data });
-                        }}
-                    /> */}
-                    <View style={[styles.overlayDismissContainer]}>
-                        <TouchableOpacity
-                            onPressOut={() => toggleSettings}
-                            onPress={() => toggleSettings}></TouchableOpacity>
-                    </View>
-                </View>
+                <View style={[styles.selectContainer]} />
+                <TouchableOpacity
+                    style={[styles.selectDismiss]}
+                    onPress={() => {
+                        toggleSettings();
+                    }}>
+                    <View style={[styles.selectDismiss]}></View>
+                </TouchableOpacity>
             </Overlay>
         </View>
     );
@@ -146,6 +133,14 @@ const styles = StyleSheet.create({
         marginTop: 10,
         flex: 1,
     },
+    selectContainer: {
+        flex: 3,
+        backgroundColor: 'green',
+    },
+    selectDismiss: {
+        flex: 1,
+        backgroundColor: 'blue',
+    },
     header: {
         display: 'flex',
         flexDirection: 'row',
@@ -153,8 +148,10 @@ const styles = StyleSheet.create({
         alignItems: 'baseline',
     },
     overlayContainer: {
-        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
         alignSelf: 'stretch',
+        margin: 20,
     },
     overlayDismissContainer: {
         flex: 1,
