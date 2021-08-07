@@ -1,6 +1,10 @@
-# React Native Base
+# Easy Stocks
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/test_coverage)](https://codeclimate.com/github/rootstrap/react-native-base/test_coverage)
+> Stocks digest app connected to IEX Cloud API. Using the latest
+React Native version and React Native Elements.
+
+This project is forked from react-native-base.
+
 
 ## Commands
 
