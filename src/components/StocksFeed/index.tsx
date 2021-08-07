@@ -7,6 +7,8 @@ import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
 import { getStockFeed, getStockConfig } from 'actions/stocksFeedActions';
 import { useStockFeedState, useStockConfigState } from 'hooks/useStockFeedState';
+import strings from '../../locale';
+import hideWhenKeyboardOpen from '../../hooks/hideWhenKeyboardOpen';
 
 interface StocksFeedProps {}
 
@@ -23,6 +25,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     }, [dispatch]);
 
     const [settingsVisible, setSettingsVisible] = useState(false);
+    const [selectedConfig, setSelectedConfig] = useState([]);
     const { data } = useStockFeedState();
     const { configLabels } = useStockConfigState();
 
@@ -57,12 +60,8 @@ const StocksFeed = (props: StocksFeedProps) => {
         if (selectedSymbol) {
             dataConfigBySymbolMap[selectedSymbol] = config;
         }
-    };
 
-    const removeSelectedSymbolConfig = (config: any) => {
-        if (selectedSymbol) {
-            dataConfigBySymbolMap[selectedSymbol] = config;
-        }
+        setSelectedConfig(config);
     };
 
     return (
@@ -113,13 +112,60 @@ const StocksFeed = (props: StocksFeedProps) => {
                 fullScreen={true}
                 style={[styles.overlayContainer]}
                 onBackdropPress={toggleSettings}>
-                <View style={[styles.selectContainer]}>{/* select anchor */}</View>
-                <TouchableOpacity
-                    style={[styles.selectDismiss]}
-                    onPress={() => {
-                        toggleSettings();
-                    }}>
-                    <View style={[styles.selectDismiss]}></View>
+                <View style={[styles.selectContainer]}>
+                    <MultiSelect
+                        hideTags
+                        fontFamily="roboto"
+                        items={configLabels}
+                        uniqueKey="id"
+                        hideSubmitButton={true}
+                        onSelectedItemsChange={(config) => setSelectedSymbolConfig(config)}
+                        styleListContainer={[styles.selectList]}
+                        selectedItems={selectedConfig}
+                        selectText="Pick Items"
+                        searchInputPlaceholderText="Search Items..."
+                        onChangeInput={(text) => console.log(text)}
+                        altFontFamily="ProximaNova-Light"
+                        tagRemoveIconColor="#CCC"
+                        tagBorderColor="#CCC"
+                        tagTextColor="#CCC"
+                        selectedItemTextColor="#CCC"
+                        selectedItemIconColor="#CCC"
+                        itemTextColor="#000"
+                        displayKey="name"
+                        searchInputStyle={{ color: '#CCC' }}
+                        submitButtonColor="#CCC"
+                        submitButtonText="Submit"
+                    />
+                </View>
+                <TouchableOpacity style={[styles.selectDismiss]}>
+                    {/* fixme */}
+                    <View style={[styles.buttonContainer]}>
+                        <Button
+                            icon={<Icon name="save" size={16} color="white" />}
+                            title={strings.STOCKS_FEED.submit}
+                            iconRight={true}
+                            onPress={() => {
+                                toggleSettings();
+                            }}
+                            style={styles.submitButton}
+                            raised={true}
+                        />
+                    </View>
+                    {/* {hideWhenKeyboardOpen(
+                        <View style={[styles.buttonContainer]}>
+                            <Button
+                                icon={<Icon name="save" size={16} color="white" />}
+                                title={strings.STOCKS_FEED.submit}
+                                iconRight={true}
+                                onPress={() => {
+                                    toggleSettings();
+                                }}
+                                style={styles.submitButton}
+                                raised={true}
+                            />
+                        </View>,
+                    )} */}
                 </TouchableOpacity>
             </Overlay>
         </View>
@@ -133,13 +179,22 @@ const styles = StyleSheet.create({
         marginTop: 10,
         flex: 1,
     },
+    buttonContainer: {
+        alignSelf: 'center',
+        paddingLeft: 20,
+        width: 100,
+        height: 20,
+    },
     selectContainer: {
-        flex: 3,
-        backgroundColor: 'green',
+        flex: 6,
+        backgroundColor: 'transparent',
     },
     selectDismiss: {
         flex: 1,
-        backgroundColor: 'blue',
+        backgroundColor: 'transparent',
+    },
+    selectList: {
+        height: 400,
     },
     header: {
         display: 'flex',
@@ -180,5 +235,8 @@ const styles = StyleSheet.create({
     },
     dataLabel: {
         color: 'white',
+    },
+    submitButton: {
+        alignSelf: 'center',
     },
 });

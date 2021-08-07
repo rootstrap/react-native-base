@@ -1,30 +1,31 @@
 export default {
-  COMMON: {
-    loading: 'Loading',
-    somethingWentWrong: 'Something Went Wrong',
-  },
+    COMMON: {
+        loading: 'Loading',
+        somethingWentWrong: 'Something Went Wrong',
+    },
 
-  SIGN_IN: {
-    title: 'Sign in',
-    email: 'Email',
-    password: 'Password',
-    button: 'Sign in',
-  },
+    SIGN_IN: {
+        title: 'Sign in',
+        email: 'Email',
+        password: 'Password',
+        button: 'Sign in',
+    },
 
-  MAIN_SCREEN: {
-    logout: 'Sign out',
-    title: 'Stocks Feed',
-  },
+    MAIN_SCREEN: {
+        logout: 'Sign out',
+        title: 'Stocks Feed',
+    },
 
-  STOCKS_FEED: {
-    fetchStocks: 'Refresh',
-  },
+    STOCKS_FEED: {
+        fetchStocks: 'Refresh',
+        submit: 'Save',
+    },
 
-  SIGN_UP: {
-    title: 'Sign up',
-    email: 'Email',
-    password: 'Password',
-    passwordConfirmation: 'Password confirmation',
-    button: 'Sign up',
-  },
+    SIGN_UP: {
+        title: 'Sign up',
+        email: 'Email',
+        password: 'Password',
+        passwordConfirmation: 'Password confirmation',
+        button: 'Sign up',
+    },
 };

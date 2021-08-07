@@ -9894,11 +9894,6 @@ react-native-screens@^2.0.0-beta.2:
   dependencies:
     debounce "^1.2.0"
 
-react-native-select-two@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-select-two/-/react-native-select-two-1.1.0.tgz#86848ddcb63f83ae077ab5b1f7532ed0ca5a0fdf"
-  integrity sha512-lYZKwQI8qkxn/82Z9P0fIeH8YtozQT8+u2jqbC6nPRqCUzdVqSr945InMuoVl3/jJHgyrNaIksdEjXLuAikbcg==
-
 react-native-size-matters@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz#24d0cfc335a2c730f6d58bd7b43ea5a41be4b49f"
