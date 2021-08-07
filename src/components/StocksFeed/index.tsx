@@ -113,7 +113,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                 fullScreen={true}
                 style={[styles.overlayContainer]}
                 onBackdropPress={toggleSettings}>
-                <View style={[styles.selectContainer]} />
+                <View style={[styles.selectContainer]}>{/* select anchor */}</View>
                 <TouchableOpacity
                     style={[styles.selectDismiss]}
                     onPress={() => {
