@@ -222,15 +222,15 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				37BA4E4B26C59DDE005ED7FE /* ReactNativeBase-Develop-Info.plist */,
-				37BA4E4C26C59DDF005ED7FE /* ReactNativeBase-Staging-Info.plist */,
 				13B07FAE1A68108700A75B9A /* ReactNativeBase */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ReactNativeBaseTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D61026C4A3CF4DDFB97A0F07 /* Pods */,
+				37BA4E4B26C59DDE005ED7FE /* ReactNativeBase-Develop-Info.plist */,
 				37BA4E4A26C58167005ED7FE /* ReactNativeBase-QA-Info.plist */,
+				37BA4E4C26C59DDF005ED7FE /* ReactNativeBase-Staging-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
