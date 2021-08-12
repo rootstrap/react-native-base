@@ -62,6 +62,7 @@ buck-out/
 
 # Constants location
 .env
+.env.qa
 .env.staging
 .env.prod
 

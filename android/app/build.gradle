@@ -2,6 +2,7 @@ apply plugin: "com.android.application"
 
 project.ext.envConfigFiles = [
     dev: ".env",
+    qa: ".env.qa",
     staging: ".env.staging",
     prod: ".env.prod",
 ]
@@ -191,7 +192,11 @@ android {
             applicationIdSuffix '.dev'
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
-
+        }
+        qa {
+            applicationIdSuffix '.qa'
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
         }
         staging {
             applicationIdSuffix '.staging'

@@ -45,6 +45,14 @@ target 'ReactNativeBase-Staging' do
   use_react_native!(:path => config["reactNativePath"])
 end
 
+target 'ReactNativeBase-QA' do
+  # Pods for ReactNativeBase
+  base_pods
+  
+  config = use_native_modules!
+  use_react_native!(:path => config["reactNativePath"])
+end
+
 target 'ReactNativeBase-Develop' do
   # Pods for ReactNativeBase
   base_pods
