@@ -7,6 +7,7 @@
     "lint:fix": "eslint --fix src tests",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "ios:dev": "react-native run-ios --scheme ReactNativeBase-Develop",
+    "ios:qa": "react-native run-ios --scheme ReactNativeBase-QA",
     "ios:staging": "react-native run-ios --scheme ReactNativeBase-Staging",
     "ios:prod": "react-native run-ios --scheme ReactNativeBase-Prod",
     "android:dev": "react-native run-android --variant=devDebug --appIdSuffix=dev",
