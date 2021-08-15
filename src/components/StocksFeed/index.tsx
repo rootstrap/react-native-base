@@ -10,6 +10,7 @@ import { useStockFeedState, useStockConfigState } from 'hooks/useStockFeedState'
 import strings from '../../locale';
 import { startCase } from 'lodash';
 import moment from 'moment';
+import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 
 interface StocksFeedProps {}
 
@@ -189,8 +190,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                             raised={true}
                         />
                     </View>
-                    {/* fixme */}
-                    {/* {hideWhenKeyboardOpen(
+                    {/* {useHideWhenKeyboardOpen(
                         <View style={[styles.buttonContainer]}>
                             <Button
                                 icon={<Icon name="save" size={16} color="white" />}
@@ -275,6 +275,7 @@ const styles = StyleSheet.create({
     dataLabel: {
         color: 'white',
         fontWeight: 'bold',
+        margin: 2,
     },
     submitButton: {
         alignSelf: 'center',
