@@ -16,15 +16,17 @@ export interface Props {}
 export interface State {}
 
 export class App extends React.Component<Props, State> {
-  render() {
-    return (
-      <Provider store={store}>
-        <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
-          <Navigation />
-        </PersistGate>
-      </Provider>
-    );
-  }
+    render() {
+        return (
+            <Provider store={store}>
+                {/* PersistGate. This delays the rendering of your app's UI until your persisted state has
+            been retrieved and saved to redux. */}
+                <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
+                    <Navigation />
+                </PersistGate>
+            </Provider>
+        );
+    }
 }
 
 export default App;

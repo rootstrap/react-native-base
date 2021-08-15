@@ -6,6 +6,9 @@ React Native version and React Native Elements. Work in progress..
 This project is forked from react-native-base.
 
 
+### [Quickstart Guide](./guides/QUICK_START.md)
+> The above link gives you a quick start guide on how to run the app in development environment.
+
 ## Commands
 
 1. **Start the app**: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`, `staging`, and `prod`)
@@ -259,6 +262,17 @@ npx typesync [path/to/package.json] [--dry]
 
 Or add unavilable type definitions placeholder to `./custom-types.d.ts` file.
 
+
+Using Custom react debugger
+
+> The following debugger can be installed and associated env var set to enable
+better debugging and netqork request tracking. See: https://github.com/jhen0409/react-native-debugger/blob/master/docs/getting-started.md
+
+
+```bash
+open "rndebugger://set-debugger-loc?host=localhost&port=8081"
+
+```
 
 ### TODOS
 

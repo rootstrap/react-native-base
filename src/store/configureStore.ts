@@ -11,31 +11,31 @@ const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
 /* eslint-enable */
 
 const persistConfig = {
-  key: 'root',
-  storage: AsyncStorage,
-  whitelist: ['session'],
+    key: 'root',
+    storage: AsyncStorage, // alternative to local-storage, see: https://reactnative.dev/docs/asyncstorage
+    whitelist: ['stockFeed'], // state slices to be persisted to device cache
 };
 
 export default function configureStore(initialState: object) {
-  const middlewares = [thunkMiddleware];
+    const middlewares = [thunkMiddleware];
 
-  if (__DEV__) {
-    middlewares.push(createDebugger());
-    const logger = createLogger({
-      collapsed: true,
-    });
-    middlewares.push(logger);
-  }
+    if (__DEV__) {
+        middlewares.push(createDebugger());
+        const logger = createLogger({
+            collapsed: true,
+        });
+        middlewares.push(logger);
+    }
 
-  const persistedReducer = persistReducer(persistConfig, AppReducer);
+    const persistedReducer = persistReducer(persistConfig, AppReducer);
 
-  const store = createStore(
-    persistedReducer,
-    initialState,
-    composeEnhancers(applyMiddleware(...middlewares)),
-  );
+    const store = createStore(
+        persistedReducer,
+        initialState,
+        composeEnhancers(applyMiddleware(...middlewares)),
+    );
 
-  const persistor = persistStore(store);
+    const persistor = persistStore(store);
 
-  return { store, persistor };
+    return { store, persistor };
 }

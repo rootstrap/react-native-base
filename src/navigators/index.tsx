@@ -4,6 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { APP_STACK } from '../constants/screens';
 import AppStack from './AppStack';
 
+// DEV: Allows debugging network requests with debugger
+const _XHR = GLOBAL.originalXMLHttpRequest ? GLOBAL.originalXMLHttpRequest : GLOBAL.XMLHttpRequest;
+
+XMLHttpRequest = _XHR;
+
 const Stack = createStackNavigator();
 
 const Navigation = () => {
