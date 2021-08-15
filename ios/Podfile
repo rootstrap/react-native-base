@@ -28,6 +28,8 @@ target 'EasyStocks' do
   # Pods for EasyStocks
   base_pods
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'EasyStocksTests' do
     inherit! :complete
     # Pods for testing
