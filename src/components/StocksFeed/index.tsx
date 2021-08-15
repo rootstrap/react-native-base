@@ -8,7 +8,8 @@ import { Button, Icon, Overlay } from 'react-native-elements';
 import { getStockFeed, getStockConfig } from 'actions/stocksFeedActions';
 import { useStockFeedState, useStockConfigState } from 'hooks/useStockFeedState';
 import strings from '../../locale';
-import hideWhenKeyboardOpen from '../../hooks/hideWhenKeyboardOpen';
+import { startCase } from 'lodash';
+import moment from 'moment';
 
 interface StocksFeedProps {}
 
@@ -29,7 +30,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     const { data } = useStockFeedState();
     const { configLabels } = useStockConfigState();
 
-    const [items, setItems] = React.useState([
+    const [items] = React.useState([
         { symbol: 'fb', code: '#1abc9c' },
         { symbol: 'aapl', code: '#2ecc71' },
         { symbol: 'amc', code: '#3498db' },
@@ -44,9 +45,24 @@ const StocksFeed = (props: StocksFeedProps) => {
     // todo: move to store to allow persisting to storage or cache
     let dataConfigBySymbolMap = {};
 
-    const getDataBySymbolKey = (data: any[], symbol: string) => {
-        return data.find((item) => item.id?.toLocaleLowerCase() === symbol?.toLocaleLowerCase())
-            ?.metrics;
+    const getDataBySymbolKey = (data: any[], symbol: string, key: string): string | number => {
+        //todo: add more advanced formatting based on key type
+        let isTimeKeyType = key.toLocaleLowerCase().includes('time');
+        const datetimeFormat = 'DD MMM YYYY hh:mm a';
+        let foundMetrics;
+        if (data.length) {
+            foundMetrics = data.find(
+                (item) => item.id?.toLocaleLowerCase() === symbol?.toLocaleLowerCase(),
+            )?.metrics;
+
+            if (foundMetrics && foundMetrics[key]) {
+                const formattedValue = isTimeKeyType
+                    ? moment(foundMetrics[key]).format(datetimeFormat)
+                    : foundMetrics[key];
+                return formattedValue;
+            }
+        }
+        return '';
     };
 
     const toggleSettings = (symbol?: string) => {
@@ -56,13 +72,29 @@ const StocksFeed = (props: StocksFeedProps) => {
         setSettingsVisible(!settingsVisible);
     };
 
-    const setSelectedSymbolConfig = (config: any) => {
+    const setSelectedSymbolConfig = (config: { id: string; name: string }[]) => {
         if (selectedSymbol) {
             dataConfigBySymbolMap[selectedSymbol] = config;
         }
 
-        setSelectedConfig(config);
+        setSelectedConfig(config as any);
     };
+
+    function Metric(props: any) {
+        const data = props.data;
+        const symbolItem = props.item;
+        const configLabel = props.configLabel;
+        const styles = props.styles;
+
+        if (data && symbolItem && configLabel) {
+            return (
+                <Text style={styles.dataLabel}>{`${startCase(configLabel)}: ${
+                    getDataBySymbolKey(data, symbolItem?.symbol, configLabel) || ''
+                }`}</Text>
+            );
+        }
+        return null;
+    }
 
     return (
         <View>
@@ -71,41 +103,47 @@ const StocksFeed = (props: StocksFeedProps) => {
                 data={items}
                 style={styles.gridView}
                 spacing={10}
-                renderItem={({ item }) => (
-                    <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                        <View style={styles.header}>
-                            <Text
-                                style={
-                                    styles.itemName
-                                }>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
-                            <Button
-                                icon={{
-                                    name: 'refresh',
-                                    size: 20,
-                                    color: 'white',
-                                }}
-                                onPress={stocksFeedRequest(item.symbol)}
-                                raised={true}
-                                type="clear"></Button>
+                renderItem={({ item }) => {
+                    return (
+                        <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
+                            <View style={styles.header}>
+                                <Text
+                                    style={
+                                        styles.itemName
+                                    }>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
+                                <Button
+                                    icon={{
+                                        name: 'refresh',
+                                        size: 20,
+                                        color: 'white',
+                                    }}
+                                    onPress={stocksFeedRequest(item.symbol)}
+                                    raised={true}
+                                    type="clear"></Button>
+                            </View>
+                            {selectedConfig?.length
+                                ? selectedConfig.map((configLabel, index) => (
+                                      <Metric
+                                          styles={styles}
+                                          key={index}
+                                          data={data}
+                                          configLabel={configLabel}
+                                          item={item}
+                                      />
+                                  ))
+                                : null}
+                            <View style={styles.settingsButtonContainer}>
+                                <Icon
+                                    name="gear"
+                                    type="font-awesome"
+                                    color="white"
+                                    size={22}
+                                    onPress={() => toggleSettings(item.symbol)}
+                                />
+                            </View>
                         </View>
-                        {/* todo: display data keys based on dataKeysBySymbolMap[symbol] */}
-                        <Text style={styles.dataLabel}>{`52 Week high: ${
-                            getDataBySymbolKey(data, item.symbol)?.week52High || ''
-                        }`}</Text>
-                        <Text style={styles.dataLabel}>{`52 Week low: ${
-                            getDataBySymbolKey(data, item.symbol)?.week52Low || ''
-                        }`}</Text>
-                        <View style={styles.settingsButtonContainer}>
-                            <Icon
-                                name="gear"
-                                type="font-awesome"
-                                color="white"
-                                size={22}
-                                onPress={() => toggleSettings(item.symbol)}
-                            />
-                        </View>
-                    </View>
-                )}
+                    );
+                }}
             />
             <Overlay
                 isVisible={settingsVisible}
@@ -117,7 +155,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         hideTags
                         fontFamily="roboto"
                         items={configLabels}
-                        uniqueKey="id"
+                        uniqueKey="name"
                         hideSubmitButton={true}
                         onSelectedItemsChange={(config) => setSelectedSymbolConfig(config)}
                         styleListContainer={[styles.selectList]}
@@ -139,7 +177,6 @@ const StocksFeed = (props: StocksFeedProps) => {
                     />
                 </View>
                 <TouchableOpacity style={[styles.selectDismiss]}>
-                    {/* fixme */}
                     <View style={[styles.buttonContainer]}>
                         <Button
                             icon={<Icon name="save" size={16} color="white" />}
@@ -152,6 +189,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                             raised={true}
                         />
                     </View>
+                    {/* fixme */}
                     {/* {hideWhenKeyboardOpen(
                         <View style={[styles.buttonContainer]}>
                             <Button
@@ -215,13 +253,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignSelf: 'flex-end',
-        marginTop: 24,
+        marginTop: 0,
     },
     itemContainer: {
         justifyContent: 'flex-start',
         borderRadius: 5,
         padding: 10,
-        height: 150,
+        minHeight: 160,
+        flex: 1,
     },
     itemName: {
         fontSize: 16,
@@ -235,6 +274,7 @@ const styles = StyleSheet.create({
     },
     dataLabel: {
         color: 'white',
+        fontWeight: 'bold',
     },
     submitButton: {
         alignSelf: 'center',

@@ -1,6 +1,5 @@
-- convert to tsx [x]
-- rename project [x]
-- Implement the 1st component StockFeed [o]
-- Add some high level charts and a live feed from IEX Cloud
+- Push config settings to store state
+- Slice config per symbol in state array
+- Render labels unique per symbols
 
 

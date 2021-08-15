@@ -11,9 +11,14 @@ interface FeedItem {
     id: string;
     metrics: { [key: string]: string };
 }
+
+interface ConfigLabel {
+    id: string;
+    name: string;
+}
 interface StocksFeed {
     data: FeedItem[];
-    config: Object[];
+    config: ConfigLabel[];
 }
 
 // *Success type actions handle updating state from request payload
@@ -34,10 +39,7 @@ const handleGetStocksFeedSuccess = (
     }
 };
 
-const handleGetStocksConfigSuccess = (
-    state: StocksFeed,
-    data: { payload: { [key: string]: string }[] },
-) => {
+const handleGetStocksConfigSuccess = (state: StocksFeed, data: { payload: ConfigLabel[] }) => {
     state.config = [...data?.payload];
 };
 
