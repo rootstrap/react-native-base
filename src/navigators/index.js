@@ -15,7 +15,10 @@ const Navigation = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode="none">
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
         {user && info ? (
           <Stack.Screen name={APP_STACK} component={AppStack} />
         ) : (

@@ -20,6 +20,7 @@
 		37BA4E3D26C58167005ED7FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		37BA4E4126C58167005ED7FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		37BA4E4226C58167005ED7FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
+		40558C4F6B2E51E282B02C8F /* libPods-ReactNativeBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F2BF07C5752A0ECAA9B50F /* libPods-ReactNativeBase.a */; };
 		5537A5DC24376A1800F9B9FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
 		5537A5DD24376A1800F9B9FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
 		5537A5DE24376A1800F9B9FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
@@ -27,7 +28,7 @@
 		9B0243531F270CBB6E36495A /* libPods-ReactNativeBase-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FFF1A0A0D79A52FA343994E /* libPods-ReactNativeBase-tvOSTests.a */; };
 		9CEB73B58FB152FDD74F0720 /* libPods-ReactNativeBase-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44697982F9284E7E43F44305 /* libPods-ReactNativeBase-tvOS.a */; };
 		BBCDE83BA965486201CF31AB /* libPods-ReactNativeBase-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1AB4DBFE1058BF55733D8B /* libPods-ReactNativeBase-Develop.a */; };
-		D35AFCB0D169AD30C275822B /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		D35AFCB0D169AD30C275822B /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		E77860054D22D4DDB9D5F9AA /* libPods-ReactNativeBase-Staging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5194B9636EC5B962F89DA5B8 /* libPods-ReactNativeBase-Staging.a */; };
 		FE002AFE22E9DCD20027B199 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		FE002AFF22E9DCD20027B199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -66,6 +67,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ReactNativeBase/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ReactNativeBase/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ReactNativeBase/main.m; sourceTree = "<group>"; };
+		18F2BF07C5752A0ECAA9B50F /* libPods-ReactNativeBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A469A7DF004DBDC7A8F375D /* libPods-ReactNativeBase-QA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-QA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C98C079CDC74151BC1BE98E /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOSTests/Pods-ReactNativeBase-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		1FF6942EBA95C3A6D7CF89DD /* Pods-ReactNativeBase-Develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Develop.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,7 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D35AFCB0D169AD30C275822B /* (null) in Frameworks */,
+				D35AFCB0D169AD30C275822B /* BuildFile in Frameworks */,
+				40558C4F6B2E51E282B02C8F /* libPods-ReactNativeBase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +211,7 @@
 				5194B9636EC5B962F89DA5B8 /* libPods-ReactNativeBase-Staging.a */,
 				00AC18E667F4EDFD330B4527 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */,
 				1A469A7DF004DBDC7A8F375D /* libPods-ReactNativeBase-QA.a */,
+				18F2BF07C5752A0ECAA9B50F /* libPods-ReactNativeBase.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
