@@ -1,6 +1,6 @@
-# React Native Base
+# Easy Stocks
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/test_coverage)](https://codeclimate.com/github/rootstrap/react-native-base/test_coverage)
+> A stock ticker feed app, display key metrics for popular stock symbols. Using IEX Cloud API's.
 
 ### [Quickstart Guide](./guides/QUICK_START.md)
 > The above link gives you a quick start guide on how to run the app in development environment.

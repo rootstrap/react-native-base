@@ -16,14 +16,14 @@ describe('<StocksFeed />', () => {
     wrapper = renderWithRedux(<StocksFeed {...props} />, store);
   });
 
-  describe('Email Input', () => {
-    let gridsterGrid;
+  describe('Init', () => {
+    let tileGrid;
     beforeEach(() => {
-      // gridsterGrid = wrapper.queryByTestId('email-input');
+      tileGrid = wrapper.queryByTestId('tile-grid');
     });
 
-    it('should display a 4 grid layout', () => {
-      // expect(input).toBeTruthy();
+    it('should init the tile layout', () => {
+        expect(tileGrid).toBeTruthy();
     });
 
     xdescribe('when the email input is valid', () => {
