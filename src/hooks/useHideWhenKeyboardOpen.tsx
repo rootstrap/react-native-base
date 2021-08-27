@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Keyboard } from 'react-native';
 
-// Wrapper component which hides child node when the device keyboard is open.
-const useHideWhenKeyboardOpen = (BaseComponent: any) => (props: any) => {
-    // todo: finish refactoring.....
+const useHideWhenKeyboardOpen = () => {
     const [isKeyboadVisible, setIsKeyboadVisible] = useState(false);
 
-    const _keyboardDidShow = () => {
+    const _keyboardDidShow = useCallback(() => {
         setIsKeyboadVisible(true);
-    };
+    }, []);
 
-    const _keyboardDidHide = () => {
+    const _keyboardDidHide = useCallback(() => {
         setIsKeyboadVisible(false);
-    };
+    }, []);
 
-    /**
-     * Add callbacks to keyboard display events, cleanup in useeffect return.
-     */
     useEffect(() => {
-        console.log('isKeyboadVisible: ' + isKeyboadVisible);
         Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
         Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
 
         return () => {
-            Keyboard.removeCurrentListener();
+            Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
+            Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
         };
     }, [_keyboardDidHide, _keyboardDidShow]);
 
-    return isKeyboadVisible ? null : <BaseComponent {...props}></BaseComponent>;
+    return isKeyboadVisible;
 };
 
 export default useHideWhenKeyboardOpen;

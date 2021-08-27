@@ -97,6 +97,8 @@ const StocksFeed = (props: StocksFeedProps) => {
         return null;
     }
 
+    const isKeyboardShown = useHideWhenKeyboardOpen();
+
     return (
         <View>
             <FlatGrid
@@ -104,6 +106,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                 data={items}
                 style={styles.gridView}
                 spacing={10}
+                testID="tile-grid"
                 renderItem={({ item }) => {
                     return (
                         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
@@ -179,19 +182,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                 </View>
                 <TouchableOpacity style={[styles.selectDismiss]}>
                     <View style={[styles.buttonContainer]}>
-                        <Button
-                            icon={<Icon name="save" size={16} color="white" />}
-                            title={strings.STOCKS_FEED.submit}
-                            iconRight={true}
-                            onPress={() => {
-                                toggleSettings();
-                            }}
-                            style={styles.submitButton}
-                            raised={true}
-                        />
-                    </View>
-                    {/* {useHideWhenKeyboardOpen(
-                        <View style={[styles.buttonContainer]}>
+                        {!isKeyboardShown && (
                             <Button
                                 icon={<Icon name="save" size={16} color="white" />}
                                 title={strings.STOCKS_FEED.submit}
@@ -202,8 +193,8 @@ const StocksFeed = (props: StocksFeedProps) => {
                                 style={styles.submitButton}
                                 raised={true}
                             />
-                        </View>,
-                    )} */}
+                        )}
+                    </View>
                 </TouchableOpacity>
             </Overlay>
         </View>
