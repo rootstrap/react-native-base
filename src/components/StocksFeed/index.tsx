@@ -8,7 +8,7 @@ import { Button, Icon, Overlay } from 'react-native-elements';
 import { getStockFeed, getStockConfig } from 'actions/stocksFeedActions';
 import { useStockFeedState, useStockConfigState } from 'hooks/useStockFeedState';
 import strings from '../../locale';
-import { startCase } from 'lodash';
+import { startCase, isNumber } from 'lodash';
 import moment from 'moment';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 
@@ -49,17 +49,30 @@ const StocksFeed = (props: StocksFeedProps) => {
     const getDataBySymbolKey = (data: any[], symbol: string, key: string): string | number => {
         //todo: add more advanced formatting based on key type
         let isTimeKeyType = key.toLocaleLowerCase().includes('time');
+        let isPriceKeyType = key.toLocaleLowerCase().includes('price');
+        let isPercentKeyType = key.toLocaleLowerCase().includes('percent');
+
         const datetimeFormat = 'DD MMM YYYY hh:mm a';
         let foundMetrics;
+        let formattedValue = '';
+
         if (data.length) {
             foundMetrics = data.find(
                 (item) => item.id?.toLocaleLowerCase() === symbol?.toLocaleLowerCase(),
             )?.metrics;
 
             if (foundMetrics && foundMetrics[key]) {
-                const formattedValue = isTimeKeyType
-                    ? moment(foundMetrics[key]).format(datetimeFormat)
-                    : foundMetrics[key];
+                if (isPriceKeyType && isNumber(foundMetrics[key])) {
+                    formattedValue = `$${foundMetrics[key]}`;
+                } else if (isTimeKeyType) {
+                    formattedValue = moment(foundMetrics[key]).format(datetimeFormat);
+                } else if (isPercentKeyType) {
+                    formattedValue = `${foundMetrics[key]}%`;
+                } else {
+                    // default case, no format
+                    formattedValue = foundMetrics[key];
+                }
+
                 return formattedValue;
             }
         }
@@ -89,9 +102,14 @@ const StocksFeed = (props: StocksFeedProps) => {
 
         if (data && symbolItem && configLabel) {
             return (
-                <Text style={styles.dataLabel}>{`${startCase(configLabel)}: ${
-                    getDataBySymbolKey(data, symbolItem?.symbol, configLabel) || ''
-                }`}</Text>
+                <View style={styles.metricContainer}>
+                    <Text style={styles.dataLabel}>
+                        {`${startCase(configLabel)}: `}
+                        <Text style={styles.dataLabel}>{`${
+                            getDataBySymbolKey(data, symbolItem?.symbol, configLabel) || ''
+                        }`}</Text>
+                    </Text>
+                </View>
             );
         }
         return null;
@@ -231,6 +249,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'baseline',
     },
+    metricContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
     overlayContainer: {
         flexDirection: 'column',
         flex: 1,
@@ -245,6 +267,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignSelf: 'flex-end',
         marginTop: 0,
+        marginRight: 12.3,
     },
     itemContainer: {
         justifyContent: 'flex-start',
