@@ -27,7 +27,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     }, [dispatch]);
 
     const [settingsVisible, setSettingsVisible] = useState(false);
-    const [selectedConfig, setSelectedConfig] = useState([]);
+    const [selectedConfig, setSelectedConfig] = useState(['open', 'week52High', 'week52Low']);
     const { data } = useStockFeedState();
     const { configLabels } = useStockConfigState();
 
@@ -40,16 +40,22 @@ const StocksFeed = (props: StocksFeedProps) => {
         { symbol: 'amzn', code: '#16a085' },
         { symbol: 'nvda', code: '#27ae60' },
         { symbol: 'msft', code: '#2980b9' },
+        { symbol: 'icln', code: '#16a085' },
+        { symbol: 'nio', code: '#16a085' },
     ]);
 
     let selectedSymbol: string;
+
     // todo: move to store to allow persisting to storage or cache
     let dataConfigBySymbolMap = {};
 
     const getDataBySymbolKey = (data: any[], symbol: string, key: string): string | number => {
-        //todo: add more advanced formatting based on key type
+        const priceTypeKeySubstrings = ['price', 'high', 'low'];
+        var isPriceKeyType = priceTypeKeySubstrings.some((substring) => {
+            return key.toLocaleLowerCase().indexOf(substring) >= 0;
+        });
+
         let isTimeKeyType = key.toLocaleLowerCase().includes('time');
-        let isPriceKeyType = key.toLocaleLowerCase().includes('price');
         let isPercentKeyType = key.toLocaleLowerCase().includes('percent');
 
         const datetimeFormat = 'DD MMM YYYY hh:mm a';
