@@ -8,9 +8,9 @@ import { Button, Icon, Overlay } from 'react-native-elements';
 import { getStockFeed, getStockConfig } from 'actions/stocksFeedActions';
 import { useStockFeedState, useStockConfigState } from 'hooks/useStockFeedState';
 import strings from '../../locale';
-import { startCase, isNumber } from 'lodash';
-import moment from 'moment';
+import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
+import useStockFormatUtils from 'hooks/useStockFormatUtils';
 
 interface StocksFeedProps {}
 
@@ -28,6 +28,9 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     const [settingsVisible, setSettingsVisible] = useState(false);
     const [selectedConfig, setSelectedConfig] = useState(['open', 'week52High', 'week52Low']);
+    const [selectedSymbol, setSelectedSymbol] = useState('');
+    const [configBySymbolMap, setConfigBySymbolMap] = useState({});
+
     const { data } = useStockFeedState();
     const { configLabels } = useStockConfigState();
 
@@ -44,57 +47,16 @@ const StocksFeed = (props: StocksFeedProps) => {
         { symbol: 'nio', code: '#16a085' },
     ]);
 
-    let selectedSymbol: string;
-
-    // todo: move to store to allow persisting to storage or cache
-    let dataConfigBySymbolMap = {};
-
-    const getDataBySymbolKey = (data: any[], symbol: string, key: string): string | number => {
-        const priceTypeKeySubstrings = ['price', 'high', 'low'];
-        var isPriceKeyType = priceTypeKeySubstrings.some((substring) => {
-            return key.toLocaleLowerCase().indexOf(substring) >= 0;
-        });
-
-        let isTimeKeyType = key.toLocaleLowerCase().includes('time');
-        let isPercentKeyType = key.toLocaleLowerCase().includes('percent');
-
-        const datetimeFormat = 'DD MMM YYYY hh:mm a';
-        let foundMetrics;
-        let formattedValue = '';
-
-        if (data.length) {
-            foundMetrics = data.find(
-                (item) => item.id?.toLocaleLowerCase() === symbol?.toLocaleLowerCase(),
-            )?.metrics;
-
-            if (foundMetrics && foundMetrics[key]) {
-                if (isPriceKeyType && isNumber(foundMetrics[key])) {
-                    formattedValue = `$${foundMetrics[key]}`;
-                } else if (isTimeKeyType) {
-                    formattedValue = moment(foundMetrics[key]).format(datetimeFormat);
-                } else if (isPercentKeyType) {
-                    formattedValue = `${foundMetrics[key]}%`;
-                } else {
-                    // default case, no format
-                    formattedValue = foundMetrics[key];
-                }
-
-                return formattedValue;
-            }
-        }
-        return '';
-    };
-
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
-            selectedSymbol = symbol;
+            setSelectedSymbol(symbol);
         }
         setSettingsVisible(!settingsVisible);
     };
 
     const setSelectedSymbolConfig = (config: { id: string; name: string }[]) => {
         if (selectedSymbol) {
-            dataConfigBySymbolMap[selectedSymbol] = config;
+            setConfigBySymbolMap({ ...configBySymbolMap, [selectedSymbol]: config });
         }
 
         setSelectedConfig(config as any);
@@ -112,7 +74,11 @@ const StocksFeed = (props: StocksFeedProps) => {
                     <Text style={styles.dataLabel}>
                         {`${startCase(configLabel)}: `}
                         <Text style={styles.dataLabel}>{`${
-                            getDataBySymbolKey(data, symbolItem?.symbol, configLabel) || ''
+                            useStockFormatUtils().getMetricBySymbolKey(
+                                data,
+                                symbolItem?.symbol,
+                                configLabel,
+                            ) || ''
                         }`}</Text>
                     </Text>
                 </View>
@@ -149,16 +115,18 @@ const StocksFeed = (props: StocksFeedProps) => {
                                     raised={true}
                                     type="clear"></Button>
                             </View>
-                            {selectedConfig?.length
-                                ? selectedConfig.map((configLabel, index) => (
-                                      <Metric
-                                          styles={styles}
-                                          key={index}
-                                          data={data}
-                                          configLabel={configLabel}
-                                          item={item}
-                                      />
-                                  ))
+                            {configBySymbolMap[item.symbol]?.length
+                                ? configBySymbolMap[item.symbol].map(
+                                      (configLabel: string, index: number) => (
+                                          <Metric
+                                              styles={styles}
+                                              key={index}
+                                              data={data}
+                                              configLabel={configLabel}
+                                              item={item}
+                                          />
+                                      ),
+                                  )
                                 : null}
                             <View style={styles.settingsButtonContainer}>
                                 <Icon
@@ -187,7 +155,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         hideSubmitButton={true}
                         onSelectedItemsChange={(config) => setSelectedSymbolConfig(config)}
                         styleListContainer={[styles.selectList]}
-                        selectedItems={selectedConfig}
+                        selectedItems={configBySymbolMap[selectedSymbol]}
                         selectText="Pick Items"
                         searchInputPlaceholderText="Search Items..."
                         onChangeInput={(text) => console.log(text)}
