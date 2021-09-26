@@ -2,6 +2,9 @@
 
 > A stock ticker feed app, display key metrics for popular stock symbols. Using IEX Cloud API's.
 
+
+![Screenshot](easy-stocks.jpg)
+
 ### [Quickstart Guide](./guides/QUICK_START.md)
 > The above link gives you a quick start guide on how to run the app in development environment.
 
