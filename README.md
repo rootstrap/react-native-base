@@ -5,6 +5,7 @@ React Native version and React Native Elements. Work in progress..
 
 This project is forked from react-native-base.
 
+![App Screenshot](easy-stocks.jpg)
 
 ### [Quickstart Guide](./guides/QUICK_START.md)
 > The above link gives you a quick start guide on how to run the app in development environment.
