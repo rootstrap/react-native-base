@@ -1,9 +1,11 @@
 # Easy Stocks
 
-> A stock ticker feed app, display key metrics for popular stock symbols. Using IEX Cloud API's.
+> Stocks digest app connected to IEX Cloud API. Using the latest
+React Native version and React Native Elements. Work in progress..
 
+This project is forked from react-native-base.
 
-![Screenshot](easy-stocks.jpg)
+![App Screenshot](easy-stocks.jpg)
 
 ### [Quickstart Guide](./guides/QUICK_START.md)
 > The above link gives you a quick start guide on how to run the app in development environment.
