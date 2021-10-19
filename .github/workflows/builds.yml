@@ -21,7 +21,7 @@ env:
   APPLE_PROFILE: ${{ secrets.APPLE_DEV_PROFILE }}
   APPLE_CERT: ios_distribution.cer
   APPLE_KEY: Certificates.p12
-  APPLE_KEY_PASSWORD: ${{ secrets.APPLE_KEY_PASSWORD }}  
+  APPLE_KEY_PASSWORD: ${{ secrets.APPLE_KEY_PASSWORD }}
   FASTLANE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID}}
   FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
   APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
@@ -38,82 +38,77 @@ env:
   SLACK_CHANNEL: '#dev-builds'
 
 jobs:
-
   ios:
     runs-on: macmini
     timeout-minutes: 45
 
     steps:
-   
-    - name: Checkout
-      uses: actions/checkout@v2
-        
-    # This needs to match Node version in package.json
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14.5.0'
-    
-    
-    # Downloads certificate, private key and Firebase file
-    - name: Download code signing items
-      run: | 
-        aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ ./ios --recursive
-        mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-        mv ./ios/$APPLE_PROFILE ~/Library/MobileDevice/Provisioning\ Profiles/$APPLE_PROFILE
-    
-    - name: install Node dependencies
-      run: yarn install
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Generate .env file
-      run: |
-        echo API_URL=$API_URL >> .env.dev
+      # This needs to match Node version in package.json
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '^14.5.0'
 
-    # Runs build and archives for AdHoc distribution
-    # Pushes build to AWS S3
-    # Sends Slack notification
-    - name: Build with Fastlane
-      run: bundle exec fastlane share_develop
-      working-directory: ios
+      # Downloads certificate, private key and Firebase file
+      - name: Download code signing items
+        run: |
+          aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ ./ios --recursive
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          mv ./ios/$APPLE_PROFILE ~/Library/MobileDevice/Provisioning\ Profiles/$APPLE_PROFILE
 
+      - name: install Node dependencies
+        run: yarn install
+
+      - name: Generate .env file
+        run: |
+          echo API_URL=$API_URL >> .env.dev
+
+      # Runs build and archives for AdHoc distribution
+      # Pushes build to AWS S3
+      # Sends Slack notification
+      - name: Build with Fastlane
+        run: bundle exec fastlane share_develop
+        working-directory: ios
 
   android:
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
     steps:
-    
-    - name: Checkout
-      uses: actions/checkout@v2
-    
-    # This needs to match Node version in package.json
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '14.5.0'
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    # Downloads certificate, private key and Firebase file
-    - name: Download code signing items
-      run: | 
-        aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ ./android --recursive
-        mv ./android/$RELEASE_STORE_FILE ./android/app/$RELEASE_STORE_FILE
+      # This needs to match Node version in package.json
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '^14.5.0'
 
-    - name: install Node dependencies
-      run: yarn install
+      # Downloads certificate, private key and Firebase file
+      - name: Download code signing items
+        run: |
+          aws s3 cp s3://$KEYS_BUCKET/$FOLDER/ ./android --recursive
+          mv ./android/$RELEASE_STORE_FILE ./android/app/$RELEASE_STORE_FILE
 
-    - name: Generate .env file
-      run: |
-        echo API_URL=$API_URL >> .env.dev
-        echo RELEASE_STORE_FILE=$RELEASE_STORE_FILE >> .env.dev
-        echo RELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD >> .env.dev
-        echo RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS >> .env.dev
-        echo RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD >> .env.dev
+      - name: install Node dependencies
+        run: yarn install
 
-    - name: install gem dependencies
-      run: bundle update
-      working-directory: android
-    # Cleans workspace
-    # Runs build with Gradle
-    # Submits build to Play Store
-    # Sends Slack notification
-    - name: Build with Fastlane
-      run: bundle exec fastlane release_develop
-      working-directory: android
+      - name: Generate .env file
+        run: |
+          echo API_URL=$API_URL >> .env.dev
+          echo RELEASE_STORE_FILE=$RELEASE_STORE_FILE >> .env.dev
+          echo RELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD >> .env.dev
+          echo RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS >> .env.dev
+          echo RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD >> .env.dev
+
+      - name: install gem dependencies
+        run: bundle update
+        working-directory: android
+      # Cleans workspace
+      # Runs build with Gradle
+      # Submits build to Play Store
+      # Sends Slack notification
+      - name: Build with Fastlane
+        run: bundle exec fastlane release_develop
+        working-directory: android

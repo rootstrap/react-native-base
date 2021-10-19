@@ -48,6 +48,10 @@ ENVFILE=.env.{env} react-native run-ios
 ```
 keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000
 ```
+**NOTE:** In case you face this issue **Algorithm HmacPBESHA256 not available** you could use this command instead. (This happens if the machine doesn't have **Java 8** as main when trying to run the keytool command.)
+```
+**curl** https://raw.githubusercontent.com/facebook/react-native/master/template/android/app/debug.keystore > android/app/debug.keystore
+```
 
 ### Steps for iOS development
 
