@@ -6,7 +6,7 @@ export default {
     },
     pattern: {
       value: /\S+@\S+\.\S+/,
-      message: 'Entered value does not match email format',
+      message: 'Email is not a valid email',
     },
   },
   password: {

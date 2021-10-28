@@ -1,12 +1,13 @@
 import React from 'react';
 import SignUpForm from 'components/SignUpForm';
-import { fireEvent, waitFor } from '@testing-library/react-native';
+import { fireEvent, act, waitFor } from '@testing-library/react-native';
 
 import { renderWithRedux, configureStore, BUTTON_DISABLED_EXCEPTION } from '../helpers';
 
 describe('<SignUpForm />', () => {
   let wrapper;
   let store;
+
   const props = {
     onSubmit: jest.fn(),
   };
@@ -19,7 +20,7 @@ describe('<SignUpForm />', () => {
   describe('Email Input', () => {
     let input;
     beforeEach(() => {
-      input = wrapper.queryByTestId('email-input');
+      input = wrapper.getByTestId('email-input');
     });
 
     it('should display an email field', () => {
@@ -131,14 +132,14 @@ describe('<SignUpForm />', () => {
   });
 
   it('should display a submit button', () => {
-    expect(wrapper.queryByTestId('signup-submit-button')).toBeTruthy();
+    expect(wrapper.getByTestId('signup-submit-button')).toBeTruthy();
   });
 
   describe('when the submit button is pressed', () => {
     let submitButton;
 
     beforeEach(() => {
-      submitButton = wrapper.queryByTestId('signup-submit-button');
+      submitButton = wrapper.getByTestId('signup-submit-button');
     });
 
     describe('and the form is empty', () => {
@@ -149,10 +150,10 @@ describe('<SignUpForm />', () => {
 
     describe('and the passwords not match', () => {
       beforeEach(() => {
-        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
-        fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
-        fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'confirm-password');
-        fireEvent(wrapper.queryByTestId('confirm-password-input'), 'blur');
+        fireEvent.changeText(wrapper.getByTestId('email-input'), 'example@rootstrap.com');
+        fireEvent.changeText(wrapper.getByTestId('password-input'), 'password');
+        fireEvent.changeText(wrapper.getByTestId('confirm-password-input'), 'confirm-password');
+        fireEvent(wrapper.getByTestId('confirm-password-input'), 'blur');
       });
 
       it('should not submit the form', async () => {
@@ -166,10 +167,13 @@ describe('<SignUpForm />', () => {
     });
 
     describe('and the form is valid', () => {
-      beforeEach(() => {
-        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
-        fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
-        fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'password');
+      beforeEach(async () => {
+        await act(() => {
+          fireEvent.changeText(wrapper.getByTestId('email-input'), 'example@rootstrap.com');
+          fireEvent.changeText(wrapper.getByTestId('password-input'), 'password');
+          fireEvent.changeText(wrapper.getByTestId('confirm-password-input'), 'password');
+        });
+
         fireEvent.press(submitButton);
       });
 

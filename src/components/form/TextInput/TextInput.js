@@ -43,9 +43,9 @@ const TextInput = forwardRef(
         <InputLabel text={label} withRequiredIndicator={required} />
         <View>
           <RNTextInput
+            {...otherProps}
             ref={ref}
             accessible
-            {...otherProps}
             style={[styles.input, isFocused && styles.inputFocused, error && styles.inputWithError]}
             value={value}
             onChangeText={text => onChange(text)}
@@ -64,7 +64,7 @@ const TextInput = forwardRef(
             </View>
           )}
         </View>
-        <ErrorMessage message={error?.message} />
+        {!!error && <ErrorMessage message={error?.message} />}
       </View>
     );
   },

@@ -1,4 +1,4 @@
-import { fireEvent, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, waitFor } from '@testing-library/react-native';
 
 import { SIGN_UP_SCREEN } from 'constants/screens';
 import SignUpScreen from 'screens/SignUpScreen';
@@ -36,17 +36,22 @@ describe('<SignUpScreen />', () => {
   });
 
   describe('when the user submits the form', () => {
-    beforeEach(() => {
-      fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
-      fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
-      fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'password');
+    beforeEach(async () => {
+      await act(() => {
+        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
+        fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
+        fireEvent.changeText(wrapper.queryByTestId('confirm-password-input'), 'password');
+      });
     });
 
     it('should show the loading spinner', async () => {
       mockedHttpClient(store)
         .onPost('/users')
         .reply(200);
-      fireEvent.press(wrapper.queryByTestId('signup-submit-button'));
+
+      await act(() => {
+        fireEvent.press(wrapper.queryByTestId('signup-submit-button'));
+      });
 
       expect(wrapper.queryByText('Loading')).toBeTruthy();
       await waitFor(() => expect(wrapper.queryByText('Loading')).toBeNull());

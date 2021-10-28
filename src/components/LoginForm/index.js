@@ -27,7 +27,9 @@ const LoginForm = ({ onSubmit }) => {
     handleSubmit,
     setFocus,
     formState: { errors, isDirty, isValid },
-  } = useForm();
+  } = useForm({
+    mode: 'all',
+  });
 
   const disabled = !isDirty || !isValid;
 

@@ -1,4 +1,4 @@
-import { fireEvent, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, waitFor } from '@testing-library/react-native';
 
 import { LOGIN_SCREEN } from 'constants/screens';
 import LoginScreen from 'screens/LoginScreen';
@@ -32,16 +32,21 @@ describe('<LoginScreen />', () => {
   });
 
   describe('when the user submits the form', () => {
-    beforeEach(() => {
-      fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
-      fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
+    beforeEach(async () => {
+      await act(() => {
+        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
+        fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
+      });
     });
 
     it('should show the loading spinner', async () => {
       mockedHttpClient(store)
         .onPost('/users/sign_in')
         .reply(200);
-      fireEvent.press(wrapper.queryByTestId('login-submit-button'));
+
+      await act(() => {
+        fireEvent.press(wrapper.queryByTestId('login-submit-button'));
+      });
 
       expect(wrapper.queryByText('Loading')).toBeTruthy();
       await waitFor(() => expect(wrapper.queryByText('Loading')).toBeNull());
@@ -62,6 +67,7 @@ describe('<LoginScreen />', () => {
             },
             AUTHENTICATED_RESPONSE_HEADERS,
           );
+
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
         expect(wrapper.queryAllByLabelText('form-error')).toEqual([]);
@@ -90,6 +96,7 @@ describe('<LoginScreen />', () => {
         mockedHttpClient(store)
           .onPost('/users/sign_in')
           .networkError();
+
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
         await waitFor(() => {

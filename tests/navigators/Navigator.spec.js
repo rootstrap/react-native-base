@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, waitFor } from '@testing-library/react-native';
 
 import { LOGIN_SCREEN, MAIN_SCREEN } from 'constants/screens';
 import Navigator from 'navigators';
@@ -27,9 +27,11 @@ describe('Navigator', () => {
     });
 
     describe('when the user logs in correctly', () => {
-      beforeEach(() => {
-        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
-        fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
+      beforeEach(async () => {
+        await act(() => {
+          fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
+          fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
+        });
       });
 
       it('should render the main screen', async () => {
@@ -46,6 +48,7 @@ describe('Navigator', () => {
             },
             AUTHENTICATED_RESPONSE_HEADERS,
           );
+
         fireEvent.press(wrapper.queryByTestId('login-submit-button'));
 
         await waitFor(() => {

@@ -1,12 +1,13 @@
 import React from 'react';
 import LoginForm from 'components/LoginForm';
-import { fireEvent, waitFor } from '@testing-library/react-native';
+import { fireEvent, act, waitFor } from '@testing-library/react-native';
 
 import { renderWithRedux, configureStore, BUTTON_DISABLED_EXCEPTION } from '../helpers';
 
 describe('<LoginForm />', () => {
   let wrapper;
   let store;
+
   const props = {
     onSubmit: jest.fn(),
   };
@@ -18,8 +19,9 @@ describe('<LoginForm />', () => {
 
   describe('Email Input', () => {
     let input;
+
     beforeEach(() => {
-      input = wrapper.queryByTestId('email-input');
+      input = wrapper.getByTestId('email-input');
     });
 
     it('should display an email field', () => {
@@ -115,9 +117,11 @@ describe('<LoginForm />', () => {
     });
 
     describe('and the form is valid', () => {
-      beforeEach(() => {
-        fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
-        fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
+      beforeEach(async () => {
+        await act(() => {
+          fireEvent.changeText(wrapper.queryByTestId('email-input'), 'example@rootstrap.com');
+          fireEvent.changeText(wrapper.queryByTestId('password-input'), 'password');
+        });
         fireEvent.press(submitButton);
       });
 
