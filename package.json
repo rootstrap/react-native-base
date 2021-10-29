@@ -34,7 +34,7 @@
     "@react-navigation/stack": "^6.0.6",
     "@rootstrap/redux-tools": "^0.4.2",
     "@rootstrap/validate": "^1.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "eslint-plugin-prettier": "3.1.0",
     "humps": "2.0.1",
     "immer": "5.0.0",
