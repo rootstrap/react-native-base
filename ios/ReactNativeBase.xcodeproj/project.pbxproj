@@ -8,28 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ReactNativeBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ReactNativeBaseTests.m */; };
+		0EF92809E854203F3A48E3A8 /* libPods-ReactNativeBase-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 171261155AF7568580DC5DB8 /* libPods-ReactNativeBase-tvOSTests.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1A3E9B0E5AF6C6DBAE1A5CD2 /* libPods-ReactNativeBase-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0A792FFD65EED403461C099 /* libPods-ReactNativeBase-tvOS.a */; };
+		2B903A418036322B5E98AD0A /* libPods-ReactNativeBase-QA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B99409A993E4548C5D625B6 /* libPods-ReactNativeBase-QA.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ReactNativeBaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ReactNativeBaseTests.m */; };
-		361D1608F8727C66FB0DE8CB /* libPods-ReactNativeBase-ReactNativeBaseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AC18E667F4EDFD330B4527 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */; };
 		37BA4E3C26C58167005ED7FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		37BA4E3D26C58167005ED7FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		37BA4E4126C58167005ED7FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		37BA4E4226C58167005ED7FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
-		40558C4F6B2E51E282B02C8F /* libPods-ReactNativeBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F2BF07C5752A0ECAA9B50F /* libPods-ReactNativeBase.a */; };
 		5537A5DC24376A1800F9B9FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
 		5537A5DD24376A1800F9B9FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
 		5537A5DE24376A1800F9B9FE /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */; };
-		6FCC80A7A7CCEB882A1EE0C8 /* libPods-ReactNativeBase-QA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A469A7DF004DBDC7A8F375D /* libPods-ReactNativeBase-QA.a */; };
-		9B0243531F270CBB6E36495A /* libPods-ReactNativeBase-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FFF1A0A0D79A52FA343994E /* libPods-ReactNativeBase-tvOSTests.a */; };
-		9CEB73B58FB152FDD74F0720 /* libPods-ReactNativeBase-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44697982F9284E7E43F44305 /* libPods-ReactNativeBase-tvOS.a */; };
-		BBCDE83BA965486201CF31AB /* libPods-ReactNativeBase-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE1AB4DBFE1058BF55733D8B /* libPods-ReactNativeBase-Develop.a */; };
-		D35AFCB0D169AD30C275822B /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
-		E77860054D22D4DDB9D5F9AA /* libPods-ReactNativeBase-Staging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5194B9636EC5B962F89DA5B8 /* libPods-ReactNativeBase-Staging.a */; };
+		6817991E2120B0C8D1D665BE /* libPods-ReactNativeBase-Develop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C5B2C8D5EFC9B0054EA0F90 /* libPods-ReactNativeBase-Develop.a */; };
+		93DABD5FCBE5820DE64411CF /* libPods-ReactNativeBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1A2D3D151EED932110D502 /* libPods-ReactNativeBase.a */; };
+		F3DC88CA9D7F5721912E9B18 /* libPods-ReactNativeBase-ReactNativeBaseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBE4D2FF24B5063CC5F5435 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */; };
+		F453626EB2E5632FD0F67D94 /* libPods-ReactNativeBase-Staging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD3F52B37066F1FFB6ECA99 /* libPods-ReactNativeBase-Staging.a */; };
 		FE002AFE22E9DCD20027B199 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		FE002AFF22E9DCD20027B199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		FE002B0322E9DCD20027B199 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -57,50 +56,48 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00AC18E667F4EDFD330B4527 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-ReactNativeBaseTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356EE1AD99517003FC87E /* ReactNativeBaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactNativeBaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ReactNativeBaseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeBaseTests.m; sourceTree = "<group>"; };
+		016E7CCA20EBFD91A1CE3BF3 /* Pods-ReactNativeBase-QA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-QA.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ReactNativeBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactNativeBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ReactNativeBase/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ReactNativeBase/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ReactNativeBase/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ReactNativeBase/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ReactNativeBase/main.m; sourceTree = "<group>"; };
-		18F2BF07C5752A0ECAA9B50F /* libPods-ReactNativeBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A469A7DF004DBDC7A8F375D /* libPods-ReactNativeBase-QA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-QA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C98C079CDC74151BC1BE98E /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOSTests/Pods-ReactNativeBase-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		1FF6942EBA95C3A6D7CF89DD /* Pods-ReactNativeBase-Develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Develop.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop.debug.xcconfig"; sourceTree = "<group>"; };
+		171261155AF7568580DC5DB8 /* libPods-ReactNativeBase-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B99409A993E4548C5D625B6 /* libPods-ReactNativeBase-QA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-QA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* ReactNativeBase-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactNativeBase-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* ReactNativeBase-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ReactNativeBase-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D7C75E124C2820E00CBB15B /* ReactNativeBase-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReactNativeBase-Bridging-Header.h"; sourceTree = "<group>"; };
 		2D7C75E224C2820E00CBB15B /* ReactNativeBase-Staging-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReactNativeBase-Staging-Bridging-Header.h"; sourceTree = "<group>"; };
 		2D7C75E324C2820E00CBB15B /* ReactNativeBase-Develop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReactNativeBase-Develop-Bridging-Header.h"; sourceTree = "<group>"; };
-		308D4A05246D04864F6C3200 /* Pods-ReactNativeBase-QA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-QA.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA.release.xcconfig"; sourceTree = "<group>"; };
+		2DB3A09D2AF74769FEDEC64B /* Pods-ReactNativeBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase.release.xcconfig"; sourceTree = "<group>"; };
 		37BA4E4926C58167005ED7FE /* ReactNativeBase-QA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactNativeBase-QA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		37BA4E4A26C58167005ED7FE /* ReactNativeBase-QA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ReactNativeBase-QA-Info.plist"; path = "/Users/nicolas/Development/RN/react-native-base/ios/ReactNativeBase-QA-Info.plist"; sourceTree = "<absolute>"; };
 		37BA4E4B26C59DDE005ED7FE /* ReactNativeBase-Develop-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReactNativeBase-Develop-Info.plist"; sourceTree = "<group>"; };
 		37BA4E4C26C59DDF005ED7FE /* ReactNativeBase-Staging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReactNativeBase-Staging-Info.plist"; sourceTree = "<group>"; };
-		44697982F9284E7E43F44305 /* libPods-ReactNativeBase-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AA7982FEEB6DA2C52ACBD5E /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig"; sourceTree = "<group>"; };
-		5194B9636EC5B962F89DA5B8 /* libPods-ReactNativeBase-Staging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-Staging.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47499F1392F586495AFA746D /* Pods-ReactNativeBase-Develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Develop.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop.release.xcconfig"; sourceTree = "<group>"; };
+		481666408C57C8012F84932C /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig"; sourceTree = "<group>"; };
+		50DD61719B05CB41E51ABE7F /* Pods-ReactNativeBase-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Staging.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging.release.xcconfig"; sourceTree = "<group>"; };
+		54F80E54AA65F40845D98CF0 /* Pods-ReactNativeBase-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5537A5DB24376A1800F9B9FE /* BootSplash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BootSplash.storyboard; sourceTree = "<group>"; };
-		5FFF1A0A0D79A52FA343994E /* libPods-ReactNativeBase-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		83ACE6892685D8C6AAE6DA9C /* Pods-ReactNativeBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase.release.xcconfig"; sourceTree = "<group>"; };
-		8BE8208158E18B7F778E5A71 /* Pods-ReactNativeBase-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		972824CB458A25B53AC1EFEA /* Pods-ReactNativeBase-Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Staging.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging.release.xcconfig"; sourceTree = "<group>"; };
-		A5F764061187CD576D860FC4 /* Pods-ReactNativeBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase.debug.xcconfig"; sourceTree = "<group>"; };
-		A6D74305879FCEDD3E81ED1B /* Pods-ReactNativeBase-Develop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Develop.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop.release.xcconfig"; sourceTree = "<group>"; };
-		ABEEF0B1DB8EDFD53517D32C /* Pods-ReactNativeBase-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOSTests/Pods-ReactNativeBase-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AE1AB4DBFE1058BF55733D8B /* libPods-ReactNativeBase-Develop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-Develop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD532F9B2E00989E2D8BF49D /* Pods-ReactNativeBaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBaseTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBaseTests/Pods-ReactNativeBaseTests.release.xcconfig"; sourceTree = "<group>"; };
-		C759D31818F4F72821F8604D /* Pods-ReactNativeBase-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		DD77FD7C5108B7A4A649604F /* Pods-ReactNativeBaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBaseTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBaseTests/Pods-ReactNativeBaseTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E280833A393130671A73F396 /* Pods-ReactNativeBase-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Staging.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging.debug.xcconfig"; sourceTree = "<group>"; };
+		69C0E836A63CAF9F5C076F1C /* Pods-ReactNativeBase-Develop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Develop.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop.debug.xcconfig"; sourceTree = "<group>"; };
+		7C5B2C8D5EFC9B0054EA0F90 /* libPods-ReactNativeBase-Develop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-Develop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DB8F50D41FCF1E0760054A1 /* Pods-ReactNativeBase-QA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-QA.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA.debug.xcconfig"; sourceTree = "<group>"; };
+		9A1A2D3D151EED932110D502 /* libPods-ReactNativeBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE813CB51EC34F69CEDF757B /* Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B4ED01B0271F6BF000500CC0 /* ReactNativeBase-QA-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ReactNativeBase-QA-Info.plist"; sourceTree = "<group>"; };
+		BCBE4D2FF24B5063CC5F5435 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-ReactNativeBaseTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD5B503BD79A55A7F689AE52 /* Pods-ReactNativeBase-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOSTests/Pods-ReactNativeBase-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BFD3F52B37066F1FFB6ECA99 /* libPods-ReactNativeBase-Staging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-Staging.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0A792FFD65EED403461C099 /* libPods-ReactNativeBase-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactNativeBase-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BDCE17AE3B04541D2642FA /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOSTests/Pods-ReactNativeBase-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		D7914934650BF7243DD14D13 /* Pods-ReactNativeBase-Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-Staging.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging.debug.xcconfig"; sourceTree = "<group>"; };
+		E756D803CBE031F23E794432 /* Pods-ReactNativeBase-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		E9D889D1ED7D6BBB0A0C2FBB /* Pods-ReactNativeBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F9EB8F114CD0FD664770E646 /* Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig"; sourceTree = "<group>"; };
-		FAEDF8EF6A7DCF5BD5786AF1 /* Pods-ReactNativeBase-QA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-QA.debug.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA.debug.xcconfig"; sourceTree = "<group>"; };
 		FE002B0922E9DCD20027B199 /* ReactNativeBase-Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactNativeBase-Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE002B1A22EA13BF0027B199 /* ReactNativeBase-Develop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ReactNativeBase-Develop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -110,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				361D1608F8727C66FB0DE8CB /* libPods-ReactNativeBase-ReactNativeBaseTests.a in Frameworks */,
+				F3DC88CA9D7F5721912E9B18 /* libPods-ReactNativeBase-ReactNativeBaseTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,8 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D35AFCB0D169AD30C275822B /* BuildFile in Frameworks */,
-				40558C4F6B2E51E282B02C8F /* libPods-ReactNativeBase.a in Frameworks */,
+				93DABD5FCBE5820DE64411CF /* libPods-ReactNativeBase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CEB73B58FB152FDD74F0720 /* libPods-ReactNativeBase-tvOS.a in Frameworks */,
+				1A3E9B0E5AF6C6DBAE1A5CD2 /* libPods-ReactNativeBase-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B0243531F270CBB6E36495A /* libPods-ReactNativeBase-tvOSTests.a in Frameworks */,
+				0EF92809E854203F3A48E3A8 /* libPods-ReactNativeBase-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FCC80A7A7CCEB882A1EE0C8 /* libPods-ReactNativeBase-QA.a in Frameworks */,
+				2B903A418036322B5E98AD0A /* libPods-ReactNativeBase-QA.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E77860054D22D4DDB9D5F9AA /* libPods-ReactNativeBase-Staging.a in Frameworks */,
+				F453626EB2E5632FD0F67D94 /* libPods-ReactNativeBase-Staging.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBCDE83BA965486201CF31AB /* libPods-ReactNativeBase-Develop.a in Frameworks */,
+				6817991E2120B0C8D1D665BE /* libPods-ReactNativeBase-Develop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,13 +201,13 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				44697982F9284E7E43F44305 /* libPods-ReactNativeBase-tvOS.a */,
-				5FFF1A0A0D79A52FA343994E /* libPods-ReactNativeBase-tvOSTests.a */,
-				AE1AB4DBFE1058BF55733D8B /* libPods-ReactNativeBase-Develop.a */,
-				5194B9636EC5B962F89DA5B8 /* libPods-ReactNativeBase-Staging.a */,
-				00AC18E667F4EDFD330B4527 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */,
-				1A469A7DF004DBDC7A8F375D /* libPods-ReactNativeBase-QA.a */,
-				18F2BF07C5752A0ECAA9B50F /* libPods-ReactNativeBase.a */,
+				9A1A2D3D151EED932110D502 /* libPods-ReactNativeBase.a */,
+				7C5B2C8D5EFC9B0054EA0F90 /* libPods-ReactNativeBase-Develop.a */,
+				1B99409A993E4548C5D625B6 /* libPods-ReactNativeBase-QA.a */,
+				BCBE4D2FF24B5063CC5F5435 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */,
+				BFD3F52B37066F1FFB6ECA99 /* libPods-ReactNativeBase-Staging.a */,
+				C0A792FFD65EED403461C099 /* libPods-ReactNativeBase-tvOS.a */,
+				171261155AF7568580DC5DB8 /* libPods-ReactNativeBase-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -232,8 +228,8 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D61026C4A3CF4DDFB97A0F07 /* Pods */,
+				B4ED01B0271F6BF000500CC0 /* ReactNativeBase-QA-Info.plist */,
 				37BA4E4B26C59DDE005ED7FE /* ReactNativeBase-Develop-Info.plist */,
-				37BA4E4A26C58167005ED7FE /* ReactNativeBase-QA-Info.plist */,
 				37BA4E4C26C59DDF005ED7FE /* ReactNativeBase-Staging-Info.plist */,
 			);
 			indentWidth = 2;
@@ -258,22 +254,20 @@
 		D61026C4A3CF4DDFB97A0F07 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C759D31818F4F72821F8604D /* Pods-ReactNativeBase-tvOS.debug.xcconfig */,
-				8BE8208158E18B7F778E5A71 /* Pods-ReactNativeBase-tvOS.release.xcconfig */,
-				ABEEF0B1DB8EDFD53517D32C /* Pods-ReactNativeBase-tvOSTests.debug.xcconfig */,
-				1C98C079CDC74151BC1BE98E /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */,
-				DD77FD7C5108B7A4A649604F /* Pods-ReactNativeBaseTests.debug.xcconfig */,
-				BD532F9B2E00989E2D8BF49D /* Pods-ReactNativeBaseTests.release.xcconfig */,
-				A5F764061187CD576D860FC4 /* Pods-ReactNativeBase.debug.xcconfig */,
-				83ACE6892685D8C6AAE6DA9C /* Pods-ReactNativeBase.release.xcconfig */,
-				E280833A393130671A73F396 /* Pods-ReactNativeBase-Staging.debug.xcconfig */,
-				972824CB458A25B53AC1EFEA /* Pods-ReactNativeBase-Staging.release.xcconfig */,
-				1FF6942EBA95C3A6D7CF89DD /* Pods-ReactNativeBase-Develop.debug.xcconfig */,
-				A6D74305879FCEDD3E81ED1B /* Pods-ReactNativeBase-Develop.release.xcconfig */,
-				F9EB8F114CD0FD664770E646 /* Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig */,
-				4AA7982FEEB6DA2C52ACBD5E /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */,
-				FAEDF8EF6A7DCF5BD5786AF1 /* Pods-ReactNativeBase-QA.debug.xcconfig */,
-				308D4A05246D04864F6C3200 /* Pods-ReactNativeBase-QA.release.xcconfig */,
+				E9D889D1ED7D6BBB0A0C2FBB /* Pods-ReactNativeBase.debug.xcconfig */,
+				2DB3A09D2AF74769FEDEC64B /* Pods-ReactNativeBase.release.xcconfig */,
+				69C0E836A63CAF9F5C076F1C /* Pods-ReactNativeBase-Develop.debug.xcconfig */,
+				47499F1392F586495AFA746D /* Pods-ReactNativeBase-Develop.release.xcconfig */,
+				8DB8F50D41FCF1E0760054A1 /* Pods-ReactNativeBase-QA.debug.xcconfig */,
+				016E7CCA20EBFD91A1CE3BF3 /* Pods-ReactNativeBase-QA.release.xcconfig */,
+				AE813CB51EC34F69CEDF757B /* Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig */,
+				481666408C57C8012F84932C /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */,
+				D7914934650BF7243DD14D13 /* Pods-ReactNativeBase-Staging.debug.xcconfig */,
+				50DD61719B05CB41E51ABE7F /* Pods-ReactNativeBase-Staging.release.xcconfig */,
+				54F80E54AA65F40845D98CF0 /* Pods-ReactNativeBase-tvOS.debug.xcconfig */,
+				E756D803CBE031F23E794432 /* Pods-ReactNativeBase-tvOS.release.xcconfig */,
+				BD5B503BD79A55A7F689AE52 /* Pods-ReactNativeBase-tvOSTests.debug.xcconfig */,
+				C3BDCE17AE3B04541D2642FA /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -285,12 +279,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ReactNativeBaseTests" */;
 			buildPhases = (
-				E85214077ADDC0852F02FDB6 /* [CP] Check Pods Manifest.lock */,
+				CCA4B2B79AFED6B32F78328C /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				D11185C2E5B7ADEB40BBC2BD /* [CP] Embed Pods Frameworks */,
-				3F771C053D718FB71125010E /* [CP] Copy Pods Resources */,
+				4550585870A1A52C3FFEE61A /* [CP] Embed Pods Frameworks */,
+				A9A99D81A3CAC59B31A1959E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,14 +300,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ReactNativeBase" */;
 			buildPhases = (
-				37D0E53BA7A052DA1ACCEE02 /* [CP] Check Pods Manifest.lock */,
+				EABB5FF277E850A491571AB2 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				D6B2A2B20B7BE19CF17504C5 /* [CP] Embed Pods Frameworks */,
-				F2D47C44ABB4028BDF16F922 /* [CP] Copy Pods Resources */,
+				0E24EC723DBF448AC05E64A0 /* [CP] Embed Pods Frameworks */,
+				1263DFDE65617F130CBE12A8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -328,13 +322,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ReactNativeBase-tvOS" */;
 			buildPhases = (
-				0204927EA819631EC89086FC /* [CP] Check Pods Manifest.lock */,
+				65F88463F90CCCD77A711270 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
 				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
-				37CD0595C9947E759989F709 /* [CP] Embed Pods Frameworks */,
+				7DEFEF77E2E5CD5521B5D875 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -349,7 +343,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ReactNativeBase-tvOSTests" */;
 			buildPhases = (
-				D97A05D59F5E54F4D781A792 /* [CP] Check Pods Manifest.lock */,
+				C5CEC38A233B748BE404DDFE /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -368,14 +362,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37BA4E4626C58167005ED7FE /* Build configuration list for PBXNativeTarget "ReactNativeBase-QA" */;
 			buildPhases = (
-				37BA4E3926C58167005ED7FE /* [CP] Check Pods Manifest.lock */,
+				BD6D980ADB84F5E53733C496 /* [CP] Check Pods Manifest.lock */,
 				37BA4E3A26C58167005ED7FE /* Start Packager */,
 				37BA4E3B26C58167005ED7FE /* Sources */,
 				37BA4E3E26C58167005ED7FE /* Frameworks */,
 				37BA4E4026C58167005ED7FE /* Resources */,
 				37BA4E4326C58167005ED7FE /* Bundle React Native code and images */,
-				37BA4E4426C58167005ED7FE /* [CP] Embed Pods Frameworks */,
-				37BA4E4526C58167005ED7FE /* [CP] Copy Pods Resources */,
+				593D1BE6E2E0119404E261E0 /* [CP] Embed Pods Frameworks */,
+				A8134EE4A2A579CD03E6492D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -390,14 +384,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE002B0622E9DCD20027B199 /* Build configuration list for PBXNativeTarget "ReactNativeBase-Staging" */;
 			buildPhases = (
-				27E75E17105192B75AF11FF9 /* [CP] Check Pods Manifest.lock */,
+				C18BC54D03E8C4595674661D /* [CP] Check Pods Manifest.lock */,
 				FE002AFC22E9DCD20027B199 /* Start Packager */,
 				FE002AFD22E9DCD20027B199 /* Sources */,
 				FE002B0022E9DCD20027B199 /* Frameworks */,
 				FE002B0222E9DCD20027B199 /* Resources */,
 				FE002B0522E9DCD20027B199 /* Bundle React Native code and images */,
-				7504E7EB6516D32ECC09DE2F /* [CP] Embed Pods Frameworks */,
-				267BA4AE454847A67C5167E1 /* [CP] Copy Pods Resources */,
+				705A7573BA0B0EDB97866FC1 /* [CP] Embed Pods Frameworks */,
+				FAEDB908C2E2AB898AA4DAE2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -412,14 +406,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE002B1722EA13BF0027B199 /* Build configuration list for PBXNativeTarget "ReactNativeBase-Develop" */;
 			buildPhases = (
-				FE002B0C22EA13BF0027B199 /* [CP] Check Pods Manifest.lock */,
+				69CAB0D90097A8EB90517695 /* [CP] Check Pods Manifest.lock */,
 				FE002B0D22EA13BF0027B199 /* Start Packager */,
 				FE002B0E22EA13BF0027B199 /* Sources */,
 				FE002B1122EA13BF0027B199 /* Frameworks */,
 				FE002B1322EA13BF0027B199 /* Resources */,
 				FE002B1622EA13BF0027B199 /* Bundle React Native code and images */,
-				DC5090E2C77D4BA65842DAB6 /* [CP] Embed Pods Frameworks */,
-				9DBAB6AFBE8A30C6CB763936 /* [CP] Copy Pods Resources */,
+				F54E382AACE33137F86A64E3 /* [CP] Embed Pods Frameworks */,
+				9294C95F3CE7DDC6DC64647C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -576,35 +570,33 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=$(which node)\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		0204927EA819631EC89086FC /* [CP] Check Pods Manifest.lock */ = {
+		0E24EC723DBF448AC05E64A0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
 			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-tvOS-checkManifestLockResult.txt",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/double-conversion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		267BA4AE454847A67C5167E1 /* [CP] Copy Pods Resources */ = {
+		1263DFDE65617F130CBE12A8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -613,29 +605,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		27E75E17105192B75AF11FF9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-Staging-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
@@ -651,28 +621,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=$(which node)\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
-		};
-		37BA4E3926C58167005ED7FE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-QA-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		37BA4E3A26C58167005ED7FE /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -707,17 +655,39 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=$(which node)\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		37BA4E4426C58167005ED7FE /* [CP] Embed Pods Frameworks */ = {
+		4550585870A1A52C3FFEE61A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/double-conversion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		593D1BE6E2E0119404E261E0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/double-conversion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,43 +695,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		37BA4E4526C58167005ED7FE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		37CD0595C9947E759989F709 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		37D0E53BA7A052DA1ACCEE02 /* [CP] Check Pods Manifest.lock */ = {
+		65F88463F90CCCD77A711270 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -776,42 +710,48 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3F771C053D718FB71125010E /* [CP] Copy Pods Resources */ = {
+		69CAB0D90097A8EB90517695 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			inputFileListPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-Develop-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7504E7EB6516D32ECC09DE2F /* [CP] Embed Pods Frameworks */ = {
+		705A7573BA0B0EDB97866FC1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/double-conversion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -819,7 +759,27 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9DBAB6AFBE8A30C6CB763936 /* [CP] Copy Pods Resources */ = {
+		7DEFEF77E2E5CD5521B5D875 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/double-conversion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-tvOS/Pods-ReactNativeBase-tvOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9294C95F3CE7DDC6DC64647C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -837,43 +797,87 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D11185C2E5B7ADEB40BBC2BD /* [CP] Embed Pods Frameworks */ = {
+		A8134EE4A2A579CD03E6492D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-QA/Pods-ReactNativeBase-QA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D6B2A2B20B7BE19CF17504C5 /* [CP] Embed Pods Frameworks */ = {
+		A9A99D81A3CAC59B31A1959E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D97A05D59F5E54F4D781A792 /* [CP] Check Pods Manifest.lock */ = {
+		BD6D980ADB84F5E53733C496 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-QA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C18BC54D03E8C4595674661D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-Staging-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C5CEC38A233B748BE404DDFE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -895,25 +899,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DC5090E2C77D4BA65842DAB6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E85214077ADDC0852F02FDB6 /* [CP] Check Pods Manifest.lock */ = {
+		CCA4B2B79AFED6B32F78328C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -935,13 +921,55 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F2D47C44ABB4028BDF16F922 /* [CP] Copy Pods Resources */ = {
+		EABB5FF277E850A491571AB2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F54E382AACE33137F86A64E3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/double-conversion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Develop/Pods-ReactNativeBase-Develop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAEDB908C2E2AB898AA4DAE2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -950,7 +978,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactNativeBase-Staging/Pods-ReactNativeBase-Staging-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -1023,28 +1051,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=$(which node)\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
-		};
-		FE002B0C22EA13BF0027B199 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReactNativeBase-Develop-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		FE002B0D22EA13BF0027B199 /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1161,7 +1167,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9EB8F114CD0FD664770E646 /* Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig */;
+			baseConfigurationReference = AE813CB51EC34F69CEDF757B /* Pods-ReactNativeBase-ReactNativeBaseTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1188,7 +1194,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AA7982FEEB6DA2C52ACBD5E /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */;
+			baseConfigurationReference = 481666408C57C8012F84932C /* Pods-ReactNativeBase-ReactNativeBaseTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1212,7 +1218,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5F764061187CD576D860FC4 /* Pods-ReactNativeBase.debug.xcconfig */;
+			baseConfigurationReference = E9D889D1ED7D6BBB0A0C2FBB /* Pods-ReactNativeBase.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1249,7 +1255,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83ACE6892685D8C6AAE6DA9C /* Pods-ReactNativeBase.release.xcconfig */;
+			baseConfigurationReference = 2DB3A09D2AF74769FEDEC64B /* Pods-ReactNativeBase.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1284,7 +1290,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C759D31818F4F72821F8604D /* Pods-ReactNativeBase-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 54F80E54AA65F40845D98CF0 /* Pods-ReactNativeBase-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
@@ -1316,7 +1322,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BE8208158E18B7F778E5A71 /* Pods-ReactNativeBase-tvOS.release.xcconfig */;
+			baseConfigurationReference = E756D803CBE031F23E794432 /* Pods-ReactNativeBase-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
@@ -1348,7 +1354,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABEEF0B1DB8EDFD53517D32C /* Pods-ReactNativeBase-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = BD5B503BD79A55A7F689AE52 /* Pods-ReactNativeBase-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1379,7 +1385,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C98C079CDC74151BC1BE98E /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = C3BDCE17AE3B04541D2642FA /* Pods-ReactNativeBase-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1410,7 +1416,7 @@
 		};
 		37BA4E4726C58167005ED7FE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAEDF8EF6A7DCF5BD5786AF1 /* Pods-ReactNativeBase-QA.debug.xcconfig */;
+			baseConfigurationReference = 8DB8F50D41FCF1E0760054A1 /* Pods-ReactNativeBase-QA.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1447,7 +1453,7 @@
 		};
 		37BA4E4826C58167005ED7FE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 308D4A05246D04864F6C3200 /* Pods-ReactNativeBase-QA.release.xcconfig */;
+			baseConfigurationReference = 016E7CCA20EBFD91A1CE3BF3 /* Pods-ReactNativeBase-QA.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1601,7 +1607,7 @@
 		};
 		FE002B0722E9DCD20027B199 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E280833A393130671A73F396 /* Pods-ReactNativeBase-Staging.debug.xcconfig */;
+			baseConfigurationReference = D7914934650BF7243DD14D13 /* Pods-ReactNativeBase-Staging.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1634,7 +1640,7 @@
 		};
 		FE002B0822E9DCD20027B199 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 972824CB458A25B53AC1EFEA /* Pods-ReactNativeBase-Staging.release.xcconfig */;
+			baseConfigurationReference = 50DD61719B05CB41E51ABE7F /* Pods-ReactNativeBase-Staging.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1665,7 +1671,7 @@
 		};
 		FE002B1822EA13BF0027B199 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FF6942EBA95C3A6D7CF89DD /* Pods-ReactNativeBase-Develop.debug.xcconfig */;
+			baseConfigurationReference = 69C0E836A63CAF9F5C076F1C /* Pods-ReactNativeBase-Develop.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1702,7 +1708,7 @@
 		};
 		FE002B1922EA13BF0027B199 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6D74305879FCEDD3E81ED1B /* Pods-ReactNativeBase-Develop.release.xcconfig */;
+			baseConfigurationReference = 47499F1392F586495AFA746D /* Pods-ReactNativeBase-Develop.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
