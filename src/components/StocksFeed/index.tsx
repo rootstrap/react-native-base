@@ -26,15 +26,7 @@ const StocksFeed = (props: StocksFeedProps) => {
         dispatch(getStockConfig());
     }, [dispatch]);
 
-    const [settingsVisible, setSettingsVisible] = useState(false);
-    const [selectedConfig, setSelectedConfig] = useState(['open', 'week52High', 'week52Low']);
-    const [selectedSymbol, setSelectedSymbol] = useState('');
-    const [configBySymbolMap, setConfigBySymbolMap] = useState({});
-
-    const { data } = useStockFeedState();
-    const { configLabels } = useStockConfigState();
-
-    const [items] = React.useState([
+    const symbolsCodeMap = [
         { symbol: 'fb', code: '#1abc9c' },
         { symbol: 'aapl', code: '#2ecc71' },
         { symbol: 'amc', code: '#3498db' },
@@ -45,7 +37,27 @@ const StocksFeed = (props: StocksFeedProps) => {
         { symbol: 'msft', code: '#2980b9' },
         { symbol: 'icln', code: '#16a085' },
         { symbol: 'nio', code: '#16a085' },
-    ]);
+    ];
+
+    const [defaultConfig] = useState(['open', 'week52High', 'week52Low']);
+    let defaultConfigBySymbol = symbolsCodeMap.map((item) => ({
+        stockKey: item.symbol,
+        labelValues: [...defaultConfig],
+    }));
+    //reduce array to single opbject
+    const defaultStockLabels = defaultConfigBySymbol.reduce(
+        (config, item) => Object.assign(config, { [item.stockKey]: item.labelValues }),
+        {},
+    );
+
+    const [settingsVisible, setSettingsVisible] = useState(false);
+    const [selectedSymbol, setSelectedSymbol] = useState('');
+    // todo: push state to store
+    const [configBySymbolMap, setConfigBySymbolMap] = useState({ ...defaultStockLabels });
+    const [items] = React.useState([...symbolsCodeMap]);
+
+    const { data } = useStockFeedState();
+    const { configLabels } = useStockConfigState();
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -54,12 +66,10 @@ const StocksFeed = (props: StocksFeedProps) => {
         setSettingsVisible(!settingsVisible);
     };
 
-    const setSelectedSymbolConfig = (config: { id: string; name: string }[]) => {
+    const setSelectedSymbolConfig = (config: string[]) => {
         if (selectedSymbol) {
             setConfigBySymbolMap({ ...configBySymbolMap, [selectedSymbol]: config });
         }
-
-        setSelectedConfig(config as any);
     };
 
     function Metric(props: any) {
@@ -100,34 +110,36 @@ const StocksFeed = (props: StocksFeedProps) => {
                 renderItem={({ item }) => {
                     return (
                         <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                            <View style={styles.header}>
-                                <Text
-                                    style={
-                                        styles.itemName
-                                    }>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
-                                <Button
-                                    icon={{
-                                        name: 'refresh',
-                                        size: 20,
-                                        color: 'white',
-                                    }}
-                                    onPress={stocksFeedRequest(item.symbol)}
-                                    raised={true}
-                                    type="clear"></Button>
+                            <View style={[styles.itemContent, { backgroundColor: item.code }]}>
+                                <View style={styles.header}>
+                                    <Text
+                                        style={
+                                            styles.itemName
+                                        }>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
+                                    <Button
+                                        icon={{
+                                            name: 'refresh',
+                                            size: 20,
+                                            color: 'white',
+                                        }}
+                                        onPress={stocksFeedRequest(item.symbol)}
+                                        raised={true}
+                                        type="clear"></Button>
+                                </View>
+                                {configBySymbolMap[item.symbol]?.length
+                                    ? configBySymbolMap[item.symbol].map(
+                                          (configLabel: string, index: number) => (
+                                              <Metric
+                                                  styles={styles}
+                                                  key={index}
+                                                  data={data}
+                                                  configLabel={configLabel}
+                                                  item={item}
+                                              />
+                                          ),
+                                      )
+                                    : null}
                             </View>
-                            {configBySymbolMap[item.symbol]?.length
-                                ? configBySymbolMap[item.symbol].map(
-                                      (configLabel: string, index: number) => (
-                                          <Metric
-                                              styles={styles}
-                                              key={index}
-                                              data={data}
-                                              configLabel={configLabel}
-                                              item={item}
-                                          />
-                                      ),
-                                  )
-                                : null}
                             <View style={styles.settingsButtonContainer}>
                                 <Icon
                                     name="gear"
@@ -248,6 +260,10 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 10,
         minHeight: 160,
+        flex: 1,
+    },
+    itemContent: {
+        justifyContent: 'flex-start',
         flex: 1,
     },
     itemName: {
