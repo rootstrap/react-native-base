@@ -23,7 +23,7 @@ const useStockFormatUtils = () => {
     };
 
     const getMetricBySymbolKey = (data: any[], symbol: string, key: string): string | number => {
-        const priceTypeKeySubstrings = ['price', 'high', 'low'];
+        const priceTypeKeySubstrings = ['price', 'high', 'low', 'open'];
         var isPriceKeyType = priceTypeKeySubstrings.some((substring) => {
             return key.toLocaleLowerCase().indexOf(substring) >= 0;
         });

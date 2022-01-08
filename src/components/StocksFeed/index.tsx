@@ -5,8 +5,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
-import { getStockFeed, getStockConfig } from 'actions/stocksFeedActions';
-import { useStockFeedState, useStockConfigState } from 'hooks/useStockFeedState';
+import { getStockFeed, getStockConfig, getStockSymbols } from 'actions/stocksFeedActions';
+import {
+    useStockFeedState,
+    useStockConfigState,
+    useStockSymbolsState,
+} from 'hooks/useStockFeedState';
 import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
@@ -26,27 +30,23 @@ const StocksFeed = (props: StocksFeedProps) => {
         dispatch(getStockConfig());
     }, [dispatch]);
 
-    const symbolsCodeMap = [
-        { symbol: 'fb', code: '#1abc9c' },
-        { symbol: 'aapl', code: '#2ecc71' },
-        { symbol: 'amc', code: '#3498db' },
-        { symbol: 'gme', code: '#9b59b6' },
-        { symbol: 'tsla', code: '#34495e' },
-        { symbol: 'amzn', code: '#16a085' },
-        { symbol: 'nvda', code: '#27ae60' },
-        { symbol: 'msft', code: '#2980b9' },
-        { symbol: 'icln', code: '#16a085' },
-        { symbol: 'nio', code: '#16a085' },
-    ];
+    useEffect(() => {
+        dispatch(getStockSymbols());
+    }, [dispatch]);
+
+    const { data } = useStockFeedState();
+    const { configLabels } = useStockConfigState();
+    const { symbolCodes } = useStockSymbolsState();
 
     const [defaultConfig] = useState(['open', 'week52High', 'week52Low']);
-    let defaultConfigBySymbol = symbolsCodeMap.map((item) => ({
+    let defaultConfigBySymbol = symbolCodes.map((item: { symbol: any }) => ({
         stockKey: item.symbol,
         labelValues: [...defaultConfig],
     }));
     //reduce array to single opbject
     const defaultStockLabels = defaultConfigBySymbol.reduce(
-        (config, item) => Object.assign(config, { [item.stockKey]: item.labelValues }),
+        (config: any, item: { stockKey: any; labelValues: any }) =>
+            Object.assign(config, { [item.stockKey]: item.labelValues }),
         {},
     );
 
@@ -54,10 +54,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     const [selectedSymbol, setSelectedSymbol] = useState('');
     // todo: push state to store
     const [configBySymbolMap, setConfigBySymbolMap] = useState({ ...defaultStockLabels });
-    const [items] = React.useState([...symbolsCodeMap]);
-
-    const { data } = useStockFeedState();
-    const { configLabels } = useStockConfigState();
+    const [items] = React.useState([...symbolCodes]);
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -162,6 +159,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                     <MultiSelect
                         hideTags
                         fontFamily="roboto"
+                        // todo: clear all selected items
                         items={configLabels}
                         uniqueKey="name"
                         hideSubmitButton={true}

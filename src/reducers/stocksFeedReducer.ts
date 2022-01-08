@@ -1,10 +1,15 @@
 import { createReducer } from '@rootstrap/redux-tools';
-import { getStocksFeedSuccess, getStocksConfigSuccess } from '../actions/stocksFeedActions';
+import {
+    getStocksFeedSuccess,
+    getStocksConfigSuccess,
+    getStocksSymbolsSuccess,
+} from '../actions/stocksFeedActions';
 import update from 'immutability-helper';
 
 const initialState = {
     data: [],
     config: [],
+    symbolCodes: [],
 };
 
 interface FeedItem {
@@ -19,6 +24,17 @@ interface ConfigLabel {
 interface StocksFeed {
     data: FeedItem[];
     config: ConfigLabel[];
+    symbolCodes: SymbolCodes[];
+}
+
+interface ConfigLabel {
+    id: string;
+    name: string;
+}
+
+interface SymbolCodes {
+    symbol: string;
+    code: string;
 }
 
 // *Success type actions handle updating state from request payload
@@ -43,7 +59,12 @@ const handleGetStocksConfigSuccess = (state: StocksFeed, data: { payload: Config
     state.config = [...data?.payload];
 };
 
+const handleGetStocksSymbolsSuccess = (state: StocksFeed, data: { payload: SymbolCodes[] }) => {
+    state.symbolCodes = [...data?.payload];
+};
+
 export default createReducer(initialState, {
     [getStocksFeedSuccess]: handleGetStocksFeedSuccess,
     [getStocksConfigSuccess]: handleGetStocksConfigSuccess,
+    [getStocksSymbolsSuccess]: handleGetStocksSymbolsSuccess,
 });
