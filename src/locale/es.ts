@@ -14,6 +14,7 @@ export default {
     STOCKS_FEED: {
         fetchStocks: 'Fetch Stocks',
         submit: 'Save',
+        reset: 'Reset',
     },
 
     SIGN_UP: {
