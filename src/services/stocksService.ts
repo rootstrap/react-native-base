@@ -1,5 +1,4 @@
 import httpClient from '../httpClient';
-import Config from 'react-native-config';
 
 /**
  * Reference Links:
