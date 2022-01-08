@@ -15,6 +15,7 @@ import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
+import { ES_GREEN, ES_PINK, ES_PURPLE } from 'constants/colors';
 
 interface StocksFeedProps {}
 
@@ -61,6 +62,12 @@ const StocksFeed = (props: StocksFeedProps) => {
             setSelectedSymbol(symbol);
         }
         setSettingsVisible(!settingsVisible);
+    };
+
+    const resetDefaultSymbolLabels = (symbol?: string) => {
+        if (symbol) {
+            setConfigBySymbolMap({ ...configBySymbolMap, [symbol]: [...defaultConfig] });
+        }
     };
 
     const setSelectedSymbolConfig = (config: string[]) => {
@@ -185,16 +192,32 @@ const StocksFeed = (props: StocksFeedProps) => {
                 <TouchableOpacity style={[styles.selectDismiss]}>
                     <View style={[styles.buttonContainer]}>
                         {!isKeyboardShown && (
-                            <Button
-                                icon={<Icon name="save" size={16} color="white" />}
-                                title={strings.STOCKS_FEED.submit}
-                                iconRight={true}
-                                onPress={() => {
-                                    toggleSettings();
-                                }}
-                                style={styles.submitButton}
-                                raised={true}
-                            />
+                            <>
+                                <Button
+                                    icon={<Icon name="save" size={16} color="white" />}
+                                    title={strings.STOCKS_FEED.submit}
+                                    iconRight={true}
+                                    onPress={() => {
+                                        toggleSettings();
+                                    }}
+                                    style={styles.submitButton}
+                                    buttonStyle={styles.submitButtonColor}
+                                    containerStyle={styles.submitButtonColor}
+                                    raised={true}
+                                />
+                                <View style={styles.space} />
+                                <Button
+                                    icon={<Icon name="clear" size={16} color="white" />}
+                                    title={strings.STOCKS_FEED.reset}
+                                    iconRight={true}
+                                    onPress={() => {
+                                        resetDefaultSymbolLabels(selectedSymbol);
+                                    }}
+                                    style={styles.submitButton}
+                                    buttonStyle={styles.cancelButtonColor}
+                                    containerStyle={styles.cancelButtonColor}
+                                />
+                            </>
                         )}
                     </View>
                 </TouchableOpacity>
@@ -215,14 +238,21 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         width: 100,
         height: 20,
+        backgroundColor: ES_GREEN,
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
     selectContainer: {
         flex: 6,
-        backgroundColor: 'transparent',
+        backgroundColor: ES_GREEN,
     },
     selectDismiss: {
         flex: 1,
-        backgroundColor: 'transparent',
+        backgroundColor: ES_GREEN,
+    },
+    space: {
+        width: 20,
+        height: 20,
     },
     selectList: {
         height: 400,
@@ -242,6 +272,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'stretch',
         margin: 20,
+        backgroundColor: ES_GREEN,
     },
     overlayDismissContainer: {
         flex: 1,
@@ -281,5 +312,15 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         alignSelf: 'center',
+        backgroundColor: ES_PURPLE,
+    },
+    submitButtonColor: {
+        alignSelf: 'center',
+        backgroundColor: ES_PURPLE,
+    },
+    cancelButtonColor: {
+        alignSelf: 'center',
+        backgroundColor: ES_PINK,
+        paddingLeft: 15,
     },
 });

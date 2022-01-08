@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { MAIN_SCREEN } from '../constants/screens';
 import MainScreen from '../screens/MainScreen';
 import { Image } from 'react-native';
+import { ES_GREEN } from 'constants/colors';
 
 const Stack = createStackNavigator();
 
@@ -20,7 +21,7 @@ const AppStack = () => (
                     />
                 ),
                 headerStyle: {
-                    backgroundColor: '#47ac7d',
+                    backgroundColor: ES_GREEN,
                 },
             }}
         />
