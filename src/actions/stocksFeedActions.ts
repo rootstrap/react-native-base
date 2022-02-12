@@ -2,7 +2,7 @@ import { createThunk } from '@rootstrap/redux-tools';
 import stocksService from '../services/stocksService';
 import parseError from '../utils/parseError';
 
-const symbolsCodeMap = [
+export const symbolsCodeMap = [
     { symbol: 'fb', code: '#1abc9c' },
     { symbol: 'aapl', code: '#2ecc71' },
     { symbol: 'amc', code: '#3498db' },
@@ -25,6 +25,16 @@ export const getStockFeed = createThunk('GET_STOCKS_FEED', async (symbol: string
     }
 });
 
+export const getAllStocksFeed = createThunk('GET_ALL_STOCKS_FEED', async (symbols: string[]) => {
+    try {
+        const { data } = await stocksService.getAllStocksSymbolData(symbols);
+        return data;
+    } catch ({ response }) {
+        console.log(JSON.stringify(response));
+        throw parseError(response as any);
+    }
+});
+
 export const getStockSymbols = createThunk('GET_STOCKS_SYMBOLS', async (count?: number) => {
     try {
         // todo retrieve from IEX CLOUD
@@ -40,21 +50,14 @@ export const getStockConfig = createThunk('GET_STOCKS_CONFIG', async () => {
     try {
         const DEFAULT_SYMBOL = 'fb';
         const { data } = await stocksService.getStockSymbolData(DEFAULT_SYMBOL);
-        // Return property names from request payload
-        // used in displaying available labels on stock tile
-        const config = data
-            ? Object.keys(data).map((key, index) => ({
-                  id: `${index}-${key}`,
-                  name: key,
-              }))
-            : [];
-        return config;
+        return data;
     } catch ({ response }) {
         console.log(JSON.stringify(response));
         throw parseError(response as any);
     }
 });
 
+export const { success: getAllStocksFeedSuccess } = getAllStocksFeed;
 export const { success: getStocksFeedSuccess } = getStockFeed;
 export const { success: getStocksConfigSuccess } = getStockConfig;
 export const { success: getStocksSymbolsSuccess } = getStockSymbols;

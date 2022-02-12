@@ -5,7 +5,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
-import { getStockFeed, getStockConfig, getStockSymbols } from 'actions/stocksFeedActions';
+import {
+    getStockFeed,
+    getStockConfig,
+    getStockSymbols,
+    getAllStocksFeed,
+} from 'actions/stocksFeedActions';
 import {
     useStockFeedState,
     useStockConfigState,
@@ -26,13 +31,17 @@ const StocksFeed = (props: StocksFeedProps) => {
         [],
     );
 
-    // Called 'once' on init to get stock config labels
+    // Called 'once' on init to get view data
     useEffect(() => {
         dispatch(getStockConfig());
     }, [dispatch]);
 
     useEffect(() => {
         dispatch(getStockSymbols());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getAllStocksFeed({ symbolCodes }));
     }, [dispatch]);
 
     const { data } = useStockFeedState();
@@ -55,7 +64,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     const [selectedSymbol, setSelectedSymbol] = useState('');
     // todo: push state to store
     const [configBySymbolMap, setConfigBySymbolMap] = useState({ ...defaultStockLabels });
-    const [items] = React.useState([...symbolCodes]);
+    const [companyTickerSymbols] = React.useState([...symbolCodes]);
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -107,7 +116,7 @@ const StocksFeed = (props: StocksFeedProps) => {
         <View>
             <FlatGrid
                 itemDimension={130}
-                data={items}
+                data={companyTickerSymbols}
                 style={styles.gridView}
                 spacing={10}
                 testID="tile-grid"

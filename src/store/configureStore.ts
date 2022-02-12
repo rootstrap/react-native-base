@@ -7,6 +7,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import AppReducer from '../reducers';
 
 /* eslint-disable */
+// Enables redux dev tools -->
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
