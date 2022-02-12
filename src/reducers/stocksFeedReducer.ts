@@ -1,6 +1,7 @@
 import { createReducer } from '@rootstrap/redux-tools';
 import {
     getStocksFeedSuccess,
+    getAllStocksFeedSuccess,
     getStocksConfigSuccess,
     getStocksSymbolsSuccess,
 } from '../actions/stocksFeedActions';
@@ -32,12 +33,11 @@ interface ConfigLabel {
     name: string;
 }
 
-interface SymbolCodes {
+export interface SymbolCodes {
     symbol: string;
     code: string;
 }
 
-// *Success type actions handle updating state from request payload
 const handleGetStocksFeedSuccess = (
     state: StocksFeed,
     data: { payload: { [key: string]: string } },
@@ -47,7 +47,7 @@ const handleGetStocksFeedSuccess = (
 
     const foundIndex = state.data?.findIndex((item) => item.id === updatedSymbol);
 
-    // Push or replace data for given symbol id
+    // Push or replace data for symbol ID
     if (foundIndex > -1) {
         state.data = update(state.data, { [foundIndex]: { $set: latestSymbolData } });
     } else {
@@ -55,8 +55,12 @@ const handleGetStocksFeedSuccess = (
     }
 };
 
+const handleGetAllStocksFeed = (state: StocksFeed, data: { payload: any[] }) => {
+    state.data = [...mapBatchQuoteDataToFeedItems(data.payload)];
+};
+
 const handleGetStocksConfigSuccess = (state: StocksFeed, data: { payload: ConfigLabel[] }) => {
-    state.config = [...data?.payload];
+    state.config = [...mapConfigToSymbolItems(data?.payload)];
 };
 
 const handleGetStocksSymbolsSuccess = (state: StocksFeed, data: { payload: SymbolCodes[] }) => {
@@ -65,6 +69,23 @@ const handleGetStocksSymbolsSuccess = (state: StocksFeed, data: { payload: Symbo
 
 export default createReducer(initialState, {
     [getStocksFeedSuccess]: handleGetStocksFeedSuccess,
+    [getAllStocksFeedSuccess]: handleGetAllStocksFeed,
     [getStocksConfigSuccess]: handleGetStocksConfigSuccess,
     [getStocksSymbolsSuccess]: handleGetStocksSymbolsSuccess,
 });
+
+// Model Mappers
+const mapBatchQuoteDataToFeedItems = (data: any[]) => {
+    return Object.keys(data)
+        .filter((v) => data[v] != null)
+        .map((key) => ({ id: key?.toLocaleUpperCase(), metrics: data[key]?.quote || {} }));
+};
+
+const mapConfigToSymbolItems = (data: any[]) => {
+    return data
+        ? Object.keys(data).map((key, index) => ({
+              id: `${index}-${key}`,
+              name: key,
+          }))
+        : [];
+};
