@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { SymbolCodes } from 'reducers/stocksFeedReducer';
 import { RootState } from '../reducers';
 
 export const useStockFeedState = () =>
@@ -13,7 +14,7 @@ export const useStockConfigState = () =>
 
 export const useStockSymbolsState = () =>
     useSelector((state: RootState) => ({
-        symbolCodes: (state as any).stockFeed.symbolCodes || [],
+        symbolCodes: ((state as any).stockFeed.symbolCodes as SymbolCodes) || [],
     }));
 
 export default { useStockFeedState, useStockConfigState, useStockSymbolsState };
