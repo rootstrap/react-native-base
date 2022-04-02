@@ -1,4 +1,3 @@
-import { SymbolCodes } from 'reducers/stocksFeedReducer';
 import { applyArrayQueryParam } from 'utils/helpers';
 import httpClient from '../httpClient';
 
@@ -12,11 +11,10 @@ class UserService {
         return httpClient.get(`/stock/${symbol?.toLocaleLowerCase()}/quote`);
     }
 
-    getAllStocksSymbolData(symbols: SymbolCodes[]) {
-        const symbolIds = symbols.map((item) => item?.symbol);
-        return httpClient.get(
-            applyArrayQueryParam(`/stock/market/batch`, symbolIds, `symbols`) + `&types=quote`,
-        );
+    getAllStocksSymbolData(symbolIds: string[]) {
+        const reqUrl =
+            applyArrayQueryParam(`/stock/market/batch`, symbolIds, `symbols`) + `&types=quote`;
+        return httpClient.get(reqUrl);
     }
 }
 

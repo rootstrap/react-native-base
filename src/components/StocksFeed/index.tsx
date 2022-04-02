@@ -10,11 +10,13 @@ import {
     getStockConfig,
     getStockSymbols,
     getAllStocksFeed,
+    updateSelectedMetrics,
 } from 'actions/stocksFeedActions';
 import {
     useStockFeedState,
     useStockConfigState,
     useStockSymbolsState,
+    useConfigBySymbolMapState,
 } from 'hooks/useStockFeedState';
 import strings from '../../locale';
 import { startCase } from 'lodash';
@@ -31,7 +33,7 @@ const StocksFeed = (props: StocksFeedProps) => {
         [],
     );
 
-    // Called 'once' on init to get view data
+    // Called 'once' on init
     useEffect(() => {
         dispatch(getStockConfig());
     }, [dispatch]);
@@ -41,29 +43,21 @@ const StocksFeed = (props: StocksFeedProps) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getAllStocksFeed({ symbolCodes }));
+        dispatch(
+            getAllStocksFeed({
+                symbolCodes,
+            }),
+        );
     }, [dispatch]);
 
     const { data } = useStockFeedState();
     const { configLabels } = useStockConfigState();
     const { symbolCodes } = useStockSymbolsState();
+    const { configBySymbolMap } = useConfigBySymbolMapState(symbolCodes);
 
-    const [defaultConfig] = useState(['open', 'week52High', 'week52Low']);
-    let defaultConfigBySymbol = symbolCodes.map((item: { symbol: any }) => ({
-        stockKey: item.symbol,
-        labelValues: [...defaultConfig],
-    }));
-    //reduce array to single opbject
-    const defaultStockLabels = defaultConfigBySymbol.reduce(
-        (config: any, item: { stockKey: any; labelValues: any }) =>
-            Object.assign(config, { [item.stockKey]: item.labelValues }),
-        {},
-    );
-
+    const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
     const [settingsVisible, setSettingsVisible] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
-    // todo: push state to store
-    const [configBySymbolMap, setConfigBySymbolMap] = useState({ ...defaultStockLabels });
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
 
     const toggleSettings = (symbol?: string) => {
@@ -75,13 +69,24 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     const resetDefaultSymbolLabels = (symbol?: string) => {
         if (symbol) {
-            setConfigBySymbolMap({ ...configBySymbolMap, [symbol]: [...defaultConfig] });
+            dispatch(
+                updateSelectedMetrics({
+                    selectedMetricsBySymbol: {
+                        ...configBySymbolMap,
+                        [selectedSymbol]: [...defaultConfigLabels],
+                    },
+                }),
+            );
         }
     };
 
     const setSelectedSymbolConfig = (config: string[]) => {
         if (selectedSymbol) {
-            setConfigBySymbolMap({ ...configBySymbolMap, [selectedSymbol]: config });
+            dispatch(
+                updateSelectedMetrics({
+                    selectedMetricsBySymbol: { ...configBySymbolMap, [selectedSymbol]: config },
+                }),
+            );
         }
     };
 
@@ -173,22 +178,23 @@ const StocksFeed = (props: StocksFeedProps) => {
                 onBackdropPress={toggleSettings}>
                 <View style={[styles.selectContainer]}>
                     <MultiSelect
-                        hideTags
                         fontFamily="roboto"
-                        // todo: clear all selected items
                         items={configLabels}
                         uniqueKey="name"
                         hideSubmitButton={true}
+                        hideDropdown={true}
+                        hideTags={false}
                         onSelectedItemsChange={(config) => setSelectedSymbolConfig(config)}
                         styleListContainer={[styles.selectList]}
                         selectedItems={configBySymbolMap[selectedSymbol]}
-                        selectText="Pick Items"
+                        selectText="Metrics"
+                        fontSize={16}
                         searchInputPlaceholderText="Search Items..."
                         onChangeInput={(text) => console.log(text)}
                         altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#CCC"
-                        tagBorderColor="#CCC"
-                        tagTextColor="#CCC"
+                        tagRemoveIconColor="#FFFFFF"
+                        tagBorderColor="#FFFFFF"
+                        tagTextColor="#FFFFFF"
                         selectedItemTextColor="#CCC"
                         selectedItemIconColor="#CCC"
                         itemTextColor="#000"
@@ -245,8 +251,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignSelf: 'center',
         paddingLeft: 20,
-        width: 100,
-        height: 20,
+        flex: 0.2,
         backgroundColor: ES_GREEN,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -266,6 +271,9 @@ const styles = StyleSheet.create({
     selectList: {
         height: 400,
     },
+    listContainer: {
+        backgroundColor: ES_GREEN,
+    },
     header: {
         display: 'flex',
         flexDirection: 'row',
@@ -280,7 +288,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         flex: 1,
         alignSelf: 'stretch',
-        margin: 20,
         backgroundColor: ES_GREEN,
     },
     overlayDismissContainer: {
