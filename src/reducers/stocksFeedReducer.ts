@@ -4,6 +4,7 @@ import {
     getAllStocksFeedSuccess,
     getStocksConfigSuccess,
     getStocksSymbolsSuccess,
+    updateSelectedMetrics,
 } from '../actions/stocksFeedActions';
 import update from 'immutability-helper';
 
@@ -11,6 +12,7 @@ const initialState = {
     data: [],
     config: [],
     symbolCodes: [],
+    selectedMetricsBySymbol: undefined,
 };
 
 interface FeedItem {
@@ -26,6 +28,12 @@ interface StocksFeed {
     data: FeedItem[];
     config: ConfigLabel[];
     symbolCodes: SymbolCodes[];
+    selectedMetricsBySymbol?: MetricLabels;
+}
+
+export interface MetricLabels {
+    stockKey: string;
+    labelValues: string[];
 }
 
 interface ConfigLabel {
@@ -67,11 +75,18 @@ const handleGetStocksSymbolsSuccess = (state: StocksFeed, data: { payload: Symbo
     state.symbolCodes = [...data?.payload];
 };
 
+const handleUpdateSelectedMetrics = (
+    state: StocksFeed,
+    data: { payload: { selectedMetricsBySymbol: { stockKey: string; labelValues: string[] } } },
+) => {
+    state.selectedMetricsBySymbol = { ...data?.payload?.selectedMetricsBySymbol };
+};
 export default createReducer(initialState, {
     [getStocksFeedSuccess]: handleGetStocksFeedSuccess,
     [getAllStocksFeedSuccess]: handleGetAllStocksFeed,
     [getStocksConfigSuccess]: handleGetStocksConfigSuccess,
     [getStocksSymbolsSuccess]: handleGetStocksSymbolsSuccess,
+    [updateSelectedMetrics]: handleUpdateSelectedMetrics,
 });
 
 // Model Mappers
