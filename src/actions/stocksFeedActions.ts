@@ -1,4 +1,5 @@
-import { createThunk } from '@rootstrap/redux-tools';
+import { createThunk, createAction } from '@rootstrap/redux-tools';
+import { SymbolCodes } from 'reducers/stocksFeedReducer';
 import stocksService from '../services/stocksService';
 import parseError from '../utils/parseError';
 
@@ -25,19 +26,24 @@ export const getStockFeed = createThunk('GET_STOCKS_FEED', async (symbol: string
     }
 });
 
-export const getAllStocksFeed = createThunk('GET_ALL_STOCKS_FEED', async (symbols: string[]) => {
-    try {
-        const { data } = await stocksService.getAllStocksSymbolData(symbols);
-        return data;
-    } catch ({ response }) {
-        console.log(JSON.stringify(response));
-        throw parseError(response as any);
-    }
-});
+// fixme: Some bug with this async thunk - GET_ALL_STOCKS_FEED_ERROR
+export const getAllStocksFeed = createThunk(
+    'GET_ALL_STOCKS_FEED',
+    async (symbols: SymbolCodes[]) => {
+        try {
+            const symbolIds = symbols?.map((item) => item.symbol);
+            const { data } = await stocksService.getAllStocksSymbolData(symbolIds);
+            return data;
+        } catch ({ response }) {
+            console.log(JSON.stringify(response));
+            throw parseError(response as any);
+        }
+    },
+);
 
 export const getStockSymbols = createThunk('GET_STOCKS_SYMBOLS', async (count?: number) => {
     try {
-        // todo retrieve from IEX CLOUD
+        // todo retrieve from IEX CLOUD, passing in user selected stock codes
         // example https://cloud.iexapis.com/beta/ref-data/symbols?token=<MY-TOKEN>
         return symbolsCodeMap;
     } catch ({ response }) {
@@ -56,6 +62,10 @@ export const getStockConfig = createThunk('GET_STOCKS_CONFIG', async () => {
         throw parseError(response as any);
     }
 });
+
+// Non Async actions:
+
+export const updateSelectedMetrics = createAction('UPDATE_SELECTED_METRICS');
 
 export const { success: getAllStocksFeedSuccess } = getAllStocksFeed;
 export const { success: getStocksFeedSuccess } = getStockFeed;

@@ -9,12 +9,14 @@ import AppReducer from '../reducers';
 /* eslint-disable */
 // Enables redux dev tools -->
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 /* eslint-enable */
+const persistStateKeys = ['stockFeed'];
 
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage, // alternative to local-storage, see: https://reactnative.dev/docs/asyncstorage
-    whitelist: ['stockFeed'], // state slices to be persisted to device cache
+    whitelist: [...persistStateKeys], // state keys to be persisted to device cache
 };
 
 export default function configureStore(initialState: object) {
@@ -28,10 +30,10 @@ export default function configureStore(initialState: object) {
         middlewares.push(logger);
     }
 
-    const persistedReducer = persistReducer(persistConfig, AppReducer);
+    const persistanceReducer = persistReducer(persistConfig, AppReducer);
 
     const store = createStore(
-        persistedReducer,
+        persistanceReducer,
         initialState,
         composeEnhancers(applyMiddleware(...middlewares)),
     );

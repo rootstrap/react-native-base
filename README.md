@@ -44,10 +44,6 @@ yarn run android:dev
 ENVFILE=.env.{env} react-native run-ios
 ```
 
-### Running the Mock Service
-
-See [Rails Docker Service](https://github.com/rootstrap/rails_api_base#how-to-use-with-docker)
-
 ### Steps for Android development
 
 1. Run the following command inside the `android/app` directory
@@ -244,8 +240,8 @@ The current configuration for redux-persist is on `store/configureStore.js`.
 
 The default configuration is the following:
 
-- There's a defined `whitelist` where all reducers that want to be persisted must be declared.
-- The `storage` engine is `AsyncStorage` but you can change it if needed, for example: https://github.com/CodingZeal/redux-persist-sensitive-storage if you need keychan storage on iOS.
+- There's a defined `whitelist` where all reducers marked to be persisted must be declared.
+- The `storage` engine is `AsyncStorage` but you can change it if needed, for example: https://github.com/CodingZeal/redux-persist-sensitive-storage if you need keychain storage on iOS.
 - If you ever need to set up migrations to keep your reducers up to date, please check [this link](https://github.com/rt2zz/redux-persist#migrations).
 
 ### Typescript

@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
-import { SymbolCodes } from 'reducers/stocksFeedReducer';
+import { SymbolCodes, MetricLabels } from 'reducers/stocksFeedReducer';
 import { RootState } from '../reducers';
+
+const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
 
 export const useStockFeedState = () =>
     useSelector((state: RootState) => ({
@@ -14,7 +16,27 @@ export const useStockConfigState = () =>
 
 export const useStockSymbolsState = () =>
     useSelector((state: RootState) => ({
-        symbolCodes: ((state as any).stockFeed.symbolCodes as SymbolCodes) || [],
+        symbolCodes: ((state as any).stockFeed.symbolCodes as SymbolCodes[]) || [],
+    }));
+
+export const useConfigBySymbolMapState = (symbols: any[]) =>
+    useSelector((state: RootState) => ({
+        configBySymbolMap:
+            ((state as any).stockFeed.selectedMetricsBySymbol as MetricLabels) ||
+            assignDefaultConfigLabels(symbols),
     }));
 
 export default { useStockFeedState, useStockConfigState, useStockSymbolsState };
+
+const assignDefaultConfigLabels = (symbols: string[]) => {
+    let defaultConfigBySymbol = (symbols as any).map((item: { symbol: any }) => ({
+        stockKey: item.symbol,
+        labelValues: [...defaultConfigLabels],
+    }));
+    const defaultStockConfigLabels = defaultConfigBySymbol.reduce(
+        (config: any, item: { stockKey: any; labelValues: any }) =>
+            Object.assign(config, { [item.stockKey]: item.labelValues }),
+        {},
+    );
+    return defaultStockConfigLabels;
+};
