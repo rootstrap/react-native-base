@@ -5,6 +5,8 @@
 - Install Yarn package manager: https://classic.yarnpkg.com/en/docs/install/#mac-stable
 - Sign up on IEX Cloud and retrieve an API token: https://iexcloud.io/docs/api/
 - If using a physical Android device, enable developer options: https://reactnative.dev/docs/running-on-device
+- Install RN Debugger - `brew reinstall --cask react-native-debugger
+`
 
 
 ## Getting started
