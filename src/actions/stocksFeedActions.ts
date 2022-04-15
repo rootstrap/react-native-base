@@ -1,5 +1,4 @@
 import { createThunk, createAction } from '@rootstrap/redux-tools';
-import { SymbolCodes } from 'reducers/stocksFeedReducer';
 import stocksService from '../services/stocksService';
 import parseError from '../utils/parseError';
 
