@@ -45,7 +45,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     useEffect(() => {
         dispatch(
             getAllStocksFeed({
-                symbolCodes,
+                symbolCodes: symbolCodes.map((item) => item.symbol),
             }),
         );
     }, [dispatch]);

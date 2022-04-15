@@ -26,20 +26,20 @@ export const getStockFeed = createThunk('GET_STOCKS_FEED', async (symbol: string
     }
 });
 
-// fixme: Some bug with this async thunk - GET_ALL_STOCKS_FEED_ERROR
-export const getAllStocksFeed = createThunk(
-    'GET_ALL_STOCKS_FEED',
-    async (symbols: SymbolCodes[]) => {
-        try {
-            const symbolIds = symbols?.map((item) => item.symbol);
-            const { data } = await stocksService.getAllStocksSymbolData(symbolIds);
-            return data;
-        } catch ({ response }) {
-            console.log(JSON.stringify(response));
-            throw parseError(response as any);
-        }
-    },
-);
+// This action fails, somewhere in async chain
+// You can debug via browser, by running app on device, shaking and clicking "debug"
+//  GET_ALL_STOCKS_FEED_ERROR
+// It seems like the call to applyArrayQueryParam within stocksService.getAllStocksSymbolData is not waited
+// so this thunk just return an erorr action and doesn't make the API call
+export const getAllStocksFeed = createThunk('GET_ALL_STOCKS_FEED', async (symbols: string[]) => {
+    try {
+        const { data } = await stocksService.getAllStocksSymbolData(symbols);
+        return data;
+    } catch ({ response }) {
+        console.log(JSON.stringify(response));
+        throw parseError(response as any);
+    }
+});
 
 export const getStockSymbols = createThunk('GET_STOCKS_SYMBOLS', async (count?: number) => {
     try {

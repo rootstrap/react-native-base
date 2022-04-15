@@ -11,9 +11,11 @@ class UserService {
         return httpClient.get(`/stock/${symbol?.toLocaleLowerCase()}/quote`);
     }
 
-    getAllStocksSymbolData(symbolIds: string[]) {
-        const reqUrl =
-            applyArrayQueryParam(`/stock/market/batch`, symbolIds, `symbols`) + `&types=quote`;
+    async getAllStocksSymbolData(symbolIds: string[]) {
+        const reqUrl = await Promise.resolve(
+            applyArrayQueryParam(`/stock/market/batch`, symbolIds, `symbols`),
+        ).then((result) => result);
+        +`&types=quote`;
         return httpClient.get(reqUrl);
     }
 }
