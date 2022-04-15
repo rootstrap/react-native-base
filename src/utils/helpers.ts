@@ -14,5 +14,6 @@ export const applyQueryParams = (url: any, params: { [key: string]: any }) => {
  */
 export const applyArrayQueryParam = (url: any, values: string[], key: string) => {
     const paramValues = values.map((value) => value.toLocaleLowerCase()).toString();
+    console.log(`paramValues: ${paramValues}`);
     return `${url}?${key}=${paramValues}`;
 };
