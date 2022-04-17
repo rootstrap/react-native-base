@@ -43,11 +43,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(
-            getAllStocksFeed({
-                symbolCodes,
-            }),
-        );
+        dispatch(getAllStocksFeed(symbolCodes.map((item) => item.symbol)));
     }, [dispatch]);
 
     const { data } = useStockFeedState();

@@ -32,3 +32,54 @@ RELEASE_KEY_PASSWORD=<KEY_STORE_PASSWORD>
 ```
 4. Connect an Android device or Emulator `adb devices`
 5. Start on android: `yarn run android:dev`
+
+
+
+## Starting without USB
+
+A) Setup debug host port on app via device
+
+1. Get the machine internal IP
+
+```Bash
+fconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
+
+192.168.1.160
+```
+
+2. Start app, shake to open settings, click "Debug server host & port..". Set this value
+   to machine ip and debug port:`
+
+```Bash
+// connect device via usb tether
+adb devices
+npm run android:dev
+
+// Set "Debug server host & port.."
+// 192.168.1.160:8081
+
+```
+
+B) Untether device
+
+1. Connect your mobile device via usb (just this once)
+2. Remove USB and 'adb connect <mobile device ip><above mentioned port number>' .
+
+```
+adb connect 192.168.1.160:8081
+```
+
+3. Disconnect USB cable, shake device to open settings, click "reload"
+
+
+
+## Troubleshooting
+
+- App not loading on Android device
+
+
+```Bash
+cd android/ && ./gradlew clean
+adb usb
+adb reverse tcp:8081 tcp:8081
+```
