@@ -11,10 +11,10 @@ class StocksService {
         return httpClient.get(`/stock/${symbol?.toLocaleLowerCase()}/quote`);
     }
 
-    async getAllStocksSymbolData(symbolIds: string[]) {
-        const reqUrl =
-            applyArrayQueryParam(`/stock/market/batch`, symbolIds, `symbols`) + `&types=quote`;
-        return await httpClient.get(reqUrl);
+    getAllStocksSymbolData(symbolIds: string[]) {
+        return httpClient.get(
+            applyArrayQueryParam(`/stock/market/batch`, symbolIds, `symbols`) + `&types=quote`,
+        );
     }
 }
 
