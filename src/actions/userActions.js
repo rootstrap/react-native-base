@@ -5,7 +5,7 @@ import parseError from 'utils/parseError';
 export const login = createThunk('LOGIN', async user => {
   try {
     const {
-      data: { user: loggedUser },
+      data: { data: loggedUser },
     } = await userService.login({ user });
     return loggedUser;
   } catch ({ response }) {
