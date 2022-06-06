@@ -22,7 +22,7 @@ import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
-import { ES_GREEN, ES_PINK, ES_PURPLE } from 'constants/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
 
 interface StocksFeedProps {}
 
@@ -53,6 +53,7 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
     const [settingsVisible, setSettingsVisible] = useState(false);
+    const [listIsOpen, setListIsOpen] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
 
@@ -114,7 +115,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     const isKeyboardShown = useHideWhenKeyboardOpen();
 
     return (
-        <View>
+        <View style={styles.viewContainer}>
             <FlatGrid
                 itemDimension={130}
                 data={companyTickerSymbols}
@@ -181,6 +182,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         hideDropdown={true}
                         hideTags={false}
                         onSelectedItemsChange={(config) => setSelectedSymbolConfig(config)}
+                        onToggleList={() => setListIsOpen(!listIsOpen)}
                         styleListContainer={[styles.selectList]}
                         selectedItems={configBySymbolMap[selectedSymbol]}
                         selectText="Metrics"
@@ -193,6 +195,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         tagTextColor="#FFFFFF"
                         selectedItemTextColor="#CCC"
                         selectedItemIconColor="#CCC"
+                        styleMainWrapper={styles.listWrapper}
                         itemTextColor="#000"
                         displayKey="name"
                         searchInputStyle={{ color: '#CCC' }}
@@ -201,7 +204,10 @@ const StocksFeed = (props: StocksFeedProps) => {
                     />
                 </View>
                 <TouchableOpacity style={[styles.selectDismiss]}>
-                    <View style={[styles.buttonContainer]}>
+                    <View
+                        style={[
+                            listIsOpen ? styles.buttonContainer : styles.buttonContainerMinimized,
+                        ]}>
                         {!isKeyboardShown && (
                             <>
                                 <Button
@@ -248,24 +254,40 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         paddingLeft: 20,
         flex: 0.2,
-        backgroundColor: ES_GREEN,
+        height: 4,
+        backgroundColor: 'grey',
         flexDirection: 'row',
         justifyContent: 'center',
     },
+    buttonContainerMinimized: {
+        paddingTop: 40,
+        alignSelf: 'center',
+        paddingLeft: 20,
+        flex: 0.1,
+        backgroundColor: 'grey',
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    viewContainer: {
+        backgroundColor: 'white',
+    },
+    listWrapper: {
+        backgroundColor: 'grey',
+    },
     selectContainer: {
-        flex: 6,
-        backgroundColor: ES_GREEN,
+        flex: 7,
+        backgroundColor: 'grey',
     },
     selectDismiss: {
         flex: 1,
-        backgroundColor: ES_GREEN,
+        backgroundColor: 'grey',
     },
     space: {
         width: 20,
         height: 20,
     },
     selectList: {
-        height: 400,
+        height: 600,
     },
     listContainer: {
         backgroundColor: ES_GREEN,
@@ -284,7 +306,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         flex: 1,
         alignSelf: 'stretch',
-        backgroundColor: ES_GREEN,
     },
     overlayDismissContainer: {
         flex: 1,
@@ -324,11 +345,10 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         alignSelf: 'center',
-        backgroundColor: ES_PURPLE,
     },
     submitButtonColor: {
         alignSelf: 'center',
-        backgroundColor: ES_PURPLE,
+        backgroundColor: ES_BLUE,
     },
     cancelButtonColor: {
         alignSelf: 'center',
