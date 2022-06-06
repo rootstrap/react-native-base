@@ -16,6 +16,10 @@ class StocksService {
             applyArrayQueryParam(`/stock/market/batch`, symbolIds, `symbols`) + `&types=quote`,
         );
     }
+
+    getAllStockTickerSymbols() {
+        return httpClient.get(`/ref-data/iex/symbols`);
+    }
 }
 
 export default new StocksService();

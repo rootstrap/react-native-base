@@ -15,6 +15,16 @@ export const symbolsCodeMap = [
     { symbol: 'nio', code: '#16a085' },
 ];
 
+export const getAllStockTickerSymbols = createThunk('GET_ALL_STOCK_TICKER_SYMBOLS', async () => {
+    try {
+        const { data } = await stocksService.getAllStockTickerSymbols();
+        return data;
+    } catch ({ response }) {
+        console.log(JSON.stringify(response));
+        throw parseError(response as any);
+    }
+});
+
 export const getStockFeed = createThunk('GET_STOCKS_FEED', async (symbol: string) => {
     try {
         const { data } = await stocksService.getStockSymbolData(symbol);
@@ -65,3 +75,4 @@ export const { success: getAllStocksFeedSuccess } = getAllStocksFeed;
 export const { success: getStocksFeedSuccess } = getStockFeed;
 export const { success: getStocksConfigSuccess } = getStockConfig;
 export const { success: getStocksSymbolsSuccess } = getStockSymbols;
+export const { success: getAllStockTickerSymbolsSuccess } = getAllStockTickerSymbols;
