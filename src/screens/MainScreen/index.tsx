@@ -8,6 +8,7 @@ import strings from '../../locale';
 import useSession from '../../hooks/useSession';
 import styles from './styles';
 import StocksFeed from 'components/StocksFeed';
+import StocksPicker from 'components/StocksPicker';
 
 const MainScreen = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,8 @@ const MainScreen = () => {
 
     return (
         <View style={styles.container} testID={MAIN_SCREEN}>
-            <StocksFeed></StocksFeed>
+            {/* <StocksFeed></StocksFeed> */}
+            <StocksPicker></StocksPicker>
         </View>
     );
 };

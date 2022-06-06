@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { SymbolCodes, MetricLabels } from 'reducers/stocksFeedReducer';
+import { SymbolCodes, MetricLabels, SymbolTickerCodes } from 'reducers/stocksFeedReducer';
 import { RootState } from '../reducers';
 
 const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
@@ -17,6 +17,14 @@ export const useStockConfigState = () =>
 export const useStockSymbolsState = () =>
     useSelector((state: RootState) => ({
         symbolCodes: ((state as any).stockFeed.symbolCodes as SymbolCodes[]) || [],
+    }));
+
+export const useAllStockSymbolsState = () =>
+    useSelector((state: RootState) => ({
+        symbolCodes:
+            ((state as any).stockFeed.symbolCodesAll as SymbolTickerCodes[])?.filter(
+                (symbol) => symbol.isEnabled,
+            ) || [],
     }));
 
 export const useConfigBySymbolMapState = (symbols: any[]) =>
