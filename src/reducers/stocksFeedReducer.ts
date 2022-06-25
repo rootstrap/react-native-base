@@ -5,6 +5,7 @@ import {
     getStocksConfigSuccess,
     getStocksSymbolsSuccess,
     updateSelectedMetrics,
+    updateSelectedSymbols,
     getAllStockTickerSymbolsSuccess,
 } from '../actions/stocksFeedActions';
 import update from 'immutability-helper';
@@ -14,6 +15,7 @@ const initialState = {
     config: [],
     symbolCodes: [],
     selectedMetricsBySymbol: undefined,
+    selectedSymbols: [],
 };
 
 interface FeedItem {
@@ -31,6 +33,7 @@ interface StocksFeed {
     symbolCodes: SymbolCodes[];
     symbolCodesAll: SymbolTickerCodes[];
     selectedMetricsBySymbol?: MetricLabels;
+    selectedSymbols?: SymbolCodes[];
 }
 
 export interface MetricLabels {
@@ -90,6 +93,13 @@ const handleUpdateSelectedMetrics = (
     state.selectedMetricsBySymbol = { ...data?.payload?.selectedMetricsBySymbol };
 };
 
+const handleUpdateSelectedSymbols = (
+    state: StocksFeed,
+    data: { payload: { selectedSymbols: SymbolCodes[] } },
+) => {
+    state.selectedSymbols = [...(data?.payload?.selectedSymbols || [])];
+};
+
 const handleGetAllStockTickerSymbolsSuccess = (
     state: StocksFeed,
     data: { payload: SymbolTickerCodes[] },
@@ -103,6 +113,7 @@ export default createReducer(initialState, {
     [getStocksConfigSuccess]: handleGetStocksConfigSuccess,
     [getStocksSymbolsSuccess]: handleGetStocksSymbolsSuccess,
     [updateSelectedMetrics]: handleUpdateSelectedMetrics,
+    [updateSelectedSymbols]: handleUpdateSelectedSymbols,
     [getAllStockTickerSymbolsSuccess]: handleGetAllStockTickerSymbolsSuccess,
 });
 

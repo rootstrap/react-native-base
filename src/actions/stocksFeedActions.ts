@@ -68,9 +68,10 @@ export const getStockConfig = createThunk('GET_STOCKS_CONFIG', async () => {
 });
 
 // Non Async actions:
-
 export const updateSelectedMetrics = createAction('UPDATE_SELECTED_METRICS');
+export const updateSelectedSymbols = createAction('UPDATE_SELECTED_SYMBOLS');
 
+// Async actions
 export const { success: getAllStocksFeedSuccess } = getAllStocksFeed;
 export const { success: getStocksFeedSuccess } = getStockFeed;
 export const { success: getStocksConfigSuccess } = getStockConfig;

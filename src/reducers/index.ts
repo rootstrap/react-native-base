@@ -4,9 +4,9 @@ import stockFeed from '../reducers/stocksFeedReducer';
 import { statusReducer } from '@rootstrap/redux-tools';
 
 const AppReducer = combineReducers({
-  session,
-  stockFeed,
-  actionStatus: statusReducer,
+    session,
+    stockFeed,
+    actionStatus: statusReducer,
 });
 
 export type RootState = ReturnType<typeof AppReducer>;

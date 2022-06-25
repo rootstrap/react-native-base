@@ -42,7 +42,7 @@ A) Setup debug host port on app via device
 1. Get the machine internal IP
 
 ```Bash
-fconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
+ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
 
 192.168.1.160
 ```

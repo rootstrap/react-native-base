@@ -19,6 +19,11 @@ export const useStockSymbolsState = () =>
         symbolCodes: ((state as any).stockFeed.symbolCodes as SymbolCodes[]) || [],
     }));
 
+export const useSelectedStockSymbolState = () =>
+    useSelector((state: RootState) => ({
+        selectedSymbols: ((state as any).stockFeed.selectedSymbols as SymbolCodes[]) || [],
+    }));
+
 export const useAllStockSymbolsState = () =>
     useSelector((state: RootState) => ({
         symbolCodes:

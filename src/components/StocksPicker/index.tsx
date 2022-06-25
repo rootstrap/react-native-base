@@ -1,25 +1,17 @@
-import {
-    getAllStocksFeed,
-    getAllStockTickerSymbols,
-    getStockConfig,
-    getStockSymbols,
-    updateSelectedMetrics,
-} from 'actions/stocksFeedActions';
+import { getAllStockTickerSymbols, updateSelectedSymbols } from 'actions/stocksFeedActions';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
-import memoize from 'fast-memoize';
-import {
-    useAllStockSymbolsState,
-    useConfigBySymbolMapState,
-    useStockConfigState,
-    useStockFeedState,
-} from 'hooks/useStockFeedState';
-import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Overlay } from 'react-native-elements';
+import { useAllStockSymbolsState, useSelectedStockSymbolState } from 'hooks/useStockFeedState';
+import strings from 'locale';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
 import { useDispatch } from 'react-redux';
+import { Button, Icon } from 'react-native-elements';
+import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 
-interface StocksPickerProps {}
+interface StocksPickerProps {
+    onHide: (isHidden?: boolean) => void;
+}
 
 const StocksPicker = (props: StocksPickerProps) => {
     const dispatch = useDispatch();
@@ -29,87 +21,106 @@ const StocksPicker = (props: StocksPickerProps) => {
         dispatch(getAllStockTickerSymbols());
     }, [dispatch]);
 
-    const { data } = useStockFeedState();
-    const { configLabels } = useStockConfigState();
+    const { selectedSymbols } = useSelectedStockSymbolState();
     const { symbolCodes } = useAllStockSymbolsState();
-    const { configBySymbolMap } = useConfigBySymbolMapState(symbolCodes);
 
-    const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
-    const [settingsVisible, setSettingsVisible] = useState(false);
     const [listIsOpen, setListIsOpen] = useState(false);
-    const [selectedSymbol, setSelectedSymbol] = useState('');
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
 
-    const toggleSettings = (symbol?: string) => {
-        if (symbol) {
-            setSelectedSymbol(symbol);
-        }
-        setSettingsVisible(!settingsVisible);
+    const togglePanel = () => {
+        props.onHide(true);            
     };
 
-    const resetDefaultSymbolLabels = (symbol?: string) => {
-        if (symbol) {
-            dispatch(
-                updateSelectedMetrics({
-                    selectedMetricsBySymbol: {
-                        ...configBySymbolMap,
-                        [selectedSymbol]: [...defaultConfigLabels],
-                    },
-                }),
-            );
-        }
+    const setSelectedSymbols = (selectedSymbols: string[]) => {
+        console.log('selectedSymbols: ' + selectedSymbols);
+        dispatch(
+            updateSelectedSymbols({
+                selectedSymbols,
+            }),
+        );
     };
 
-    const setSelectedSymbolConfig = (config: string[]) => {
-        if (selectedSymbol) {
-            dispatch(
-                updateSelectedMetrics({
-                    selectedMetricsBySymbol: { ...configBySymbolMap, [selectedSymbol]: config },
-                }),
-            );
-        }
+    const resetDefaultSymbols = () => {
+        dispatch(
+            updateSelectedSymbols({
+                selectedSymbol: [],
+            }),
+        );
     };
 
-    return (
+    const isKeyboardShown = useHideWhenKeyboardOpen();
+
+    let stocksPicker;
+    
+    stocksPicker = (
         <View style={styles.viewContainer}>
-            <Overlay
-                isVisible={true}
-                fullScreen={true}
-                style={[styles.overlayContainer]}
-                onBackdropPress={toggleSettings}>
-                <View style={[styles.selectContainer]}>
-                    <MultiSelect
-                        fontFamily="roboto"
-                        items={companyTickerSymbols}
-                        displayKey="symbol"
-                        uniqueKey="symbol"
-                        hideSubmitButton={true}
-                        hideDropdown={true}
-                        hideTags={false}
-                        onSelectedItemsChange={(config) => setSelectedSymbolConfig(config)}
-                        onToggleList={() => setListIsOpen(!listIsOpen)}
-                        styleListContainer={[styles.selectList]}
-                        // selectedItems={configBySymbolMap[selectedSymbol]}
-                        selectText="Symbols"
-                        fontSize={16}
-                        searchInputPlaceholderText="Search Ticker Symbols..."
-                        onChangeInput={(text) => console.log(text)}
-                        altFontFamily="ProximaNova-Light"
-                        tagRemoveIconColor="#FFFFFF"
-                        tagBorderColor="#FFFFFF"
-                        tagTextColor="#FFFFFF"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
-                        styleMainWrapper={styles.listWrapper}
-                        itemTextColor="#000"
-                        searchInputStyle={{ color: '#CCC' }}
-                        submitButtonColor="#CCC"
-                        submitButtonText="Submit"
-                    />
+            <View style={[styles.selectContainer]}>
+                <MultiSelect
+                    fontFamily="roboto"
+                    items={companyTickerSymbols}
+                    displayKey="symbol"
+                    uniqueKey="symbol"
+                    hideSubmitButton={true}
+                    hideDropdown={true}
+                    hideTags={false}
+                    onSelectedItemsChange={(selectedSymbols) => setSelectedSymbols(selectedSymbols)}
+                    onToggleList={() => setListIsOpen(!listIsOpen)}
+                    styleListContainer={[styles.selectList]}
+                    selectedItems={selectedSymbols}
+                    selectText="Symbols"
+                    fontSize={16}
+                    searchInputPlaceholderText="Search Ticker Symbols..."
+                    onChangeInput={(text) => console.log(text)}
+                    altFontFamily="ProximaNova-Light"
+                    tagRemoveIconColor="#FFFFFF"
+                    tagBorderColor="#FFFFFF"
+                    tagTextColor="#FFFFFF"
+                    selectedItemTextColor="#CCC"
+                    selectedItemIconColor="#CCC"
+                    styleMainWrapper={styles.listWrapper}
+                    itemTextColor="#000"
+                    searchInputStyle={{ color: ES_GREEN }}
+                    submitButtonColor="#CCC"
+                    submitButtonText="Submit"
+                />
+            </View>
+            <TouchableOpacity style={[styles.selectDismiss]}>
+                <View
+                    style={[listIsOpen ? styles.buttonContainer : styles.buttonContainerMinimized]}>
+                    {!isKeyboardShown && (
+                        <>
+                            <Button
+                                icon={<Icon name="save" size={16} color="white" />}
+                                title={strings.STOCKS_FEED.submit}
+                                iconRight={true}
+                                onPress={() => {
+                                    togglePanel();
+                                }}
+                                style={styles.submitButton}
+                                buttonStyle={styles.submitButtonColor}
+                                containerStyle={styles.submitButtonColor}
+                                raised={true}
+                            />
+                            <View style={styles.space} />
+                            <Button
+                                icon={<Icon name="clear" size={16} color="white" />}
+                                title={strings.STOCKS_FEED.reset}
+                                iconRight={true}
+                                onPress={() => {
+                                    resetDefaultSymbols();
+                                }}
+                                style={styles.submitButton}
+                                buttonStyle={styles.cancelButtonColor}
+                                containerStyle={styles.cancelButtonColor}
+                            />
+                        </>
+                    )}
                 </View>
-            </Overlay>
+            </TouchableOpacity>
         </View>
     );
+
+    return stocksPicker;
 };
 
 export default StocksPicker;
@@ -139,6 +150,7 @@ const styles = StyleSheet.create({
     },
     viewContainer: {
         backgroundColor: 'white',
+        flex: 1,
     },
     listWrapper: {
         backgroundColor: 'grey',
