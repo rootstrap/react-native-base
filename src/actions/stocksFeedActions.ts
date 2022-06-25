@@ -47,8 +47,7 @@ export const getAllStocksFeed = createThunk('GET_ALL_STOCKS_FEED', async (symbol
 
 export const getStockSymbols = createThunk('GET_STOCKS_SYMBOLS', async (count?: number) => {
     try {
-        // todo retrieve from IEX CLOUD, passing in user selected stock codes
-        // example https://cloud.iexapis.com/beta/ref-data/symbols?token=<MY-TOKEN>
+        // todo: map selectedSymbols state to symbolsCodeMap array, decorate symbols with random color code
         return symbolsCodeMap;
     } catch ({ response }) {
         console.log(JSON.stringify(response));
