@@ -221,7 +221,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                 <TouchableOpacity style={[styles.selectDismiss]}>
                     <View
                         style={[
-                            listIsOpen ? styles.buttonContainer : styles.buttonContainerMinimized,
+                            listIsOpen ? styles.buttonContainerMinimized : styles.buttonContainer,
                         ]}>
                         {!isKeyboardShown && (
                             <>

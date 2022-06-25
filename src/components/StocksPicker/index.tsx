@@ -86,7 +86,7 @@ const StocksPicker = (props: StocksPickerProps) => {
             </View>
             <TouchableOpacity style={[styles.selectDismiss]}>
                 <View
-                    style={[listIsOpen ? styles.buttonContainer : styles.buttonContainerMinimized]}>
+                    style={[listIsOpen ? styles.buttonContainerMinimized : styles.buttonContainer]}>
                     {!isKeyboardShown && (
                         <>
                             <Button
