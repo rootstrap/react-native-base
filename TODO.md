@@ -1,3 +1,3 @@
-- UX flow: user picks a number of stock tickers from  a fetched list on IEX Cloud API
-- Fix get all stocks thunk, throwing error
+- Assign random color codes to stock symbols from store state
+- Display stock picker as modal in main screen
 

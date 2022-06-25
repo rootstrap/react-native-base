@@ -23,6 +23,7 @@ import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
+import StocksPicker from 'components/StocksPicker';
 
 interface StocksFeedProps {}
 
@@ -53,6 +54,7 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
     const [settingsVisible, setSettingsVisible] = useState(false);
+    const [stockPickerVisible, setStockPickerVisible] = useState(false);
     const [listIsOpen, setListIsOpen] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
@@ -62,6 +64,10 @@ const StocksFeed = (props: StocksFeedProps) => {
             setSelectedSymbol(symbol);
         }
         setSettingsVisible(!settingsVisible);
+    };
+
+    const toggleStockPicker = () => {
+        setStockPickerVisible(!stockPickerVisible);
     };
 
     const resetDefaultSymbolLabels = (symbol?: string) => {
@@ -163,11 +169,20 @@ const StocksFeed = (props: StocksFeedProps) => {
                                     size={22}
                                     onPress={() => toggleSettings(item.symbol)}
                                 />
+                                <View style={styles.settingButtonDivider}></View>
+                                <Icon
+                                    name="star"
+                                    type="font-awesome"
+                                    color="white"
+                                    size={22}
+                                    onPress={() => toggleStockPicker()}
+                                />
                             </View>
                         </View>
                     );
                 }}
             />
+            {/* stock metrics list */}
             <Overlay
                 isVisible={settingsVisible}
                 fullScreen={true}
@@ -238,6 +253,14 @@ const StocksFeed = (props: StocksFeedProps) => {
                         )}
                     </View>
                 </TouchableOpacity>
+            </Overlay>
+            {/* stock picker list */}
+            <Overlay
+                isVisible={stockPickerVisible}
+                fullScreen={true}
+                style={[styles.overlayContainer]}
+                onBackdropPress={toggleStockPicker}>
+                <StocksPicker onHide={() => setStockPickerVisible(false)}></StocksPicker>
             </Overlay>
         </View>
     );
@@ -312,7 +335,7 @@ const styles = StyleSheet.create({
     },
     settingsButtonContainer: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignSelf: 'flex-end',
         marginTop: 0,
         marginRight: 12.3,
@@ -332,6 +355,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#fff',
         fontWeight: '600',
+    },
+    settingButtonDivider: {
+       width: 15
     },
     itemCode: {
         fontWeight: '600',
