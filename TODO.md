@@ -1,3 +1,4 @@
 - Assign random color codes to stock symbols from store state
-- Display stock picker as modal in main screen
+- Fix button touch events on modal buttonContainer
+
 
