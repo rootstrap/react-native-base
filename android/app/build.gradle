@@ -2,6 +2,13 @@ apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
 
+project.ext.envConfigFiles = [
+    develop: ".env",
+    staging: ".env.staging",
+    prod: ".env.prod",
+    qa: ".env.qa",
+]
+
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -132,7 +139,6 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
-
     defaultConfig {
         applicationId "com.reactnativebase"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -140,6 +146,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+        resValue "string", "build_config_package", "com.reactnativebase"
 
         if (isNewArchitectureEnabled()) {
             // We configure the NDK build only if you decide to opt-in for the New Architecture.
@@ -231,6 +238,38 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    flavorDimensions "version"
+
+    productFlavors {
+        prod {
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "app_name", "ReactNativeBase"
+        }
+        develop {
+            applicationIdSuffix '.dev'
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            versionNameSuffix "- Develop"
+            resValue "string", "app_name", "RNBase - Develop"
+        }
+        qa {
+            applicationIdSuffix '.qa'
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            versionNameSuffix "- QA"
+            resValue "string", "app_name", "RNBase - QA"
+
+        }
+        staging {
+            applicationIdSuffix '.staging'
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            versionNameSuffix "- Staging"
+            resValue "string", "app_name", "RNBase - Staging"
+        }
+    }
+
 
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
@@ -307,3 +346,4 @@ def isNewArchitectureEnabled() {
     // - Set an environment variable `ORG_GRADLE_PROJECT_newArchEnabled=true`
     return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
 }
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"

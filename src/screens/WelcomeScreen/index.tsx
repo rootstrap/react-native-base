@@ -1,5 +1,7 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Text, View, useColorScheme } from 'react-native';
+import Config from "react-native-config";
+
 import {
   Colors,
   DebugInstructions,
@@ -7,6 +9,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
 
 import styles from './styles';
 
@@ -54,6 +57,10 @@ const WelcomeScreen = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Section title="Current Environment">
+            Current selected Environment for this app is: <Text style={styles.highlight}> {Config.ENVIRONMENT} </Text>
+          </Section>
+
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and then come
             back to see your edits.
