@@ -1,4 +1,6 @@
+import { useSessionFromStorage } from 'hooks/useSessionFromStorage';
 import humps from 'humps';
+import storage, { StoreKeys } from 'storage';
 
 import httpClient, { CONTENT_TYPE, MULTIPART_FORM_DATA } from '.';
 
@@ -8,13 +10,12 @@ export default () => {
   httpClient.interceptors.request.use(request => {
     const { data, headers } = request;
 
-    // TODO: get session from storage
-    const session = undefined;
+    const session = useSessionFromStorage();
 
     if (session) {
       const { token } = session;
 
-      // TODO: attach session to request
+      // TODO: attach extra params to request
       request.headers = {
         ...headers,
         [ACCESS_TOKEN]: token,
@@ -33,8 +34,13 @@ export default () => {
       const { data, headers } = response;
       const token = headers[ACCESS_TOKEN];
 
-      // TODO: save session to storage
       if (token) {
+        // TODO: save extra params to storage
+        const session = {
+          token,
+        };
+
+        storage.setValue(StoreKeys.session, JSON.stringify(session));
       }
 
       response.data = humps.camelizeKeys(data);
