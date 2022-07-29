@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView, ScrollView, StatusBar, Text, View, useColorScheme } from 'react-native';
+import RNBootSplash from 'react-native-bootsplash';
 import {
   Colors,
   DebugInstructions,
@@ -14,6 +15,10 @@ const Section: React.FC<{
   title: string;
 }> = ({ children, title }) => {
   const isDarkMode = useColorScheme() === 'dark';
+
+  useEffect(() => {
+    setTimeout(() => RNBootSplash.hide({ fade: true }), 3000);
+  }, []);
   return (
     <View style={styles.sectionContainer}>
       <Text
