@@ -37,15 +37,18 @@ export const getStockFeed = createThunk('GET_STOCKS_FEED', async (symbol: string
 
 export const getAllStocksFeed = createThunk('GET_ALL_STOCKS_FEED', async (symbols: string[]) => {
     try {
-        const { data } = await stocksService.getAllStocksSymbolData(symbols);
-        return data;
+        if (symbols?.length > 0) {
+            const { data } = await stocksService.getAllStocksSymbolData(symbols);
+            return data;
+        }
+        return [];
     } catch ({ response }) {
         console.log(JSON.stringify(response));
         throw parseError(response as any);
     }
 });
 
-export const getStockSymbols = createThunk('GET_STOCKS_SYMBOLS', async (count?: number) => {
+export const getDefaultStockSymbols = createThunk('GET_STOCKS_SYMBOLS', async (count?: number) => {
     try {
         // todo: map selectedSymbols state to symbolsCodeMap array, decorate symbols with random color code
         return symbolsCodeMap;
@@ -74,5 +77,5 @@ export const updateSelectedSymbols = createAction('UPDATE_SELECTED_SYMBOLS');
 export const { success: getAllStocksFeedSuccess } = getAllStocksFeed;
 export const { success: getStocksFeedSuccess } = getStockFeed;
 export const { success: getStocksConfigSuccess } = getStockConfig;
-export const { success: getStocksSymbolsSuccess } = getStockSymbols;
+export const { success: getStocksSymbolsSuccess } = getDefaultStockSymbols;
 export const { success: getAllStockTickerSymbolsSuccess } = getAllStockTickerSymbols;

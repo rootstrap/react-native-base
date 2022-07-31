@@ -8,7 +8,7 @@ import { Button, Icon, Overlay } from 'react-native-elements';
 import {
     getStockFeed,
     getStockConfig,
-    getStockSymbols,
+    getDefaultStockSymbols,
     getAllStocksFeed,
     updateSelectedMetrics,
 } from 'actions/stocksFeedActions';
@@ -17,6 +17,7 @@ import {
     useStockConfigState,
     useStockSymbolsState,
     useConfigBySymbolMapState,
+    useSelectedStockSymbolState,
 } from 'hooks/useStockFeedState';
 import strings from '../../locale';
 import { startCase } from 'lodash';
@@ -40,7 +41,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getStockSymbols());
+        dispatch(getDefaultStockSymbols());
     }, [dispatch]);
 
     useEffect(() => {
@@ -57,7 +58,18 @@ const StocksFeed = (props: StocksFeedProps) => {
     const [stockPickerVisible, setStockPickerVisible] = useState(false);
     const [listIsOpen, setListIsOpen] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
+
+    const { selectedSymbols } = useSelectedStockSymbolState();
+    // Fetch stock metrics for the user selected symbols
+    // TODO: check if subscribe to selectedSymbols before dispatching this action
+    // to make it reactive
+    useEffect(() => {
+        dispatch(getAllStocksFeed(selectedSymbols.map((item) => item.symbol)));
+    }, [dispatch]);
+
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
+    // merge default symbol codes with selected symbols
+    const combinedSymbolsList = [...selectedSymbols, ...companyTickerSymbols];
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -130,8 +142,8 @@ const StocksFeed = (props: StocksFeedProps) => {
                 testID="tile-grid"
                 renderItem={({ item }) => {
                     return (
-                        <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                            <View style={[styles.itemContent, { backgroundColor: item.code }]}>
+                        <View style={[styles.itemContainer, { backgroundColor: item.color }]}>
+                            <View style={[styles.itemContent, { backgroundColor: item.color }]}>
                                 <View style={styles.header}>
                                     <Text
                                         style={
@@ -357,7 +369,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     settingButtonDivider: {
-       width: 15
+        width: 15,
     },
     itemCode: {
         fontWeight: '600',

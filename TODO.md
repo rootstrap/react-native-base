@@ -1,3 +1,3 @@
-- Assign random color codes to stock symbols from store state
+- Move stocks picker open button to a common setting area
 
 
