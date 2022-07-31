@@ -18,7 +18,13 @@ const StocksPicker = (props: StocksPickerProps) => {
 
     // Called 'once' on init
     useEffect(() => {
-        dispatch(getAllStockTickerSymbols());
+        let isMounted = true;
+        if (isMounted) {
+            dispatch(getAllStockTickerSymbols());
+        }
+        return () => {
+            isMounted = false;
+        };
     }, [dispatch]);
 
     const { selectedSymbols } = useSelectedStockSymbolState();
@@ -28,11 +34,10 @@ const StocksPicker = (props: StocksPickerProps) => {
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
 
     const togglePanel = () => {
-        props.onHide(true);            
+        props.onHide(true);
     };
 
     const setSelectedSymbols = (selectedSymbols: string[]) => {
-        console.log('selectedSymbols: ' + selectedSymbols);
         dispatch(
             updateSelectedSymbols({
                 selectedSymbols,
@@ -51,7 +56,7 @@ const StocksPicker = (props: StocksPickerProps) => {
     const isKeyboardShown = useHideWhenKeyboardOpen();
 
     let stocksPicker;
-    
+
     stocksPicker = (
         <View style={styles.viewContainer}>
             <View style={[styles.selectContainer]}>
