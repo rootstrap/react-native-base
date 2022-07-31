@@ -63,9 +63,9 @@ const StocksFeed = (props: StocksFeedProps) => {
     // Fetch stock metrics for the user selected symbols
     // TODO: check if subscribe to selectedSymbols before dispatching this action
     // to make it reactive
-    useEffect(() => {
-        dispatch(getAllStocksFeed(selectedSymbols.map((item) => item.symbol)));
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(getAllStocksFeed(selectedSymbols.map((item) => item.symbol)));
+    // }, [dispatch]);
 
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
     // merge default symbol codes with selected symbols
