@@ -12,6 +12,8 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.2",
+    "axios": "^0.27.2",
+    "humps": "^2.0.1",
     "react": "17.0.2",
     "react-native": "0.68.0",
     "react-native-bootsplash": "^4.2.3",
@@ -23,6 +25,7 @@
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
+    "@types/humps": "^2.0.2",
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.67.3",
     "@types/react-test-renderer": "^17.0.1",

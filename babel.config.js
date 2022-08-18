@@ -18,6 +18,7 @@ module.exports = {
         alias: {
           screens: './src/screens',
           constants: './src/constants',
+          network: './src/network',
         },
       },
     ],
