@@ -19,6 +19,8 @@ module.exports = {
           screens: './src/screens',
           constants: './src/constants',
           network: './src/network',
+          storage: './src/storage',
+          hooks: './src/hooks',
         },
       },
     ],
