@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.2",
+    "@tanstack/react-query": "^4.2.1",
     "axios": "^0.27.2",
     "humps": "^2.0.1",
     "react": "17.0.2",
