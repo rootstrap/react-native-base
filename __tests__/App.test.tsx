@@ -12,9 +12,9 @@ describe('App', () => {
   });
 
   it('elements should be accessible', () => {
-    const { getByText, getByA11yState } = render(<App />);
+    const { getByText, getByRole } = render(<App />);
     const text = getByText('Welcome Screen');
-    const button = getByA11yState({ disabled: false });
+    const button = getByRole('button');
 
     expect(text).toBeAccessible();
     expect(button).toBeAccessible();
