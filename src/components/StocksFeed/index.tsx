@@ -8,7 +8,7 @@ import { Button, Icon, Overlay } from 'react-native-elements';
 import {
     getStockFeed,
     getStockConfig,
-    getStockSymbols,
+    getDefaultStockSymbols,
     getAllStocksFeed,
     updateSelectedMetrics,
 } from 'actions/stocksFeedActions';
@@ -17,12 +17,15 @@ import {
     useStockConfigState,
     useStockSymbolsState,
     useConfigBySymbolMapState,
+    useSelectedStockSymbolState,
 } from 'hooks/useStockFeedState';
 import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
-import { ES_GREEN, ES_PINK, ES_PURPLE } from 'constants/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
+import StocksPicker from 'components/StocksPicker';
+import { isString } from 'utils/helpers';
 
 interface StocksFeedProps {}
 
@@ -35,32 +38,49 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     // Called 'once' on init
     useEffect(() => {
-        dispatch(getStockConfig());
+        let isCancelled = false;
+        if (!isCancelled) {
+            dispatch(getStockConfig());
+        }
+        return () => {
+            isCancelled = true;
+        };
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getStockSymbols());
+        dispatch(getDefaultStockSymbols());
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getAllStocksFeed(symbolCodes.map((item) => item.symbol)));
+        dispatch(getAllStocksFeed(combinedSymbolsList.map((item) => item.symbol)));
     }, [dispatch]);
 
     const { data } = useStockFeedState();
     const { configLabels } = useStockConfigState();
     const { symbolCodes } = useStockSymbolsState();
-    const { configBySymbolMap } = useConfigBySymbolMapState(symbolCodes);
 
     const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
     const [settingsVisible, setSettingsVisible] = useState(false);
+    const [stockPickerVisible, setStockPickerVisible] = useState(false);
+    const [listIsOpen, setListIsOpen] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
-    const [companyTickerSymbols] = React.useState([...symbolCodes]);
+
+    const { selectedSymbols } = useSelectedStockSymbolState();
+
+    const [defaultTickerSymbols] = React.useState([...symbolCodes]);
+    const combinedSymbolsList = [...selectedSymbols, ...defaultTickerSymbols];
+    const { configBySymbolMap } = useConfigBySymbolMapState(combinedSymbolsList);
+
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
             setSelectedSymbol(symbol);
         }
         setSettingsVisible(!settingsVisible);
+    };
+
+    const toggleStockPicker = () => {
+        setStockPickerVisible(!stockPickerVisible);
     };
 
     const resetDefaultSymbolLabels = (symbol?: string) => {
@@ -114,34 +134,57 @@ const StocksFeed = (props: StocksFeedProps) => {
     const isKeyboardShown = useHideWhenKeyboardOpen();
 
     return (
-        <View>
+        <View style={styles.viewContainer}>
+            {/* <Text>{JSON.stringify(combinedSymbolsList)}</Text> */}
+            <View style={styles.commonSettingArea}>
+                <Button
+                    onPress={() => toggleStockPicker()}
+                    type="outline"
+                    icon={
+                        <Icon
+                            name="wrench"
+                            type="font-awesome"
+                            color="white"
+                            size={30}
+                            style={styles.commonSettingsButton}
+                        />
+                    }
+                />
+            </View>
             <FlatGrid
                 itemDimension={130}
-                data={companyTickerSymbols}
+                data={combinedSymbolsList}
                 style={styles.gridView}
                 spacing={10}
                 testID="tile-grid"
                 renderItem={({ item }) => {
                     return (
-                        <View style={[styles.itemContainer, { backgroundColor: item.code }]}>
-                            <View style={[styles.itemContent, { backgroundColor: item.code }]}>
+                        <View
+                            style={[
+                                styles.itemContainer,
+                                { backgroundColor: item?.color || item?.code },
+                            ]}>
+                            <View
+                                style={[
+                                    styles.itemContent,
+                                    { backgroundColor: item?.color || item?.code },
+                                ]}>
                                 <View style={styles.header}>
-                                    <Text
-                                        style={
-                                            styles.itemName
-                                        }>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
+                                    <Text style={styles.itemName}>{`Symbol: ${
+                                        isString(item?.symbol) ? item?.symbol?.toUpperCase() : 'n-f'
+                                    }`}</Text>
                                     <Button
                                         icon={{
                                             name: 'refresh',
                                             size: 20,
                                             color: 'white',
                                         }}
-                                        onPress={stocksFeedRequest(item.symbol)}
+                                        onPress={stocksFeedRequest(item?.symbol)}
                                         raised={true}
                                         type="clear"></Button>
                                 </View>
                                 {configBySymbolMap[item.symbol]?.length
-                                    ? configBySymbolMap[item.symbol].map(
+                                    ? configBySymbolMap[item.symbol]?.map(
                                           (configLabel: string, index: number) => (
                                               <Metric
                                                   styles={styles}
@@ -167,6 +210,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                     );
                 }}
             />
+            {/* stock metrics list */}
             <Overlay
                 isVisible={settingsVisible}
                 fullScreen={true}
@@ -181,6 +225,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         hideDropdown={true}
                         hideTags={false}
                         onSelectedItemsChange={(config) => setSelectedSymbolConfig(config)}
+                        onToggleList={() => setListIsOpen(!listIsOpen)}
                         styleListContainer={[styles.selectList]}
                         selectedItems={configBySymbolMap[selectedSymbol]}
                         selectText="Metrics"
@@ -193,6 +238,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         tagTextColor="#FFFFFF"
                         selectedItemTextColor="#CCC"
                         selectedItemIconColor="#CCC"
+                        styleMainWrapper={styles.listWrapper}
                         itemTextColor="#000"
                         displayKey="name"
                         searchInputStyle={{ color: '#CCC' }}
@@ -201,7 +247,10 @@ const StocksFeed = (props: StocksFeedProps) => {
                     />
                 </View>
                 <TouchableOpacity style={[styles.selectDismiss]}>
-                    <View style={[styles.buttonContainer]}>
+                    <View
+                        style={[
+                            listIsOpen ? styles.buttonContainerMinimized : styles.buttonContainer,
+                        ]}>
                         {!isKeyboardShown && (
                             <>
                                 <Button
@@ -233,6 +282,14 @@ const StocksFeed = (props: StocksFeedProps) => {
                     </View>
                 </TouchableOpacity>
             </Overlay>
+            {/* stock picker list */}
+            <Overlay
+                isVisible={stockPickerVisible}
+                fullScreen={true}
+                style={[styles.overlayContainer]}
+                onBackdropPress={toggleStockPicker}>
+                <StocksPicker onHide={() => setStockPickerVisible(false)}></StocksPicker>
+            </Overlay>
         </View>
     );
 };
@@ -248,24 +305,51 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         paddingLeft: 20,
         flex: 0.2,
-        backgroundColor: ES_GREEN,
+        height: 4,
+        backgroundColor: 'grey',
         flexDirection: 'row',
         justifyContent: 'center',
     },
-    selectContainer: {
-        flex: 6,
+    buttonContainerMinimized: {
+        alignSelf: 'center',
+        paddingLeft: 20,
+        flex: 0.1,
+        backgroundColor: 'grey',
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    viewContainer: {
+        backgroundColor: 'white',
+    },
+    commonSettingArea: {
         backgroundColor: ES_GREEN,
+        flex: 0.10,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        paddingRight: 40, 
+        paddingTop: 5,
+        alignItems: 'center',
+    },
+    commonSettingsButton: {
+
+    },
+    listWrapper: {
+        backgroundColor: 'grey',
+    },
+    selectContainer: {
+        flex: 7,
+        backgroundColor: 'grey',
     },
     selectDismiss: {
         flex: 1,
-        backgroundColor: ES_GREEN,
+        backgroundColor: 'grey',
     },
     space: {
         width: 20,
         height: 20,
     },
     selectList: {
-        height: 400,
+        height: 600,
     },
     listContainer: {
         backgroundColor: ES_GREEN,
@@ -284,14 +368,13 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         flex: 1,
         alignSelf: 'stretch',
-        backgroundColor: ES_GREEN,
     },
     overlayDismissContainer: {
         flex: 1,
     },
     settingsButtonContainer: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         alignSelf: 'flex-end',
         marginTop: 0,
         marginRight: 12.3,
@@ -312,6 +395,9 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: '600',
     },
+    settingButtonDivider: {
+        width: 15,
+    },
     itemCode: {
         fontWeight: '600',
         fontSize: 12,
@@ -324,11 +410,10 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         alignSelf: 'center',
-        backgroundColor: ES_PURPLE,
     },
     submitButtonColor: {
         alignSelf: 'center',
-        backgroundColor: ES_PURPLE,
+        backgroundColor: ES_BLUE,
     },
     cancelButtonColor: {
         alignSelf: 'center',

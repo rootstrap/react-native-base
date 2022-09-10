@@ -13,8 +13,12 @@ class StocksService {
 
     getAllStocksSymbolData(symbolIds: string[]) {
         return httpClient.get(
-            applyArrayQueryParam(`/stock/market/batch`, symbolIds, `symbols`) + `&types=quote`,
+            applyArrayQueryParam(`/stock/market/batch`, symbolIds ? symbolIds : ["fb"], `symbols`) + `&types=quote`,
         );
+    }
+
+    getAllStockTickerSymbols() {
+        return httpClient.get(`/ref-data/iex/symbols`);
     }
 }
 
