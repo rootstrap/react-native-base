@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
     },
     commonSettingArea: {
         backgroundColor: ES_GREEN,
-        flex: 0.14,
+        flex: 0.10,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         paddingRight: 40, 
