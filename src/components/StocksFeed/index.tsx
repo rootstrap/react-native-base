@@ -25,6 +25,7 @@ import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
 import StocksPicker from 'components/StocksPicker';
+import { isString } from 'utils/helpers';
 
 interface StocksFeedProps {}
 
@@ -37,7 +38,13 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     // Called 'once' on init
     useEffect(() => {
-        dispatch(getStockConfig());
+        let isCancelled = false;
+        if (!isCancelled) {
+             dispatch(getStockConfig());
+        }
+        return () => {
+            isCancelled = true;
+        };
     }, [dispatch]);
 
     useEffect(() => {
@@ -68,7 +75,6 @@ const StocksFeed = (props: StocksFeedProps) => {
     // }, [dispatch]);
 
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
-    // merge default symbol codes with selected symbols
     const combinedSymbolsList = [...selectedSymbols, ...companyTickerSymbols];
 
     const toggleSettings = (symbol?: string) => {
@@ -134,33 +140,56 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     return (
         <View style={styles.viewContainer}>
+            {/* <Text>{JSON.stringify(combinedSymbolsList)}</Text> */}
+            <View style={styles.commonSettingArea}>
+                <Button
+                    onPress={() => toggleStockPicker()}
+                    type="outline"
+                    icon={
+                        <Icon
+                            name="wrench"
+                            type="font-awesome"
+                            color="white"
+                            size={30}
+                            style={styles.commonSettingsButton}
+                        />
+                    }
+                />
+            </View>
             <FlatGrid
                 itemDimension={130}
-                data={companyTickerSymbols}
+                data={combinedSymbolsList}
                 style={styles.gridView}
                 spacing={10}
                 testID="tile-grid"
                 renderItem={({ item }) => {
                     return (
-                        <View style={[styles.itemContainer, { backgroundColor: item.color }]}>
-                            <View style={[styles.itemContent, { backgroundColor: item.color }]}>
+                        <View
+                            style={[
+                                styles.itemContainer,
+                                { backgroundColor: item?.color || item?.code },
+                            ]}>
+                            <View
+                                style={[
+                                    styles.itemContent,
+                                    { backgroundColor: item?.color || item?.code },
+                                ]}>
                                 <View style={styles.header}>
-                                    <Text
-                                        style={
-                                            styles.itemName
-                                        }>{`Symbol: ${item.symbol?.toUpperCase()}`}</Text>
+                                    <Text style={styles.itemName}>{`Symbol: ${
+                                        isString(item?.symbol) ? item?.symbol?.toUpperCase() : 'n-f'
+                                    }`}</Text>
                                     <Button
                                         icon={{
                                             name: 'refresh',
                                             size: 20,
                                             color: 'white',
                                         }}
-                                        onPress={stocksFeedRequest(item.symbol)}
+                                        onPress={stocksFeedRequest(item?.symbol)}
                                         raised={true}
                                         type="clear"></Button>
                                 </View>
                                 {configBySymbolMap[item.symbol]?.length
-                                    ? configBySymbolMap[item.symbol].map(
+                                    ? configBySymbolMap[item.symbol]?.map(
                                           (configLabel: string, index: number) => (
                                               <Metric
                                                   styles={styles}
@@ -180,14 +209,6 @@ const StocksFeed = (props: StocksFeedProps) => {
                                     color="white"
                                     size={22}
                                     onPress={() => toggleSettings(item.symbol)}
-                                />
-                                <View style={styles.settingButtonDivider}></View>
-                                <Icon
-                                    name="star"
-                                    type="font-awesome"
-                                    color="white"
-                                    size={22}
-                                    onPress={() => toggleStockPicker()}
                                 />
                             </View>
                         </View>
@@ -305,6 +326,18 @@ const styles = StyleSheet.create({
     },
     viewContainer: {
         backgroundColor: 'white',
+    },
+    commonSettingArea: {
+        backgroundColor: ES_GREEN,
+        flex: 0.14,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        paddingRight: 40, 
+        paddingTop: 5,
+        alignItems: 'center',
+    },
+    commonSettingsButton: {
+
     },
     listWrapper: {
         backgroundColor: 'grey',

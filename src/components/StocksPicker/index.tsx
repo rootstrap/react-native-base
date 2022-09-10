@@ -34,7 +34,8 @@ const StocksPicker = (props: StocksPickerProps) => {
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
 
     const togglePanel = () => {
-        props.onHide(true);
+        props.onHide ? props.onHide(true) : console.log(`StocksPicker onHide prop not provided`);
+
     };
 
     const setSelectedSymbols = (selectedSymbols: string[]) => {
