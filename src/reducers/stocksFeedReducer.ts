@@ -16,6 +16,7 @@ const initialState = {
     symbolCodes: [],
     selectedMetricsBySymbol: undefined,
     selectedSymbols: [],
+    selectedSymbolNames: [],
 };
 
 interface FeedItem {
@@ -34,6 +35,7 @@ interface StocksFeed {
     symbolCodesAll: SymbolTickerCodes[];
     selectedMetricsBySymbol?: MetricLabels;
     selectedSymbols?: SymbolCodes[];
+    selectedSymbolNames?: String[]
 }
 
 export interface MetricLabels {
@@ -100,6 +102,7 @@ const handleUpdateSelectedSymbols = (
     data: { payload: { selectedSymbols: string[] } },
 ) => {
     state.selectedSymbols = [...mapRandomColorCodesToItems(data?.payload?.selectedSymbols) || []];
+    state.selectedSymbolNames = [...data?.payload?.selectedSymbols] || [];
 };
 
 const handleGetAllStockTickerSymbolsSuccess = (
@@ -121,6 +124,7 @@ export default createReducer(initialState, {
 
 // Model Mappers
 const mapRandomColorCodesToItems = (data: string[]): SymbolCodes[] => {
+   console.log(JSON.stringify(data));
    return data?.map((item) => ({ symbol: item, color: getRandomColor() }));
 };
 

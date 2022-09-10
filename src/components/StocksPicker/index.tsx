@@ -1,6 +1,6 @@
 import { getAllStockTickerSymbols, updateSelectedSymbols } from 'actions/stocksFeedActions';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
-import { useAllStockSymbolsState, useSelectedStockSymbolState } from 'hooks/useStockFeedState';
+import { useAllStockSymbolsState, useSelectedStockSymbolNamesState } from 'hooks/useStockFeedState';
 import strings from 'locale';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
@@ -27,8 +27,8 @@ const StocksPicker = (props: StocksPickerProps) => {
         };
     }, [dispatch]);
 
-    const { selectedSymbols } = useSelectedStockSymbolState();
     const { symbolCodes } = useAllStockSymbolsState();
+    const { selectedSymbolNames } = useSelectedStockSymbolNamesState();
 
     const [listIsOpen, setListIsOpen] = useState(false);
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
@@ -72,11 +72,10 @@ const StocksPicker = (props: StocksPickerProps) => {
                     onSelectedItemsChange={(selectedSymbols) => setSelectedSymbols(selectedSymbols)}
                     onToggleList={() => setListIsOpen(!listIsOpen)}
                     styleListContainer={[styles.selectList]}
-                    selectedItems={selectedSymbols}
+                    selectedItems={selectedSymbolNames}
                     selectText="Symbols"
                     fontSize={16}
                     searchInputPlaceholderText="Search Ticker Symbols..."
-                    onChangeInput={(text) => console.log(text)}
                     altFontFamily="ProximaNova-Light"
                     tagRemoveIconColor="#FFFFFF"
                     tagBorderColor="#FFFFFF"
@@ -97,7 +96,7 @@ const StocksPicker = (props: StocksPickerProps) => {
                         <>
                             <Button
                                 icon={<Icon name="save" size={16} color="white" />}
-                                title={strings.STOCKS_FEED.submit}
+                                title={strings.STOCKS_PICKER.close}
                                 iconRight={true}
                                 onPress={() => {
                                     togglePanel();
@@ -110,7 +109,7 @@ const StocksPicker = (props: StocksPickerProps) => {
                             <View style={styles.space} />
                             <Button
                                 icon={<Icon name="clear" size={16} color="white" />}
-                                title={strings.STOCKS_FEED.reset}
+                                title={strings.STOCKS_PICKER.reset}
                                 iconRight={true}
                                 onPress={() => {
                                     resetDefaultSymbols();

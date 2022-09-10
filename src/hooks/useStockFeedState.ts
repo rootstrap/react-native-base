@@ -32,6 +32,12 @@ export const useAllStockSymbolsState = () =>
             ) || [],
     }));
 
+export const useSelectedStockSymbolNamesState = () =>
+    useSelector((state: RootState) => ({
+        selectedSymbolNames: (state as any).stockFeed.selectedSymbolNames as string[],
+    }));
+    
+
 export const useConfigBySymbolMapState = (symbols: any[]) =>
     useSelector((state: RootState) => ({
         configBySymbolMap:
