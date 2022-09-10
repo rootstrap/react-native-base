@@ -6,6 +6,7 @@ import strings from '../../locale';
 import styles from './styles';
 import StocksFeed from 'components/StocksFeed';
 
+
 const MainScreen = () => {
     return (
         <View style={styles.container} testID={MAIN_SCREEN}>

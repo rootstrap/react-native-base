@@ -1,18 +1,19 @@
 import { createThunk, createAction } from '@rootstrap/redux-tools';
+import { assignEmptyIfNotString } from 'utils/helpers';
 import stocksService from '../services/stocksService';
 import parseError from '../utils/parseError';
 
 export const symbolsCodeMap = [
-    { symbol: 'fb', code: '#1abc9c' },
-    { symbol: 'aapl', code: '#2ecc71' },
-    { symbol: 'amc', code: '#3498db' },
-    { symbol: 'gme', code: '#9b59b6' },
-    { symbol: 'tsla', code: '#34495e' },
-    { symbol: 'amzn', code: '#16a085' },
-    { symbol: 'nvda', code: '#27ae60' },
-    { symbol: 'msft', code: '#2980b9' },
-    { symbol: 'tsm', code: '#16a085' },
-    { symbol: 'nio', code: '#16a085' },
+    { symbol: 'fb', color: '#1abc9c' },
+    { symbol: 'aapl', color: '#2ecc71' },
+    { symbol: 'amc', color: '#3498db' },
+    { symbol: 'gme', color: '#9b59b6' },
+    { symbol: 'tsla', color: '#34495e' },
+    { symbol: 'amzn', color: '#16a085' },
+    { symbol: 'nvda', color: '#27ae60' },
+    { symbol: 'msft', color: '#2980b9' },
+    { symbol: 'tsm', color: '#16a085' },
+    { symbol: 'nio', color: '#16a085' },
 ];
 
 export const getAllStockTickerSymbols = createThunk('GET_ALL_STOCK_TICKER_SYMBOLS', async () => {
@@ -25,9 +26,9 @@ export const getAllStockTickerSymbols = createThunk('GET_ALL_STOCK_TICKER_SYMBOL
     }
 });
 
-export const getStockFeed = createThunk('GET_STOCKS_FEED', async (symbol: string) => {
+export const getStockFeed = createThunk('GET_STOCKS_FEED', async (symbol: string = "") => {
     try {
-        const { data } = await stocksService.getStockSymbolData(symbol);
+        const { data } = await stocksService.getStockSymbolData(assignEmptyIfNotString(symbol));
         return data;
     } catch ({ response }) {
         console.log(JSON.stringify(response));
@@ -50,7 +51,7 @@ export const getAllStocksFeed = createThunk('GET_ALL_STOCKS_FEED', async (symbol
 
 export const getDefaultStockSymbols = createThunk('GET_STOCKS_SYMBOLS', async (count?: number) => {
     try {
-        // todo: map selectedSymbols state to symbolsCodeMap array, decorate symbols with random color code
+        // todo: map selectedSymbols state to symbolscolorMap array, decorate symbols with random color color
         return symbolsCodeMap;
     } catch ({ response }) {
         console.log(JSON.stringify(response));

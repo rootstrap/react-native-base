@@ -47,6 +47,7 @@ interface ConfigLabel {
 }
 
 export interface SymbolCodes {
+    code?: string;
     symbol: string;
     color: string;
 }
