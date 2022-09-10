@@ -9,6 +9,7 @@ import {
     getAllStockTickerSymbolsSuccess,
 } from '../actions/stocksFeedActions';
 import update from 'immutability-helper';
+import { assignDefaultConfigLabels } from 'hooks/useStockFeedState'
 
 const initialState = {
     data: [],
@@ -103,6 +104,7 @@ const handleUpdateSelectedSymbols = (
 ) => {
     state.selectedSymbols = [...mapRandomColorCodesToItems(data?.payload?.selectedSymbols) || []];
     state.selectedSymbolNames = [...data?.payload?.selectedSymbols] || [];
+    // state.selectedMetricsBySymbol = {...state.selectedMetricsBySymbol, ...assignDefaultConfigLabels(data?.payload?.selectedSymbols)}
 };
 
 const handleGetAllStockTickerSymbolsSuccess = (

@@ -40,7 +40,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     useEffect(() => {
         let isCancelled = false;
         if (!isCancelled) {
-             dispatch(getStockConfig());
+            dispatch(getStockConfig());
         }
         return () => {
             isCancelled = true;
@@ -52,13 +52,12 @@ const StocksFeed = (props: StocksFeedProps) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getAllStocksFeed(symbolCodes.map((item) => item.symbol)));
+        dispatch(getAllStocksFeed(combinedSymbolsList.map((item) => item.symbol)));
     }, [dispatch]);
 
     const { data } = useStockFeedState();
     const { configLabels } = useStockConfigState();
     const { symbolCodes } = useStockSymbolsState();
-    const { configBySymbolMap } = useConfigBySymbolMapState(symbolCodes);
 
     const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
     const [settingsVisible, setSettingsVisible] = useState(false);
@@ -67,15 +66,11 @@ const StocksFeed = (props: StocksFeedProps) => {
     const [selectedSymbol, setSelectedSymbol] = useState('');
 
     const { selectedSymbols } = useSelectedStockSymbolState();
-    // Fetch stock metrics for the user selected symbols
-    // TODO: check if subscribe to selectedSymbols before dispatching this action
-    // to make it reactive
-    // useEffect(() => {
-    //     dispatch(getAllStocksFeed(selectedSymbols.map((item) => item.symbol)));
-    // }, [dispatch]);
 
-    const [companyTickerSymbols] = React.useState([...symbolCodes]);
-    const combinedSymbolsList = [...selectedSymbols, ...companyTickerSymbols];
+    const [defaultTickerSymbols] = React.useState([...symbolCodes]);
+    const combinedSymbolsList = [...selectedSymbols, ...defaultTickerSymbols];
+    const { configBySymbolMap } = useConfigBySymbolMapState(combinedSymbolsList);
+
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -316,7 +311,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     buttonContainerMinimized: {
-        paddingTop: 40,
         alignSelf: 'center',
         paddingLeft: 20,
         flex: 0.1,
