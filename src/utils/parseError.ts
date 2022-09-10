@@ -1,29 +1,29 @@
 import strings from '../locale/index';
 
 const parseErrors = (errors: { fullMessages: string[]; base: string[] }) => {
-  if (errors) {
-    const { fullMessages, base } = errors;
+    if (errors) {
+        const { fullMessages, base } = errors;
 
-    if (fullMessages) {
-      const [firstMessage] = fullMessages;
-      return firstMessage;
+        if (fullMessages) {
+            const [firstMessage] = fullMessages;
+            return firstMessage;
+        }
+
+        if (base) {
+            const [firstMessage] = base;
+            return firstMessage;
+        }
+
+        if (Array.isArray(errors)) {
+            return errors[0];
+        }
+
+        const errorKey = Object.keys(errors)[0];
+        const error = errors[errorKey][0];
+        return `${errorKey} ${error}`;
     }
 
-    if (base) {
-      const [firstMessage] = base;
-      return firstMessage;
-    }
-
-    if (Array.isArray(errors)) {
-      return errors[0];
-    }
-
-    const errorKey = Object.keys(errors)[0];
-    const error = errors[errorKey][0];
-    return `${errorKey} ${error}`;
-  }
-
-  return (strings as any).COMMON.somethingWentWrong;
+    return (strings as any).COMMON.somethingWentWrong;
 };
 
 /**
@@ -51,11 +51,11 @@ const parseErrors = (errors: { fullMessages: string[]; base: string[] }) => {
  * 5- `{ errors: ['Some error'] }` returns `"Some error"`
  */
 export default (err: { data: { error: any; errors: any } }) => {
-  if (!err) return (strings as any).COMMON.somethingWentWrong;
+    if (!err) return (strings as any).COMMON.somethingWentWrong;
 
-  const { error, errors } = err.data;
+    const { error, errors } = err.data;
 
-  if (error) return error;
+    if (error) return error;
 
-  return parseErrors(errors);
+    return parseErrors(errors);
 };

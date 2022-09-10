@@ -58,7 +58,7 @@ const useStockFormatUtils = () => {
                 return formattedValue;
             }
         }
-        return '';
+        return '--';
     };
 
     return {

@@ -17,6 +17,12 @@ export default {
         reset: 'Reset',
     },
 
+    STOCKS_PICKER: {
+        close: 'Close',
+        submit: 'Save',
+        reset: 'Reset',
+    },
+
     SIGN_UP: {
         title: 'Registro',
         email: 'Email',

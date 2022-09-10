@@ -17,3 +17,11 @@ export const applyArrayQueryParam = (url: any, values: string[], key: string) =>
     console.log(`paramValues: ${paramValues}`);
     return `${url}?${key}=${paramValues}`;
 };
+
+export const isString = (value: any) => {
+  return Object.prototype.toString.call(value) === '[object String]';
+}
+
+export const assignEmptyIfNotString = (value: any) => {
+    return Object.prototype.toString.call(value) === '[object String]' ? value : "";
+};

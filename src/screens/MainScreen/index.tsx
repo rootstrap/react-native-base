@@ -1,18 +1,13 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { View } from 'react-native';
-import { useDispatch } from 'react-redux';
 
-import { logout } from '../../actions/userActions';
 import { MAIN_SCREEN } from '../../constants/screens';
 import strings from '../../locale';
-import useSession from '../../hooks/useSession';
 import styles from './styles';
 import StocksFeed from 'components/StocksFeed';
 
-const MainScreen = () => {
-    const dispatch = useDispatch();
-    const logoutRequest = useCallback(() => dispatch(logout()), [dispatch]);
 
+const MainScreen = () => {
     return (
         <View style={styles.container} testID={MAIN_SCREEN}>
             <StocksFeed></StocksFeed>

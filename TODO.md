@@ -1,3 +1,5 @@
-- UX flow: user picks a number of stock tickers from  a fetched list on IEX Cloud API
-- Fix get all stocks thunk, throwing error
 
+
+[] Dispatch updateSelectedSymbols when dialog save button hit
+[] Remove duplicates from selected stock list
+[] Assign default labels to newly select symbols
