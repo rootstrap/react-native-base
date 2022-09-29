@@ -25,7 +25,8 @@
     "android:release:prod": "cd android && ./gradlew assembleProdRelease",
     "android:bundle:dev": "cd android && ./gradlew bundleDevRelease",
     "android:bundle:staging": "cd android && ./gradlew bundleStagingRelease",
-    "android:bundle:prod": "cd android && ./gradlew bundleProdRelease"
+    "android:bundle:prod": "cd android && ./gradlew bundleProdRelease",
+    "lint:fix": "eslint --fix src tests"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
@@ -51,16 +52,26 @@
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.69.0",
     "@types/react-test-renderer": "^17.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.17.0",
-    "@typescript-eslint/parser": "^5.17.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^4.1.0",
-    "eslint": "^7.32.0",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-json-format": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-native": "^4.0.0",
+    "eslint-plugin-react-native-a11y": "^3.2.1",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.67.0",
     "react-native-accessibility-engine": "^2.0.0",
     "react-test-renderer": "17.0.2",
-    "typescript": "^4.4.4"
+    "prettier": "2.7.1",
+    "typescript": "^4.7.4"
   },
   "resolutions": {
     "@types/react": "^17"
