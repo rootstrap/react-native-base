@@ -18,6 +18,8 @@ import {
     useStockSymbolsState,
     useConfigBySymbolMapState,
     useSelectedStockSymbolState,
+    useDefaultConfigBySymbolMapState,
+    defaultConfigLabels,
 } from 'hooks/useStockFeedState';
 import strings from '../../locale';
 import { startCase } from 'lodash';
@@ -59,7 +61,6 @@ const StocksFeed = (props: StocksFeedProps) => {
     const { configLabels } = useStockConfigState();
     const { symbolCodes } = useStockSymbolsState();
 
-    const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
     const [settingsVisible, setSettingsVisible] = useState(false);
     const [stockPickerVisible, setStockPickerVisible] = useState(false);
     const [listIsOpen, setListIsOpen] = useState(false);
@@ -68,9 +69,20 @@ const StocksFeed = (props: StocksFeedProps) => {
     const { selectedSymbols } = useSelectedStockSymbolState();
 
     const [defaultTickerSymbols] = React.useState([...symbolCodes]);
-    const combinedSymbolsList = [...selectedSymbols, ...defaultTickerSymbols];
-    const { configBySymbolMap } = useConfigBySymbolMapState(combinedSymbolsList);
+    let combinedSymbolsList = [...selectedSymbols, ...defaultTickerSymbols];
 
+    // todo: remove duplicate items, taking preference of 1st item found (user selected symbol)
+    // and removing the default symbol tile.
+    combinedSymbolsList.filter(
+        (val, index, symbolList) =>
+            symbolList.findIndex(
+                (val2) => val2?.symbol.toUpperCase() === val?.symbol.toUpperCase(),
+            ) === index,
+    );
+
+    const { selectedConfigBySymbolMap } = useConfigBySymbolMapState();
+    // const { defaultConfigBySymbolMap } = useDefaultConfigBySymbolMapState();
+    const configBySymbolMap = { ...selectedConfigBySymbolMap };
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -195,7 +207,17 @@ const StocksFeed = (props: StocksFeedProps) => {
                                               />
                                           ),
                                       )
-                                    : null}
+                                    : defaultConfigLabels?.map(
+                                          (configLabel: string, index: number) => (
+                                              <Metric
+                                                  styles={styles}
+                                                  key={index}
+                                                  data={data}
+                                                  configLabel={configLabel}
+                                                  item={item}
+                                              />
+                                          ),
+                                      )}
                             </View>
                             <View style={styles.settingsButtonContainer}>
                                 <Icon
@@ -292,7 +314,7 @@ const StocksFeed = (props: StocksFeedProps) => {
             </Overlay>
         </View>
     );
-};
+};;
 
 export default StocksFeed;
 
