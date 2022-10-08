@@ -25,7 +25,8 @@
     "android:release:prod": "cd android && ./gradlew assembleProdRelease",
     "android:bundle:dev": "cd android && ./gradlew bundleDevRelease",
     "android:bundle:staging": "cd android && ./gradlew bundleStagingRelease",
-    "android:bundle:prod": "cd android && ./gradlew bundleProdRelease"
+    "android:bundle:prod": "cd android && ./gradlew bundleProdRelease",
+    "rename": "./scripts/rename.sh"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
