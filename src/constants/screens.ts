@@ -9,3 +9,5 @@ export const SIGN_UP_SCREEN = 'SignUpScreen';
 
 // CHILD SCREENS
 export const STOCKS_FEED = 'StocksFeed';
+export const STOCK_PICKER_SCREEN = 'Stocks Picker';
+
