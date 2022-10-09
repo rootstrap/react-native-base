@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FlatGrid } from 'react-native-super-grid';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
@@ -18,14 +18,14 @@ import {
     useStockSymbolsState,
     useConfigBySymbolMapState,
     useSelectedStockSymbolState,
+    defaultConfigLabels,
 } from 'hooks/useStockFeedState';
 import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
-import StocksPicker from 'components/StocksPicker';
-import { isString } from 'utils/helpers';
+import { isString, removeDuplicateSymbols } from 'utils/helpers';
 
 interface StocksFeedProps {}
 
@@ -35,6 +35,10 @@ const StocksFeed = (props: StocksFeedProps) => {
         memoize((symbol) => () => dispatch(getStockFeed(symbol))),
         [],
     );
+
+    const showRefreshToast = (symbol: string) =>
+        Alert.alert('Fetching Data...', `Symbol - ${symbol}`, undefined);
+
 
     // Called 'once' on init
     useEffect(() => {
@@ -51,36 +55,30 @@ const StocksFeed = (props: StocksFeedProps) => {
         dispatch(getDefaultStockSymbols());
     }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(getAllStocksFeed(combinedSymbolsList.map((item) => item.symbol)));
-    }, [dispatch]);
-
     const { data } = useStockFeedState();
     const { configLabels } = useStockConfigState();
     const { symbolCodes } = useStockSymbolsState();
 
-    const defaultConfigLabels = ['open', 'week52High', 'week52Low'];
     const [settingsVisible, setSettingsVisible] = useState(false);
-    const [stockPickerVisible, setStockPickerVisible] = useState(false);
     const [listIsOpen, setListIsOpen] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
+    const { selectedConfigBySymbolMap } = useConfigBySymbolMapState();
+    const configBySymbolMap = { ...selectedConfigBySymbolMap };
 
     const { selectedSymbols } = useSelectedStockSymbolState();
-
     const [defaultTickerSymbols] = React.useState([...symbolCodes]);
-    const combinedSymbolsList = [...selectedSymbols, ...defaultTickerSymbols];
-    const { configBySymbolMap } = useConfigBySymbolMapState(combinedSymbolsList);
+    let combinedSymbolsList = [...selectedSymbols, ...defaultTickerSymbols];
+    combinedSymbolsList = removeDuplicateSymbols(combinedSymbolsList);
 
+    useEffect(() => {
+        dispatch(getAllStocksFeed(combinedSymbolsList?.map((item) => item?.symbol) || undefined));
+    }, [dispatch, selectedSymbols]);
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
             setSelectedSymbol(symbol);
         }
         setSettingsVisible(!settingsVisible);
-    };
-
-    const toggleStockPicker = () => {
-        setStockPickerVisible(!stockPickerVisible);
     };
 
     const resetDefaultSymbolLabels = (symbol?: string) => {
@@ -136,21 +134,6 @@ const StocksFeed = (props: StocksFeedProps) => {
     return (
         <View style={styles.viewContainer}>
             {/* <Text>{JSON.stringify(combinedSymbolsList)}</Text> */}
-            <View style={styles.commonSettingArea}>
-                <Button
-                    onPress={() => toggleStockPicker()}
-                    type="outline"
-                    icon={
-                        <Icon
-                            name="wrench"
-                            type="font-awesome"
-                            color="white"
-                            size={30}
-                            style={styles.commonSettingsButton}
-                        />
-                    }
-                />
-            </View>
             <FlatGrid
                 itemDimension={130}
                 data={combinedSymbolsList}
@@ -195,7 +178,17 @@ const StocksFeed = (props: StocksFeedProps) => {
                                               />
                                           ),
                                       )
-                                    : null}
+                                    : defaultConfigLabels?.map(
+                                          (configLabel: string, index: number) => (
+                                              <Metric
+                                                  styles={styles}
+                                                  key={index}
+                                                  data={data}
+                                                  configLabel={configLabel}
+                                                  item={item}
+                                              />
+                                          ),
+                                      )}
                             </View>
                             <View style={styles.settingsButtonContainer}>
                                 <Icon
@@ -230,14 +223,14 @@ const StocksFeed = (props: StocksFeedProps) => {
                         selectedItems={configBySymbolMap[selectedSymbol]}
                         selectText="Metrics"
                         fontSize={16}
-                        searchInputPlaceholderText="Search Items..."
+                        searchInputPlaceholderText="Search Key Metrics..."
                         onChangeInput={(text) => console.log(text)}
                         altFontFamily="ProximaNova-Light"
                         tagRemoveIconColor="#FFFFFF"
                         tagBorderColor="#FFFFFF"
                         tagTextColor="#FFFFFF"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
+                        selectedItemTextColor={ES_GREEN}
+                        selectedItemIconColor={ES_GREEN}
                         styleMainWrapper={styles.listWrapper}
                         itemTextColor="#000"
                         displayKey="name"
@@ -282,14 +275,6 @@ const StocksFeed = (props: StocksFeedProps) => {
                     </View>
                 </TouchableOpacity>
             </Overlay>
-            {/* stock picker list */}
-            <Overlay
-                isVisible={stockPickerVisible}
-                fullScreen={true}
-                style={[styles.overlayContainer]}
-                onBackdropPress={toggleStockPicker}>
-                <StocksPicker onHide={() => setStockPickerVisible(false)}></StocksPicker>
-            </Overlay>
         </View>
     );
 };
@@ -323,16 +308,14 @@ const styles = StyleSheet.create({
     },
     commonSettingArea: {
         backgroundColor: ES_GREEN,
-        flex: 0.10,
+        flex: 0.1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        paddingRight: 40, 
+        paddingRight: 40,
         paddingTop: 5,
         alignItems: 'center',
     },
-    commonSettingsButton: {
-
-    },
+    commonSettingsButton: {},
     listWrapper: {
         backgroundColor: 'grey',
     },

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { SymbolCodes, MetricLabels, SymbolTickerCodes } from 'reducers/stocksFeedReducer';
 import { RootState } from '../reducers';
 
-const defaultConfigLabels = ['companyName', 'open', 'week52High', 'week52Low'];
+export const defaultConfigLabels = ['companyName', 'open', 'week52High', 'week52Low'];
 
 export const useStockFeedState = () =>
     useSelector((state: RootState) => ({
@@ -36,20 +36,38 @@ export const useSelectedStockSymbolNamesState = () =>
     useSelector((state: RootState) => ({
         selectedSymbolNames: (state as any).stockFeed.selectedSymbolNames as string[],
     }));
-    
+ 
 
-export const useConfigBySymbolMapState = (symbols: any[]) =>
+export const useConfigBySymbolMapState = () =>
     useSelector((state: RootState) => ({
-        configBySymbolMap:
-            ((state as any).stockFeed.selectedMetricsBySymbol as MetricLabels) ||
-            assignDefaultConfigLabels(symbols),
+        selectedConfigBySymbolMap: (state as any).stockFeed.selectedMetricsBySymbol as MetricLabels,
+    }));
+
+export const useDefaultConfigBySymbolMapState = () =>
+    useSelector((state: RootState) => ({
+        defaultConfigBySymbolMap: assignDefaultConfigLabels(
+           ((state as any).stockFeed.symbolCodes.map((code: { symbol: string }) => code?.symbol)),
+        )   
     }));
 
 export default { useStockFeedState, useStockConfigState, useStockSymbolsState };
 
-export const assignDefaultConfigLabels = (symbols: string[]) => {
-    let defaultConfigBySymbol = (symbols as any)?.map((item: { symbol: any }) => ({
-        stockKey: item.symbol,
+
+/**
+ * Assigns default labels to a given stock symbol if not set
+ * @param newSymbols 
+ * @param existingSymbols 
+ * @returns 
+ */
+export const assignDefaultConfigLabels = (newSymbols: string[], existingSymbols?: MetricLabels | undefined) => {
+    const existingSymbolIds = existingSymbols ? Object.keys(existingSymbols) : [];
+    // Remove existing symbol codes from the default label assignment, as 
+    // we don't want to overwrite exisiting selected metrics per symbol
+    if (existingSymbolIds?.length > 0) {
+        newSymbols = newSymbols?.filter((item) => !existingSymbolIds?.includes(item));
+    }
+    let defaultConfigBySymbol = newSymbols?.map((symbolCode) => ({
+        stockKey: symbolCode,
         labelValues: [...defaultConfigLabels],
     }));
     const defaultStockConfigLabels = defaultConfigBySymbol?.reduce(
