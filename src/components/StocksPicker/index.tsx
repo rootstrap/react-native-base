@@ -1,16 +1,13 @@
 import { getAllStockTickerSymbols, updateSelectedSymbols } from 'actions/stocksFeedActions';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
 import { useAllStockSymbolsState, useSelectedStockSymbolNamesState } from 'hooks/useStockFeedState';
-import strings from 'locale';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
 import { useDispatch } from 'react-redux';
-import { Button, Icon } from 'react-native-elements';
-import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
+
 
 interface StocksPickerProps {
-    onHide: (isHidden?: boolean) => void;
 }
 
 const StocksPicker = (props: StocksPickerProps) => {
@@ -33,11 +30,6 @@ const StocksPicker = (props: StocksPickerProps) => {
     const [listIsOpen, setListIsOpen] = useState(false);
     const [companyTickerSymbols] = React.useState([...symbolCodes]);
 
-    const togglePanel = () => {
-        props.onHide ? props.onHide(true) : console.log(`StocksPicker onHide prop not provided`);
-
-    };
-
     const setSelectedSymbols = (selectedSymbols: string[]) => {
         dispatch(
             updateSelectedSymbols({
@@ -46,15 +38,6 @@ const StocksPicker = (props: StocksPickerProps) => {
         );
     };
 
-    const resetDefaultSymbols = () => {
-        dispatch(
-            updateSelectedSymbols({
-                selectedSymbol: [],
-            }),
-        );
-    };
-
-    const isKeyboardShown = useHideWhenKeyboardOpen();
 
     let stocksPicker;
 
@@ -73,55 +56,20 @@ const StocksPicker = (props: StocksPickerProps) => {
                     onToggleList={() => setListIsOpen(!listIsOpen)}
                     styleListContainer={[styles.selectList]}
                     selectedItems={selectedSymbolNames}
+                    selectedItemTextColor={ES_GREEN}
+                    selectedItemIconColor={ES_GREEN}
                     selectText="Symbols"
                     fontSize={16}
-                    searchInputPlaceholderText="Search Ticker Symbols..."
+                    searchInputPlaceholderText="Search Labels..."
                     altFontFamily="ProximaNova-Light"
                     tagRemoveIconColor="#FFFFFF"
                     tagBorderColor="#FFFFFF"
                     tagTextColor="#FFFFFF"
-                    selectedItemTextColor="#CCC"
-                    selectedItemIconColor="#CCC"
                     styleMainWrapper={styles.listWrapper}
                     itemTextColor="#000"
                     searchInputStyle={{ color: ES_GREEN }}
-                    submitButtonColor="#CCC"
-                    submitButtonText="Submit"
                 />
             </View>
-            <TouchableOpacity style={[styles.selectDismiss]}>
-                <View
-                    style={[listIsOpen ? styles.buttonContainerMinimized : styles.buttonContainer]}>
-                    {!isKeyboardShown && (
-                        <>
-                            <Button
-                                icon={<Icon name="save" size={16} color="white" />}
-                                title={strings.STOCKS_PICKER.close}
-                                iconRight={true}
-                                onPress={() => {
-                                    togglePanel();
-                                }}
-                                style={styles.submitButton}
-                                buttonStyle={styles.submitButtonColor}
-                                containerStyle={styles.submitButtonColor}
-                                raised={true}
-                            />
-                            <View style={styles.space} />
-                            <Button
-                                icon={<Icon name="clear" size={16} color="white" />}
-                                title={strings.STOCKS_PICKER.reset}
-                                iconRight={true}
-                                onPress={() => {
-                                    resetDefaultSymbols();
-                                }}
-                                style={styles.submitButton}
-                                buttonStyle={styles.cancelButtonColor}
-                                containerStyle={styles.cancelButtonColor}
-                            />
-                        </>
-                    )}
-                </View>
-            </TouchableOpacity>
         </View>
     );
 

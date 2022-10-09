@@ -26,6 +26,7 @@ export default {
         close: 'Close',
         submit: 'Save',
         reset: 'Reset',
+        title: 'Stocks Picker',
     },
 
     SIGN_UP: {
