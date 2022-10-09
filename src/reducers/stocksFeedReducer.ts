@@ -10,6 +10,7 @@ import {
 } from '../actions/stocksFeedActions';
 import update from 'immutability-helper';
 import { assignDefaultConfigLabels } from 'hooks/useStockFeedState';
+import { getRandomColor } from 'utils/helpers';
 
 const initialState = {
     data: [],
@@ -129,8 +130,7 @@ export default createReducer(initialState, {
 
 // Model Mappers
 const mapRandomColorCodesToItems = (data: string[]): SymbolCodes[] => {
-   console.log(JSON.stringify(data));
-   return data?.map((item) => ({ symbol: item, color: getRandomColor() }));
+   return data?.map((item) => ({ symbol: item, color: getRandomColor() }) || []);
 };
 
 const mapBatchQuoteDataToFeedItems = (data: any[]): FeedItem[] => {
@@ -148,12 +148,5 @@ const mapConfigToSymbolItems = (data: any[]): ConfigLabel[] => {
         : [];
 };
 
-const getRandomColor = (): string => {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
+
 

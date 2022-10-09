@@ -18,7 +18,6 @@ import {
     useStockSymbolsState,
     useConfigBySymbolMapState,
     useSelectedStockSymbolState,
-    useDefaultConfigBySymbolMapState,
     defaultConfigLabels,
 } from 'hooks/useStockFeedState';
 import strings from '../../locale';
@@ -27,7 +26,7 @@ import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
 import StocksPicker from 'components/StocksPicker';
-import { isString } from 'utils/helpers';
+import { isString, removeDuplicateSymbols } from 'utils/helpers';
 
 interface StocksFeedProps {}
 
@@ -53,36 +52,27 @@ const StocksFeed = (props: StocksFeedProps) => {
         dispatch(getDefaultStockSymbols());
     }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(getAllStocksFeed(combinedSymbolsList.map((item) => item.symbol)));
-    }, [dispatch]);
+     const { data } = useStockFeedState();
+     const { configLabels } = useStockConfigState();
+     const { symbolCodes } = useStockSymbolsState();
 
-    const { data } = useStockFeedState();
-    const { configLabels } = useStockConfigState();
-    const { symbolCodes } = useStockSymbolsState();
-
-    const [settingsVisible, setSettingsVisible] = useState(false);
-    const [stockPickerVisible, setStockPickerVisible] = useState(false);
-    const [listIsOpen, setListIsOpen] = useState(false);
-    const [selectedSymbol, setSelectedSymbol] = useState('');
+     const [settingsVisible, setSettingsVisible] = useState(false);
+     const [stockPickerVisible, setStockPickerVisible] = useState(false);
+     const [listIsOpen, setListIsOpen] = useState(false);
+     const [selectedSymbol, setSelectedSymbol] = useState('');
+     const { selectedConfigBySymbolMap } = useConfigBySymbolMapState();
+     const configBySymbolMap = { ...selectedConfigBySymbolMap };
 
     const { selectedSymbols } = useSelectedStockSymbolState();
-
     const [defaultTickerSymbols] = React.useState([...symbolCodes]);
     let combinedSymbolsList = [...selectedSymbols, ...defaultTickerSymbols];
+    combinedSymbolsList = removeDuplicateSymbols(combinedSymbolsList);
 
-    // todo: remove duplicate items, taking preference of 1st item found (user selected symbol)
-    // and removing the default symbol tile.
-    combinedSymbolsList.filter(
-        (val, index, symbolList) =>
-            symbolList.findIndex(
-                (val2) => val2?.symbol.toUpperCase() === val?.symbol.toUpperCase(),
-            ) === index,
-    );
+    useEffect(() => {
+        dispatch(getAllStocksFeed(combinedSymbolsList?.map((item) => item?.symbol) || undefined));
+    }, [dispatch, selectedSymbols]);
 
-    const { selectedConfigBySymbolMap } = useConfigBySymbolMapState();
-    // const { defaultConfigBySymbolMap } = useDefaultConfigBySymbolMapState();
-    const configBySymbolMap = { ...selectedConfigBySymbolMap };
+   
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -117,6 +107,7 @@ const StocksFeed = (props: StocksFeedProps) => {
             );
         }
     };
+
 
     function Metric(props: any) {
         const data = props.data;
