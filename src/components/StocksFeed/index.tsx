@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FlatGrid } from 'react-native-super-grid';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
@@ -36,6 +36,10 @@ const StocksFeed = (props: StocksFeedProps) => {
         [],
     );
 
+    const showRefreshToast = (symbol: string) =>
+        Alert.alert('Fetching Data...', `Symbol - ${symbol}`, undefined);
+
+
     // Called 'once' on init
     useEffect(() => {
         let isCancelled = false;
@@ -51,15 +55,15 @@ const StocksFeed = (props: StocksFeedProps) => {
         dispatch(getDefaultStockSymbols());
     }, [dispatch]);
 
-     const { data } = useStockFeedState();
-     const { configLabels } = useStockConfigState();
-     const { symbolCodes } = useStockSymbolsState();
+    const { data } = useStockFeedState();
+    const { configLabels } = useStockConfigState();
+    const { symbolCodes } = useStockSymbolsState();
 
-     const [settingsVisible, setSettingsVisible] = useState(false);
-     const [listIsOpen, setListIsOpen] = useState(false);
-     const [selectedSymbol, setSelectedSymbol] = useState('');
-     const { selectedConfigBySymbolMap } = useConfigBySymbolMapState();
-     const configBySymbolMap = { ...selectedConfigBySymbolMap };
+    const [settingsVisible, setSettingsVisible] = useState(false);
+    const [listIsOpen, setListIsOpen] = useState(false);
+    const [selectedSymbol, setSelectedSymbol] = useState('');
+    const { selectedConfigBySymbolMap } = useConfigBySymbolMapState();
+    const configBySymbolMap = { ...selectedConfigBySymbolMap };
 
     const { selectedSymbols } = useSelectedStockSymbolState();
     const [defaultTickerSymbols] = React.useState([...symbolCodes]);
@@ -69,8 +73,6 @@ const StocksFeed = (props: StocksFeedProps) => {
     useEffect(() => {
         dispatch(getAllStocksFeed(combinedSymbolsList?.map((item) => item?.symbol) || undefined));
     }, [dispatch, selectedSymbols]);
-
-   
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -101,7 +103,6 @@ const StocksFeed = (props: StocksFeedProps) => {
             );
         }
     };
-
 
     function Metric(props: any) {
         const data = props.data;
@@ -276,7 +277,7 @@ const StocksFeed = (props: StocksFeedProps) => {
             </Overlay>
         </View>
     );
-};;
+};
 
 export default StocksFeed;
 
@@ -307,16 +308,14 @@ const styles = StyleSheet.create({
     },
     commonSettingArea: {
         backgroundColor: ES_GREEN,
-        flex: 0.10,
+        flex: 0.1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        paddingRight: 40, 
+        paddingRight: 40,
         paddingTop: 5,
         alignItems: 'center',
     },
-    commonSettingsButton: {
-
-    },
+    commonSettingsButton: {},
     listWrapper: {
         backgroundColor: 'grey',
     },
