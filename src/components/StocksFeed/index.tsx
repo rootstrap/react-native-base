@@ -25,7 +25,6 @@ import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
-import StocksPicker from 'components/StocksPicker';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
 
 interface StocksFeedProps {}
@@ -57,7 +56,6 @@ const StocksFeed = (props: StocksFeedProps) => {
      const { symbolCodes } = useStockSymbolsState();
 
      const [settingsVisible, setSettingsVisible] = useState(false);
-     const [stockPickerVisible, setStockPickerVisible] = useState(false);
      const [listIsOpen, setListIsOpen] = useState(false);
      const [selectedSymbol, setSelectedSymbol] = useState('');
      const { selectedConfigBySymbolMap } = useConfigBySymbolMapState();
@@ -79,10 +77,6 @@ const StocksFeed = (props: StocksFeedProps) => {
             setSelectedSymbol(symbol);
         }
         setSettingsVisible(!settingsVisible);
-    };
-
-    const toggleStockPicker = () => {
-        setStockPickerVisible(!stockPickerVisible);
     };
 
     const resetDefaultSymbolLabels = (symbol?: string) => {
@@ -139,21 +133,6 @@ const StocksFeed = (props: StocksFeedProps) => {
     return (
         <View style={styles.viewContainer}>
             {/* <Text>{JSON.stringify(combinedSymbolsList)}</Text> */}
-            <View style={styles.commonSettingArea}>
-                <Button
-                    onPress={() => toggleStockPicker()}
-                    type="outline"
-                    icon={
-                        <Icon
-                            name="wrench"
-                            type="font-awesome"
-                            color="white"
-                            size={30}
-                            style={styles.commonSettingsButton}
-                        />
-                    }
-                />
-            </View>
             <FlatGrid
                 itemDimension={130}
                 data={combinedSymbolsList}
@@ -243,14 +222,14 @@ const StocksFeed = (props: StocksFeedProps) => {
                         selectedItems={configBySymbolMap[selectedSymbol]}
                         selectText="Metrics"
                         fontSize={16}
-                        searchInputPlaceholderText="Search Items..."
+                        searchInputPlaceholderText="Search Key Metrics..."
                         onChangeInput={(text) => console.log(text)}
                         altFontFamily="ProximaNova-Light"
                         tagRemoveIconColor="#FFFFFF"
                         tagBorderColor="#FFFFFF"
                         tagTextColor="#FFFFFF"
-                        selectedItemTextColor="#CCC"
-                        selectedItemIconColor="#CCC"
+                        selectedItemTextColor={ES_GREEN}
+                        selectedItemIconColor={ES_GREEN}
                         styleMainWrapper={styles.listWrapper}
                         itemTextColor="#000"
                         displayKey="name"
@@ -294,14 +273,6 @@ const StocksFeed = (props: StocksFeedProps) => {
                         )}
                     </View>
                 </TouchableOpacity>
-            </Overlay>
-            {/* stock picker list */}
-            <Overlay
-                isVisible={stockPickerVisible}
-                fullScreen={true}
-                style={[styles.overlayContainer]}
-                onBackdropPress={toggleStockPicker}>
-                <StocksPicker onHide={() => setStockPickerVisible(false)}></StocksPicker>
             </Overlay>
         </View>
     );
