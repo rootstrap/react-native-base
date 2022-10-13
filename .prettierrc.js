@@ -5,7 +5,7 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'all',
   printWidth: 100,
-  jsxBracketSameLine: true,
+//   jsxBracketSameLine: true, // deprecated
   importOrder: ['^@(.*)/(.*)$', '^screens/(.*)$', '^constants/(.*)$', '^[./*]'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
