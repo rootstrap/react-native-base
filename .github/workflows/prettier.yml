@@ -1,8 +1,16 @@
 name: lint
-on: ["workflow_call"]
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+  push:
+    branches:
+      - main
+      - master
+      - staging
+      - development
 
 jobs:
-  lint:
+  prettier:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,5 +23,7 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: Run Linter
-        run: yarn run lint
+      - uses: ././github/workflows/lint.yml
+
+      - name: Run Prettier
+        run: yarn run prettier
