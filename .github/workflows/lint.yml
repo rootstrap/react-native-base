@@ -1,0 +1,26 @@
+name: lint
+on:
+    pull_request:
+        types: [ opened, synchronize ]
+    push:
+        branches:
+            - main
+            - master
+            - staging
+            - development
+
+jobs:
+  lint:
+      runs-on: ubuntu-latest
+        steps:
+          # This needs to match Node version in package.json
+          - uses: actions/setup-node@v1
+            with:
+              node-version: '^14.5.0'
+
+          - name: Install Dependencies
+            uses: actions/checkout@v3
+            run: yarn
+
+          - name: Run Linter
+            run: yarn run lint
