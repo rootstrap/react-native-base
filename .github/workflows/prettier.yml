@@ -10,9 +10,10 @@ on:
       - development
 
 jobs:
+  lint:
+    uses: rootstrap/react-native-base/.github/workflows/lint.yml@github-actions-prettier
   prettier:
     runs-on: ubuntu-latest
-    uses: rootstrap/react-native-base/.github/workflows/lint.yml@github-actions-prettier
     steps:
       - uses: actions/checkout@v3
 
