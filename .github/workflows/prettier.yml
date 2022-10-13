@@ -23,7 +23,7 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - uses: rootstrap/react-native-base/.github/workflows/lint.yml
+      - uses: rootstrap/react-native-base/.github/workflows/lint.yml@github-actions-prettier
 
       - name: Run Prettier
         run: yarn run prettier
