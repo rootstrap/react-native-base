@@ -13,13 +13,14 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
       # This needs to match Node version in package.json
       - uses: actions/setup-node@v1
         with:
           node-version: '^14.5.0'
 
       - name: Install Dependencies
-        uses: actions/checkout@v3
         run: yarn
 
       - name: Run Linter
