@@ -12,6 +12,7 @@ on:
 jobs:
   prettier:
     runs-on: ubuntu-latest
+    uses: rootstrap/react-native-base/.github/workflows/lint.yml@github-actions-prettier
     steps:
       - uses: actions/checkout@v3
 
@@ -22,8 +23,6 @@ jobs:
 
       - name: Install Dependencies
         run: yarn
-
-      - uses: rootstrap/react-native-base/.github/workflows/lint.yml@github-actions-prettier
 
       - name: Run Prettier
         run: yarn run prettier
