@@ -15,7 +15,7 @@ module.exports = {
     heading("Commands")
     p()
     command("rename      ", "Renames your React Native project (experimental)", [
-      "ignite rename NewName com.mycompany.newname",
+      "React Native Base CLI rename NewName com.mycompany.newname",
     ])
     p()
   },

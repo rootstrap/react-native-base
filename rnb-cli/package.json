@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "description": "React Native Base commands.",
   "bin": {
-    "ignite": "bin/ignite",
-    "ignite-cli": "bin/ignite"
+    "rnb-cli": "bin/rnb-cli",
   },
   "preferGlobal": true,
   "license": "MIT",

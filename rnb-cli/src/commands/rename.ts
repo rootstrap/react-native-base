@@ -1,6 +1,6 @@
-import { GluegunToolbox } from "gluegun"
 import { direction, heading, p, warning } from "../tools/pretty"
 import { renameReactNativeApp } from "../tools/react-native"
+import { GluegunToolbox } from "gluegun"
 
 module.exports = {
   alias: ["rn"],
@@ -92,11 +92,15 @@ module.exports = {
 
     await renameReactNativeApp(toolbox, oldName, newName, oldBundleIdentifier, newBundleIdentifier)
 
-    heading(`Ignite successfully renamed your app from ${red(oldName)} to ${green(newName)}!`)
+    heading(
+      `React Native Base CLI successfully renamed your app from ${red(oldName)} to ${green(
+        newName,
+      )}!`,
+    )
     p()
     heading(`Caveats:`)
     p()
-    info(`    * Ignite's rename feature is not 100% perfect in all cases.`)
+    info(`    * React Native Base CLI rename feature is not 100% perfect in all cases.`)
     info(`      Carefully examine the diff it produces with \`git diff\` before committing.`)
     info(`    * Additionally, you'll want to re-run \`pod install\` and`)
     info(`      rebuild your app and caches. We don't make any changes to those files or folders.`)
