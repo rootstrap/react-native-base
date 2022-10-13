@@ -6,4 +6,4 @@ yarn link
 cd ..
 yarn link rnb-cli
 npx rnb-cli rename
-npx pod install
+npx pod-install

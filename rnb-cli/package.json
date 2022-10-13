@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "React Native Base commands.",
   "bin": {
-    "rnb-cli": "bin/rnb-cli",
+    "rnb-cli": "bin/rnb-cli"
   },
   "preferGlobal": true,
   "license": "MIT",
