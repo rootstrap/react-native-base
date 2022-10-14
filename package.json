@@ -10,6 +10,7 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "setup": "./scripts/setup.sh",
+    "android-outputs": "./scripts/android-outputs.sh",
     "clear-cache:ios": "./scripts/clean.sh ios",
     "clear-cache:android": "./scripts/clean.sh android",
     "clear-xcode": "./scripts/resetXcode.sh",
