@@ -1,0 +1,135 @@
+{
+  "name": "rnb-cli",
+  "version": "0.0.1",
+  "description": "React Native Base commands.",
+  "bin": {
+    "rnb-cli": "bin/rnb-cli"
+  },
+  "preferGlobal": true,
+  "license": "MIT",
+  "repository": "infinitered/ignite",
+  "homepage": "https://github.com/infinitered/ignite",
+  "files": [
+    "boilerplate",
+    "build",
+    "bin",
+    "README.md",
+    "template.config.js"
+  ],
+  "scripts": {
+    "compile": "tsc -p .",
+    "build": "yarn compile && cp ./boilerplate/.gitignore ./boilerplate/.gitignore.template"
+  },
+  "devEngines": {
+    "node": ">=7.x",
+    "npm": ">=4.x"
+  },
+  "dependencies": {
+    "gluegun": "^4.7.1"
+  },
+  "devDependencies": {
+    "@rnx-kit/metro-config": "^1.2.26",
+    "@rnx-kit/metro-resolver-symlinks": "^0.1.15",
+    "@semantic-release/git": "^9.0.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "16.6.1",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "prettier": "2.3.2",
+    "semantic-release": "^17.4.2",
+    "strip-ansi": "^6.0.0",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "prettier",
+      "plugin:@typescript-eslint/recommended",
+      "standard"
+    ],
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "globals": {
+      "__DEV__": false,
+      "jasmine": false,
+      "beforeAll": false,
+      "afterAll": false,
+      "beforeEach": false,
+      "afterEach": false,
+      "test": false,
+      "expect": false,
+      "describe": false,
+      "jest": false,
+      "it": false
+    },
+    "rules": {
+      "@typescript-eslint/ban-ts-ignore": 0,
+      "@typescript-eslint/ban-ts-comment": 0,
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/explicit-member-accessibility": 0,
+      "@typescript-eslint/explicit-module-boundary-types": 0,
+      "@typescript-eslint/indent": 0,
+      "@typescript-eslint/member-delimiter-style": 0,
+      "@typescript-eslint/no-empty-interface": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-object-literal-type-assertion": 0,
+      "@typescript-eslint/no-var-requires": 0,
+      "comma-dangle": 0,
+      "multiline-ternary": 0,
+      "no-undef": 0,
+      "no-unused-vars": 0,
+      "no-use-before-define": "off",
+      "quotes": 0,
+      "space-before-function-paren": 0
+    }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "semi": false,
+    "singleQuote": false,
+    "trailingComma": "all"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": "package.json",
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/boilerplate/"
+    ],
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ]
+  }
+}
