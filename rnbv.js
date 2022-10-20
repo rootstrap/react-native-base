@@ -10,8 +10,13 @@ const configMap = new Map([
   ['iosPath', './ios/ReactNativeBase/Info.plist'],
 ]);
 
+const androidPath = configMap.get('androidPath');
+const iosPath = configMap.get('iosPath');
+
 const ANDROID_REGEX = /versionName "([.|\d]+)"/;
+const ANDROID_REGEX_CODE = /versionCode \d+/;
 const IOS_REGEX = /\s\<key\>CFBundleShortVersionString\<\/key\>\n\s+\<string\>(.+)\<\/string\>/m;
+const IOS_REGEX_BUILD_NUMBER = /\s\<key\>CFBundleVersion\<\/key\>\n\s+\<string\>(.+)\<\/string\>/m;
 
 function checkSemver(maybeSemver) {
   if (!semver.valid(maybeSemver)) {
@@ -20,37 +25,99 @@ function checkSemver(maybeSemver) {
 }
 
 function getAndroidVersion() {
-  const file = fs.readFileSync(configMap.get('androidPath'), 'utf8');
+  const file = fs.readFileSync(androidPath, 'utf8');
   const [_, current] = file.match(ANDROID_REGEX);
   checkSemver(current);
   return current;
 }
 
+function getAndroidVersionCode() {
+  const file = fs.readFileSync(androidPath, 'utf8');
+  const [currentLine] = file.match(ANDROID_REGEX_CODE);
+  const [current] = currentLine.match(/\d+/);
+  return parseInt(current, 0);
+}
+
 function getIOSVersion() {
-  const file = fs.readFileSync(configMap.get('iosPath'), 'utf8');
+  const file = fs.readFileSync(iosPath, 'utf8');
   const [_, current] = file.match(IOS_REGEX);
   checkSemver(current);
   return current;
 }
 
-function android(releaseType) {
-  const current = getAndroidVersion();
-  const file = fs.readFileSync(configMap.get('androidPath'), 'utf8');
-  const next = semver.inc(current, releaseType);
-  const updated = file.replace(ANDROID_REGEX, `versionName "${next}"`);
-  fs.writeFileSync(configMap.get('androidPath'), updated, 'utf8');
+function getIOSBuildNumber() {
+  const file = fs.readFileSync(iosPath, 'utf8');
+  const [currentLine] = file.match(IOS_REGEX_BUILD_NUMBER);
+  const [current] = currentLine.match(/\d+/);
 
-  console.log(chalk.green(`Android SUCCESS! ${current} -> ${next}`));
+  return parseInt(current, 0);
+}
+
+function android(releaseType) {
+  const updateOnlyCode = releaseType === 'build';
+
+  const currentVersion = getAndroidVersion();
+  let nextVersion;
+  if (!updateOnlyCode) {
+    nextVersion = semver.inc(currentVersion, releaseType);
+  }
+
+  const currentCode = getAndroidVersionCode();
+  const nextCode = currentCode + 1;
+
+  const file = fs.readFileSync(androidPath, 'utf8');
+
+  let updated = file.replace(ANDROID_REGEX_CODE, `versionCode ${nextCode}`);
+
+  if (!updateOnlyCode) {
+    updated = updated.replace(ANDROID_REGEX, `versionName "${nextVersion}"`);
+  }
+
+  fs.writeFileSync(androidPath, updated, 'utf8');
+  console.log(
+    chalk.green(
+      updateOnlyCode
+        ? `Android SUCCESS! ${currentVersion}: ${currentCode} -> ${nextCode}`
+        : `Android SUCCESS! ${currentVersion} -> ${nextVersion} with version code ${nextCode}`,
+    ),
+  );
 }
 
 function ios(releaseType) {
-  const current = getIOSVersion();
-  const file = fs.readFileSync(configMap.get('iosPath'), 'utf8');
-  const next = semver.inc(current, releaseType);
-  const updated = file.replace(`<string>${current}</string>`, `<string>${next}</string>`);
-  fs.writeFileSync(configMap.get('iosPath'), updated, 'utf8');
+  const updateOnlyBuildNumber = releaseType === 'build';
 
-  console.log(chalk.green(`iOS SUCCESS! ${current} -> ${next}`));
+  const currentVersion = getIOSVersion();
+  let nextVersion;
+  if (!updateOnlyBuildNumber) {
+    nextVersion = semver.inc(currentVersion, releaseType);
+  }
+
+  const currentBuildNumber = getIOSBuildNumber();
+  const nextBuildNumber = updateOnlyBuildNumber ? currentBuildNumber + 1 : 0;
+
+  const file = fs.readFileSync(iosPath, 'utf8');
+
+  let updated = file.replace(
+    `<string>${currentBuildNumber}</string>`,
+    `<string>${nextBuildNumber}</string>`,
+  );
+
+  if (!updateOnlyBuildNumber) {
+    updated = updated.replace(
+      `<string>${currentVersion}</string>`,
+      `<string>${nextVersion}</string>`,
+    );
+  }
+
+  fs.writeFileSync(iosPath, updated, 'utf8');
+
+  console.log(
+    chalk.green(
+      updateOnlyBuildNumber
+        ? `iOS SUCCESS! ${currentVersion}: ${currentBuildNumber} -> ${nextBuildNumber}`
+        : `iOS SUCCESS! ${currentVersion} -> ${nextVersion}`,
+    ),
+  );
 }
 
 function run() {
@@ -61,11 +128,12 @@ function run() {
   prompts({
     type: 'select',
     name: 'releaseType',
-    message: `Which version is the next release? (current is ${getIOSVersion()})`,
+    message: `Which version is the next release? (current is ${getIOSVersion()}, iOS build ${getIOSBuildNumber()})`,
     choices: [
       { title: 'Major', value: 'major' },
       { title: 'Minor', value: 'minor' },
       { title: 'Patch', value: 'patch' },
+      { title: 'Build Number', value: 'build' },
     ],
     initial: 0,
   }).then(({ releaseType }) => {
@@ -78,12 +146,12 @@ function run() {
 }
 
 function validate() {
-  if (!fs.existsSync(configMap.get('androidPath'))) {
-    console.log(chalk.red(`Error: androidPath ${configMap.get('androidPath')} does not exist`));
+  if (!fs.existsSync(androidPath)) {
+    console.log(chalk.red(`Error: androidPath ${androidPath} does not exist`));
     return false;
   }
-  if (!fs.existsSync(configMap.get('iosPath'))) {
-    console.log(chalk.red(`Error: iosPath ${configMap.get('iosPath')} does not exist`));
+  if (!fs.existsSync(iosPath)) {
+    console.log(chalk.red(`Error: iosPath ${iosPath} does not exist`));
     return false;
   }
   return true;
