@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { SafeAreaView, StatusBar, Text, TouchableOpacity, useColorScheme } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 
-
 import styles from './styles';
 
 const WelcomeScreen = () => {
