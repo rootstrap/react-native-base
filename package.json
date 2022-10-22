@@ -32,7 +32,7 @@
         "prettier": "prettier --write './src/**/*.ts'",
         "precommit": "lint-staged",
         "np": "np --no-publish",
-        "postversion": "react-native-version"
+        "postversion": "react-native-version --target android"
     },
     "dependencies": {
         "@react-native-community/async-storage": "1.7.1",
