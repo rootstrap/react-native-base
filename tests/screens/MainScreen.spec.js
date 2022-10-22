@@ -3,6 +3,8 @@ import MainScreen from 'screens/MainScreen';
 
 import { renderWithNavigation, configureAuthenticatedStore } from '../helpers';
 
+jest.useFakeTimers();
+
 describe('<MainScreen />', () => {
   let wrapper;
   let store;

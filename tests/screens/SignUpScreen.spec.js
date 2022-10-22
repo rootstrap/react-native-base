@@ -10,6 +10,9 @@ import {
   AUTHENTICATED_RESPONSE_HEADERS,
 } from '../helpers';
 
+
+jest.useFakeTimers();
+
 describe('<SignUpScreen />', () => {
   let wrapper;
   let store;
