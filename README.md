@@ -1,5 +1,8 @@
 # Easy Stocks
 
+[![Android Build](https://github.com/BrianJVarley/easy-stocks/actions/workflows/android-build.yml/badge.svg)](https://github.com/BrianJVarley/easy-stocks/actions/workflows/android-build.yml)
+
+
 > Stocks digest app connected to IEX Cloud API. Using the latest
 React Native version and React Native Elements. Work in progress..
 
