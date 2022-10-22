@@ -4,6 +4,8 @@ import { fireEvent, waitFor } from '@testing-library/react-native';
 import { LOGIN_SCREEN, MAIN_SCREEN } from 'constants/screens';
 import Navigator from 'navigators';
 
+jest.useFakeTimers();
+
 import {
   renderWithRedux,
   mockedHttpClient,

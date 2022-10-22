@@ -5,5 +5,6 @@
 [X] Improve picker UX and styling 
  
 [] Add loading indicator for stock refresh clicks (async)
-[] Publish app Github actions - https://medium.com/google-developer-experts/github-actions-for-android-developers-6b54c8a32f55
+[] Publish app and config CI - https://www.obytes.com/blog/react-native-ci-cd-github-action
+
 
