@@ -106,9 +106,9 @@ As a result you should see something like this (example is minor bump):
 
 > The following guide explains how the CI deploy and publish is configured for the app.
 
-1. Run `yarn np` to create a Github release.
-2. Commit and Merge pull request to main branch.
-3. The Github actions pipeline will handle deploying the app to Google Play Store (`./github/workflows/`)
+1. Commit and Merge pull request to main branch.
+2. Run `yarn np` to create a Github release.
+3. The Github actions pipeline automatically handle deploying the app to Google Play Store (`./github/workflows/`) when a new release has be created on the Github repo.
 ## Build iOS Release
 
 1. Make sure that the version was already bumped if it applies. You might want to check the [bump the app version](#bump-the-app-version) section
