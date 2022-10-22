@@ -13,7 +13,7 @@ import {
 
 jest.useFakeTimers();
 
-describe('<SignUpScreen />', () => {
+describe.skip('<SignUpScreen />', () => {
   let wrapper;
   let store;
 
