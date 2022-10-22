@@ -14,7 +14,7 @@ import {
   AUTHENTICATED_RESPONSE_HEADERS,
 } from '../helpers';
 
-describe.skip('Navigator', () => {
+xdescribe('Navigator', () => {
     xdescribe('when the user is logged out', () => {
         let wrapper;
         let store;
@@ -80,7 +80,7 @@ describe.skip('Navigator', () => {
         });
     });
 
-    describe('when the user is logged in', () => {
+    xdescribe('when the user is logged in', () => {
         let wrapper;
         let store;
 
