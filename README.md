@@ -104,8 +104,9 @@ As a result you should see something like this (example is minor bump):
 
 ### Create release
 
-1. Run `yarn android:release:{env}`
-2. The generated APK can be found under **`android/app/build/outputs/apk/{env}/app-release.apk`**
+1. Run `yarn np` to create a Github release.
+2. Commit and Merge pull request to main branch (`yarn android:release:{env}`)
+3. The generated APK can be found under **`android/app/build/outputs/apk/{env}/app-release.apk`**
 
 ## Build iOS Release
 

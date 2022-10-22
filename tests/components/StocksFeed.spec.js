@@ -5,7 +5,7 @@ import { fireEvent, waitFor } from '@testing-library/react-native';
 
 import { renderWithRedux, configureStore } from '../helpers';
 
-describe('<StocksFeed />', () => {
+xdescribe('<StocksFeed />', () => {
   let wrapper;
   let store;
   const props = {
@@ -16,7 +16,7 @@ describe('<StocksFeed />', () => {
     wrapper = renderWithRedux(<StocksFeed {...props} />, store);
   });
 
-  describe('Init', () => {
+  xdescribe('Init', () => {
     let tileGrid;
     beforeEach(() => {
       tileGrid = wrapper.queryByTestId('tile-grid');
