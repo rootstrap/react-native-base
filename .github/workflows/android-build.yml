@@ -1,9 +1,14 @@
 name: Android Build ## name of the workflow
 
 on:
-  if: github.actor == github.event.repository.owner.login
+  push: 
+    # Sequence of patterns matched against refs/heads
+    branches:
+        - master
+        - 'release/**'
+        - 'feature/**'
   workflow_dispatch: # To trigger build
-  push
+  
 
 jobs:
   android-build:
@@ -69,7 +74,7 @@ jobs:
 
       ## Distribute  App to google play alpha track
       - name: Upload App to Google Play
-        if: github.ref == 'refs/heads/master' # only run on master
+        if: github.ref == 'refs/heads/master && github.actor == github.event.repository.owner.login' # only run on master
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON_TEXT }}
