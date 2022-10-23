@@ -111,7 +111,9 @@ As a result you should see something like this (example is minor bump):
 
 1. Commit and Merge pull request to main branch.
 2. Run `yarn np` to create a Github release.
-3. The Github actions pipeline automatically handle deploying the app to Google Play Store (`./github/workflows/`) when a new release has be created on the Github repo.
+3. The Github actions workflow will automatically handle deploying the app to Google Play Store (`./github/workflows/`) when a new release has be created on the Github repo.
+  3.1. Environment variables are set on Github using ["secrets"](https://docs.github.com/en/actions/security-guides/encrypted-secrets
+) 
 ## Build iOS Release
 
 1. Make sure that the version was already bumped if it applies. You might want to check the [bump the app version](#bump-the-app-version) section
