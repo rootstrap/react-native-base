@@ -12,18 +12,18 @@ on:
 
 jobs:
 
-  dotenv-decode: 
-    name: decode dotenv environment files
-    env:
-        PROD_ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
-    run: |
-        echo $PROD_ENV_FILE | base64 --decode > .env.prod
-
   android-build:
     name: Android Build
     runs-on: ubuntu-latest # using ubuntu latest version / or you can use a specific version
+    env:
+      PROD_ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
 
     steps:
+     
+      - name: decode dotenv environment files 
+        run: |
+          echo $PROD_ENV_FILE | base64 --decode > .env.prod
+
       - name: Check out Git repository # clone the repo to local ci workspace
         uses: actions/checkout@v2
 
