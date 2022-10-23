@@ -12,11 +12,12 @@ on:
 
 jobs:
 
-  name: Decode dotenv files
-  env:
-      PROD_ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
-  run: |
-      echo $PROD_ENV_FILE | base64 --decode > .env.prod
+  dotenv-decode: 
+    name: decode dotenv environment files
+    env:
+        PROD_ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
+    run: |
+        echo $PROD_ENV_FILE | base64 --decode > .env.prod
 
   android-build:
     name: Android Build
