@@ -17,12 +17,14 @@ jobs:
     runs-on: ubuntu-latest # using ubuntu latest version / or you can use a specific version
     env:
       PROD_ENV_FILE: ${{ secrets.PROD_ENV_FILE }}
+      KEY_STORE_FILE: ${{ secrets.RELEASE_KEY_STORE_FILE }}
 
     steps:
      
-      - name: Decode dotenv environment file 
+      - name: Decode environment files
         run: |
           echo $PROD_ENV_FILE | base64 --decode > .env.prod
+          echo $KEY_STORE_FILE | base64 --decode > android/app/easy-stocks-key.keystore
 
       - name: Check out Git repository # clone the repo to local ci workspace
         uses: actions/checkout@v2
