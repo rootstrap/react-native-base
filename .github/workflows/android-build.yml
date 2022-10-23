@@ -20,7 +20,10 @@ jobs:
       KEY_STORE_FILE: ${{ secrets.RELEASE_KEY_STORE_FILE }}
 
     steps:
-     
+
+      - name: Check out Git repository # clone the repo to local ci workspace
+        uses: actions/checkout@v2
+
       - name: Decode dotenv files
         run: |
           echo $PROD_ENV_FILE | base64 --decode > .env.prod
@@ -28,9 +31,6 @@ jobs:
       - name: Decode keystore file
         run: |
           echo $KEY_STORE_FILE | base64 --decode > ./android/app/easy-stocks-key.keystore
-
-      - name: Check out Git repository # clone the repo to local ci workspace
-        uses: actions/checkout@v2
 
       - name: Set up our JDK environment # setup JDK environment: mandatory as we need to build  android project
         uses: actions/setup-java@v1.4.3
