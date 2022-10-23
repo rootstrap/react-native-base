@@ -24,6 +24,7 @@ jobs:
       - name: Decode environment files
         run: |
           echo $PROD_ENV_FILE | base64 --decode > .env.prod
+        run: |
           echo $KEY_STORE_FILE | base64 --decode > android/app/easy-stocks-key.keystore
 
       - name: Check out Git repository # clone the repo to local ci workspace
