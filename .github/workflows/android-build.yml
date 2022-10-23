@@ -20,7 +20,7 @@ jobs:
 
     steps:
      
-      - name: decode dotenv environment files 
+      - name: Decode dotenv environment file 
         run: |
           echo $PROD_ENV_FILE | base64 --decode > .env.prod
 
