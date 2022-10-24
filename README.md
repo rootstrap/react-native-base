@@ -12,10 +12,10 @@
 1. Install dependencies: `yarn`
 2. Create a `.env` file in the root directory of the project, based on the `.env.defaults` sample file and the extra constants that you may need. This will be your development env.
 
-You can also create `.env.prod` and `.env.staging` to define environment variables for production and staging.
+You can also create `.env.prod`, `.env.staging`, and `.env.qa` to define environment variables for production and staging.
 
-3. Rename your new project using `yarn rename`
-4. Start on android or ios: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`, `staging`, and `prod`)
+1. Rename your new project using `yarn rename`
+2. Start on android or ios: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`,`qa`, `staging`, and `prod`)
 
 ### Steps for Android development
 
@@ -23,10 +23,10 @@ None
 
 ### Steps for iOS development
 
-1. Run the following command inside the `ios` directory
+1. Run the following command to install iOS pods
 
 ```
-pod install
+npx pod-install
 ```
 
 ## Continuous Integration
@@ -41,8 +41,8 @@ The repo includes configuration for using GitHub Actions to run unit tests and c
 
 ## Sonarqube Integration
 
-1. Log into Sonarqube console (`SONAR_URL`) and create new Project key(`SONAR_PROJECT`)
-2. Generate a token for the new project and copy
+1. Log into Sonarqube console (`SONAR_URL`) and create a new Project key(`SONAR_PROJECT`)
+2. Generate a token for the new project and copy it
 3. Set the token value as environment variable `SONAR_TOKEN`
 
 ### Usage
@@ -60,6 +60,7 @@ sonar-scanner \
   -Dsonar.sources=. \
   -Dsonar.projectBaseDir=. \
   -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+  -Dsonar.coverage.exclusions=**/spec.js,**/__mocks__/**,**/**.spec.js,**/**.config.js,**/rnbv.js,**/android/**,**/ios/**,**/**.styles.js,**/tests/**,**/__mocks__/**,**/httpClient/**,**/jest-setup.js,**/constants/**,**/assets/**,**/node_modules/**,**/coverage/**
 ```
 
 ## Build Android Release
@@ -74,15 +75,16 @@ sonar-scanner \
 
 ## Build iOS Release
 
-1. Make sure that the version was already bumped if it applies.
+1. Make sure that the version was already bumped if it applies if not you can run the version bump script with `npm run bump` or `yarn bump`.
 2. Select on Xcode the scheme of the env you want to create the release for.
 3. For the device select **generic iOS device**.
 4. Then go to **Product** -> **Archive**.
 5. After it is done processing and the archive succeeds the **organizer** will open. Here is where you can see all the previously generated archives.
+6. The last step is to upload it to the App Store from there or release it Ad Hoc style.
 
 ## Managing multiple environments
 
-The base is already equipped with three main environments: `dev`, `staging`, `production`. All the env files you need to provide are as follows: `.env`, `.env.staging`, and `.env.prod`.
+The base is already equipped with three main environments: `dev`, `qa`, `staging`, `production`. All the env files you need to provide are as follows: `.env`, `qa`, `.env.staging`, and `.env.prod`.
 
 If you want to add a new env here are the steps to follow:
 
@@ -102,9 +104,10 @@ If you want to add a new env here are the steps to follow:
 ```
 
 4. Inside `android/app/src` copy one of the existing env folders like `staging` and rename it with the name of your new flavor.
-5. In that new folder you will see a folder called `values` and inside a file called `strings.xml` there you can set the app name that is going to appear for this flavor. You can also set special app icons for each flavor inside `res` folder.
-6. (optional) go ahead and add new scripts in the `package.json` file for this new env. As you can see, the other envs already have scripts to run, build and build release, this will make your development workflow a lot easier.
+5. In that new folder you will see a folder called `values` and inside a file called `strings.xml`. There you can set the app name that is going to appear for this flavor. You can also set special app icons for each flavor inside `res` folder.
+6. (optional) go ahead and add new scripts in the `package.json` file for this new env. As you can see, the other envs already have scripts to run, build and build release. This will make your development workflow a lot easier.
 7. you might need to open the android folder in Android Studio and do **File** -> **Sync project with grade files**
+8. Last but not least, make sure that you add the new environment to the `bump` script at
 
 #### Manually set the env file
 
@@ -122,7 +125,7 @@ You can use schemes to configure different app-icons, splash, bundle-ids, etc.
 
 Schemes are a great way to manage multiple envs in TestFlight.
 
-Fortunately the base already comes with the schemes you will probably need to get to production: `ReactNativeBase-Develop`, `ReactNativeBase-Staging` and `ReactNativeBase` which is for production use.
+Fortunately the base already comes with the schemes you will probably need to get to production: `ReactNativeBase-Develop`, `ReactNativeBase-QA`, `ReactNativeBase-Staging` and `ReactNativeBase` which is for production use.
 
 Each build target has its respective scheme already set up, they all have the same name as the build target except for the production one, that one is called `ReactNativeBase-Prod`. This leaves `ReactNativeBase` scheme free of an env setup just in case you don't want to use build targets.
 
