@@ -1,5 +1,8 @@
 # Easy Stocks
 
+[![Android Build](https://github.com/BrianJVarley/easy-stocks/actions/workflows/android-build.yml/badge.svg)](https://github.com/BrianJVarley/easy-stocks/actions/workflows/android-build.yml)
+
+
 > Stocks digest app connected to IEX Cloud API. Using the latest
 React Native version and React Native Elements. Work in progress..
 
@@ -104,9 +107,13 @@ As a result you should see something like this (example is minor bump):
 
 ### Create release
 
-1. Run `yarn android:release:{env}`
-2. The generated APK can be found under **`android/app/build/outputs/apk/{env}/app-release.apk`**
+> The following guide explains how the CI deploy and publish is configured for the app.
 
+1. Commit and Merge pull request to main branch.
+2. Run `yarn np` to create a Github release.
+3. The Github actions workflow will automatically handle deploying the app to Google Play Store (`./github/workflows/`) when a new release has be created on the Github repo.
+  3.1. Environment variables are set on Github using ["secrets"](https://docs.github.com/en/actions/security-guides/encrypted-secrets
+) 
 ## Build iOS Release
 
 1. Make sure that the version was already bumped if it applies. You might want to check the [bump the app version](#bump-the-app-version) section
@@ -201,16 +208,6 @@ If you are looking for something quick and easy in the short term, there is one 
 ```
   ENVFILE=.env.{env} react-native run-ios
 ```
-
-## Automation with Fastlane
-
-This project provides configuration for automatic build and release using [Fastlane](<(https://fastlane.tools)>).
-For more details please check configuration and Readme files for [iOS](./ios/fastlane/README.md) and [Android](android/fastlane/README.md) or [fastlane docs](https://docs.fastlane.tools/getting-started/android/setup/)
-
-
-  - Every time you run fastlane, use bundle exec fastlane [lane]
-  - On your CI, add bundle install as your first build step
-  - To update fastlane, just run bundle update fastlane
 
 ## Troubleshooting
 

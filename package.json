@@ -1,7 +1,11 @@
 {
     "name": "react-native-base",
-    "version": "0.0.1",
+    "version": "0.0.2-3",
     "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BrianJVarley/easy-stocks.git"
+    },
     "scripts": {
         "lint": "tslint -p \".\" -t stylish",
         "lint:advanced": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx ./",
@@ -26,7 +30,9 @@
         "test": "jest",
         "test:cover": "yarn run test --coverage",
         "prettier": "prettier --write './src/**/*.ts'",
-        "precommit": "lint-staged"
+        "precommit": "lint-staged",
+        "np": "np --no-publish",
+        "postversion": "react-native-version --target android"
     },
     "dependencies": {
         "@react-native-community/async-storage": "1.7.1",
@@ -43,6 +49,7 @@
         "@types/react-test-renderer": "^17.0.1",
         "@types/redux-logger": "^3.0.8",
         "axios": "^0.19.2",
+        "deprecated-react-native-prop-types": "^2.3.0",
         "eslint-config-airbnb-typescript": "^12.3.1",
         "eslint-plugin-prettier": "3.1.0",
         "fast-memoize": "^2.5.2",
@@ -111,16 +118,17 @@
         "eslint-plugin-react": "^7.24.0",
         "eslint-plugin-react-hooks": "1.6.1",
         "husky": "^8.0.1",
-        "isomorxphic-fetch": "2.2.1",
         "jest": "^26.6.3",
         "lint-staged": "^13.0.3",
         "metro-react-native-babel-preset": "0.59.0",
+        "np": "^7.6.2",
         "postcss": "^8.3.0",
         "prettier": "^2.3.2",
         "react-dom": "16.9.0",
         "react-native-flipper": "^0.54.0",
         "react-native-postcss-transformer": "^1.2.4",
         "react-native-rename": "^2.8.1",
+        "react-native-version": "^4.0.0",
         "react-test-renderer": "^17.0.1",
         "redux-logger": "3.0.6"
     },
