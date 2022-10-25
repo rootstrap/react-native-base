@@ -84,7 +84,7 @@ sonar-scanner \
 
 ## Managing multiple environments
 
-The base is already equipped with three main environments: `dev`, `qa`, `staging`, `production`. All the env files you need to provide are as follows: `.env`, `qa`, `.env.staging`, and `.env.prod`.
+The base is already equipped with three main environments: `dev`, `qa`, `staging`, `production`. All the env files you need to provide are as follows: `.env`, `.env.qa`, `.env.staging`, and `.env.prod`.
 
 If you want to add a new env here are the steps to follow:
 
