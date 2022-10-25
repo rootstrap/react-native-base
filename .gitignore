@@ -66,5 +66,8 @@ buck-out/
 .env.prod
 .env.dev
 
+deploy-key-es.json
+
 # Coverage
 coverage/
+.env.dev
