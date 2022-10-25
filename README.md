@@ -14,7 +14,7 @@
 
 You can also create `.env.prod`, `.env.staging`, and `.env.qa` to define environment variables for production and staging.
 
-1. Rename your new project using `yarn rename`
+1. Rename your new project using `yarn rename` or `npm run rename`
 2. Start on android or ios: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`,`qa`, `staging`, and `prod`)
 
 ### Steps for Android development
