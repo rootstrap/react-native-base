@@ -1,10 +1,13 @@
+import { AppScreens, NativeStackScreenProps, StackParamList } from 'navigation/types';
 import React, { useEffect } from 'react';
 import { SafeAreaView, StatusBar, Text, TouchableOpacity, useColorScheme } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
 
 import styles from './styles';
 
-const WelcomeScreen = () => {
+interface PropTypes extends NativeStackScreenProps<StackParamList, AppScreens.Welcome> {}
+
+const WelcomeScreen: React.FunctionComponent<PropTypes> = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   useEffect(() => {
