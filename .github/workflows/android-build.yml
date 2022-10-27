@@ -72,7 +72,8 @@ jobs:
       # Building and signing App
       - name: Build Android App Bundle
         run: |
-          cd android && ./gradlew assembleProdRelease --no-daemon
+          cd android && ./gradlew bundleProdRelease --no-daemon
+
 
       - name: Sign App Bundle
         id: sign_app
@@ -92,7 +93,7 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.ANDROID_SERVICE_ACCOUNT_JSON_TEXT }}
           packageName: com.bvapps.easystocks
-          releaseFiles: android/app/build/outputs/bundle/release/*.aab
+          releaseFiles: android/app/build/outputs/bundle/prodRelease/*.aab
           track: alpha
           status: completed
           inAppUpdatePriority: 2
