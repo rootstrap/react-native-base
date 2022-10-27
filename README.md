@@ -1,5 +1,9 @@
 # React Native Base - TypeScript
 
+![GHA CI Test](https://github.com/rootstrap/react-native-base/workflows/CI%20Test/badge.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/maintainability)](https://codeclimate.com/github/rootstrap/react-native-base/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/test_coverage)](https://codeclimate.com/github/rootstrap/react-native-base/test_coverage)
+
 ## Commands
 
 1. **Start the app**: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`, `staging`, and `prod`)
