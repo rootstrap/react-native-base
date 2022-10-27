@@ -5,7 +5,17 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'all',
   printWidth: 100,
-  importOrder: ['^@(.*)/(.*)$', '^screens/(.*)$', '^constants/(.*)$', '^[./*]'],
+  importOrder: [
+    '^@(.*)/(.*)$',
+    '^components/(.*)$',
+    '^constants/(.*)$',
+    '^hooks/(.*)$',
+    '^navigation/(.*)$',
+    '^network/(.*)$',
+    '^screens/(.*)$',
+    '^storage/(.*)$',
+    '^[./*]',
+  ],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
 };

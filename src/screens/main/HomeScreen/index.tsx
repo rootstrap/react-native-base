@@ -1,6 +1,7 @@
-import { AppScreens, NativeStackScreenProps, StackParamList } from 'navigation/types';
 import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
+
+import { AppScreens, NativeStackScreenProps, StackParamList } from 'navigation/types';
 
 import styles from './styles';
 

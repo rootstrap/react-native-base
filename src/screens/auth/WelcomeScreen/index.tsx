@@ -1,7 +1,8 @@
-import { AppScreens, NativeStackScreenProps, StackParamList } from 'navigation/types';
 import React, { useEffect } from 'react';
 import { SafeAreaView, StatusBar, Text, TouchableOpacity, useColorScheme } from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
+
+import { AppScreens, NativeStackScreenProps, StackParamList } from 'navigation/types';
 
 import styles from './styles';
 
