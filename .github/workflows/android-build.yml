@@ -80,7 +80,8 @@ jobs:
         if: github.ref == 'refs/heads/master' # only run on master
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: app/build/outputs/apk/prod/release
+          releaseDirectory: android/app/build/outputs/bundle/prodRelease
+
 
           signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
           alias: ${{ secrets.ANDROID_ALIAS }}
