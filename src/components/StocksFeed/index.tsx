@@ -35,6 +35,7 @@ import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
 import { useDispatch } from 'react-redux';
 import { SUCCESS, LOADING, ERROR, useStatus } from '@rootstrap/redux-tools';
+import Animated, { Easing, Transition } from 'react-native-reanimated';
 
 interface StocksFeedProps {}
 
@@ -75,21 +76,22 @@ const StocksFeed = (props: StocksFeedProps) => {
     let combinedSymbolsList = [...selectedSymbols, ...defaultTickerSymbols];
     combinedSymbolsList = removeDuplicateSymbols(combinedSymbolsList);
 
+    const { status: getAllStocksStatus } = useStatus(getAllStocksFeed);
+    const [refreshing, setRefreshing] = React.useState(false);
+
     useEffect(() => {
-        dispatch(getAllStocksFeed(combinedSymbolsList?.map((item) => item?.symbol) || undefined));
-    }, [dispatch, selectedSymbols]);
+        if (getAllStocksStatus === SUCCESS || getAllStocksStatus === ERROR) {
+            setRefreshing(false);
+        }
+    }, [getAllStocksStatus]);
 
-    const { status } = useStatus(getAllStocksFeed);
-
-    const wait = (timeout: number | undefined) => {
-        return new Promise((resolve) => setTimeout(resolve, timeout));
-    };
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        wait(2000).then(() => setRefreshing(false));
     }, []);
 
-    const [refreshing, setRefreshing] = React.useState(false);
+    useEffect(() => {
+        dispatch(getAllStocksFeed(combinedSymbolsList?.map((item) => item?.symbol) || undefined));
+    }, [dispatch, selectedSymbols, refreshing]);
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -154,7 +156,7 @@ const StocksFeed = (props: StocksFeedProps) => {
             <ScrollView
                 contentContainerStyle={styles.scrollView}
                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-                <Text>{`Action Status = ${status}`}</Text>
+                {/* <Text>{`Action Status = ${getAllStocksStatus}`}</Text> */}
                 <FlatGrid
                     itemDimension={130}
                     data={combinedSymbolsList}
@@ -245,9 +247,9 @@ const StocksFeed = (props: StocksFeedProps) => {
                         onToggleList={() => setListIsClosed(!listIsClosed)}
                         styleListContainer={[styles.selectList]}
                         selectedItems={configBySymbolMap[selectedSymbol]}
-                        selectText="Metrics"
+                        selectText="Select Stock Metrics.."
                         fontSize={16}
-                        searchInputPlaceholderText="Search Key Metrics..."
+                        searchInputPlaceholderText="Search Stock KPI's..."
                         onChangeInput={(text) => console.log(text)}
                         altFontFamily="ProximaNova-Light"
                         tagRemoveIconColor="#FFFFFF"
@@ -263,15 +265,16 @@ const StocksFeed = (props: StocksFeedProps) => {
                         submitButtonText="Submit"
                     />
                 </View>
+
                 <TouchableOpacity style={[styles.selectDismiss]}>
                     <View
                         style={[
-                            listIsClosed ? styles.buttonContainer : styles.buttonContainerMinimized,
+                            listIsClosed ? styles.buttonContainerMinimized : styles.buttonContainer,
                         ]}>
                         {!isKeyboardShown && (
                             <>
                                 <Button
-                                    icon={<Icon name="filter" size={20} color="white" />}
+                                    icon={<Icon name="archive" size={20} color="white" />}
                                     title={strings.STOCKS_FEED.reset}
                                     iconPosition="top"
                                     onPress={() => {
