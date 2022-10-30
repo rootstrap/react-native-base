@@ -72,6 +72,10 @@ jobs:
       # Building and signing App
       - name: Build Android App Bundle
         run: |
+          cd ~/Library/Android/sdk/build-tools/31.0.0 \
+          && mv d8 dx \
+          && cd lib  \
+          && mv d8.jar dx.jar
           cd android && ./gradlew bundleProdRelease --no-daemon
 
 
