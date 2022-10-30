@@ -1,7 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { FlatGrid } from 'react-native-super-grid';
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    SafeAreaView,
+    RefreshControl,
+    ScrollView,
+} from 'react-native';
 import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
@@ -26,6 +33,8 @@ import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
+import { useDispatch } from 'react-redux';
+import { SUCCESS, LOADING, ERROR, useStatus } from '@rootstrap/redux-tools';
 
 interface StocksFeedProps {}
 
@@ -35,10 +44,6 @@ const StocksFeed = (props: StocksFeedProps) => {
         memoize((symbol) => () => dispatch(getStockFeed(symbol))),
         [],
     );
-
-    const showRefreshToast = (symbol: string) =>
-        Alert.alert('Fetching Data...', `Symbol - ${symbol}`, undefined);
-
 
     // Called 'once' on init
     useEffect(() => {
@@ -73,6 +78,18 @@ const StocksFeed = (props: StocksFeedProps) => {
     useEffect(() => {
         dispatch(getAllStocksFeed(combinedSymbolsList?.map((item) => item?.symbol) || undefined));
     }, [dispatch, selectedSymbols]);
+
+    const { status } = useStatus(getAllStocksFeed);
+
+    const wait = (timeout: number | undefined) => {
+        return new Promise((resolve) => setTimeout(resolve, timeout));
+    };
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
+
+    const [refreshing, setRefreshing] = React.useState(false);
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -132,77 +149,86 @@ const StocksFeed = (props: StocksFeedProps) => {
     const isKeyboardShown = useHideWhenKeyboardOpen();
 
     return (
-        <View style={styles.viewContainer}>
+        <SafeAreaView style={styles.viewContainer}>
             {/* <Text>{JSON.stringify(combinedSymbolsList)}</Text> */}
-            <FlatGrid
-                itemDimension={130}
-                data={combinedSymbolsList}
-                style={styles.gridView}
-                spacing={10}
-                testID="tile-grid"
-                renderItem={({ item }) => {
-                    return (
-                        <View
-                            style={[
-                                styles.itemContainer,
-                                { backgroundColor: item?.color || item?.code },
-                            ]}>
+            <ScrollView
+                contentContainerStyle={styles.scrollView}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                }>
+                <Text>{`Action Status = ${status}`}</Text>
+                <FlatGrid
+                    itemDimension={130}
+                    data={combinedSymbolsList}
+                    style={styles.gridView}
+                    spacing={10}
+                    testID="tile-grid"
+                    renderItem={({ item }) => {
+                        return (
                             <View
                                 style={[
-                                    styles.itemContent,
+                                    styles.itemContainer,
                                     { backgroundColor: item?.color || item?.code },
                                 ]}>
-                                <View style={styles.header}>
-                                    <Text style={styles.itemName}>{`Symbol: ${
-                                        isString(item?.symbol) ? item?.symbol?.toUpperCase() : 'n-f'
-                                    }`}</Text>
-                                    <Button
-                                        icon={{
-                                            name: 'refresh',
-                                            size: 20,
-                                            color: 'white',
-                                        }}
-                                        onPress={stocksFeedRequest(item?.symbol)}
-                                        raised={true}
-                                        type="clear"></Button>
+                                <View
+                                    style={[
+                                        styles.itemContent,
+                                        { backgroundColor: item?.color || item?.code },
+                                    ]}>
+                                    <View style={styles.header}>
+                                        <Text style={styles.itemName}>{`Symbol: ${
+                                            isString(item?.symbol)
+                                                ? item?.symbol?.toUpperCase()
+                                                : 'n-f'
+                                        }`}</Text>
+                                        <Button
+                                            icon={{
+                                                name: 'refresh',
+                                                size: 20,
+                                                color: 'white',
+                                            }}
+                                            onPress={stocksFeedRequest(item?.symbol)}
+                                            raised={true}
+                                            type="clear"></Button>
+                                    </View>
+                                    {configBySymbolMap[item.symbol]?.length
+                                        ? configBySymbolMap[item.symbol]?.map(
+                                              (configLabel: string, index: number) => (
+                                                  <Metric
+                                                      styles={styles}
+                                                      key={index}
+                                                      data={data}
+                                                      configLabel={configLabel}
+                                                      item={item}
+                                                  />
+                                              ),
+                                          )
+                                        : defaultConfigLabels?.map(
+                                              (configLabel: string, index: number) => (
+                                                  <Metric
+                                                      styles={styles}
+                                                      key={index}
+                                                      data={data}
+                                                      configLabel={configLabel}
+                                                      item={item}
+                                                  />
+                                              ),
+                                          )}
                                 </View>
-                                {configBySymbolMap[item.symbol]?.length
-                                    ? configBySymbolMap[item.symbol]?.map(
-                                          (configLabel: string, index: number) => (
-                                              <Metric
-                                                  styles={styles}
-                                                  key={index}
-                                                  data={data}
-                                                  configLabel={configLabel}
-                                                  item={item}
-                                              />
-                                          ),
-                                      )
-                                    : defaultConfigLabels?.map(
-                                          (configLabel: string, index: number) => (
-                                              <Metric
-                                                  styles={styles}
-                                                  key={index}
-                                                  data={data}
-                                                  configLabel={configLabel}
-                                                  item={item}
-                                              />
-                                          ),
-                                      )}
+                                <View style={styles.settingsButtonContainer}>
+                                    <Icon
+                                        name="gear"
+                                        type="font-awesome"
+                                        color="white"
+                                        size={22}
+                                        onPress={() => toggleSettings(item.symbol)}
+                                    />
+                                </View>
                             </View>
-                            <View style={styles.settingsButtonContainer}>
-                                <Icon
-                                    name="gear"
-                                    type="font-awesome"
-                                    color="white"
-                                    size={22}
-                                    onPress={() => toggleSettings(item.symbol)}
-                                />
-                            </View>
-                        </View>
-                    );
-                }}
-            />
+                        );
+                    }}
+                />
+            </ScrollView>
             {/* stock metrics list */}
             <Overlay
                 isVisible={settingsVisible}
@@ -275,13 +301,21 @@ const StocksFeed = (props: StocksFeedProps) => {
                     </View>
                 </TouchableOpacity>
             </Overlay>
-        </View>
+        </SafeAreaView>
     );
 };
 
 export default StocksFeed;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    scrollView: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     gridView: {
         marginTop: 10,
         flex: 1,
