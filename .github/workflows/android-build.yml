@@ -68,16 +68,18 @@ jobs:
             ${{ runner.os }}-gradle-caches-
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
+
+      
     
       # Building and signing App
+      - name: Patch Android Build Tools:31 Bug
+        run: |
+            SDKMANAGER=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
+            echo y | $SDKMANAGER --uninstall "build-tools;31.0.0"
+
       - name: Build Android App Bundle
         run: |
-          cd ~/Library/Android/sdk/build-tools/31.0.0 \
-          && mv d8 dx \
-          && cd lib  \
-          && mv d8.jar dx.jar
           cd android && ./gradlew bundleProdRelease --no-daemon
-
 
       - name: Sign App Bundle
         id: sign_app
