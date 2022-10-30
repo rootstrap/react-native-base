@@ -27,7 +27,17 @@ allprojects {
         mavenLocal()
         google()
         mavenCentral()
-        jcenter()
+        configurations.all {
+            resolutionStrategy {
+                // versions used by 0.67
+                force 'com.squareup.okhttp3:okhttp:3.11.0'
+                force 'com.facebook.yoga:proguard-annotations:1.19.0'
+                force 'com.facebook.fbjni:fbjni-java-only:0.2.2'
+                force 'com.facebook.flipper:flipper:0.99.0'
+                force 'com.facebook.flipper:flipper-network-plugin:0.99.0'
+                force 'com.facebook.flipper:flipper-fresco-plugin:0.99.0'
+            }
+        }
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
