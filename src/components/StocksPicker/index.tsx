@@ -58,7 +58,7 @@ const StocksPicker = (props: StocksPickerProps) => {
                     selectedItems={selectedSymbolNames}
                     selectedItemTextColor={ES_GREEN}
                     selectedItemIconColor={ES_GREEN}
-                    selectText="Symbols"
+                    selectText="Select Stocks..."
                     fontSize={16}
                     searchInputPlaceholderText="Search Labels..."
                     altFontFamily="ProximaNova-Light"
@@ -106,15 +106,15 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     listWrapper: {
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     selectContainer: {
         flex: 7,
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     selectDismiss: {
         flex: 1,
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     space: {
         width: 20,
@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         backgroundColor: ES_GREEN,
+        padding: 0
     },
     header: {
         display: 'flex',

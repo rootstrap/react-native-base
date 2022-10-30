@@ -65,7 +65,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     const { symbolCodes } = useStockSymbolsState();
 
     const [settingsVisible, setSettingsVisible] = useState(false);
-    const [listIsOpen, setListIsOpen] = useState(false);
+    const [listIsClosed, setListIsClosed] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
     const { selectedConfigBySymbolMap } = useConfigBySymbolMapState();
     const configBySymbolMap = { ...selectedConfigBySymbolMap };
@@ -153,9 +153,7 @@ const StocksFeed = (props: StocksFeedProps) => {
             {/* <Text>{JSON.stringify(combinedSymbolsList)}</Text> */}
             <ScrollView
                 contentContainerStyle={styles.scrollView}
-                refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                }>
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                 <Text>{`Action Status = ${status}`}</Text>
                 <FlatGrid
                     itemDimension={130}
@@ -244,7 +242,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         hideDropdown={true}
                         hideTags={false}
                         onSelectedItemsChange={(config) => setSelectedSymbolConfig(config)}
-                        onToggleList={() => setListIsOpen(!listIsOpen)}
+                        onToggleList={() => setListIsClosed(!listIsClosed)}
                         styleListContainer={[styles.selectList]}
                         selectedItems={configBySymbolMap[selectedSymbol]}
                         selectText="Metrics"
@@ -268,30 +266,18 @@ const StocksFeed = (props: StocksFeedProps) => {
                 <TouchableOpacity style={[styles.selectDismiss]}>
                     <View
                         style={[
-                            listIsOpen ? styles.buttonContainerMinimized : styles.buttonContainer,
+                            listIsClosed ? styles.buttonContainer : styles.buttonContainerMinimized,
                         ]}>
                         {!isKeyboardShown && (
                             <>
                                 <Button
-                                    icon={<Icon name="save" size={16} color="white" />}
-                                    title={strings.STOCKS_FEED.submit}
-                                    iconRight={true}
-                                    onPress={() => {
-                                        toggleSettings();
-                                    }}
-                                    style={styles.submitButton}
-                                    buttonStyle={styles.submitButtonColor}
-                                    containerStyle={styles.submitButtonColor}
-                                    raised={true}
-                                />
-                                <View style={styles.space} />
-                                <Button
-                                    icon={<Icon name="clear" size={16} color="white" />}
+                                    icon={<Icon name="filter" size={20} color="white" />}
                                     title={strings.STOCKS_FEED.reset}
-                                    iconRight={true}
+                                    iconPosition="top"
                                     onPress={() => {
                                         resetDefaultSymbolLabels(selectedSymbol);
                                     }}
+                                    type="solid"
                                     style={styles.submitButton}
                                     buttonStyle={styles.cancelButtonColor}
                                     containerStyle={styles.cancelButtonColor}
@@ -320,20 +306,15 @@ const styles = StyleSheet.create({
         marginTop: 10,
         flex: 1,
     },
+    buttonContainerMinimized: {
+        width: 0,
+        height: 0,
+    },
     buttonContainer: {
         alignSelf: 'center',
         paddingLeft: 20,
-        flex: 0.2,
-        height: 4,
-        backgroundColor: 'grey',
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    buttonContainerMinimized: {
-        alignSelf: 'center',
-        paddingLeft: 20,
-        flex: 0.1,
-        backgroundColor: 'grey',
+        flex: 0.5,
+        backgroundColor: ES_GREEN,
         flexDirection: 'row',
         justifyContent: 'center',
     },
@@ -351,15 +332,15 @@ const styles = StyleSheet.create({
     },
     commonSettingsButton: {},
     listWrapper: {
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     selectContainer: {
         flex: 7,
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     selectDismiss: {
         flex: 1,
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     space: {
         width: 20,
@@ -427,14 +408,15 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         alignSelf: 'center',
+        flex: 1,
     },
     submitButtonColor: {
         alignSelf: 'center',
+        justifyContent: 'center',
         backgroundColor: ES_BLUE,
     },
     cancelButtonColor: {
         alignSelf: 'center',
         backgroundColor: ES_PINK,
-        paddingLeft: 15,
     },
 });

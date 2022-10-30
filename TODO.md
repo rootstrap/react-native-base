@@ -5,6 +5,7 @@
 [X] Improve picker UX and styling 
  
 [] Add loading indicator for stock refresh clicks (async)
-[] Publish app and config CI - https://www.obytes.com/blog/react-native-ci-cd-github-action
+[X] Improve setting lists styling
+[X] Publish app and config CI - https://www.obytes.com/blog/react-native-ci-cd-github-action
 
 
