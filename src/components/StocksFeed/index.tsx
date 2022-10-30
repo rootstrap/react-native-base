@@ -35,7 +35,7 @@ import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
 import { useDispatch } from 'react-redux';
 import { SUCCESS, LOADING, ERROR, useStatus } from '@rootstrap/redux-tools';
-import Animated, { Easing, Transition } from 'react-native-reanimated';
+import { FadeInView } from 'components/AnimatedViews';
 
 interface StocksFeedProps {}
 
@@ -235,7 +235,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                 fullScreen={true}
                 style={[styles.overlayContainer]}
                 onBackdropPress={toggleSettings}>
-                <View style={[styles.selectContainer]}>
+                <FadeInView style={[styles.selectContainer]}>
                     <MultiSelect
                         fontFamily="roboto"
                         items={configLabels}
@@ -264,12 +264,12 @@ const StocksFeed = (props: StocksFeedProps) => {
                         submitButtonColor="#CCC"
                         submitButtonText="Submit"
                     />
-                </View>
+                </FadeInView>
 
                 <TouchableOpacity style={[styles.selectDismiss]}>
                     <View
                         style={[
-                            listIsClosed ? styles.buttonContainerMinimized : styles.buttonContainer,
+                            listIsClosed ? styles.buttonContainer : styles.buttonContainerMinimized,
                         ]}>
                         {!isKeyboardShown && (
                             <>

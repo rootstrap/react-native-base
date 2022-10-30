@@ -1,4 +1,5 @@
 import { getAllStockTickerSymbols, updateSelectedSymbols } from 'actions/stocksFeedActions';
+import { FadeInView } from 'components/AnimatedViews';
 import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
 import { useAllStockSymbolsState, useSelectedStockSymbolNamesState } from 'hooks/useStockFeedState';
 import React, { useEffect, useState } from 'react';
@@ -6,9 +7,7 @@ import { StyleSheet, View } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
 import { useDispatch } from 'react-redux';
 
-
-interface StocksPickerProps {
-}
+interface StocksPickerProps {}
 
 const StocksPicker = (props: StocksPickerProps) => {
     const dispatch = useDispatch();
@@ -38,11 +37,10 @@ const StocksPicker = (props: StocksPickerProps) => {
         );
     };
 
-
     let stocksPicker;
 
     stocksPicker = (
-        <View style={styles.viewContainer}>
+        <FadeInView style={styles.viewContainer}>
             <View style={[styles.selectContainer]}>
                 <MultiSelect
                     fontFamily="roboto"
@@ -70,7 +68,7 @@ const StocksPicker = (props: StocksPickerProps) => {
                     searchInputStyle={{ color: ES_GREEN }}
                 />
             </View>
-        </View>
+        </FadeInView>
     );
 
     return stocksPicker;
@@ -125,7 +123,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         backgroundColor: ES_GREEN,
-        padding: 0
+        padding: 0,
     },
     header: {
         display: 'flex',
