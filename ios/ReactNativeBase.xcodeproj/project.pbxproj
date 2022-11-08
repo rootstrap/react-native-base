@@ -819,7 +819,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.qa";
-				PRODUCT_NAME = "RNBase - QA";
+				PRODUCT_NAME = "QA - RNBase";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -950,7 +950,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.staging";
-				PRODUCT_NAME = "RNBase - Staging";
+				PRODUCT_NAME = "Staging - RNBase";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1081,7 +1081,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.dev";
-				PRODUCT_NAME = "RNBase - Develop";
+				PRODUCT_NAME = "Develop - RNBase";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1204,7 +1204,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.qa";
-				PRODUCT_NAME = "RNBase - QA";
+				PRODUCT_NAME = "QA - RNBase";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1323,7 +1323,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.staging";
-				PRODUCT_NAME = "RNBase - Staging";
+				PRODUCT_NAME = "Staging - RNBase";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1442,7 +1442,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.dev";
-				PRODUCT_NAME = "RNBase - Develop";
+				PRODUCT_NAME = "Develop - RNBase";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
