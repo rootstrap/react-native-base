@@ -6,11 +6,11 @@
 //
 //
 //
+import { useMutation, useQuery } from '@tanstack/react-query';
+
 import type { AxiosResult } from 'network/models/axios';
 import { ExampleResponse } from 'network/models/example-models';
 import ExampleService from 'network/services/example-services';
-
-import { useMutation, useQuery } from '@tanstack/react-query';
 
 export const GET_EXAMPLE = 'get-example';
 

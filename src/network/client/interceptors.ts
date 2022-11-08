@@ -1,6 +1,7 @@
-import { useSessionFromStorage } from 'hooks/useSessionFromStorage';
 import humps from 'humps';
 import storage, { StoreKeys } from 'storage';
+
+import { useSessionFromStorage } from 'hooks/useSessionFromStorage';
 
 import httpClient, { CONTENT_TYPE, MULTIPART_FORM_DATA } from '.';
 
