@@ -1,4 +1,4 @@
-name: lint
+name: tsc
 on:
   pull_request:
     types: [ opened, synchronize ]
@@ -11,7 +11,7 @@ on:
       - development
 
 jobs:
-  lint:
+  tsc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
