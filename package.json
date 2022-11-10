@@ -34,7 +34,8 @@
     "android:bundle:prod": "cd android && ./gradlew bundleProdRelease",
     "lint:fix": "eslint . --fix src __tests__",
     "rename": "./scripts/rename.sh",
-    "bump": "./rnb-cli/src/tools/rnbv.js"
+    "bump": "./rnb-cli/src/tools/rnbv.js",
+    "compile": "tsc"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
