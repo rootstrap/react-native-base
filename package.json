@@ -32,7 +32,7 @@
     "android:bundle:dev": "cd android && ./gradlew bundleDevRelease",
     "android:bundle:staging": "cd android && ./gradlew bundleStagingRelease",
     "android:bundle:prod": "cd android && ./gradlew bundleProdRelease",
-    "lint:fix": "eslint --fix src tests",
+    "lint:fix": "eslint . --fix src __tests__",
     "rename": "./scripts/rename.sh",
     "bump": "./rnb-cli/src/tools/rnbv.js"
   },
