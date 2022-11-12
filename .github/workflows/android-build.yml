@@ -55,7 +55,8 @@ jobs:
       - name: Build tools 31 fix symlink # https://github.com/actions/runner-images/issues/3757#issuecomment-883646793
         run: |
           echo ${ANDROID_HOME}
-          ln -s ${ANDROID_HOME}/build-tools/31.0.0/d8 ${ANDROID_HOME}/build-tools/31.0.0/dx
+          cp ~/Library/Android/sdk/build-tools/31.0.0/lib/d8.jar \
+          ~/Library/Android/sdk/build-tools/31.0.0/lib/dx.jar
 
       - name: Cache Gradle Wrapper
         uses: actions/cache@v2
