@@ -20,7 +20,6 @@ jobs:
       KEY_STORE_FILE: ${{ secrets.RELEASE_KEY_STORE_FILE }}
 
     steps:
-
       - name: Check out Git repository # clone the repo to local ci workspace
         uses: actions/checkout@v2
 
@@ -54,9 +53,9 @@ jobs:
 
       ## configure cash for gradle : will help to reduce build time
       - name: Build tools 31 fix symlink # https://github.com/actions/runner-images/issues/3757#issuecomment-883646793
-      run: |
-        echo ${ANDROID_HOME}
-        ln -s ${ANDROID_HOME}/build-tools/31.0.0/d8 ${ANDROID_HOME}/build-tools/31.0.0/dx
+        run: |
+          echo ${ANDROID_HOME}
+          ln -s ${ANDROID_HOME}/build-tools/31.0.0/d8 ${ANDROID_HOME}/build-tools/31.0.0/dx
 
       - name: Cache Gradle Wrapper
         uses: actions/cache@v2
@@ -71,6 +70,7 @@ jobs:
           key: ${{ runner.os }}-gradle-caches-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-caches-
+
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
     
