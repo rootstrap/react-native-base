@@ -31,7 +31,7 @@
         "test:cover": "yarn run test --coverage",
         "prettier": "prettier --write './src/**/*.ts'",
         "precommit": "lint-staged",
-        "np": "np --no-publish",
+        "publish:app": "np",
         "postversion": "react-native-version --target android"
     },
     "dependencies": {
