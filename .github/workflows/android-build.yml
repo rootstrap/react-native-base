@@ -75,15 +75,13 @@ jobs:
             && mv d8.jar dx.jar
 
 
-
-
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
     
       # Building and signing App
       - name: Build Android App Bundle
         run: |
-          cd android && ./gradlew bundleProdRelease --no-daemon
+          cd android && ./gradlew clean && ./gradlew bundleProdRelease --no-daemon
 
 
       - name: Sign App Bundle
