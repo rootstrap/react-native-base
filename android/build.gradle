@@ -28,6 +28,16 @@ allprojects {
         mavenLocal()
         google()
         mavenCentral()
+        exclusiveContent {
+           filter {
+               includeGroup "com.facebook.react"
+           }
+           forRepository {
+               maven {
+                   url "$rootDir/../node_modules/react-native/android"
+               }
+           }
+       }
         configurations.all {
             resolutionStrategy {
                 // versions used by 0.67
