@@ -71,3 +71,6 @@ deploy-key-es.json
 # Coverage
 coverage/
 .env.dev
+
+# Java autogen Files
+android/java_pid*.hprof
