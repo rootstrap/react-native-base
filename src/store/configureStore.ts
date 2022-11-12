@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { thunkMiddleware } from '@rootstrap/redux-tools';
 import { createLogger } from 'redux-logger';
