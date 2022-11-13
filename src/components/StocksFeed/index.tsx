@@ -1,7 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { FlatGrid } from 'react-native-super-grid';
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    SafeAreaView,
+    RefreshControl,
+    ScrollView,
+} from 'react-native';
 import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
 import { Button, Icon, Overlay } from 'react-native-elements';
@@ -24,8 +31,12 @@ import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
-import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK } from '../../config/colors';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
+import { useDispatch } from 'react-redux';
+import { SUCCESS, ERROR, useStatus } from '@rootstrap/redux-tools';
+import { FadeInView } from 'components/AnimatedViews';
+import { IS_INDIVIDUAL_STOCK_REFRESH_ENABLED } from '../../config/features';
 
 interface StocksFeedProps {}
 
@@ -35,10 +46,6 @@ const StocksFeed = (props: StocksFeedProps) => {
         memoize((symbol) => () => dispatch(getStockFeed(symbol))),
         [],
     );
-
-    const showRefreshToast = (symbol: string) =>
-        Alert.alert('Fetching Data...', `Symbol - ${symbol}`, undefined);
-
 
     // Called 'once' on init
     useEffect(() => {
@@ -60,7 +67,7 @@ const StocksFeed = (props: StocksFeedProps) => {
     const { symbolCodes } = useStockSymbolsState();
 
     const [settingsVisible, setSettingsVisible] = useState(false);
-    const [listIsOpen, setListIsOpen] = useState(false);
+    const [listIsClosed, setListIsClosed] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
     const { selectedConfigBySymbolMap } = useConfigBySymbolMapState();
     const configBySymbolMap = { ...selectedConfigBySymbolMap };
@@ -70,9 +77,22 @@ const StocksFeed = (props: StocksFeedProps) => {
     let combinedSymbolsList = [...selectedSymbols, ...defaultTickerSymbols];
     combinedSymbolsList = removeDuplicateSymbols(combinedSymbolsList);
 
+    const { status: getAllStocksStatus } = useStatus(getAllStocksFeed);
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    useEffect(() => {
+        if (getAllStocksStatus === SUCCESS || getAllStocksStatus === ERROR) {
+            setRefreshing(false);
+        }
+    }, [getAllStocksStatus]);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+    }, []);
+
     useEffect(() => {
         dispatch(getAllStocksFeed(combinedSymbolsList?.map((item) => item?.symbol) || undefined));
-    }, [dispatch, selectedSymbols]);
+    }, [dispatch, selectedSymbols, refreshing]);
 
     const toggleSettings = (symbol?: string) => {
         if (symbol) {
@@ -132,84 +152,92 @@ const StocksFeed = (props: StocksFeedProps) => {
     const isKeyboardShown = useHideWhenKeyboardOpen();
 
     return (
-        <View style={styles.viewContainer}>
+        <SafeAreaView style={styles.viewContainer}>
             {/* <Text>{JSON.stringify(combinedSymbolsList)}</Text> */}
-            <FlatGrid
-                itemDimension={130}
-                data={combinedSymbolsList}
-                style={styles.gridView}
-                spacing={10}
-                testID="tile-grid"
-                renderItem={({ item }) => {
-                    return (
-                        <View
-                            style={[
-                                styles.itemContainer,
-                                { backgroundColor: item?.color || item?.code },
-                            ]}>
+            <ScrollView
+                contentContainerStyle={styles.scrollView}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+                {/* <Text>{`Action Status = ${getAllStocksStatus}`}</Text> */}
+                <FlatGrid
+                    itemDimension={130}
+                    data={combinedSymbolsList}
+                    style={styles.gridView}
+                    spacing={10}
+                    testID="tile-grid"
+                    renderItem={({ item }) => {
+                        return (
                             <View
                                 style={[
-                                    styles.itemContent,
+                                    styles.itemContainer,
                                     { backgroundColor: item?.color || item?.code },
                                 ]}>
-                                <View style={styles.header}>
-                                    <Text style={styles.itemName}>{`Symbol: ${
-                                        isString(item?.symbol) ? item?.symbol?.toUpperCase() : 'n-f'
-                                    }`}</Text>
-                                    <Button
-                                        icon={{
-                                            name: 'refresh',
-                                            size: 20,
-                                            color: 'white',
-                                        }}
-                                        onPress={stocksFeedRequest(item?.symbol)}
-                                        raised={true}
-                                        type="clear"></Button>
+                                <View
+                                    style={[
+                                        styles.itemContent,
+                                        { backgroundColor: item?.color || item?.code },
+                                    ]}>
+                                    <View style={styles.header}>
+                                        <Text style={styles.itemName}>{`Symbol: ${
+                                            isString(item?.symbol)
+                                                ? item?.symbol?.toUpperCase()
+                                                : 'n-f'
+                                        }`}</Text>
+                                        <Button
+                                            icon={{
+                                                name: 'refresh',
+                                                size: 20,
+                                                color: 'white',
+                                            }}
+                                            disabled={IS_INDIVIDUAL_STOCK_REFRESH_ENABLED}
+                                            onPress={stocksFeedRequest(item?.symbol)}
+                                            raised={true}
+                                            type="clear"></Button> 
+                                    </View>
+                                    {configBySymbolMap[item.symbol]?.length
+                                        ? configBySymbolMap[item.symbol]?.map(
+                                              (configLabel: string, index: number) => (
+                                                  <Metric
+                                                      styles={styles}
+                                                      key={index}
+                                                      data={data}
+                                                      configLabel={configLabel}
+                                                      item={item}
+                                                  />
+                                              ),
+                                          )
+                                        : defaultConfigLabels?.map(
+                                              (configLabel: string, index: number) => (
+                                                  <Metric
+                                                      styles={styles}
+                                                      key={index}
+                                                      data={data}
+                                                      configLabel={configLabel}
+                                                      item={item}
+                                                  />
+                                              ),
+                                          )}
                                 </View>
-                                {configBySymbolMap[item.symbol]?.length
-                                    ? configBySymbolMap[item.symbol]?.map(
-                                          (configLabel: string, index: number) => (
-                                              <Metric
-                                                  styles={styles}
-                                                  key={index}
-                                                  data={data}
-                                                  configLabel={configLabel}
-                                                  item={item}
-                                              />
-                                          ),
-                                      )
-                                    : defaultConfigLabels?.map(
-                                          (configLabel: string, index: number) => (
-                                              <Metric
-                                                  styles={styles}
-                                                  key={index}
-                                                  data={data}
-                                                  configLabel={configLabel}
-                                                  item={item}
-                                              />
-                                          ),
-                                      )}
+                                <View style={styles.settingsButtonContainer}>
+                                    <Icon
+                                        name="gear"
+                                        type="font-awesome"
+                                        color="white"
+                                        size={22}
+                                        onPress={() => toggleSettings(item.symbol)}
+                                    />
+                                </View>
                             </View>
-                            <View style={styles.settingsButtonContainer}>
-                                <Icon
-                                    name="gear"
-                                    type="font-awesome"
-                                    color="white"
-                                    size={22}
-                                    onPress={() => toggleSettings(item.symbol)}
-                                />
-                            </View>
-                        </View>
-                    );
-                }}
-            />
+                        );
+                    }}
+                />
+            </ScrollView>
             {/* stock metrics list */}
             <Overlay
                 isVisible={settingsVisible}
                 fullScreen={true}
                 style={[styles.overlayContainer]}
                 onBackdropPress={toggleSettings}>
-                <View style={[styles.selectContainer]}>
+                <FadeInView style={[styles.selectContainer]}>
                     <MultiSelect
                         fontFamily="roboto"
                         items={configLabels}
@@ -218,12 +246,12 @@ const StocksFeed = (props: StocksFeedProps) => {
                         hideDropdown={true}
                         hideTags={false}
                         onSelectedItemsChange={(config) => setSelectedSymbolConfig(config)}
-                        onToggleList={() => setListIsOpen(!listIsOpen)}
+                        onToggleList={() => setListIsClosed(!listIsClosed)}
                         styleListContainer={[styles.selectList]}
                         selectedItems={configBySymbolMap[selectedSymbol]}
-                        selectText="Metrics"
+                        selectText="Select Stock Metrics.."
                         fontSize={16}
-                        searchInputPlaceholderText="Search Key Metrics..."
+                        searchInputPlaceholderText="Search Stock KPI's..."
                         onChangeInput={(text) => console.log(text)}
                         altFontFamily="ProximaNova-Light"
                         tagRemoveIconColor="#FFFFFF"
@@ -238,34 +266,23 @@ const StocksFeed = (props: StocksFeedProps) => {
                         submitButtonColor="#CCC"
                         submitButtonText="Submit"
                     />
-                </View>
+                </FadeInView>
+
                 <TouchableOpacity style={[styles.selectDismiss]}>
                     <View
                         style={[
-                            listIsOpen ? styles.buttonContainerMinimized : styles.buttonContainer,
+                            listIsClosed ? styles.buttonContainer : styles.buttonContainerMinimized,
                         ]}>
                         {!isKeyboardShown && (
                             <>
                                 <Button
-                                    icon={<Icon name="save" size={16} color="white" />}
-                                    title={strings.STOCKS_FEED.submit}
-                                    iconRight={true}
-                                    onPress={() => {
-                                        toggleSettings();
-                                    }}
-                                    style={styles.submitButton}
-                                    buttonStyle={styles.submitButtonColor}
-                                    containerStyle={styles.submitButtonColor}
-                                    raised={true}
-                                />
-                                <View style={styles.space} />
-                                <Button
-                                    icon={<Icon name="clear" size={16} color="white" />}
+                                    icon={<Icon name="archive" size={20} color="white" />}
                                     title={strings.STOCKS_FEED.reset}
-                                    iconRight={true}
+                                    iconPosition="top"
                                     onPress={() => {
                                         resetDefaultSymbolLabels(selectedSymbol);
                                     }}
+                                    type="solid"
                                     style={styles.submitButton}
                                     buttonStyle={styles.cancelButtonColor}
                                     containerStyle={styles.cancelButtonColor}
@@ -275,31 +292,34 @@ const StocksFeed = (props: StocksFeedProps) => {
                     </View>
                 </TouchableOpacity>
             </Overlay>
-        </View>
+        </SafeAreaView>
     );
 };
 
 export default StocksFeed;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    scrollView: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     gridView: {
         marginTop: 10,
         flex: 1,
     },
+    buttonContainerMinimized: {
+        width: 0,
+        height: 0,
+    },
     buttonContainer: {
         alignSelf: 'center',
         paddingLeft: 20,
-        flex: 0.2,
-        height: 4,
-        backgroundColor: 'grey',
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    buttonContainerMinimized: {
-        alignSelf: 'center',
-        paddingLeft: 20,
-        flex: 0.1,
-        backgroundColor: 'grey',
+        flex: 0.5,
+        backgroundColor: ES_GREEN,
         flexDirection: 'row',
         justifyContent: 'center',
     },
@@ -317,15 +337,15 @@ const styles = StyleSheet.create({
     },
     commonSettingsButton: {},
     listWrapper: {
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     selectContainer: {
         flex: 7,
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     selectDismiss: {
         flex: 1,
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     space: {
         width: 20,
@@ -393,14 +413,15 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         alignSelf: 'center',
+        flex: 1,
     },
     submitButtonColor: {
         alignSelf: 'center',
+        justifyContent: 'center',
         backgroundColor: ES_BLUE,
     },
     cancelButtonColor: {
         alignSelf: 'center',
         backgroundColor: ES_PINK,
-        paddingLeft: 15,
     },
 });

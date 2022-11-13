@@ -1,14 +1,13 @@
 import { getAllStockTickerSymbols, updateSelectedSymbols } from 'actions/stocksFeedActions';
-import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK } from '../../config/colors';
 import { useAllStockSymbolsState, useSelectedStockSymbolNamesState } from 'hooks/useStockFeedState';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
 import { useDispatch } from 'react-redux';
+import { FadeInView } from 'components/AnimatedViews';
 
-
-interface StocksPickerProps {
-}
+interface StocksPickerProps {}
 
 const StocksPicker = (props: StocksPickerProps) => {
     const dispatch = useDispatch();
@@ -38,11 +37,10 @@ const StocksPicker = (props: StocksPickerProps) => {
         );
     };
 
-
     let stocksPicker;
 
     stocksPicker = (
-        <View style={styles.viewContainer}>
+        <FadeInView style={styles.viewContainer}>
             <View style={[styles.selectContainer]}>
                 <MultiSelect
                     fontFamily="roboto"
@@ -58,7 +56,7 @@ const StocksPicker = (props: StocksPickerProps) => {
                     selectedItems={selectedSymbolNames}
                     selectedItemTextColor={ES_GREEN}
                     selectedItemIconColor={ES_GREEN}
-                    selectText="Symbols"
+                    selectText="Select Stocks..."
                     fontSize={16}
                     searchInputPlaceholderText="Search Labels..."
                     altFontFamily="ProximaNova-Light"
@@ -70,7 +68,7 @@ const StocksPicker = (props: StocksPickerProps) => {
                     searchInputStyle={{ color: ES_GREEN }}
                 />
             </View>
-        </View>
+        </FadeInView>
     );
 
     return stocksPicker;
@@ -106,15 +104,15 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     listWrapper: {
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     selectContainer: {
         flex: 7,
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     selectDismiss: {
         flex: 1,
-        backgroundColor: 'grey',
+        backgroundColor: ES_GREEN,
     },
     space: {
         width: 20,
@@ -125,6 +123,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         backgroundColor: ES_GREEN,
+        padding: 0,
     },
     header: {
         display: 'flex',

@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react';
 import { Text, View, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 import SignUpForm from '../../components/SignUpForm';
-import { SIGN_UP_SCREEN } from '../../constants/screens';
+import { SIGN_UP_SCREEN } from '../../config/screens';
 import { signUp } from '../../actions/userActions';
 import strings from '../../locale';
 import styles from './styles';

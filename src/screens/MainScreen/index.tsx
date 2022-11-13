@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { MAIN_SCREEN } from '../../constants/screens';
+import { MAIN_SCREEN } from '../../config/screens';
 import strings from '../../locale';
 import styles from './styles';
 import StocksFeed from 'components/StocksFeed';

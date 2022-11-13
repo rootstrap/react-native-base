@@ -27,8 +27,8 @@
         "components/*": [
           "src/components/*"
         ],
-        "constants/*": [
-          "src/constants/*"
+        "@config/*": [
+          "src/config/*"
         ],
         "screens/*": [
           "src/screens/*"

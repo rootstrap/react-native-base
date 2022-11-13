@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { APP_STACK } from '../constants/screens';
+import { APP_STACK } from '../config/screens';
 import AppStack from './AppStack';
 
 // DEV: Allows debugging network requests with debugger
