@@ -141,8 +141,8 @@ android {
         applicationId "com.bvapps.easystocks"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 5
-        versionName "0.0.2-3"
+        versionCode 7
+        versionName "0.0.2-5"
         resValue "string", "build_config_package", "com.bvapps.easystocks"
     }
     splits {
@@ -178,7 +178,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.release
+            // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }

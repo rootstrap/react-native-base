@@ -18,7 +18,7 @@ default_platform(:ios)
 skip_docs
 
 # CONFIG VARIABLES
-app_name      = 'ReactNativeBase'                 # The canonical project name
+app_name      = 'EasyStocks'                 # The canonical project name
 xcodeproj     = app_name+'.xcodeproj'             # The xcodeproj name eg: ReactNativeBase.xcodeproj
 workspace     = app_name+'.xcworkspace'           # The xworkspace name here eg: ReactNativeBase.xcworkspace
 team_id       = ENV["APPLE_TEAM_ID"]              # The organization's team id in the Apple Developer portal
