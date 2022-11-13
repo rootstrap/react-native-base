@@ -6,7 +6,7 @@ import { object } from 'prop-types';
 import LoginForm from '../../components/LoginForm';
 import { login } from '../../actions/userActions';
 import strings from '../../locale';
-import { SIGN_UP_SCREEN, LOGIN_SCREEN } from '../../constants/screens';
+import { SIGN_UP_SCREEN, LOGIN_SCREEN } from '../../config/screens';
 import styles from './styles';
 
 const LoginScreen = ({ navigation }: any) => {

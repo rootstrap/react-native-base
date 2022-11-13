@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { MAIN_SCREEN, STOCK_PICKER_SCREEN } from '../constants/screens';
+import { MAIN_SCREEN, STOCK_PICKER_SCREEN } from '../config/screens';
 import MainScreen from '../screens/MainScreen';
 import { Button, Icon } from 'react-native-elements';
-import { ES_GREEN } from 'constants/colors';
+import { ES_GREEN } from '../config/colors';
 import { Image } from 'react-native';
 import SettingsScreen from 'screens/SettingsScreen';
 import { StackNavigationProp } from '@react-navigation/stack';

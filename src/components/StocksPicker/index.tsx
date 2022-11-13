@@ -1,11 +1,11 @@
 import { getAllStockTickerSymbols, updateSelectedSymbols } from 'actions/stocksFeedActions';
-import { FadeInView } from 'components/AnimatedViews';
-import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK } from '../../config/colors';
 import { useAllStockSymbolsState, useSelectedStockSymbolNamesState } from 'hooks/useStockFeedState';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
 import { useDispatch } from 'react-redux';
+import { FadeInView } from 'components/AnimatedViews';
 
 interface StocksPickerProps {}
 

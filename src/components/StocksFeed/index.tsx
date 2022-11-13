@@ -31,11 +31,12 @@ import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
-import { ES_BLUE, ES_GREEN, ES_PINK } from 'constants/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK } from '../../config/colors';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
 import { useDispatch } from 'react-redux';
-import { SUCCESS, LOADING, ERROR, useStatus } from '@rootstrap/redux-tools';
+import { SUCCESS, ERROR, useStatus } from '@rootstrap/redux-tools';
 import { FadeInView } from 'components/AnimatedViews';
+import { IS_INDIVIDUAL_STOCK_REFRESH_ENABLED } from '../../config/features';
 
 interface StocksFeedProps {}
 
@@ -187,9 +188,10 @@ const StocksFeed = (props: StocksFeedProps) => {
                                                 size: 20,
                                                 color: 'white',
                                             }}
+                                            disabled={IS_INDIVIDUAL_STOCK_REFRESH_ENABLED}
                                             onPress={stocksFeedRequest(item?.symbol)}
                                             raised={true}
-                                            type="clear"></Button>
+                                            type="clear"></Button> 
                                     </View>
                                     {configBySymbolMap[item.symbol]?.length
                                         ? configBySymbolMap[item.symbol]?.map(

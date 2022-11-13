@@ -1,6 +1,6 @@
 import { fireEvent, waitFor } from '@testing-library/react-native';
 
-import { LOGIN_SCREEN } from 'constants/screens';
+import { LOGIN_SCREEN } from 'config/screens';
 import LoginScreen from 'screens/LoginScreen';
 
 import {
@@ -28,7 +28,7 @@ describe('<LoginScreen />', () => {
   });
 
   it('should display a password field', () => {
-    expect(wrapper.queryByTestId('password-input')).toBeTruthy();
+    expect(wrapper``.queryByTestId('password-input')).toBeTruthy();
   });
 
   describe('when the user submits the form', () => {

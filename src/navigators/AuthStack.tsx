@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { LOGIN_SCREEN, SIGN_UP_SCREEN } from '../constants/screens';
+import { LOGIN_SCREEN, SIGN_UP_SCREEN } from '../config/screens';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 
