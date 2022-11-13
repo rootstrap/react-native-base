@@ -81,7 +81,7 @@ jobs:
       # Building and signing App
       - name: Build Android App Bundle
         run: |
-          cd android && ./gradlew clean && ./gradlew bundleProdRelease --no-daemon
+          cd android && ./gradlew bundleProdRelease --no-daemon
 
 
       - name: Sign App Bundle
