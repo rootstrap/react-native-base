@@ -1,6 +1,6 @@
 {
     "name": "react-native-base",
-    "version": "0.0.2-3",
+    "version": "0.0.2-5",
     "private": true,
     "repository": {
         "type": "git",
@@ -31,12 +31,12 @@
         "test:cover": "yarn run test --coverage",
         "prettier": "prettier --write './src/**/*.ts'",
         "precommit": "lint-staged",
-        "np": "np --no-publish",
+        "publish:app": "np",
         "postversion": "react-native-version --target android"
     },
     "dependencies": {
-        "@react-native-community/async-storage": "1.7.1",
-        "@react-native-community/masked-view": "^0.1.6",
+        "@react-native-async-storage/async-storage": "^1.14.1",
+        "@react-native-community/masked-view": "^0.1.11",
         "@react-navigation/native": "5.0.0",
         "@react-navigation/stack": "5.0.0",
         "@rootstrap/redux-tools": "^0.4.2",
@@ -117,7 +117,7 @@
         "eslint-plugin-jsx-a11y": "^6.4.1",
         "eslint-plugin-react": "^7.24.0",
         "eslint-plugin-react-hooks": "1.6.1",
-        "husky": "^8.0.1",
+        "husky": "^8.0.2",
         "jest": "^26.6.3",
         "lint-staged": "^13.0.3",
         "metro-react-native-babel-preset": "0.59.0",
