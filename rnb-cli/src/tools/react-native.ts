@@ -89,6 +89,7 @@ export async function renameReactNativeApp(
     `app.json`,
     `package.json`,
     `index.js`,
+    `rnb-cli/src/tools/rnbv.js`,
     `android/settings.gradle`,
     `android/app/_BUCK`,
     `android/app/BUCK`,

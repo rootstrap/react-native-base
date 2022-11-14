@@ -21,6 +21,7 @@ module.exports = {
           network: './src/network',
           storage: './src/storage',
           hooks: './src/hooks',
+          navigation: './src/navigation',
         },
       },
     ],
