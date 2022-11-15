@@ -145,6 +145,16 @@ If you are looking for something quick and easy in the short term, there is one 
   ENVFILE=.env.{env} react-native run-ios
 ```
 
+### Adding App Icons for each env
+
+#### iOS
+
+Open the project with XCode and in the files tree find `ReactNativeBase/ReactNativeBase/Images.xcassets` file. There you can find a different App Icon file for each environment, and you can modify each with your own icons.
+
+#### Android
+
+Open the project with Android Studio. Under `android/app/src` you will find a folder for each environment. Each one contains the app icon in square and round version in different sizes. You can change these png files in all sizes to use your own app icon.
+
 ## Base dependencies
 
 - [React-Navigation](https://reactnavigation.org)
