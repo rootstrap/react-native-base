@@ -528,6 +528,7 @@
 			baseConfigurationReference = B5DCD0C2CD7A4B7B8A87983A /* Pods-ReactNativeBase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNU857N39T;
@@ -557,6 +558,7 @@
 			baseConfigurationReference = 2D98FE07C6B13EC18104DEB0 /* Pods-ReactNativeBase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNU857N39T;
@@ -798,7 +800,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F451C5B9F8E4F7FD419ADE72 /* Pods-ReactNativeBase.debug-qa.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-QA";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNU857N39T;
@@ -816,7 +819,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.qa";
-				PRODUCT_NAME = "QA - RNBase";
+				PRODUCT_NAME = "RNBase - QA";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -928,7 +931,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C97DED9F85EB1229B530B897 /* Pods-ReactNativeBase.debug-staging.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Staging";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNU857N39T;
@@ -946,7 +950,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.staging";
-				PRODUCT_NAME = "Staging - RNBase";
+				PRODUCT_NAME = "RNBase - Staging";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1058,7 +1062,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5CDA9629E36EA1F3653DB76B /* Pods-ReactNativeBase.debug-develop.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Develop";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNU857N39T;
@@ -1076,7 +1081,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.dev";
-				PRODUCT_NAME = "Develop - RNBase";
+				PRODUCT_NAME = "RNBase - Develop";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1181,7 +1186,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF36C667D69068A63B280F67 /* Pods-ReactNativeBase.release-qa.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-QA";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNU857N39T;
@@ -1198,7 +1204,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.qa";
-				PRODUCT_NAME = "QA - RNBase";
+				PRODUCT_NAME = "RNBase - QA";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1299,7 +1305,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B2FB079886E2E07EF52B766 /* Pods-ReactNativeBase.release-staging.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Staging";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNU857N39T;
@@ -1316,7 +1323,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.staging";
-				PRODUCT_NAME = "Staging - RNBase";
+				PRODUCT_NAME = "RNBase - Staging";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1417,7 +1424,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4088188EB0721E64B5210F85 /* Pods-ReactNativeBase.release-develop.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Develop";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WNU857N39T;
@@ -1434,7 +1442,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rootstrap.react-native-base.dev";
-				PRODUCT_NAME = "Develop - RNBase";
+				PRODUCT_NAME = "RNBase - Develop";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

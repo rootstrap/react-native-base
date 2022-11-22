@@ -251,14 +251,14 @@ android {
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
             versionNameSuffix "- Develop"
-            resValue "string", "app_name", "Develop - RNBase"
+            resValue "string", "app_name", "RNBase - Develop"
         }
         qa {
             applicationIdSuffix '.qa'
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
             versionNameSuffix "- QA"
-            resValue "string", "app_name", "QA - RNBase"
+            resValue "string", "app_name", "RNBase - QA"
         versionCode 1
         versionName "1.0"
         }
@@ -267,7 +267,7 @@ android {
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
             versionNameSuffix "- Staging"
-            resValue "string", "app_name", "Staging - RNBase"
+            resValue "string", "app_name", "RNBase - Staging"
         }
     }
 
