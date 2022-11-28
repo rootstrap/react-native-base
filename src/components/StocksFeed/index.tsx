@@ -66,6 +66,8 @@ const StocksFeed = (props: StocksFeedProps) => {
     const { configLabels } = useStockConfigState();
     const { symbolCodes } = useStockSymbolsState();
 
+    const canRefreshTile = IS_INDIVIDUAL_STOCK_REFRESH_ENABLED;
+
     const [settingsVisible, setSettingsVisible] = useState(false);
     const [listIsClosed, setListIsClosed] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
@@ -149,6 +151,25 @@ const StocksFeed = (props: StocksFeedProps) => {
         return null;
     }
 
+    function TileRefreshControl(props: { isEnabled: any; item: { symbol: any } }) {
+        const isEnabled = props.isEnabled;
+        if (isEnabled) {
+            return (
+                <Button
+                    icon={{
+                        name: 'refresh',
+                        size: 20,
+                        color: 'white',
+                    }}
+                    disabled={IS_INDIVIDUAL_STOCK_REFRESH_ENABLED}
+                    onPress={stocksFeedRequest(props.item?.symbol)}
+                    raised={true}
+                    type="clear"></Button>
+            );
+        }
+        return null;
+    }
+
     const isKeyboardShown = useHideWhenKeyboardOpen();
 
     return (
@@ -182,16 +203,9 @@ const StocksFeed = (props: StocksFeedProps) => {
                                                 ? item?.symbol?.toUpperCase()
                                                 : 'n-f'
                                         }`}</Text>
-                                        <Button
-                                            icon={{
-                                                name: 'refresh',
-                                                size: 20,
-                                                color: 'white',
-                                            }}
-                                            disabled={IS_INDIVIDUAL_STOCK_REFRESH_ENABLED}
-                                            onPress={stocksFeedRequest(item?.symbol)}
-                                            raised={true}
-                                            type="clear"></Button> 
+                                        <TileRefreshControl
+                                            isEnabled={canRefreshTile}
+                                            item={item}></TileRefreshControl>
                                     </View>
                                     {configBySymbolMap[item.symbol]?.length
                                         ? configBySymbolMap[item.symbol]?.map(
@@ -267,8 +281,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         submitButtonText="Submit"
                     />
                 </FadeInView>
-
-                <TouchableOpacity style={[styles.selectDismiss]}>
+                <View style={styles.listFooterContainer}>
                     <View
                         style={[
                             listIsClosed ? styles.buttonContainer : styles.buttonContainerMinimized,
@@ -290,7 +303,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                             </>
                         )}
                     </View>
-                </TouchableOpacity>
+                </View>
             </Overlay>
         </SafeAreaView>
     );
@@ -318,10 +331,10 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignSelf: 'center',
         paddingLeft: 20,
-        flex: 0.5,
         backgroundColor: ES_GREEN,
         flexDirection: 'row',
         justifyContent: 'center',
+        flex: 1,
     },
     viewContainer: {
         backgroundColor: 'white',
@@ -343,7 +356,7 @@ const styles = StyleSheet.create({
         flex: 7,
         backgroundColor: ES_GREEN,
     },
-    selectDismiss: {
+    listFooterContainer: {
         flex: 1,
         backgroundColor: ES_GREEN,
     },
