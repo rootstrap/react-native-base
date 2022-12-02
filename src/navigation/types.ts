@@ -1,23 +1,37 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+export type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-export type { NativeStackScreenProps };
+const AuthStackScreens = {
+  Welcome: 'Welcome',
+  SignIn: 'SignIn',
+  SignUp: 'SignUp',
+} as const;
 
-export enum AppScreens {
-  // Auth
-  Welcome = 'Welcome',
-  // Main
-  Home = 'Home',
-}
+const MainStackScreens = {
+  Home: 'Home',
+} as const;
 
 export enum Stacks {
   AuthStack = 'AuthStack',
   MainStack = 'MainStack',
 }
 
-// TODO: Example -> [AppScreens.Welcome]: { exampleParam: string };
-export type StackParamList = {
-  // Auth
-  [AppScreens.Welcome]: undefined;
-  // Main
-  [AppScreens.Home]: undefined;
+// NOTE: in case you want to include params you can append
+/*
+
+Record<...> & {
+  [*-StackScreens.*]: {
+    params
+  };
 };
+
+*/
+
+export type AuthStackParamList = Record<
+  typeof AuthStackScreens[keyof typeof AuthStackScreens],
+  undefined
+>;
+
+export type MainStackParamList = Record<
+  typeof MainStackScreens[keyof typeof MainStackScreens],
+  undefined
+>;

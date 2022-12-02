@@ -5,14 +5,16 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'all',
   printWidth: 100,
+
   importOrder: [
     '^@(.*)/(.*)$',
     '^components/(.*)$',
     '^constants/(.*)$',
     '^hooks/(.*)$',
+    '^navigation',
     '^navigation/(.*)$',
+    '^features/(.*)$',
     '^network/(.*)$',
-    '^screens/(.*)$',
     '^storage/(.*)$',
     '^[./*]',
   ],
