@@ -4,10 +4,11 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity,
     SafeAreaView,
     RefreshControl,
     ScrollView,
+    Animated,
+    Easing,
 } from 'react-native';
 import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
@@ -82,6 +83,22 @@ const StocksFeed = (props: StocksFeedProps) => {
     const { status: getAllStocksStatus } = useStatus(getAllStocksFeed);
     const [refreshing, setRefreshing] = React.useState(false);
 
+    let opacity = new Animated.Value(1);
+    const size = opacity.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 22],
+    });
+
+    const animatedStyles = [
+        styles.header,
+        {
+            opacity,
+            width: size,
+            height: size,
+        },
+    ];
+
+
     useEffect(() => {
         if (getAllStocksStatus === SUCCESS || getAllStocksStatus === ERROR) {
             setRefreshing(false);
@@ -90,6 +107,7 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
+        startAnimation();
     }, []);
 
     useEffect(() => {
@@ -125,6 +143,19 @@ const StocksFeed = (props: StocksFeedProps) => {
             );
         }
     };
+
+    // Uses RN Animation Easing to animate icon bounce effect
+    // TODO: move to an Animations export and debug animation code..
+    const startAnimation = () => {
+        opacity.setValue(1);
+        Animated.timing(opacity, {
+            toValue: 0,
+            duration: 1200,
+            easing: Easing.in(Easing.bounce),
+            useNativeDriver: true
+        }).start();
+    };
+
 
     function Metric(props: any) {
         const data = props.data;
@@ -198,7 +229,15 @@ const StocksFeed = (props: StocksFeedProps) => {
                                         { backgroundColor: item?.color || item?.code },
                                     ]}>
                                     <View style={styles.header}>
-                                        <Text style={styles.itemName}>{`Symbol: ${
+                                        <Animated.View style={animatedStyles}>
+                                            <Icon
+                                                name="briefcase"
+                                                type="font-awesome"
+                                                color="white"
+                                                size={22}
+                                            />
+                                        </Animated.View>
+                                        <Text style={styles.itemName}>{`${
                                             isString(item?.symbol)
                                                 ? item?.symbol?.toUpperCase()
                                                 : 'n-f'
@@ -373,8 +412,9 @@ const styles = StyleSheet.create({
     header: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'baseline',
+        paddingBottom: 4,
     },
     metricContainer: {
         display: 'flex',
@@ -408,6 +448,7 @@ const styles = StyleSheet.create({
     },
     itemName: {
         fontSize: 16,
+        paddingLeft: 6,
         color: '#fff',
         fontWeight: '600',
     },

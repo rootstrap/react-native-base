@@ -1,6 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import { Animated } from 'react-native';
 
+/**
+ * Collection of Animated Views which provide different animations when the view is wrapped around 
+ * it's child view.
+ */
+
 export const FadeInView = (props: any) => {
     const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
 
