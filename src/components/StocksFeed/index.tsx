@@ -32,7 +32,7 @@ import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
-import { ES_BLUE, ES_GREEN, ES_PINK } from '../../config/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK, ES_PURPLE } from '../../config/colors';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
 import { useDispatch } from 'react-redux';
 import { SUCCESS, ERROR, useStatus } from '@rootstrap/redux-tools';
@@ -82,15 +82,16 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     const { status: getAllStocksStatus } = useStatus(getAllStocksFeed);
     const [refreshing, setRefreshing] = React.useState(false);
+    const [isIconAnimating, setIsIconAnimating] = React.useState(false);
 
-    let opacity = new Animated.Value(1);
+    let opacity = new Animated.Value(0);
     const size = opacity.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, 22],
+        outputRange: [0, 35],
     });
 
     const animatedStyles = [
-        styles.header,
+        styles.box,
         {
             opacity,
             width: size,
@@ -98,17 +99,35 @@ const StocksFeed = (props: StocksFeedProps) => {
         },
     ];
 
-
     useEffect(() => {
         if (getAllStocksStatus === SUCCESS || getAllStocksStatus === ERROR) {
             setRefreshing(false);
+            // Animate Icon Refresh
+            setIsIconAnimating(true);
+            startIconRefreshAnimation();
         }
     }, [getAllStocksStatus]);
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        startAnimation();
     }, []);
+
+    // Uses RN Animation Easing to animate icon bounce effect
+    // TODO: move to an Animations export and debug animation code..
+    // https://reactnative.dev/docs/easing
+    const startIconRefreshAnimation = () => {
+        opacity.setValue(0);
+        Animated.timing(opacity, {
+            toValue: 1,
+            duration: 1200,
+            easing: Easing.bounce,
+            useNativeDriver: false,
+        }).start(({ finished }) => {
+            // completion callback, then hide animation
+            // opacity.setValue(0);
+            setIsIconAnimating(!finished);
+        });
+    };
 
     useEffect(() => {
         dispatch(getAllStocksFeed(combinedSymbolsList?.map((item) => item?.symbol) || undefined));
@@ -143,19 +162,6 @@ const StocksFeed = (props: StocksFeedProps) => {
             );
         }
     };
-
-    // Uses RN Animation Easing to animate icon bounce effect
-    // TODO: move to an Animations export and debug animation code..
-    const startAnimation = () => {
-        opacity.setValue(1);
-        Animated.timing(opacity, {
-            toValue: 0,
-            duration: 1200,
-            easing: Easing.in(Easing.bounce),
-            useNativeDriver: true
-        }).start();
-    };
-
 
     function Metric(props: any) {
         const data = props.data;
@@ -229,19 +235,32 @@ const StocksFeed = (props: StocksFeedProps) => {
                                         { backgroundColor: item?.color || item?.code },
                                     ]}>
                                     <View style={styles.header}>
-                                        <Animated.View style={animatedStyles}>
-                                            <Icon
-                                                name="briefcase"
-                                                type="font-awesome"
-                                                color="white"
-                                                size={22}
-                                            />
-                                        </Animated.View>
-                                        <Text style={styles.itemName}>{`${
-                                            isString(item?.symbol)
-                                                ? item?.symbol?.toUpperCase()
-                                                : 'n-f'
-                                        }`}</Text>
+                                        {isIconAnimating ? (
+                                            <View style={styles.symbolIconContainer}>
+                                                <Animated.View style={animatedStyles}>
+                                                    <Icon
+                                                        name="briefcase"
+                                                        type="font-awesome"
+                                                        color="white"
+                                                        size={22}
+                                                    />
+                                                </Animated.View>
+                                            </View>
+                                        ) : (
+                                            <>
+                                                <Icon
+                                                    name="briefcase"
+                                                    type="font-awesome"
+                                                    color="white"
+                                                    size={22}
+                                                />
+                                                <Text style={styles.itemName}>{`${
+                                                    isString(item?.symbol)
+                                                        ? item?.symbol?.toUpperCase()
+                                                        : 'n-f'
+                                                }`}</Text>
+                                            </>
+                                        )}
                                         <TileRefreshControl
                                             isEnabled={canRefreshTile}
                                             item={item}></TileRefreshControl>
@@ -427,6 +446,19 @@ const styles = StyleSheet.create({
     },
     overlayDismissContainer: {
         flex: 1,
+    },
+    symbolIconContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'baseline',
+        borderRadius: 6,
+    },
+    box: {
+        paddingTop: 10,
+        paddingBottom: 4,
+        borderRadius: 6,
+        backgroundColor: ES_PURPLE,
     },
     settingsButtonContainer: {
         display: 'flex',
