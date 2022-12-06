@@ -1,9 +1,5 @@
 import axios from 'axios';
-
-// TODO: replace with .env variables.
-const Config = {
-  API_URL: 'http://localhost:3000/api/',
-};
+import Config from 'react-native-config';
 
 const APPLICATION_JSON = 'application/json';
 export const MULTIPART_FORM_DATA = 'multipart/form-data';
