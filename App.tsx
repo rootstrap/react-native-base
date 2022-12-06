@@ -3,13 +3,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import NavigationStack from 'navigation/index';
+import NavigationStack from 'navigation';
 
-const queryClient = new QueryClient();
+const client = new QueryClient();
 
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={client}>
       <NavigationContainer>
         <NavigationStack />
       </NavigationContainer>

@@ -2,16 +2,15 @@ import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { StackParamList } from 'navigation/types';
-import { AppScreens } from 'navigation/types';
+import { MainStackParamList } from 'navigation/types';
 
-import HomeScreen from 'screens/main/HomeScreen';
+import HomeScreen from 'features/home/screen';
 
-const Stack = createNativeStackNavigator<StackParamList>();
+const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainStack = () => (
-  <Stack.Navigator initialRouteName={AppScreens.Home}>
-    <Stack.Screen name={AppScreens.Home} component={HomeScreen} />
+  <Stack.Navigator initialRouteName={'Home'}>
+    <Stack.Screen name={'Home'} component={HomeScreen} />
   </Stack.Navigator>
 );
 
