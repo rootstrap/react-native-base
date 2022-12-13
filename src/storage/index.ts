@@ -1,39 +1,55 @@
-import { MMKV } from 'react-native-mmkv';
+import { MMKV, useMMKVString } from 'react-native-mmkv';
 
-type Value = string;
+const GlobalStoreKeys = {
+  user: 'user',
+  other: 'other',
+} as const;
 
-export enum StoreKeys {
-  session = 'session',
-}
+export type GlobalStoreKeys = keyof typeof GlobalStoreKeys;
 
-export * from './parser';
+export type StorageInstance<TKeys extends string> = {
+  get: (key: TKeys) => string | undefined;
+  set: (key: TKeys, value: string) => void;
+  delete: (key: TKeys) => void;
+  deletePartial: (keys: TKeys[]) => void;
+  clearAll: () => void;
+  useValueListener: (
+    key: TKeys,
+  ) => [
+    value: string | undefined,
+    setValue: (
+      value: string | ((current: string | undefined) => string | undefined) | undefined,
+    ) => void,
+  ];
+};
 
-class Storage {
-  #Store = new MMKV();
+const createStorageInstance = <TKeys extends string>(id?: string): StorageInstance<TKeys> => {
+  const instance = new MMKV(id ? { id } : undefined);
 
-  getString(key: StoreKeys) {
-    return this.#Store.getString(key);
-  }
+  return {
+    get: key => instance.getString(key),
+    set: (key, value) => instance.set(key, value),
+    delete: key => instance.delete(key),
+    deletePartial: keys => keys.forEach(key => instance.delete(key)),
+    clearAll: () => instance.clearAll(),
+    useValueListener: (
+      key,
+    ): [
+      value: string | undefined,
+      setValue: (
+        value: string | ((current: string | undefined) => string | undefined) | undefined,
+      ) => void,
+    ] => useMMKVString(key, instance),
+  };
+};
 
-  setValue(key: StoreKeys, value: Value) {
-    return this.#Store.set(key, value);
-  }
+// NOTE: in case you need to create multiple stores, you can do it like this:
+/*
+  ProfileStorageInstance = createStorageInstance<Keys>('profile');
+*/
 
-  deleteValue(key: StoreKeys) {
-    this.#Store.delete(key);
-  }
+const StoreInstances = {
+  GlobalStorageInstance: createStorageInstance<GlobalStoreKeys>(),
+};
 
-  deletePartial(keys: StoreKeys[]) {
-    keys.forEach(key => this.#Store.delete(key));
-  }
-
-  removeAll() {
-    this.#Store.clearAll();
-  }
-
-  addValueListener(onValueChanged: (value: Value) => void) {
-    return this.#Store.addOnValueChangedListener(onValueChanged);
-  }
-}
-
-export default new Storage();
+export default StoreInstances;
