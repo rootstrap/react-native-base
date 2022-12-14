@@ -1,7 +1,6 @@
 import humps from 'humps';
-import storage, { StoreKeys } from 'storage';
 
-import { useSessionFromStorage } from 'hooks/useSessionFromStorage';
+import { GlobalStore } from 'storage/stores';
 
 import httpClient, { CONTENT_TYPE, MULTIPART_FORM_DATA } from '.';
 
@@ -11,10 +10,10 @@ export default () => {
   httpClient.interceptors.request.use(request => {
     const { data, headers } = request;
 
-    const session = useSessionFromStorage();
+    const user = GlobalStore.user.useValue();
 
-    if (session) {
-      const { token } = session;
+    if (user) {
+      const { token } = user;
 
       // TODO: attach extra params to request
       request.headers = {
@@ -37,11 +36,11 @@ export default () => {
 
       if (token) {
         // TODO: save extra params to storage
-        const session = {
+        const user = {
           token,
         };
 
-        storage.setValue(StoreKeys.session, JSON.stringify(session));
+        GlobalStore.user.setValue(user);
       }
 
       response.data = humps.camelizeKeys(data);
