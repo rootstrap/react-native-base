@@ -1,0 +1,36 @@
+name: prettier
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+  push:
+    branches:
+      - main
+      - master
+      - staging
+      - qa
+      - development
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      # This needs to match Node version in package.json
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '^14.5.0'
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Run Prettier
+        run: yarn run prettier
+
+      - name: Commit prettier changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: apply formatting changes'
+          branch: ${{ github.head_ref }}

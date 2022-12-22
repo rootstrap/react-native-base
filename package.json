@@ -35,7 +35,8 @@
     "lint:fix": "eslint . --fix src __tests__",
     "rename": "./scripts/rename.sh",
     "bump": "./rnb-cli/src/tools/rnbv.js",
-    "compile": "tsc"
+    "compile": "tsc",
+    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
