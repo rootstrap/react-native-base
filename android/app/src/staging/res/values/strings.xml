@@ -1,0 +1,3 @@
+<resources>
+	<string moduleConfig="true" name="CodePushDeploymentKey">@string/CODE_PUSH_SIGNING_KEY</string>
+</resources>

@@ -1,16 +1,27 @@
 // prettier-ignore
 {
-  "extends": "@tsconfig/react-native/tsconfig.json",     /* Recommended React Native TSConfig base */
+  "extends": "@tsconfig/react-native/tsconfig.json", /* Recommended React Native TSConfig base */
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-
+    "jsx": "react-native",
     /* Completeness */
-    "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true, /* Skip type checking all .d.ts files. */
     "baseUrl": "./",
     "paths": {
-      "*": ["src/*"],
+      "*": [
+        "src/*"
+      ],
     },
-    "typeRoots": ["node_modules/@types/", "src/@types/"],
+    "typeRoots": [
+      "node_modules/@types/",
+      "src/@types/"
+    ],
   },
-  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js", "rnb-cli"]
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js",
+    "rnb-cli"
+  ]
 }
