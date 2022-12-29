@@ -1,5 +1,10 @@
 export type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+const RootStackScreens = {
+  InAppSplash: 'InAppSplash',
+  RootStack: 'RootStack',
+} as const;
+
 const AuthStackScreens = {
   Welcome: 'Welcome',
   SignIn: 'SignIn',
@@ -13,6 +18,7 @@ const MainStackScreens = {
 export enum Stacks {
   AuthStack = 'AuthStack',
   MainStack = 'MainStack',
+  RootStack = 'RootStack',
 }
 
 // NOTE: in case you want to include params you can append
@@ -33,5 +39,10 @@ export type AuthStackParamList = Record<
 
 export type MainStackParamList = Record<
   typeof MainStackScreens[keyof typeof MainStackScreens],
+  undefined
+>;
+
+export type RootStackParamList = Record<
+  typeof RootStackScreens[keyof typeof RootStackScreens],
   undefined
 >;

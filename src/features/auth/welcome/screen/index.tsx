@@ -1,11 +1,14 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, TouchableOpacity, useColorScheme } from 'react-native';
 
+import useCodePush from 'features/code-push/hooks/useCodePush';
+
 import styles from './styles';
 import { WelcomePropTypes } from './types';
 
 const WelcomeScreen: React.FunctionComponent<WelcomePropTypes> = ({ navigation: { navigate } }) => {
   const isDarkMode = useColorScheme() === 'dark';
+  const { bundleVersion } = useCodePush();
 
   const onSignInPress = () => navigate('SignIn');
   const onSignUpPress = () => navigate('SignUp');
@@ -27,6 +30,7 @@ const WelcomeScreen: React.FunctionComponent<WelcomePropTypes> = ({ navigation: 
         onPress={onSignUpPress}>
         <Text>Sign Up</Text>
       </TouchableOpacity>
+      <Text>App Version: {bundleVersion}</Text>
     </SafeAreaView>
   );
 };

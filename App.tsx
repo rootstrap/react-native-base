@@ -1,8 +1,8 @@
 import React from 'react';
+import CodePush from 'react-native-code-push';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import CodePush from 'react-native-code-push'
 
 import NavigationStack from 'navigation';
 
@@ -18,4 +18,8 @@ const App = () => {
   );
 };
 
-export default CodePush(App);
+export default CodePush({
+  checkFrequency: CodePush.CheckFrequency.ON_APP_START,
+  mandatoryInstallMode: CodePush.InstallMode.IMMEDIATE,
+  installMode: CodePush.InstallMode.IMMEDIATE,
+})(App);

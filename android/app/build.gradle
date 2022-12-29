@@ -4,10 +4,10 @@ apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 import com.android.build.OutputFile
 
 project.ext.envConfigFiles = [
-    develop: ".env",
-    staging: ".env.staging",
-    prod: ".env.prod",
-    qa: ".env.qa",
+        develop: ".env",
+        staging: ".env.staging",
+        prod   : ".env.prod",
+        qa     : ".env.qa",
 ]
 
 /**
@@ -86,7 +86,7 @@ project.ext.envConfigFiles = [
  */
 
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+        enableHermes: false,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -136,6 +136,12 @@ def reactNativeArchitectures() {
     return value ? value.split(",") : ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
 }
 
+android.buildTypes.each { buildType ->
+    // to prevent incorrect long value restoration from strings.xml we need to wrap it with double quotes
+    // https://github.com/microsoft/cordova-plugin-code-push/issues/264
+    buildType.resValue 'string', "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -154,12 +160,12 @@ android {
             externalNativeBuild {
                 ndkBuild {
                     arguments "APP_PLATFORM=android-21",
-                        "APP_STL=c++_shared",
-                        "NDK_TOOLCHAIN_VERSION=clang",
-                        "GENERATED_SRC_DIR=$buildDir/generated/source",
-                        "PROJECT_BUILD_DIR=$buildDir",
-                        "REACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
-                        "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build"
+                            "APP_STL=c++_shared",
+                            "NDK_TOOLCHAIN_VERSION=clang",
+                            "GENERATED_SRC_DIR=$buildDir/generated/source",
+                            "PROJECT_BUILD_DIR=$buildDir",
+                            "REACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
+                            "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build"
                     cFlags "-Wall", "-Werror", "-fexceptions", "-frtti", "-DWITH_INSPECTOR=1"
                     cppFlags "-std=c++17"
                     // Make sure this target name is the same you specify inside the
@@ -216,7 +222,7 @@ android {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
             universalApk false  // If true, also generate a universal APK
-            include (*reactNativeArchitectures())
+            include(*reactNativeArchitectures())
         }
     }
     signingConfigs {
@@ -260,16 +266,20 @@ android {
             targetSdkVersion rootProject.ext.targetSdkVersion
             versionNameSuffix "- QA"
             resValue "string", "app_name", "RNBase - QA"
-        versionCode 1
-        versionName "1.0"
+            versionCode 1
+            versionName "1.0"
         }
         staging {
             applicationIdSuffix '.staging'
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
-            versionNameSuffix "- Staging"
+            // versionNameSuffix "- Staging" TODO: Using this suffix the output version is 1.0.0 - Staging
+            // it doesn't comply with SEMVER stated on code push docs
             resValue "string", "app_name", "RNBase - Staging"
+            versionCode 1
+            versionName "1.0.1"
         }
+
     }
 
 
@@ -300,16 +310,16 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.0-rc01"
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
-        exclude group:'com.facebook.fbjni'
+        exclude group: 'com.facebook.fbjni'
     }
 
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
-        exclude group:'com.facebook.flipper'
-        exclude group:'com.squareup.okhttp3', module:'okhttp'
+        exclude group: 'com.facebook.flipper'
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
 
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
-        exclude group:'com.facebook.flipper'
+        exclude group: 'com.facebook.flipper'
     }
 
     if (enableHermes) {
@@ -349,4 +359,5 @@ def isNewArchitectureEnabled() {
     // - Set an environment variable `ORG_GRADLE_PROJECT_newArchEnabled=true`
     return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
 }
+
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"

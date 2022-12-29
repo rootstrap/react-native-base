@@ -1,20 +1,47 @@
 import React, { useEffect } from 'react';
-import RNBootSplash from 'react-native-bootsplash';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import AuthStack from 'navigation/stacks/auth';
 import MainStack from 'navigation/stacks/main';
 
+import useCodePush from 'features/code-push/hooks/useCodePush';
+import InAppSplash from 'features/code-push/screen';
+
 import { GlobalStore } from 'storage/stores';
 
-const AppStack = createNativeStackNavigator();
+import { RootStackParamList } from './types';
 
-const NavigationStack: React.FunctionComponent = () => {
+const AppStack = createNativeStackNavigator<RootStackParamList>();
+
+// TODO: Move this START
+const RootStack = createNativeStackNavigator();
+
+const RootNavigator = () => {
   const [user] = GlobalStore.user.useValueListener();
 
+  return (
+    <RootStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      {!user ? (
+        <RootStack.Screen name={'Auth'} component={AuthStack} />
+      ) : (
+        <RootStack.Screen name={'Main'} component={MainStack} />
+      )}
+    </RootStack.Navigator>
+  );
+};
+
+// TODO: Move this END
+
+const NavigationStack: React.FunctionComponent = () => {
+  const { checkForUpdate, updateAvailable } = useCodePush();
+
   useEffect(() => {
-    setTimeout(() => RNBootSplash.hide({ fade: true }), 3000);
+    checkForUpdate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -22,10 +49,10 @@ const NavigationStack: React.FunctionComponent = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      {!user ? (
-        <AppStack.Screen name={'Auth'} component={AuthStack} />
+      {updateAvailable ? (
+        <AppStack.Screen name={'InAppSplash'} component={InAppSplash} />
       ) : (
-        <AppStack.Screen name={'Main'} component={MainStack} />
+        <AppStack.Screen name={'RootStack'} component={RootNavigator} />
       )}
     </AppStack.Navigator>
   );
