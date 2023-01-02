@@ -1,5 +1,6 @@
+import Button from 'common/Button';
 import React from 'react';
-import { SafeAreaView, StatusBar, Text, TouchableOpacity, useColorScheme } from 'react-native';
+import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
 
 import styles from './styles';
 import { WelcomePropTypes } from './types';
@@ -13,20 +14,18 @@ const WelcomeScreen: React.FunctionComponent<WelcomePropTypes> = ({ navigation: 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <TouchableOpacity
+      <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}
-        accessibilityRole={'button'}
-        onPress={onSignInPress}>
-        <Text>Sign In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
+        title="Sign In"
+        onPress={onSignInPress}
+      />
+      <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}
-        accessibilityRole={'button'}
-        onPress={onSignUpPress}>
-        <Text>Sign Up</Text>
-      </TouchableOpacity>
+        title="Sign Up"
+        onPress={onSignUpPress}
+      />
     </SafeAreaView>
   );
 };
