@@ -30,7 +30,7 @@ const WelcomeScreen: React.FunctionComponent<WelcomePropTypes> = ({ navigation: 
         onPress={onSignUpPress}>
         <Text>Sign Up</Text>
       </TouchableOpacity>
-      <Text>App Version: {bundleVersion}</Text>
+      {bundleVersion && <Text>App Version: {bundleVersion}</Text>}
     </SafeAreaView>
   );
 };

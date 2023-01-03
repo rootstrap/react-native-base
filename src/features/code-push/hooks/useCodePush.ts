@@ -29,12 +29,11 @@ const useCodePush = (options?: CodePushOptions) => {
         console.log('An update is pending, consider restarting the app');
       }
     } catch (error) {
+      // TODO: Handle error on the UI
       console.log('error check pending update');
     }
   };
 
-  // for a more custom flow, showing the download progress
-  // restart the app manually using CodePush.restart app
   const checkForUpdate = async () => {
     try {
       const remotePackage = await CodePush.checkForUpdate(
@@ -66,25 +65,21 @@ const useCodePush = (options?: CodePushOptions) => {
       setUpdateAvailable(true);
       setIsLoading(true);
       const localPackage = await remotePackage.download();
-
-      setTimeout(async () => {
-        await localPackage.install(CodePush.InstallMode.IMMEDIATE);
-      }, 6000);
-      // timeout for the sake of the example
+      await localPackage.install(CodePush.InstallMode.IMMEDIATE);
     } catch (error) {
-      console.log(error);
+      // Nice to have: report error
+      setUpdateAvailable(false);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // code push update with mandatory flag -m
-  // restart the app, without it install the update on next app restart
   const syncAndInstall = async () => {
     try {
       await CodePush.sync(options);
     } catch (error) {
-      console.log('Error running CodePush.sync'); // WHAT TO DO HERE
+      // TODO: Handle error
+      console.log('Error running CodePush.sync');
     }
   };
 
