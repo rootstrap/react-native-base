@@ -6,12 +6,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthStack from 'navigation/stacks/auth';
 import MainStack from 'navigation/stacks/main';
 
-import { GlobalStore } from 'storage/stores';
+import { useSessionStore } from 'storage/stores/session';
 
 const AppStack = createNativeStackNavigator();
 
 const NavigationStack: React.FunctionComponent = () => {
-  const [user] = GlobalStore.user.useValueListener();
+  const token = useSessionStore(({ user }) => user.token);
 
   useEffect(() => {
     setTimeout(() => RNBootSplash.hide({ fade: true }), 3000);
@@ -22,7 +22,7 @@ const NavigationStack: React.FunctionComponent = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      {!user ? (
+      {!token ? (
         <AppStack.Screen name={'Auth'} component={AuthStack} />
       ) : (
         <AppStack.Screen name={'Main'} component={MainStack} />

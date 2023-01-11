@@ -1,16 +1,18 @@
 import humps from 'humps';
 
-import { GlobalStore } from 'storage/stores';
+import { useSessionStore } from 'storage/stores/session';
 
 import httpClient, { CONTENT_TYPE, MULTIPART_FORM_DATA } from '.';
 
 const ACCESS_TOKEN = 'access-token';
 
 export default () => {
+  const updateUser = useSessionStore(state => state.updateUser);
+
   httpClient.interceptors.request.use(request => {
     const { data, headers } = request;
 
-    const user = GlobalStore.user.useValue();
+    const user = useSessionStore(state => state.user);
 
     if (user) {
       const { token } = user;
@@ -18,7 +20,7 @@ export default () => {
       // TODO: attach extra params to request
       request.headers = {
         ...headers,
-        [ACCESS_TOKEN]: token,
+        [ACCESS_TOKEN]: token || false,
       };
     }
 
@@ -40,7 +42,7 @@ export default () => {
           token,
         };
 
-        GlobalStore.user.setValue(user);
+        updateUser(user);
       }
 
       response.data = humps.camelizeKeys(data);
