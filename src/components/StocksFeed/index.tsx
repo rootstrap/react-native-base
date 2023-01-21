@@ -32,7 +32,7 @@ import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
-import { ES_BLUE, ES_GREEN, ES_PINK, ES_PURPLE } from '../../config/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK, ES_PURPLE, WHITE } from '../../config/colors';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
 import { useDispatch } from 'react-redux';
 import { SUCCESS, ERROR, useStatus } from '@rootstrap/redux-tools';
@@ -458,7 +458,7 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 4,
         borderRadius: 6,
-        backgroundColor: ES_PURPLE,
+        backgroundColor: WHITE,
     },
     settingsButtonContainer: {
         display: 'flex',
