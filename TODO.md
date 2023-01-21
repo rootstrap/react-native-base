@@ -11,5 +11,7 @@
 [X] Add feature toggles to app UX
 [X] Animate pull down refresh screen gesture, animate bounce the stock symbol - https://reactnative.dev/docs/easing
 
-
+[] Allow user to supply IEX Cloud token 
+    - https://github.com/diogobh93/IEX-Cloud
+    - 
 
