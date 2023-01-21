@@ -4,10 +4,11 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity,
     SafeAreaView,
     RefreshControl,
     ScrollView,
+    Animated,
+    Easing,
 } from 'react-native';
 import memoize from 'fast-memoize';
 import MultiSelect from 'react-native-multiple-select';
@@ -31,7 +32,7 @@ import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
-import { ES_BLUE, ES_GREEN, ES_PINK } from '../../config/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK, ES_PURPLE, WHITE } from '../../config/colors';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
 import { useDispatch } from 'react-redux';
 import { SUCCESS, ERROR, useStatus } from '@rootstrap/redux-tools';
@@ -66,6 +67,8 @@ const StocksFeed = (props: StocksFeedProps) => {
     const { configLabels } = useStockConfigState();
     const { symbolCodes } = useStockSymbolsState();
 
+    const canRefreshTile = IS_INDIVIDUAL_STOCK_REFRESH_ENABLED;
+
     const [settingsVisible, setSettingsVisible] = useState(false);
     const [listIsClosed, setListIsClosed] = useState(false);
     const [selectedSymbol, setSelectedSymbol] = useState('');
@@ -79,16 +82,52 @@ const StocksFeed = (props: StocksFeedProps) => {
 
     const { status: getAllStocksStatus } = useStatus(getAllStocksFeed);
     const [refreshing, setRefreshing] = React.useState(false);
+    const [isIconAnimating, setIsIconAnimating] = React.useState(false);
+
+    let opacity = new Animated.Value(0);
+    const size = opacity.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 35],
+    });
+
+    const animatedStyles = [
+        styles.box,
+        {
+            opacity,
+            width: size,
+            height: size,
+        },
+    ];
 
     useEffect(() => {
         if (getAllStocksStatus === SUCCESS || getAllStocksStatus === ERROR) {
             setRefreshing(false);
+            // Animate Icon Refresh
+            setIsIconAnimating(true);
+            startIconRefreshAnimation();
         }
     }, [getAllStocksStatus]);
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
     }, []);
+
+    // Uses RN Animation Easing to animate icon bounce effect
+    // TODO: move to an Animations export and debug animation code..
+    // https://reactnative.dev/docs/easing
+    const startIconRefreshAnimation = () => {
+        opacity.setValue(0);
+        Animated.timing(opacity, {
+            toValue: 1,
+            duration: 1200,
+            easing: Easing.bounce,
+            useNativeDriver: false,
+        }).start(({ finished }) => {
+            // completion callback, then hide animation
+            // opacity.setValue(0);
+            setIsIconAnimating(!finished);
+        });
+    };
 
     useEffect(() => {
         dispatch(getAllStocksFeed(combinedSymbolsList?.map((item) => item?.symbol) || undefined));
@@ -149,6 +188,25 @@ const StocksFeed = (props: StocksFeedProps) => {
         return null;
     }
 
+    function TileRefreshControl(props: { isEnabled: any; item: { symbol: any } }) {
+        const isEnabled = props.isEnabled;
+        if (isEnabled) {
+            return (
+                <Button
+                    icon={{
+                        name: 'refresh',
+                        size: 20,
+                        color: 'white',
+                    }}
+                    disabled={IS_INDIVIDUAL_STOCK_REFRESH_ENABLED}
+                    onPress={stocksFeedRequest(props.item?.symbol)}
+                    raised={true}
+                    type="clear"></Button>
+            );
+        }
+        return null;
+    }
+
     const isKeyboardShown = useHideWhenKeyboardOpen();
 
     return (
@@ -177,21 +235,35 @@ const StocksFeed = (props: StocksFeedProps) => {
                                         { backgroundColor: item?.color || item?.code },
                                     ]}>
                                     <View style={styles.header}>
-                                        <Text style={styles.itemName}>{`Symbol: ${
-                                            isString(item?.symbol)
-                                                ? item?.symbol?.toUpperCase()
-                                                : 'n-f'
-                                        }`}</Text>
-                                        <Button
-                                            icon={{
-                                                name: 'refresh',
-                                                size: 20,
-                                                color: 'white',
-                                            }}
-                                            disabled={IS_INDIVIDUAL_STOCK_REFRESH_ENABLED}
-                                            onPress={stocksFeedRequest(item?.symbol)}
-                                            raised={true}
-                                            type="clear"></Button> 
+                                        {isIconAnimating ? (
+                                            <View style={styles.symbolIconContainer}>
+                                                <Animated.View style={animatedStyles}>
+                                                    <Icon
+                                                        name="briefcase"
+                                                        type="font-awesome"
+                                                        color="white"
+                                                        size={22}
+                                                    />
+                                                </Animated.View>
+                                            </View>
+                                        ) : (
+                                            <>
+                                                <Icon
+                                                    name="briefcase"
+                                                    type="font-awesome"
+                                                    color="white"
+                                                    size={22}
+                                                />
+                                                <Text style={styles.itemName}>{`${
+                                                    isString(item?.symbol)
+                                                        ? item?.symbol?.toUpperCase()
+                                                        : 'n-f'
+                                                }`}</Text>
+                                            </>
+                                        )}
+                                        <TileRefreshControl
+                                            isEnabled={canRefreshTile}
+                                            item={item}></TileRefreshControl>
                                     </View>
                                     {configBySymbolMap[item.symbol]?.length
                                         ? configBySymbolMap[item.symbol]?.map(
@@ -267,8 +339,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                         submitButtonText="Submit"
                     />
                 </FadeInView>
-
-                <TouchableOpacity style={[styles.selectDismiss]}>
+                <View style={styles.listFooterContainer}>
                     <View
                         style={[
                             listIsClosed ? styles.buttonContainer : styles.buttonContainerMinimized,
@@ -290,7 +361,7 @@ const StocksFeed = (props: StocksFeedProps) => {
                             </>
                         )}
                     </View>
-                </TouchableOpacity>
+                </View>
             </Overlay>
         </SafeAreaView>
     );
@@ -318,10 +389,10 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignSelf: 'center',
         paddingLeft: 20,
-        flex: 0.5,
         backgroundColor: ES_GREEN,
         flexDirection: 'row',
         justifyContent: 'center',
+        flex: 1,
     },
     viewContainer: {
         backgroundColor: 'white',
@@ -343,7 +414,7 @@ const styles = StyleSheet.create({
         flex: 7,
         backgroundColor: ES_GREEN,
     },
-    selectDismiss: {
+    listFooterContainer: {
         flex: 1,
         backgroundColor: ES_GREEN,
     },
@@ -360,8 +431,9 @@ const styles = StyleSheet.create({
     header: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'baseline',
+        paddingBottom: 4,
     },
     metricContainer: {
         display: 'flex',
@@ -374,6 +446,19 @@ const styles = StyleSheet.create({
     },
     overlayDismissContainer: {
         flex: 1,
+    },
+    symbolIconContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'baseline',
+        borderRadius: 6,
+    },
+    box: {
+        paddingTop: 10,
+        paddingBottom: 4,
+        borderRadius: 6,
+        backgroundColor: WHITE,
     },
     settingsButtonContainer: {
         display: 'flex',
@@ -395,6 +480,7 @@ const styles = StyleSheet.create({
     },
     itemName: {
         fontSize: 16,
+        paddingLeft: 6,
         color: '#fff',
         fontWeight: '600',
     },

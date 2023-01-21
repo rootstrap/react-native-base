@@ -8,6 +8,8 @@
 [X] Improve setting lists styling && animate view transition
 [X] Publish app and config CI - https://www.obytes.com/blog/react-native-ci-cd-github-action
 
-[] Add feature toggles to app UX
+[X] Add feature toggles to app UX
+[X] Animate pull down refresh screen gesture, animate bounce the stock symbol - https://reactnative.dev/docs/easing
+
 
 

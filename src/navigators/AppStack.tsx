@@ -36,7 +36,7 @@ const AppStack = ({ navigation }: Props) => (
                     <Button
                         onPress={() => {
                             navigation.navigate(STOCK_PICKER_SCREEN, {
-                                data: { navigation: 'pressed..' },
+                                data: { navigation: 'navigated:STOCK_PICKER_SCREEN' },
                             });
                         }}
                         style={{ marginRight: 10 }}
