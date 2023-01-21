@@ -13,5 +13,9 @@
 
 [] Allow user to supply IEX Cloud token 
     - https://github.com/diogobh93/IEX-Cloud
-    - 
+    1. User presented with starting page "Configure Access" hidden behind flag in dev mode
+    2. User can click a button to save a pasted token from clipboard after following step to create a token.
+        - [Uses android shared preferences to store token](https://reactnative.dev/docs/security#android---secure-shared-preferences
+    3. Or skip updating token if one already present in shared preferences.
+)
 
