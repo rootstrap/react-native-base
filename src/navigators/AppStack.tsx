@@ -49,7 +49,7 @@ const AppStack = ({ navigation }: Props) => (
         <Stack.Screen
             name={STOCK_PICKER_SCREEN}
             component={SettingsScreen}
-            options={({ navigation, route }) => ({
+            options={({ navigation }) => ({
                 title: STOCK_PICKER_SCREEN,
                 headerTitle: () => (
                     <Image
@@ -61,7 +61,7 @@ const AppStack = ({ navigation }: Props) => (
                     <Button
                         onPress={() => {
                             navigation.navigate(MAIN_SCREEN, {
-                                data: { navigation: 'pressed..' },
+                                data: { navigation: 'navigated:MAIN_SCREEN' },
                             });
                         }}
                         type="outline"

@@ -2,12 +2,22 @@ import humps from 'humps';
 import { Store } from 'redux';
 import { updateSession, logout } from '../actions/userActions';
 import Config from 'react-native-config';
+import { retrieveUserSession } from 'utils/sessionUtil';
+import { sessionKey } from 'config/commonStrings';
 
 const ACCESS_TOKEN = 'token';
 const UID = 'uid';
 const CLIENT = 'client';
 
 const UNAUTHORIZED = 401;
+
+let userToken: any;
+
+// Override user provided token for IEX Cloud if set
+retrieveUserSession(sessionKey).then((session) => {
+    userToken = session?.token;
+    console.log(`session token = ${userToken} ${session}`);
+});
 
 export default (
     store: Store,
@@ -34,7 +44,12 @@ export default (
                 uid,
             };
         }
-        config.params = { [ACCESS_TOKEN]: Config.IEX_TOKEN };
+        config.params = {
+            [ACCESS_TOKEN]:
+                retrieveUserSession(sessionKey).then((session) => {
+                    return session?.token;
+                }) || Config.IEX_TOKEN,
+        };
 
         config.data = humps.decamelizeKeys(data);
         return config;

@@ -12,6 +12,7 @@
 [X] Animate pull down refresh screen gesture, animate bounce the stock symbol - https://reactnative.dev/docs/easing
 
 [] Allow user to supply IEX Cloud token 
+[] Validation for existing user token
     - https://github.com/diogobh93/IEX-Cloud
     1. User presented with starting page "Configure Access" hidden behind flag in dev mode
     2. User can click a button to save a pasted token from clipboard after following step to create a token.

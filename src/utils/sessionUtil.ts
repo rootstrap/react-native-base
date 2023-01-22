@@ -4,7 +4,6 @@ export async function storeUserSession(sessionKey: string, valueToStore: object)
     try {
         return await EncryptedStorage.setItem(sessionKey, JSON.stringify(valueToStore));
 
-        // Congrats! You've just stored your first value!
     } catch (error) {
         return error as any;
         // There was an error on the native side
@@ -16,8 +15,8 @@ export async function retrieveUserSession(sessionKey: string): Promise<any> {
         const session = await EncryptedStorage.getItem(sessionKey);
 
         if (session !== undefined) {
-            return session;
-            // Congrats! You've just retrieved your first value!
+            const parseSessionData = JSON.parse(session as string);   
+            return parseSessionData;
         }
         return session;
     } catch (error) {
@@ -29,7 +28,6 @@ export async function retrieveUserSession(sessionKey: string): Promise<any> {
 export async function clearStorage() {
     try {
         return await EncryptedStorage.clear();
-        // Congrats! You've just cleared the device storage!
     } catch (error) {
         // There was an error on the native side
     }

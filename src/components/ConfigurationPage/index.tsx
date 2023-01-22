@@ -1,58 +1,92 @@
-import { ES_GREEN, ES_BLUE, ES_PINK } from 'config/colors';
+import { ES_GREEN, WHITE, ES_PURPLE } from 'config/colors';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, TextInput, View, Text } from 'react-native';
-import sessionService from '../../utils/sessionUtil';
+import { StyleSheet, TextInput, View, Text, Modal, Alert } from 'react-native';
+import sessionService, { retrieveUserSession } from '../../utils/sessionUtil';
 import { Button, Icon } from 'react-native-elements';
 import strings from 'locale';
-import { sessionKey } from 'config/commonStrings';
+import { iexDocsConfigToken, sessionKey } from 'config/commonStrings';
+import { Linking } from 'react-native';
+import session from 'redux-persist/es/storage/session';
 
-type Props = {};
+type Props = {
+    onConfigSaved(): unknown;
+};
 
 const ConfigurationPage = (props: Props) => {
-    let storedSession;
-    let retrievedSession: Promise<any> | React.SetStateAction<string>;
-    // Called 'once' on init
-    useEffect(() => {
-        let isMounted = true;
-        if (isMounted) {
-            storedSession = sessionService.storeUserSession(sessionKey, {
-                token: 'FAKE-TOKEN',
-            });
-            retrievedSession = sessionService.retrieveUserSession(sessionKey);
-            console.log(storedSession);
-            console.log(retrievedSession);
-        }
-        return () => {
-            isMounted = false;
-        };
-    }, []);
+    // let retrievedSession: Promise<any> | React.SetStateAction<string>;
 
-   const setConfig = (config:any) => {
-     alert(JSON.stringify(retrievedSession))
-   }
-    const [text, setText] = useState('');
+    // Called 'once' on init
+    // TODO: debug this init code
+    // useEffect(() => {
+    //     let isMounted = true;
+    //     if (isMounted) {
+    //         retrievedSession = sessionService.retrieveUserSession(sessionKey);
+    //         retrievedSession.then((session) => {
+    //             if (session?.token) {
+    //                 setHasExistingToken(true);
+    //                 setModalVisible(true);
+    //             }
+    //         });
+    //     }
+    //     return () => {
+    //         isMounted = false;
+    //     };
+    // }, []);
+
+    const saveConfig = () => {
+        setIsloading(true);
+        sessionService
+            .storeUserSession(sessionKey, {
+                token,
+            })
+            .then(() => {
+                setIsloading(false);
+                props.onConfigSaved();
+            });
+    };
+    const [token, setToken] = useState('');
+    const [isLoading, setIsloading] = useState(false);
+    const [hasExistingToken, setHasExistingToken] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const TOKEN_LENGTH = 35;
 
     return (
         <View style={styles.maincontainer}>
-            <Text style={styles.title}>ConfigurationPage: TODO Accept user provided token</Text>
+            {/* // TODO: Debug modal code for existing token scenario. */}
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible && Boolean(token.length)}
+                onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                }}></Modal>
+            <Text style={styles.title} onPress={() => Linking.openURL(iexDocsConfigToken)}>
+                Access the IEX Cloud console to generate an API token &#x2601;
+            </Text>
+            {hasExistingToken ? <Text>has token</Text> : <></>}
             <View style={styles.container}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Paste Token"
-                    onChangeText={(text) => setText(text)}
-                    value={text}
+                    placeholder="Paste IEX Cloud Token here.."
+                    onChangeText={(token) => setToken(token)}
+                    maxLength={TOKEN_LENGTH}
+                    value={token}
                 />
-                <Button
-                    icon={<Icon name="archive" size={20} color="white" />}
-                    title={strings.STOCKS_FEED.submit}
-                    iconPosition="top"
-                    onPress={() => {
-                        setConfig({});
-                    }}
-                    type="solid"
-                    style={styles.submitButton}
-                    buttonStyle={styles.submitButtonColor}
-                />
+                <View style={styles.buttonContainer}>
+                    <Button
+                        icon={<Icon name="save" size={20} color="white" />}
+                        title={strings.STOCKS_FEED.submit}
+                        iconPosition="left"
+                        raised={true}
+                        loading={isLoading}
+                        disabled={token.length < TOKEN_LENGTH}
+                        onPress={() => {
+                            saveConfig();
+                        }}
+                        type="solid"
+                        buttonStyle={styles.submitButton}
+                    />
+                </View>
             </View>
         </View>
     );
@@ -73,134 +107,28 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         alignSelf: 'center',
-        flex: 1,
-    },
-    submitButtonColor: {
-        alignSelf: 'center',
-        justifyContent: 'center',
-        backgroundColor: ES_BLUE,
+        backgroundColor: ES_PURPLE,
     },
     title: {
-        backgroundColor: 'red',
+        backgroundColor: ES_GREEN,
         textAlign: 'center',
         padding: 10,
         fontSize: 20,
-        color: '#FFFF',
+        color: WHITE,
         fontWeight: 'bold',
     },
     container: {
         marginTop: 40,
+        padding: 10,
         alignItems: 'center',
-    },
-    gridView: {
-        marginTop: 10,
-        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
     },
     buttonContainer: {
         alignSelf: 'center',
-        paddingLeft: 20,
-        flex: 0.2,
-        height: 4,
-        backgroundColor: 'grey',
+        flex: 0.4,
         flexDirection: 'row',
         justifyContent: 'center',
-    },
-    buttonContainerMinimized: {
-        paddingTop: 40,
-        alignSelf: 'center',
-        paddingLeft: 20,
-        flex: 0.1,
-        backgroundColor: 'grey',
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    viewContainer: {
-        backgroundColor: 'white',
-        flex: 1,
-    },
-    listWrapper: {
-        backgroundColor: ES_GREEN,
-    },
-    selectContainer: {
-        flex: 7,
-        backgroundColor: ES_GREEN,
-    },
-    selectDismiss: {
-        flex: 1,
-        backgroundColor: ES_GREEN,
-    },
-    space: {
-        width: 20,
-        height: 20,
-    },
-    selectList: {
-        height: 600,
-    },
-    listContainer: {
-        backgroundColor: ES_GREEN,
-        padding: 0,
-    },
-    header: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'baseline',
-    },
-    metricContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-    },
-    overlayContainer: {
-        flexDirection: 'column',
-        flex: 1,
-        alignSelf: 'stretch',
-    },
-    overlayDismissContainer: {
-        flex: 1,
-    },
-    settingsButtonContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignSelf: 'flex-end',
-        marginTop: 0,
-        marginRight: 12.3,
-    },
-    itemContainer: {
-        justifyContent: 'flex-start',
-        borderRadius: 5,
-        padding: 10,
-        minHeight: 160,
-        flex: 1,
-    },
-    itemContent: {
-        justifyContent: 'flex-start',
-        flex: 1,
-    },
-    itemName: {
-        fontSize: 16,
-        color: '#fff',
-        fontWeight: '600',
-    },
-    itemCode: {
-        fontWeight: '600',
-        fontSize: 12,
-        color: '#fff',
-    },
-    dataLabel: {
-        color: 'white',
-        fontWeight: 'bold',
-        margin: 2,
-    },
-    submitButton: {
-        alignSelf: 'center',
-    },
-    submitButtonColor: {
-        alignSelf: 'center',
-        backgroundColor: ES_BLUE,
-    },
-    cancelButtonColor: {
-        alignSelf: 'center',
-        backgroundColor: ES_PINK,
-        paddingLeft: 15,
     },
 });
