@@ -11,13 +11,6 @@ const CLIENT = 'client';
 
 const UNAUTHORIZED = 401;
 
-let userToken: any;
-
-// Override user provided token for IEX Cloud if set
-retrieveUserSession(sessionKey).then((session) => {
-    userToken = session?.token;
-    console.log(`session token = ${userToken} ${session}`);
-});
 
 export default (
     store: Store,
