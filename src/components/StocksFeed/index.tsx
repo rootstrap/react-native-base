@@ -32,7 +32,7 @@ import strings from '../../locale';
 import { startCase } from 'lodash';
 import useHideWhenKeyboardOpen from 'hooks/useHideWhenKeyboardOpen';
 import useStockFormatUtils from 'hooks/useStockFormatUtils';
-import { ES_BLUE, ES_GREEN, ES_PINK, ES_PURPLE, WHITE } from '../../config/colors';
+import { ES_BLUE, ES_GREEN, ES_PINK, WHITE } from '../../config/colors';
 import { isString, removeDuplicateSymbols } from 'utils/helpers';
 import { useDispatch } from 'react-redux';
 import { SUCCESS, ERROR, useStatus } from '@rootstrap/redux-tools';
