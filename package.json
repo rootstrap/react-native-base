@@ -32,7 +32,8 @@
         "prettier": "prettier --write './src/**/*.ts'",
         "precommit": "lint-staged",
         "publish:app": "np",
-        "postversion": "react-native-version --target android"
+        "postversion": "react-native-version --target android",
+        "create-icons": "iconset create"
     },
     "dependencies": {
         "@react-native-async-storage/async-storage": "^1.14.1",
@@ -119,6 +120,7 @@
         "eslint-plugin-react": "^7.24.0",
         "eslint-plugin-react-hooks": "1.6.1",
         "husky": "^8.0.2",
+        "icon-set-creator": "^1.1.5",
         "jest": "^26.6.3",
         "lint-staged": "^13.0.3",
         "metro-react-native-babel-preset": "0.59.0",
