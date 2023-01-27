@@ -12,9 +12,9 @@
 [X] Animate pull down refresh screen gesture, animate bounce the stock symbol - https://reactnative.dev/docs/easing
 
 [X] Allow user to supply IEX Cloud token 
-[] Validation for existing user token before overriding
+[X] Validation for existing user token before overriding
 [X] Fix icon aspect
-
+[X] Flag bad pe ratios in metric tile with icon
 
 # IDEAS
 

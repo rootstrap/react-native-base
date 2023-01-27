@@ -24,7 +24,8 @@ export default (
         };
     },
 ) => {
-    client.interceptors.request.use((config: { headers: any; data: any; params: any }) => {
+ 
+    client.interceptors.request.use(async (config: { headers: any; data: any; params: any }) => {
         const { info } = store.getState().session;
         const { data, headers } = config;
         if (info) {
@@ -37,9 +38,9 @@ export default (
         }
         config.params = {
             [ACCESS_TOKEN]:
-                retrieveUserSession(sessionKey).then((session) => {
+                await retrieveUserSession(sessionKey).then((session) => {
                     return session?.token;
-                }) || Config.IEX_TOKEN,
+                })
         };
 
         config.data = humps.decamelizeKeys(data);

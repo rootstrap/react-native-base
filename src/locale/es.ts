@@ -26,6 +26,7 @@ export default {
     CONFIGURATION: {
         getTokenPrompt: 'Access the IEX Cloud console to generate an API token',
         tokenPastePlaceholder: 'Paste IEX Cloud Token here..',
+        continue: 'Continue',
     },
     SIGN_UP: {
         title: 'Registro',

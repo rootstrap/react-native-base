@@ -1,70 +1,62 @@
-import { ES_GREEN, WHITE, ES_PURPLE } from 'config/colors';
+import { ES_GREEN, WHITE, ES_PURPLE, ES_BLUE } from 'config/colors';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, TextInput, View, Text, Modal, Alert } from 'react-native';
-import sessionService, { retrieveUserSession } from '../../utils/sessionUtil';
-import { Button, Icon } from 'react-native-elements';
+import { StyleSheet, TextInput, View, Text } from 'react-native';
+import sessionService from '../../utils/sessionUtil';
+import { Button, Icon, Badge } from 'react-native-elements';
 import strings from 'locale';
 import { iexDocsConfigToken, sessionKey } from 'config/commonStrings';
 import { Linking } from 'react-native';
-import session from 'redux-persist/es/storage/session';
 
 type Props = {
     onConfigSaved(): unknown;
 };
 
 const ConfigurationPage = (props: Props) => {
-
     // Called 'once' on init
     // TODO: debug this init code
-    // useEffect(() => {
-    //     let isMounted = true;
-    //     if (isMounted) {
-    //         sessionService.retrieveUserSession(sessionKey).then((session) => {
-    //             if (session?.token) {
-    //                 // temp clear storage to test
-    //                 //sessionService.clearStorage();
-
-    //                 setHasExistingToken(true);
-    //                 setModalVisible(true);
-    //             }
-    //         });
-    //     }
-    //     return () => {
-    //         isMounted = false;
-    //     };
-    // }, []);
-
-    const saveConfig = () => {
-        setIsloading(true);
-        sessionService
-            .storeUserSession(sessionKey, {
-                token,
-            })
-            .then(() => {
-                setIsloading(false);
-                props.onConfigSaved();
+    useEffect(() => {
+        let isMounted = true;
+        if (isMounted) {
+            sessionService.retrieveUserSession(sessionKey).then((session) => {
+                if (session?.token) {
+                    // temp clear storage to test scenario where token is empty
+                    //sessionService.clearStorage();
+                    setHasExistingToken(true);
+                }
             });
+        }
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
+    const saveConfig = (skipOverrideToken: boolean = false) => {
+        setIsloading(true);
+
+        if (skipOverrideToken) {
+            setIsloading(false);
+            props.onConfigSaved();
+        } else {
+            sessionService
+                .storeUserSession(sessionKey, {
+                    token,
+                })
+                .then(() => {
+                    setIsloading(false);
+                    props.onConfigSaved();
+                });
+        }
     };
     const [token, setToken] = useState('');
     const [isLoading, setIsloading] = useState(false);
     const [hasExistingToken, setHasExistingToken] = useState(false);
-    const [modalVisible, setModalVisible] = useState(false);
     const TOKEN_LENGTH = 35;
 
     return (
         <View style={styles.maincontainer}>
-            {/* // TODO: Debug modal code for existing token scenario. */}
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible && Boolean(token.length)}
-                onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                }}></Modal>
             <Text style={styles.title} onPress={() => Linking.openURL(iexDocsConfigToken)}>
                 {strings.CONFIGURATION.getTokenPrompt} &#x2601;
             </Text>
-            {hasExistingToken ? <Text>has token</Text> : <></>}
             <View style={styles.container}>
                 <TextInput
                     style={styles.input}
@@ -72,13 +64,19 @@ const ConfigurationPage = (props: Props) => {
                     onChangeText={(token) => setToken(token)}
                     maxLength={TOKEN_LENGTH}
                     value={token}
+                    autoFocus={true}
+                    secureTextEntry={true}
+                />
+                <Badge
+                    status="warning"
+                    value={<Text style={styles.tokenBadge}>API Token Provided</Text>}
+                    containerStyle={{ display: 'flex', flex: 0.1, flexDirection: 'column', margin: 5 }}
                 />
                 <View style={styles.buttonContainer}>
                     <Button
                         icon={<Icon name="save" size={20} color="white" />}
                         title={strings.STOCKS_FEED.submit}
                         iconPosition="left"
-                        raised={true}
                         loading={isLoading}
                         disabled={token.length < TOKEN_LENGTH}
                         onPress={() => {
@@ -87,6 +85,19 @@ const ConfigurationPage = (props: Props) => {
                         type="solid"
                         buttonStyle={styles.submitButton}
                     />
+                    {hasExistingToken ? (
+                        <Button
+                            icon={<Icon name="forward" size={20} color="white" />}
+                            title={strings.CONFIGURATION.continue}
+                            iconPosition="left"
+                            loading={isLoading}
+                            onPress={() => {
+                                saveConfig(true);
+                            }}
+                            type="solid"
+                            buttonStyle={styles.cotinueButton}
+                        />
+                    ) : undefined}
                 </View>
             </View>
         </View>
@@ -108,7 +119,12 @@ const styles = StyleSheet.create({
     },
     submitButton: {
         alignSelf: 'center',
+        marginRight: 20,
         backgroundColor: ES_PURPLE,
+    },
+    cotinueButton: {
+        alignSelf: 'center',
+        backgroundColor: ES_BLUE,
     },
     title: {
         backgroundColor: ES_GREEN,
@@ -126,10 +142,15 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
     },
+    tokenBadge: {
+        color: WHITE,
+        padding: 5,
+    },
     buttonContainer: {
         alignSelf: 'center',
         flex: 0.4,
         flexDirection: 'row',
         justifyContent: 'center',
+        backgroundColor: 'white',
     },
 });

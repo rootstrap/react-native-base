@@ -38,6 +38,7 @@ import { useDispatch } from 'react-redux';
 import { SUCCESS, ERROR, useStatus } from '@rootstrap/redux-tools';
 import { FadeInView } from 'components/AnimatedViews';
 import { IS_INDIVIDUAL_STOCK_REFRESH_ENABLED } from '../../config/features';
+import { badMetricFlag } from 'config/commonStrings';
 
 interface StocksFeedProps {}
 
@@ -170,17 +171,23 @@ const StocksFeed = (props: StocksFeedProps) => {
         const styles = props.styles;
 
         if (data && symbolItem && configLabel) {
+
+            const metricValue = useStockFormatUtils().getMetricBySymbolKey(
+                                data,
+                                symbolItem?.symbol,
+                                configLabel,
+                            ) || '';
             return (
                 <View style={styles.metricContainer}>
                     <Text style={styles.dataLabel}>
                         {`${startCase(configLabel)}: `}
-                        <Text style={styles.dataLabel}>{`${
-                            useStockFormatUtils().getMetricBySymbolKey(
-                                data,
-                                symbolItem?.symbol,
-                                configLabel,
-                            ) || ''
-                        }`}</Text>
+                        <Text style={styles.dataLabel}>{`${metricValue.replace(
+                            `${badMetricFlag}`,
+                            '',
+                        )}`}</Text>
+                        {metricValue.includes(`${badMetricFlag}`) ? (
+                            <Icon name="warning" type="font-awesome" color="white" size={14} />
+                        ) : undefined}
                     </Text>
                 </View>
             );
@@ -438,6 +445,7 @@ const styles = StyleSheet.create({
     metricContainer: {
         display: 'flex',
         flexDirection: 'row',
+        alignItems: 'baseline',
     },
     overlayContainer: {
         flexDirection: 'column',

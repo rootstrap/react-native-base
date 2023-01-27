@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { SymbolCodes, MetricLabels, SymbolTickerCodes } from 'reducers/stocksFeedReducer';
 import { RootState } from '../reducers';
 
-export const defaultConfigLabels = ['companyName', 'open', 'week52High', 'week52Low'];
+export const defaultConfigLabels = ['companyName', 'iexOpen', 'week52High', 'week52Low', 'peRatio'];
 
 export const useStockFeedState = () =>
     useSelector((state: RootState) => ({

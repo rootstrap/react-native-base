@@ -22,8 +22,16 @@ const useStockFormatUtils = () => {
         )}${options.decimalSeparator}${decimal}`;
     };
 
-    const getMetricBySymbolKey = (data: any[], symbol: string, key: string): string | number => {
-        const priceTypeKeySubstrings = ['price', 'high', 'low', 'open'];
+    const peRatioFormatter = (value: string | number) => {
+        if (typeof value !== 'number') value = 0.0;
+
+        return value < 0 ? `${value} BAD` : `${value}`;
+    };
+
+    const getMetricBySymbolKey = (data: any[], symbol: string, key: string): string => {
+        const priceTypeKeySubstrings = ['price', 'high', 'low', 'iexOpen', 'open'];
+        const peRatioKey = 'peRatio';
+
         var isPriceKeyType = priceTypeKeySubstrings.some((substring) => {
             return key.toLocaleLowerCase().indexOf(substring) >= 0;
         });
@@ -50,6 +58,8 @@ const useStockFormatUtils = () => {
                     formattedValue = `${foundMetrics[key]}%`;
                 } else if (isMarketCapType) {
                     formattedValue = currencyFormatter(foundMetrics[key]);
+                } else if (peRatioKey === key) {
+                    formattedValue = peRatioFormatter(foundMetrics[key]);
                 } else {
                     // default case, no format
                     formattedValue = foundMetrics[key];
