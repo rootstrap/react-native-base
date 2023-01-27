@@ -13,6 +13,11 @@
 
 [X] Allow user to supply IEX Cloud token 
 [] Validation for existing user token before overriding
-[] Fix icon aspect
+[X] Fix icon aspect
+
+
+# IDEAS
+
+[] Use a rules engine to allow user add a custom tile, with their prefered alerts
 
 

@@ -7,7 +7,7 @@ export const applyQueryParams = (url: any, params: { [key: string]: any }) => {
 };
 
 /**
- * CSV's array of string and appens to given key param in URL
+ * CSV's array of string and appends to given key param in URL
  * @param url
  * @param values
  * @param key

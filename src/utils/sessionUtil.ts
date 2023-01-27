@@ -29,6 +29,7 @@ export async function clearStorage() {
     try {
         return await EncryptedStorage.clear();
     } catch (error) {
+        return error;
         // There was an error on the native side
     }
 }

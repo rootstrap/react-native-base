@@ -23,7 +23,10 @@ export default {
         reset: 'Reset',
         title: 'Stocks Picker',
     },
-
+    CONFIGURATION: {
+        getTokenPrompt: 'Access the IEX Cloud console to generate an API token',
+        tokenPastePlaceholder: 'Paste IEX Cloud Token here..',
+    },
     SIGN_UP: {
         title: 'Registro',
         email: 'Email',

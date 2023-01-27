@@ -16,23 +16,23 @@ const ConfigurationPage = (props: Props) => {
 
     // Called 'once' on init
     // TODO: debug this init code
-    useEffect(() => {
-        let isMounted = true;
-        if (isMounted) {
-            sessionService.retrieveUserSession(sessionKey).then((session) => {
-                if (session?.token) {
-                    // temp clear storage to test
-                    //sessionService.clearStorage();
+    // useEffect(() => {
+    //     let isMounted = true;
+    //     if (isMounted) {
+    //         sessionService.retrieveUserSession(sessionKey).then((session) => {
+    //             if (session?.token) {
+    //                 // temp clear storage to test
+    //                 //sessionService.clearStorage();
 
-                    setHasExistingToken(true);
-                    setModalVisible(true);
-                }
-            });
-        }
-        return () => {
-            isMounted = false;
-        };
-    }, []);
+    //                 setHasExistingToken(true);
+    //                 setModalVisible(true);
+    //             }
+    //         });
+    //     }
+    //     return () => {
+    //         isMounted = false;
+    //     };
+    // }, []);
 
     const saveConfig = () => {
         setIsloading(true);
@@ -62,13 +62,13 @@ const ConfigurationPage = (props: Props) => {
                     setModalVisible(!modalVisible);
                 }}></Modal>
             <Text style={styles.title} onPress={() => Linking.openURL(iexDocsConfigToken)}>
-                Access the IEX Cloud console to generate an API token &#x2601;
+                {strings.CONFIGURATION.getTokenPrompt} &#x2601;
             </Text>
             {hasExistingToken ? <Text>has token</Text> : <></>}
             <View style={styles.container}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Paste IEX Cloud Token here.."
+                    placeholder={strings.CONFIGURATION.tokenPastePlaceholder}
                     onChangeText={(token) => setToken(token)}
                     maxLength={TOKEN_LENGTH}
                     value={token}
