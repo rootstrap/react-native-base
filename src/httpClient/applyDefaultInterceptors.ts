@@ -8,9 +8,7 @@ import { sessionKey } from 'config/commonStrings';
 const ACCESS_TOKEN = 'token';
 const UID = 'uid';
 const CLIENT = 'client';
-
 const UNAUTHORIZED = 401;
-
 
 export default (
     store: Store,

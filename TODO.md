@@ -13,6 +13,6 @@
 
 [X] Allow user to supply IEX Cloud token 
 [] Validation for existing user token before overriding
-
+[] Fix icon aspect
 
 

@@ -7,14 +7,14 @@ import { ES_GREEN } from '../config/colors';
 import { Image } from 'react-native';
 import SettingsScreen from 'screens/SettingsScreen';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { sessionKey } from 'config/commonStrings';
+import { retrieveUserSession } from 'utils/sessionUtil';
 
 type Props = {
     navigation: StackNavigationProp<any>;
 };
 
 const Stack = createStackNavigator();
-
-
 
 const AppStack = ({ navigation }: Props) => (
     <Stack.Navigator>
@@ -35,9 +35,14 @@ const AppStack = ({ navigation }: Props) => (
                 headerRight: () => (
                     <Button
                         onPress={() => {
-                            navigation.navigate(STOCK_PICKER_SCREEN, {
-                                data: { navigation: 'navigated:STOCK_PICKER_SCREEN' },
-                            });
+                            retrieveUserSession(sessionKey).then((session) => {
+                                if (!!session.token) {
+                                    console.log(`session length = ${session.token}`)
+                                    navigation.navigate(STOCK_PICKER_SCREEN, {
+                                        data: { navigation: 'navigated:STOCK_PICKER_SCREEN' },
+                                    });
+                                }
+                            }).catch(() => { return Promise.reject()})
                         }}
                         style={{ marginRight: 10 }}
                         type="outline"

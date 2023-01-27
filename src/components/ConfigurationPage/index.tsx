@@ -13,25 +13,26 @@ type Props = {
 };
 
 const ConfigurationPage = (props: Props) => {
-    // let retrievedSession: Promise<any> | React.SetStateAction<string>;
 
     // Called 'once' on init
     // TODO: debug this init code
-    // useEffect(() => {
-    //     let isMounted = true;
-    //     if (isMounted) {
-    //         retrievedSession = sessionService.retrieveUserSession(sessionKey);
-    //         retrievedSession.then((session) => {
-    //             if (session?.token) {
-    //                 setHasExistingToken(true);
-    //                 setModalVisible(true);
-    //             }
-    //         });
-    //     }
-    //     return () => {
-    //         isMounted = false;
-    //     };
-    // }, []);
+    useEffect(() => {
+        let isMounted = true;
+        if (isMounted) {
+            sessionService.retrieveUserSession(sessionKey).then((session) => {
+                if (session?.token) {
+                    // temp clear storage to test
+                    //sessionService.clearStorage();
+
+                    setHasExistingToken(true);
+                    setModalVisible(true);
+                }
+            });
+        }
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     const saveConfig = () => {
         setIsloading(true);
