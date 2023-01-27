@@ -170,25 +170,28 @@ const StocksFeed = (props: StocksFeedProps) => {
         const configLabel = props.configLabel;
         const styles = props.styles;
 
-        if (data && symbolItem && configLabel) {
+        if (data?.length && symbolItem && configLabel) {
 
             const metricValue = useStockFormatUtils().getMetricBySymbolKey(
                                 data,
                                 symbolItem?.symbol,
                                 configLabel,
-                            ) || '';
+                            ).toString() || '';
+
             return (
                 <View style={styles.metricContainer}>
-                    <Text style={styles.dataLabel}>
-                        {`${startCase(configLabel)}: `}
-                        <Text style={styles.dataLabel}>{`${metricValue.replace(
-                            `${badMetricFlag}`,
-                            '',
-                        )}`}</Text>
-                        {metricValue.includes(`${badMetricFlag}`) ? (
-                            <Icon name="warning" type="font-awesome" color="white" size={14} />
-                        ) : undefined}
-                    </Text>
+                    {metricValue ? (
+                        <Text style={styles.dataLabel}>
+                            {`${startCase(configLabel)}: `}
+                            <Text style={styles.dataLabel}>{`${metricValue?.replace(
+                                `${badMetricFlag}`,
+                                '',
+                            )}`}</Text>
+                            {metricValue?.includes(`${badMetricFlag}`) ? (
+                                <Icon name="warning" type="font-awesome" color="white" size={14} />
+                            ) : null}
+                        </Text>
+                    ) : null}
                 </View>
             );
         }
