@@ -37,6 +37,14 @@ npx pod-install
 
 The repo includes configuration for using GitHub Actions to run unit tests and code analysis: `.github/workflows/test.yml`. This can be adapted as needed for specifics of each project. Both CodeClimate and Sonarqube integrations are included in the workflow and their required environment settings should be retrieved from the repo Secrets.
 
+## Using folders template
+
+There's a folder named .fttemplates where you'll find a template you can use to create new components for your app, keeping the same folder conventions for all your components. 
+
+You must install Folder Templates extensions in Visual Studio Code to use this feature. You'll find it [here](https://marketplace.visualstudio.com/items?itemName=Huuums.vscode-fast-folder-structure).
+
+If you install the extension you can create your components folder using the template by clicking on Create new templated folder button in the context menu. ****
+
 ## Configuring Code Climate
 
 1. After adding the project to CC, go to `Repo Settings`
