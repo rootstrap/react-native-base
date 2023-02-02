@@ -43,7 +43,13 @@ There's a folder named .fttemplates where you'll find a template you can use to 
 
 You must install Folder Templates extensions in Visual Studio Code to use this feature. You'll find it [here](https://marketplace.visualstudio.com/items?itemName=Huuums.vscode-fast-folder-structure).
 
-If you install the extension you can create your components folder using the template by clicking on Create new templated folder button in the context menu. ****
+If you install the extension you can create your components folder using the template by clicking on Create new templated folder button in the context menu.
+
+
+https://user-images.githubusercontent.com/11773865/216385411-9e152929-e6f7-41a2-a22c-5312509acbd4.mov
+
+
+
 
 ## Configuring Code Climate
 
