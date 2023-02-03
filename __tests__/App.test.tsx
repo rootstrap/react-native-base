@@ -12,11 +12,13 @@ describe('App', () => {
   });
 
   it('elements should be accessible', () => {
-    const { getByText, getByRole } = render(<App />);
-    const text = getByText('Welcome Screen');
-    const button = getByRole('button');
-
+    const { getByText, getAllByRole } = render(<App />);
+    const text = getByText('Sign In');
+    const authScreenButtons = getAllByRole('button');
     expect(text).toBeAccessible();
-    expect(button).toBeAccessible();
+
+    authScreenButtons.forEach(button => {
+      expect(button).toBeAccessible();
+    });
   });
 });

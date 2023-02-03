@@ -1,0 +1,29 @@
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: yarn lint {staged_files}
+    prettier:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: yarn prettier {staged_files}
+
+pre-push:
+  parallel: false
+  commands:
+    prettier:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: yarn prettier {staged_files}
+    eslint:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: yarn lint {staged_files}
+    compiler:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: yarn run compile
+
