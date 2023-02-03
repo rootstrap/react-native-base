@@ -1,3 +1,1 @@
-import { <FTName | capitalize> } from './[FTName]'
-
-export { <FTName | capitalize> }
+export { <FTName | capitalize> } from './[FTName]'
