@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-import styles from './[FTName].styles';
+import { styles } from './[FTName].styles';
 
 interface <FTName>Props {}
 
