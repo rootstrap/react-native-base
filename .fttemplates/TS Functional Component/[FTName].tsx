@@ -3,10 +3,10 @@ import { Text, View } from 'react-native';
 
 import styles from './[FTName].styles';
 
-const FTName: React.FunctionComponent = () => (
+const <FTName>: React.FunctionComponent = () => (
   <View>
     <Text> REPLACE ME</Text>
   </View>
 );
 
-export default FTName;
+export { <FTName | capitalize> }
