@@ -1,5 +1,6 @@
-import { persistStore } from 'storage/createPersistedStore';
 import { create } from 'zustand';
+
+import { persistStore } from 'storage/createPersistedStore';
 
 import { Session, User } from './types';
 
