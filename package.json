@@ -95,6 +95,9 @@
   },
   "jest": {
     "preset": "react-native",
+    "testPathIgnorePatterns" : [
+      "<rootDir>/.fttemplates/" 
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
