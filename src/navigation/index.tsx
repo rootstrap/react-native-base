@@ -6,12 +6,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthStack from 'navigation/stacks/auth';
 import MainStack from 'navigation/stacks/main';
 
+import useDisplayNetworkToast from 'network/hooks/useDisplayNetworkToast';
+
 import { GlobalStore } from 'storage/stores';
 
 const AppStack = createNativeStackNavigator();
 
 const NavigationStack: React.FunctionComponent = () => {
   const [user] = GlobalStore.user.useValueListener();
+
+  useDisplayNetworkToast({});
 
   useEffect(() => {
     setTimeout(() => RNBootSplash.hide({ fade: true }), 3000);
