@@ -27,11 +27,11 @@ Record<...> & {
 */
 
 export type AuthStackParamList = Record<
-  typeof AuthStackScreens[keyof typeof AuthStackScreens],
+  (typeof AuthStackScreens)[keyof typeof AuthStackScreens],
   undefined
 >;
 
 export type MainStackParamList = Record<
-  typeof MainStackScreens[keyof typeof MainStackScreens],
+  (typeof MainStackScreens)[keyof typeof MainStackScreens],
   undefined
 >;
