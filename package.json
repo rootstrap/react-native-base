@@ -7,7 +7,6 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "start-no-cache": "react-native start --reset-cache",
-    "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "setup": "./scripts/setup.sh",
     "android-outputs": "./scripts/android-outputs.sh",
@@ -36,7 +35,10 @@
     "rename": "./scripts/rename.sh",
     "bump": "./rnb-cli/src/tools/rnbv.js",
     "compile": "tsc",
-    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
+    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "test": "jest --detectOpenHandles",
+    "test:ci": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
