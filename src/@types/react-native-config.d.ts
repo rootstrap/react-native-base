@@ -1,8 +1,8 @@
+import { NativeConfigType } from './env';
+
 declare module 'react-native-config' {
-  interface Environment {
-    API_URL: string;
-    BASE_URL: string;
-  }
-  const Config: Environment;
+  export interface NativeConfig extends NativeConfigType {}
+
+  export const Config: NativeConfig;
   export default Config;
 }
