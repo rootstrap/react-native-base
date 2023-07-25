@@ -11,7 +11,7 @@ import { GlobalStore } from 'storage/stores';
 const AppStack = createNativeStackNavigator();
 
 const NavigationStack: React.FunctionComponent = () => {
-  const timerRef = useRef<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [user] = GlobalStore.user.useValueListener();
 
   useEffect(() => {
