@@ -8,7 +8,11 @@ import MainStack from 'navigation/stacks/main';
 
 import { GlobalStore } from 'storage/stores';
 
+import { RootStacks } from './types';
+
 const AppStack = createNativeStackNavigator();
+
+const NO_HEADER = { headerShown: false };
 
 const NavigationStack: React.FunctionComponent = () => {
   const timerRef = useRef<number | null>(null);
@@ -24,14 +28,11 @@ const NavigationStack: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <AppStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
+    <AppStack.Navigator screenOptions={NO_HEADER}>
       {!user ? (
-        <AppStack.Screen name={'Auth'} component={AuthStack} />
+        <AppStack.Screen name={RootStacks.AuthStack} component={AuthStack} />
       ) : (
-        <AppStack.Screen name={'Main'} component={MainStack} />
+        <AppStack.Screen name={RootStacks.MainStack} component={MainStack} />
       )}
     </AppStack.Navigator>
   );

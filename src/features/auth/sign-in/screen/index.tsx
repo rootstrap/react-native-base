@@ -3,9 +3,9 @@ import { View } from 'react-native';
 
 import Logo from '../components/Logo';
 import styles from './styles';
-import { SignInPropTypes } from './types';
+import { SignInNavigationProps } from './types';
 
-const SignInScreen: React.FunctionComponent<SignInPropTypes> = () => (
+const SignInScreen: React.FunctionComponent<SignInNavigationProps> = () => (
   <View style={styles.container}>
     <Logo />
   </View>

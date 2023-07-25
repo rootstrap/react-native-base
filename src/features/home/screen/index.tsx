@@ -2,9 +2,9 @@ import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 
 import styles from './styles';
-import type { HomePropTypes } from './types';
+import type { HomeNavigationProps } from './types';
 
-const HomeScreen: React.FunctionComponent<HomePropTypes> = () => (
+const HomeScreen: React.FunctionComponent<HomeNavigationProps> = () => (
   <SafeAreaView style={styles.container}>
     <Text accessibilityRole={'text'}>Home Screen</Text>
   </SafeAreaView>

@@ -1,3 +1,5 @@
-import { MainStackParamList, NativeStackScreenProps } from 'navigation/types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-export type HomePropTypes = NativeStackScreenProps<MainStackParamList, 'Home'>;
+import { MainStackParamList, MainStackScreens } from 'navigation/stacks/main';
+
+export type HomeNavigationProps = NativeStackScreenProps<MainStackParamList, MainStackScreens.Home>;

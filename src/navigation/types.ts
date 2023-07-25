@@ -1,37 +1,21 @@
-export type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RouteProp as NRouteProp } from '@react-navigation/native';
 
-const AuthStackScreens = {
-  Welcome: 'Welcome',
-  SignIn: 'SignIn',
-  SignUp: 'SignUp',
-} as const;
+import { AuthStackParamList } from './stacks/auth';
+import { MainStackParamList } from './stacks/main';
 
-const MainStackScreens = {
-  Home: 'Home',
-} as const;
-
-export enum Stacks {
+export enum RootStacks {
   AuthStack = 'AuthStack',
   MainStack = 'MainStack',
 }
 
-// NOTE: in case you want to include params you can append
-/*
+// You need to add any other stack params list created in the app here to enhance the navigation type check's
+export type RootStackParamList = AuthStackParamList & MainStackParamList;
 
-Record<...> & {
-  [*-StackScreens.*]: {
-    params
-  };
-};
+// very important to type check useNavigation hook
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
 
-*/
-
-export type AuthStackParamList = Record<
-  (typeof AuthStackScreens)[keyof typeof AuthStackScreens],
-  undefined
->;
-
-export type MainStackParamList = Record<
-  (typeof MainStackScreens)[keyof typeof MainStackScreens],
-  undefined
->;
+export type RouteProp<T extends keyof RootStackParamList> = NRouteProp<RootStackParamList, T>;

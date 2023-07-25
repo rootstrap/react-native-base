@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, View } from 'react-native';
 
 import styles from './styles';
-import { SignUpPropTypes } from './types';
+import { SignUpNavigationProps } from './types';
 
-const SignUpScreen: React.FunctionComponent<SignUpPropTypes> = () => (
+const SignUpScreen: React.FunctionComponent<SignUpNavigationProps> = () => (
   <View style={styles.container}>
     <Text>Sign Up</Text>
   </View>

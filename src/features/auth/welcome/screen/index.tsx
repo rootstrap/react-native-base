@@ -1,15 +1,21 @@
 import Button from 'common/Button';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
 
-import styles from './styles';
-import { WelcomePropTypes } from './types';
+import { AuthStackScreens } from 'navigation/stacks/auth';
 
-const WelcomeScreen: React.FunctionComponent<WelcomePropTypes> = ({ navigation: { navigate } }) => {
+import styles from './styles';
+import { WelcomeNavigationProps } from './types';
+
+type WelcomeScreenProps = {
+  // here you can add any props that you need to pass to the WelcomeScreen component
+} & WelcomeNavigationProps;
+
+const WelcomeScreen = ({ navigation: { navigate } }: WelcomeScreenProps) => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const onSignInPress = () => navigate('SignIn');
-  const onSignUpPress = () => navigate('SignUp');
+  const onSignInPress = useCallback(() => navigate(AuthStackScreens.SignIn), [navigate]);
+  const onSignUpPress = useCallback(() => navigate(AuthStackScreens.SignUp), [navigate]);
 
   return (
     <SafeAreaView style={styles.container}>
