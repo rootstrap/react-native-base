@@ -5,8 +5,8 @@ if [[ $# = 0 ]]; then
     exit 1
 fi
 
-if which expo >/dev/null; then
-    expo run:ios --scheme $1 --configuration $2 ${@:3}
+if which npx >/dev/null; then
+    npx expo run:ios --scheme $1 --configuration $2 ${@:3}
 else
     react-native run-ios --scheme $1 --configuration $2 ${@:3}
 fi
