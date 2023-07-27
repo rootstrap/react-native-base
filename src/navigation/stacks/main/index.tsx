@@ -2,15 +2,21 @@ import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { MainStackParamList } from 'navigation/types';
-
 import HomeScreen from 'features/home/screen';
+
+export enum MainStackScreens {
+  'Home' = 'Home',
+}
+
+export type MainStackParamList = {
+  [MainStackScreens.Home]: undefined;
+};
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainStack = () => (
-  <Stack.Navigator initialRouteName={'Home'}>
-    <Stack.Screen name={'Home'} component={HomeScreen} />
+  <Stack.Navigator>
+    <Stack.Screen name={MainStackScreens.Home} component={HomeScreen} />
   </Stack.Navigator>
 );
 
