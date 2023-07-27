@@ -31,6 +31,7 @@
     "android:bundle:dev": "APP_ENV=dev ts-node ./scripts/validate-env.ts && cd android && ./gradlew bundleDevRelease",
     "android:bundle:staging": "APP_ENV=staging ts-node ./scripts/validate-env.ts && cd android && ./gradlew bundleStagingRelease",
     "android:bundle:prod": "APP_ENV=prod ts-node ./scripts/validate-env.ts && cd android && ./gradlew bundleProdRelease",
+    "validate:example:env": "APP_ENV=example ts-node ./scripts/validate-env.ts",
     "lint:fix": "eslint . --fix src __tests__",
     "rename": "./scripts/rename.sh",
     "bump": "./rnb-cli/src/tools/rnbv.js",

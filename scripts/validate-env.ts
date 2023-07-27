@@ -11,9 +11,9 @@ const envFile = path.join(__dirname, isDev ? '../.env' : `../.env.${APP_ENV}`);
   const fileExists = fs.existsSync(envFile);
   if (!fileExists) {
     console.error(
-      `❌ Missing .env.${APP_ENV} file, Make sure you have .env.${APP_ENV} file in the root directory.`,
+      `❌ Missing .env.${APP_ENV} file. Make sure you have .env.${APP_ENV} file in the root directory.`,
     );
-    throw new Error(`Missing .env.${APP_ENV} file, Check terminal for more details`);
+    throw new Error(`Missing .env.${APP_ENV} file. Check terminal for more details`);
   }
   const content = fs.readFileSync(envFile, 'utf8');
   const envVars = content.split('\n');
@@ -24,8 +24,7 @@ const envFile = path.join(__dirname, isDev ? '../.env' : `../.env.${APP_ENV}`);
     if (envVar === '') {
       return;
     }
-    const key = envVar.split('=')[0];
-    const value = envVar.split('=')[1];
+    const [key, value] = envVar.split('=');
 
     jsonObject[key] = value;
   });

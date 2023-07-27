@@ -129,15 +129,15 @@ If you want to add a new env here are the steps to follow:
 
 #### ENV file validation during build time
 
-We have in place a validation that will check if the env file exists or has all the variables defined before building the app. This is to avoid building the app with the wrong env file and having to wait for the build to fail to realize that.
+We have in place a validation that will check if the env file exists and has all the variables defined before building the app. This is to avoid building the app with the wrong env file and having to wait for the build to fail to realize that.
 
-Variables are defined `src/@types/env` and the validation is done in `scripts/validation-env.ts`.
+Variables are defined in `src/@types/env` and the validation is done in `scripts/validation-env.ts`.
 
 ```
   APP_ENV={dev | prod | staging | qa} react-native run-{android | ios}
 ```
 
-Note: For iOS the validation ocurred within the `scripts/simulator.sh` script. For Android it occurred as an inline command in the `package.json` scripts
+Note: For iOS the validation occurs within the `scripts/simulator.sh` script. For Android it occurs as an inline command in the `package.json` scripts
 ### iOS
 
 #### Using different schemes
