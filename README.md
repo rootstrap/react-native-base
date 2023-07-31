@@ -127,14 +127,17 @@ If you want to add a new env here are the steps to follow:
 7. you might need to open the android folder in Android Studio and do **File** -> **Sync project with grade files**
 8. Last but not least, make sure that you add the new environment to the `bump` script at
 
-#### Manually set the env file
+#### ENV file validation during build time
 
-If you are looking for something quick and easy in the short term, there is one more way you can run the app with a custom env file, just run:
+We have in place a validation that will check if the env file exists and has all the variables defined before building the app. This is to avoid building the app with the wrong env file and having to wait for the build to fail to realize that.
+
+Variables are defined in `src/@types/env` and the validation is done in `scripts/validation-env.ts`.
 
 ```
-  ENVFILE=.env.{env} react-native run-android
+  APP_ENV={dev | prod | staging | qa} react-native run-{android | ios}
 ```
 
+Note: For iOS the validation occurs within the `scripts/simulator.sh` script. For Android it occurs as an inline command in the `package.json` scripts
 ### iOS
 
 #### Using different schemes
