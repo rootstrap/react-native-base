@@ -3,7 +3,7 @@ import 'react-native';
 
 import { render } from '@testing-library/react-native';
 
-import {<FTName | capitalize >} from './[FTName]'
+import <FTName | capitalize> from './[FTName]';
 
 describe('[FTName]', () => {
   it('renders correctly', () => {
