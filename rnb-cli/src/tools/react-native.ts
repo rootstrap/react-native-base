@@ -32,9 +32,13 @@ export async function renameReactNativeApp(
 
   // App name displayed
   const androidOldName = '"app_name", "(.*) - (.*)"'
+  log(androidOldName)
   const androidNewName = `"app_name", "$1 - ${newName}"`
+  log(androidNewName)
   const iOSOldName = 'PRODUCT_NAME = "(.*) - (.*)"'
+  log(iOSOldName)
   const iOSNewName = `PRODUCT_NAME = "$1 - ${newName}"`
+  log(iOSNewName)
 
   async function rename(oldFile: string, newFile: string) {
     log(`Renaming ${oldFile} to ${newFile}`)

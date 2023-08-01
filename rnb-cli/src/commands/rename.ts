@@ -55,7 +55,7 @@ module.exports = {
       const result = await prompt.ask({
         type: "input",
         name: "newName",
-        message: `What would you like to rename your app to? Currently: ${oldName}`,
+        message: `What would you like to rename your app to? Currently: ${oldName.name}`,
       })
       newName = result.newName
     }
@@ -85,15 +85,15 @@ module.exports = {
 
     // rename the app
 
-    if (oldName === newName) {
+    if (oldName.name === newName) {
       warning("The current name and the new name are the same.")
       return
     }
 
-    await renameReactNativeApp(toolbox, oldName, newName, oldBundleIdentifier, newBundleIdentifier)
+    await renameReactNativeApp(toolbox, oldName.name, newName, oldBundleIdentifier, newBundleIdentifier)
 
     heading(
-      `React Native Base CLI successfully renamed your app from ${red(oldName)} to ${green(
+      `React Native Base CLI successfully renamed your app from ${red(oldName.name)} to ${green(
         newName,
       )}!`,
     )

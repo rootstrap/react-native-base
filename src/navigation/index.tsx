@@ -14,7 +14,7 @@ const AppStack = createNativeStackNavigator();
 const NO_HEADER = { headerShown: false };
 
 const NavigationStack: React.FunctionComponent = () => {
-  const timerRef = useRef<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { user } = useAuth();
 
   useEffect(() => {
