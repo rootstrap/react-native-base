@@ -106,6 +106,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
+        resValue "string", "build_config_package", "com.reactnativebase"
     }
 
     splits {
@@ -140,30 +141,20 @@ android {
 
     productFlavors {
         prod {
-            minSdkVersion rootProject.ext.minSdkVersion
-            targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "app_name", "ReactNativeBase"
         }
         develop {
             applicationIdSuffix '.dev'
-            minSdkVersion rootProject.ext.minSdkVersion
-            targetSdkVersion rootProject.ext.targetSdkVersion
             versionNameSuffix "- Develop"
             resValue "string", "app_name", "RNBase - Develop"
         }
         qa {
             applicationIdSuffix '.qa'
-            minSdkVersion rootProject.ext.minSdkVersion
-            targetSdkVersion rootProject.ext.targetSdkVersion
             versionNameSuffix "- QA"
             resValue "string", "app_name", "RNBase - QA"
-        versionCode 1
-        versionName "1.0"
         }
         staging {
             applicationIdSuffix '.staging'
-            minSdkVersion rootProject.ext.minSdkVersion
-            targetSdkVersion rootProject.ext.targetSdkVersion
             versionNameSuffix "- Staging"
             resValue "string", "app_name", "RNBase - Staging"
         }
