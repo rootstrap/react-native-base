@@ -5617,11 +5617,6 @@ load-json-file@^5.2.0:
     strip-bom "^3.0.0"
     type-fest "^0.3.0"
 
-localized-strings@^0.2.0:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/localized-strings/-/localized-strings-0.2.4.tgz#9d61c06b60cc7b5edf7c46e6c7f2d1ecb84aeb2c"
-  integrity sha512-TKDhqFPkIIN/if2FSvVVZTaM/GP9TzfgdQ2uY65mr32xgFu5nqkKXprXbzy5rfx32DF5LDvS/y1UqYF/mAscYA==
-
 locate-path@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/locate-path/-/locate-path-3.0.0.tgz"
@@ -6685,13 +6680,6 @@ react-is@^18.0.0, react-is@^18.2.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-localization@^1.0.17:
-  version "1.0.19"
-  resolved "https://registry.yarnpkg.com/react-localization/-/react-localization-1.0.19.tgz#b65a7fa58096cff6aa38bc3a0c4817ec97469ef0"
-  integrity sha512-f4E6T8xRis19K8qMOnnhjGV2quy1YH2lrSsnAiytvgt7uOSp6WgDhrZH6XZEaEFqupTOCFSf8uagIoIAkjl4JA==
-  dependencies:
-    localized-strings "^0.2.0"
-
 react-native-accessibility-engine@^3.2.0:
   version "3.2.0"
   resolved "https://registry.npmjs.org/react-native-accessibility-engine/-/react-native-accessibility-engine-3.2.0.tgz"
@@ -6712,13 +6700,6 @@ react-native-config@^1.4.6:
   version "1.4.11"
   resolved "https://registry.npmjs.org/react-native-config/-/react-native-config-1.4.11.tgz"
   integrity sha512-PdBFnfR3pljUNrJu4B2wiJ9TbAiz1J1WcG5KP8AFBqZi8ve5MV/CTCDnANaGrqhOxkBDJV73D/SrMENHe7TKBg==
-
-react-native-localization@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/react-native-localization/-/react-native-localization-2.3.2.tgz#ac82089519681a8e53fa39dcf7a9f5b6be2c5cb6"
-  integrity sha512-9i2wkCFwvKVXq0w6tu1eTCGUZuKBQXoCGWBWbW4HYsFJe+MEQsFCYdrhoBsn8IAr/KA9AYUiEyxxuN3hLRxF4w==
-  dependencies:
-    react-localization "^1.0.17"
 
 react-native-mmkv@^2.6.3:
   version "2.6.3"
