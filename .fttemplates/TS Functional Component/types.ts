@@ -1,0 +1,1 @@
+export interface <FTName>Props {}
