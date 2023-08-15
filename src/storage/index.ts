@@ -3,6 +3,7 @@ import { MMKV, useMMKVString } from 'react-native-mmkv';
 const GlobalStoreKeys = {
   user: 'user',
   other: 'other',
+  language: 'language',
 } as const;
 
 export type GlobalStoreKeys = keyof typeof GlobalStoreKeys;

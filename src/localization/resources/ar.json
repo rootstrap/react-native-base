@@ -1,0 +1,14 @@
+{
+  "greeting": "{{name}} مرحبًا!",
+  "language": "عربى",
+  "screen": {
+    "welcome": {
+      "signIn": "تسجيل الدخول",
+      "signUp": "سجل"
+    },
+    "settings": {
+      "title": "إعدادات",
+      "updateLanguage": "تحديث اللغة"
+    }
+  }
+}

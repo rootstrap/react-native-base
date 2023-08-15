@@ -29,7 +29,7 @@ const NavigationStack: React.FunctionComponent = () => {
 
   return (
     <AppStack.Navigator screenOptions={NO_HEADER}>
-      {!user ? (
+      {user ? (
         <AppStack.Screen name={RootStacks.AuthStack} component={AuthStack} />
       ) : (
         <AppStack.Screen name={RootStacks.MainStack} component={MainStack} />

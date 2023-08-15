@@ -1,4 +1,5 @@
 import Button from 'common/Button';
+import { useTranslate } from 'localization/hooks';
 import React, { useCallback } from 'react';
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
 
@@ -13,7 +14,7 @@ type WelcomeScreenProps = {
 
 const WelcomeScreen = ({ navigation: { navigate } }: WelcomeScreenProps) => {
   const isDarkMode = useColorScheme() === 'dark';
-
+  const { t } = useTranslate();
   const onSignInPress = useCallback(() => navigate(AuthStackScreens.SignIn), [navigate]);
   const onSignUpPress = useCallback(() => navigate(AuthStackScreens.SignUp), [navigate]);
 
@@ -23,13 +24,13 @@ const WelcomeScreen = ({ navigation: { navigate } }: WelcomeScreenProps) => {
       <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}
-        title="Sign In"
+        title={t('screen.welcome.signIn')}
         onPress={onSignInPress}
       />
       <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}
-        title="Sign Up"
+        title={t('screen.welcome.signUp')}
         onPress={onSignUpPress}
       />
     </SafeAreaView>

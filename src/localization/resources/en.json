@@ -1,0 +1,14 @@
+{
+  "greeting": "Hello {{name}}!",
+  "language": "English",
+  "screen": {
+    "welcome": {
+      "signIn": "Sign In",
+      "signUp": "Sign Up"
+    },
+    "settings": {
+      "title": "Settings",
+      "updateLanguage": "Update Language"
+    }
+  }
+}
