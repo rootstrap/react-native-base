@@ -1,19 +1,19 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { I18nManager } from 'react-native';
-import Localized from 'react-native-localization';
-import Stores from 'storage';
+import Storage from 'storage';
 
 import { resources } from './resources';
 
 const DEFAULT_LANGUAGE = 'en';
 
 const getLanguage = () => {
-  const currentLanguage = Stores.GlobalStorageInstance.get('language');
+  const currentLanguage = Storage.GlobalStorageInstance.get('language');
   if (!currentLanguage) {
-    const deviceLanguage = new Localized({}).getInterfaceLanguage();
-    Stores.GlobalStorageInstance.set('language', deviceLanguage ?? DEFAULT_LANGUAGE);
-    return deviceLanguage;
+    // Detect device language, could be done with react-native-device-info
+    // but for the sake of this example we will use the default language
+    Storage.GlobalStorageInstance.set('language', DEFAULT_LANGUAGE);
+    return DEFAULT_LANGUAGE;
   }
 
   return currentLanguage;

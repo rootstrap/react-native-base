@@ -1,8 +1,10 @@
-import Button from 'common/Button';
-import { useLanguage, useTranslate } from 'localization/hooks';
-import { Language } from 'localization/resources';
 import React from 'react';
 import { Text, View } from 'react-native';
+
+import Button from 'common/Button';
+
+import { useLanguage, useTranslate } from 'localization/hooks';
+import { Language } from 'localization/resources';
 
 import styles from './styles';
 

@@ -1,9 +1,11 @@
-import Button from 'common/Button';
-import { useTranslate } from 'localization/hooks';
 import React, { useCallback } from 'react';
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
 
 import { AuthStackScreens } from 'navigation/stacks/auth';
+
+import Button from 'common/Button';
+
+import { useTranslate } from 'localization/hooks';
 
 import styles from './styles';
 import { WelcomeNavigationProps } from './types';

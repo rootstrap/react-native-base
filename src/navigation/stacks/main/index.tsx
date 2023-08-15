@@ -1,10 +1,11 @@
-import { useTranslate } from 'localization/hooks';
 import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from 'features/home/screen';
 import SettingScreen from 'features/settings/screen';
+
+import { useTranslate } from 'localization/hooks';
 
 export enum MainStackScreens {
   'Home' = 'Home',

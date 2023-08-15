@@ -16,6 +16,8 @@ module.exports = {
     '^features/(.*)$',
     '^network/(.*)$',
     '^storage/(.*)$',
+    '^common/(.*)$',
+    '^localization/(.*)$',
     '^[./*]',
   ],
   importOrderSeparation: true,
