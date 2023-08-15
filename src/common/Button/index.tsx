@@ -1,6 +1,7 @@
-import Pressable from 'common/Pressable';
 import React from 'react';
 import { Text } from 'react-native';
+
+import Pressable from 'common/Pressable';
 
 import styles from './styles';
 import { ButtonProps } from './types';
