@@ -10,12 +10,8 @@ import { Language, resources } from './resources';
 type DefaultLocale = typeof resources.en.translation;
 export type TxKeyPath = RecursiveKeyOf<DefaultLocale>;
 
-export const useTranslate = () => {
-  const t = (key: TxKeyPath, options?: any) => i18n.t(key, options) as unknown as string;
-  return {
-    t,
-  };
-};
+export const translate = (key: TxKeyPath, options?: any) =>
+  i18n.t(key, options) as unknown as string;
 
 export const useLanguage = () => {
   const currentLanguage = Stores.GlobalStorageInstance.get('language');

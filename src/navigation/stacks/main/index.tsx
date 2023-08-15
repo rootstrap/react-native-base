@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from 'features/home/screen';
 import SettingScreen from 'features/settings/screen';
 
-import { useTranslate } from 'localization/hooks';
+import { translate } from 'localization/hooks';
 
 export enum MainStackScreens {
   'Home' = 'Home',
@@ -20,13 +20,12 @@ export type MainStackParamList = {
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
 const MainStack = () => {
-  const { t } = useTranslate();
   return (
     <Stack.Navigator>
       <Stack.Screen
         name={MainStackScreens.Settings}
         component={SettingScreen}
-        options={{ title: t('screen.settings.title') }}
+        options={{ title: translate('screen.settings.title') }}
       />
       <Stack.Screen name={MainStackScreens.Home} component={HomeScreen} />
     </Stack.Navigator>

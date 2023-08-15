@@ -5,7 +5,7 @@ import { AuthStackScreens } from 'navigation/stacks/auth';
 
 import Button from 'common/Button';
 
-import { useTranslate } from 'localization/hooks';
+import { translate } from 'localization/hooks';
 
 import styles from './styles';
 import { WelcomeNavigationProps } from './types';
@@ -16,7 +16,6 @@ type WelcomeScreenProps = {
 
 const WelcomeScreen = ({ navigation: { navigate } }: WelcomeScreenProps) => {
   const isDarkMode = useColorScheme() === 'dark';
-  const { t } = useTranslate();
   const onSignInPress = useCallback(() => navigate(AuthStackScreens.SignIn), [navigate]);
   const onSignUpPress = useCallback(() => navigate(AuthStackScreens.SignUp), [navigate]);
 
@@ -26,13 +25,13 @@ const WelcomeScreen = ({ navigation: { navigate } }: WelcomeScreenProps) => {
       <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}
-        title={t('screen.welcome.signIn')}
+        title={translate('screen.welcome.signIn')}
         onPress={onSignInPress}
       />
       <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}
-        title={t('screen.welcome.signUp')}
+        title={translate('screen.welcome.signUp')}
         onPress={onSignUpPress}
       />
     </SafeAreaView>

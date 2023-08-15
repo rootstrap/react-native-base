@@ -10,8 +10,8 @@ const DEFAULT_LANGUAGE = 'en';
 const getLanguage = () => {
   const currentLanguage = Storage.GlobalStorageInstance.get('language');
   if (!currentLanguage) {
-    // Detect device language, could be done with react-native-device-info
-    // but for the sake of this example we will use the default language
+    // Detect device language, could be done with react-native-device-info, expo-locale, etc.
+    // For this example, we will just use the default language
     Storage.GlobalStorageInstance.set('language', DEFAULT_LANGUAGE);
     return DEFAULT_LANGUAGE;
   }
