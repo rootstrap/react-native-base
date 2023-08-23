@@ -1,9 +1,10 @@
 import i18n from 'i18next';
 import { I18nManager } from 'react-native';
 import Restart from 'react-native-restart';
-import Stores from 'storage';
 
 import { RecursiveKeyOf } from 'constants/types';
+
+import Stores from 'storage';
 
 import { Language, resources } from './resources';
 

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 import Button from 'common/Button';
 
@@ -15,13 +15,11 @@ type WelcomeScreenProps = {
 } & WelcomeNavigationProps;
 
 const WelcomeScreen = ({ navigation: { navigate } }: WelcomeScreenProps) => {
-  const isDarkMode = useColorScheme() === 'dark';
   const onSignInPress = useCallback(() => navigate(AuthStackScreens.SignIn), [navigate]);
   const onSignUpPress = useCallback(() => navigate(AuthStackScreens.SignUp), [navigate]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}

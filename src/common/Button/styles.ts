@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { BLUE, GREY_01, GREY_02, WHITE } from 'constants/styles';
+import { BLUE, GREY_01, GREY_02, WHITE } from 'constants/colors';
 
 const styles = StyleSheet.create({
   container: {

@@ -8,7 +8,9 @@
     },
     "settings": {
       "title": "إعدادات",
-      "updateLanguage": "تحديث اللغة"
+      "changeLanguage": "تحديث اللغة",
+      "darkMode": "الوضع الداكن",
+      "themes": "الموضوعات"
     }
   }
 }

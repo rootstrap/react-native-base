@@ -1,37 +1,62 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Switch, Text, TouchableOpacity, View } from 'react-native';
 
-import Button from 'common/Button';
+import { BLUE, GREY_01, WHITE } from 'constants/colors';
 
 import { translate, useLanguage } from 'localization/hooks';
 import { Language } from 'localization/resources';
 
-import styles from './styles';
+import { ColorScheme, useThemeConfig } from 'themes/hooks';
+
+import useStyles from './styles';
 
 const Settings = () => {
-  const { setLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguage();
+  const { toggleTheme, currentTheme } = useThemeConfig();
+  const styles = useStyles();
 
-  const onChangeLanguage = (languageCode: Language) => {
-    setLanguage(languageCode);
+  const onChangeLanguage = (lang: Language) => {
+    setLanguage(lang);
   };
+
   return (
     <View style={styles.container}>
-      <Text>{translate('screen.settings.updateLanguage')}</Text>
-      <Button
-        accessibilityState={{ disabled: false }}
-        title={'Spanish'}
-        onPress={() => onChangeLanguage('es')}
-      />
-      <Button
-        accessibilityState={{ disabled: false }}
-        title={'English'}
-        onPress={() => onChangeLanguage('en')}
-      />
-      <Button
-        accessibilityState={{ disabled: false }}
-        title={'Arabic'}
-        onPress={() => onChangeLanguage('ar')}
-      />
+      <View style={styles.option}>
+        <Text style={styles.optionTitle}>{translate('screen.settings.themes')}</Text>
+
+        <View style={styles.row}>
+          <Text style={styles.switchText}>{translate('screen.settings.darkMode')}</Text>
+          <Switch
+            accessibilityState={{ disabled: false }}
+            trackColor={{ false: GREY_01, true: BLUE }}
+            thumbColor={WHITE}
+            ios_backgroundColor={WHITE}
+            onValueChange={toggleTheme}
+            value={currentTheme === ColorScheme.dark}
+          />
+        </View>
+      </View>
+      <View style={styles.option}>
+        <Text style={styles.optionTitle}>{translate('screen.settings.changeLanguage')}</Text>
+        <TouchableOpacity
+          disabled={language === 'es'}
+          onPress={() => onChangeLanguage('es')}
+          style={[styles.button, language === 'es' && styles.disabledButton]}>
+          <Text style={styles.buttonText}>Spanish</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          disabled={language === 'en'}
+          onPress={() => onChangeLanguage('en')}
+          style={styles.button}>
+          <Text style={styles.buttonText}>English</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          disabled={language === 'ar'}
+          onPress={() => onChangeLanguage('ar')}
+          style={styles.button}>
+          <Text style={styles.buttonText}>Arabic</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

@@ -4,6 +4,7 @@ const GlobalStoreKeys = {
   user: 'user',
   other: 'other',
   language: 'language',
+  theme: 'theme',
 } as const;
 
 export type GlobalStoreKeys = keyof typeof GlobalStoreKeys;
