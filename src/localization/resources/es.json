@@ -10,7 +10,8 @@
       "title": "Configuración",
       "changeLanguage": "Cambiar idioma",
       "darkMode": "Modo oscuro",
-      "themes": "Temas"
+      "themes": "Temas",
+      "systemDefault": "Predeterminado del sistema"
     }
   }
 }

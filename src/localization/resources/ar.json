@@ -10,7 +10,8 @@
       "title": "إعدادات",
       "changeLanguage": "تحديث اللغة",
       "darkMode": "الوضع الداكن",
-      "themes": "الموضوعات"
+      "themes": "الموضوعات",
+      "systemDefault": "النظام الافتراضي"
     }
   }
 }

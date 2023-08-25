@@ -10,7 +10,8 @@
       "title": "Settings",
       "changeLanguage": "Change Language",
       "darkMode": "Dark Mode",
-      "themes": "Themes"
+      "themes": "Themes",
+      "systemDefault": "System Default"
     }
   }
 }

@@ -6,7 +6,8 @@ import { BLUE, GREY_01, WHITE } from 'constants/colors';
 import { translate, useLanguage } from 'localization/hooks';
 import { Language } from 'localization/resources';
 
-import { ColorScheme, useThemeConfig } from 'themes/hooks';
+import { ColorScheme } from 'themes/types';
+import { useThemeConfig } from 'themes/useThemeConfig';
 
 import useStyles from './styles';
 
@@ -23,7 +24,6 @@ const Settings = () => {
     <View style={styles.container}>
       <View style={styles.option}>
         <Text style={styles.optionTitle}>{translate('screen.settings.themes')}</Text>
-
         <View style={styles.row}>
           <Text style={styles.switchText}>{translate('screen.settings.darkMode')}</Text>
           <Switch
