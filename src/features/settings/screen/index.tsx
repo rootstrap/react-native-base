@@ -13,7 +13,7 @@ import useStyles from './styles';
 
 const Settings = () => {
   const { language, setLanguage } = useLanguage();
-  const { toggleTheme, currentTheme } = useThemeConfig();
+  const { toggleTheme, currentTheme, toggleSystemTheme, isDefaultTheme } = useThemeConfig();
   const styles = useStyles();
 
   const onChangeLanguage = (lang: Language) => {
@@ -24,6 +24,17 @@ const Settings = () => {
     <View style={styles.container}>
       <View style={styles.option}>
         <Text style={styles.optionTitle}>{translate('screen.settings.themes')}</Text>
+        <View style={styles.row}>
+          <Text style={styles.switchText}>{translate('screen.settings.systemDefault')}</Text>
+          <Switch
+            accessibilityState={{ disabled: false }}
+            trackColor={{ false: GREY_01, true: BLUE }}
+            thumbColor={WHITE}
+            ios_backgroundColor={WHITE}
+            onValueChange={toggleSystemTheme}
+            value={isDefaultTheme}
+          />
+        </View>
         <View style={styles.row}>
           <Text style={styles.switchText}>{translate('screen.settings.darkMode')}</Text>
           <Switch
