@@ -76,3 +76,7 @@ ios/tmp.xcconfig
 
 #Expo
 .expo
+
+# IDE
+.vscode/*
+!.vscode/extensions.json

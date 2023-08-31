@@ -1,6 +1,5 @@
 import humps from 'humps';
-
-import { GlobalStore } from 'storage/stores';
+import { setUser, useAuth } from 'store';
 
 import httpClient, { CONTENT_TYPE, MULTIPART_FORM_DATA } from '.';
 
@@ -10,7 +9,7 @@ export default () => {
   httpClient.interceptors.request.use(request => {
     const { data, headers } = request;
 
-    const user = GlobalStore.user.useValue();
+    const { user } = useAuth();
 
     if (user) {
       const { token } = user;
@@ -40,7 +39,7 @@ export default () => {
           token,
         };
 
-        GlobalStore.user.setValue(user);
+        setUser(user);
       }
 
       response.data = humps.camelizeKeys(data);
