@@ -1,6 +1,9 @@
-import Button from 'common/Button';
 import React, { useCallback } from 'react';
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
+
+import Button from 'common/Button';
+
+import { translate } from 'localization/hooks';
 
 import { AuthStackScreens } from 'navigation/stacks/auth';
 
@@ -13,7 +16,6 @@ type WelcomeScreenProps = {
 
 const WelcomeScreen = ({ navigation: { navigate } }: WelcomeScreenProps) => {
   const isDarkMode = useColorScheme() === 'dark';
-
   const onSignInPress = useCallback(() => navigate(AuthStackScreens.SignIn), [navigate]);
   const onSignUpPress = useCallback(() => navigate(AuthStackScreens.SignUp), [navigate]);
 
@@ -23,13 +25,13 @@ const WelcomeScreen = ({ navigation: { navigate } }: WelcomeScreenProps) => {
       <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}
-        title="Sign In"
+        title={translate('screen.welcome.signIn')}
         onPress={onSignInPress}
       />
       <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}
-        title="Sign Up"
+        title={translate('screen.welcome.signUp')}
         onPress={onSignUpPress}
       />
     </SafeAreaView>

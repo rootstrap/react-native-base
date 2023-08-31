@@ -1,0 +1,14 @@
+{
+  "greeting": "¡Hola {{name}}!",
+  "language": "Español",
+  "screen": {
+    "welcome": {
+      "signIn": "Iniciar sesión",
+      "signUp": "Registrarse"
+    },
+    "settings": {
+      "title": "Configuración",
+      "updateLanguage": "Cambiar idioma"
+    }
+  }
+}
