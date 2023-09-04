@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Appearance, useColorScheme } from 'react-native';
+import Storage from 'storage';
 
 import type { Theme } from '@react-navigation/native';
-
-import Storage from 'storage';
 
 import DarkTheme from './dark';
 import LightTheme from './light';
@@ -45,5 +44,6 @@ export const useThemeConfig = () => {
     theme: loadTheme(),
     toggleTheme,
     currentTheme: theme,
+    isDarkMode: theme === ColorScheme.dark,
   };
 };
