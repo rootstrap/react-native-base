@@ -17,12 +17,12 @@ const HomeScreen: React.FunctionComponent<HomeNavigationProps> = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text accessibilityRole={'text'} style={styles.title}>
+      <Text accessibilityRole="text" style={styles.title}>
         Home Screen
       </Text>
       <Button
         accessibilityState={{ disabled: false }}
-        title={'⚙️'}
+        title="⚙️"
         onPress={goToSettings}
         style={styles.button}
       />

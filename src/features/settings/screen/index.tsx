@@ -1,19 +1,21 @@
 import React from 'react';
 import { Switch, Text, TouchableOpacity, View } from 'react-native';
+import { useThemeConfig } from 'themes/hooks';
+
+import { useTheme } from '@react-navigation/native';
 
 import { BLUE, GREY_01, WHITE } from 'constants/colors';
 
 import { translate, useLanguage } from 'localization/hooks';
 import { Language } from 'localization/resources';
 
-import { ColorScheme, useThemeConfig } from 'themes/hooks';
-
 import useStyles from './styles';
 
 const Settings = () => {
   const { language, setLanguage } = useLanguage();
-  const { toggleTheme, currentTheme } = useThemeConfig();
+  const { toggleTheme } = useThemeConfig();
   const styles = useStyles();
+  const { dark: isDarkMode } = useTheme();
 
   const onChangeLanguage = (lang: Language) => {
     setLanguage(lang);
@@ -32,7 +34,7 @@ const Settings = () => {
             thumbColor={WHITE}
             ios_backgroundColor={WHITE}
             onValueChange={toggleTheme}
-            value={currentTheme === ColorScheme.dark}
+            value={isDarkMode}
           />
         </View>
       </View>
