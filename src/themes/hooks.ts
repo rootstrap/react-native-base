@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Appearance, useColorScheme } from 'react-native';
-import Storage from 'storage';
 
 import type { Theme } from '@react-navigation/native';
+
+import Storage from 'storage';
 
 import DarkTheme from './dark';
 import LightTheme from './light';
