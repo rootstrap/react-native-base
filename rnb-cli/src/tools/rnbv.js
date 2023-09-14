@@ -9,7 +9,7 @@ const configMap = new Map([
   ["androidPath", "./android/app/build.gradle"],
   ["iosPath", "./ios/ReactNativeBase.xcodeproj/project.pbxproj"],
 ])
-let environment;
+let environment
 
 const androidPath = configMap.get("androidPath")
 const iosPath = configMap.get("iosPath")
@@ -28,22 +28,22 @@ function checkSemver(maybeSemver) {
 }
 
 function getAndroidVersion() {
-  const regExp = new RegExp(`${environment}\\s*\\{[^{}]*\}`);
+  const regExp = new RegExp(`${environment}\\s*\\{[^{}]*\}`)
 
   const file = fs.readFileSync(androidPath, "utf8")
-  const [currentLine] = file.match(regExp);
+  const [currentLine] = file.match(regExp)
 
-  const [, current] = currentLine.match(ANDROID_REGEX);
+  const [, current] = currentLine.match(ANDROID_REGEX)
 
   checkSemver(current)
   return current
 }
 
 function getAndroidVersionCode() {
-  const regExp = new RegExp(`${environment}\\s*\\{[^{}]*\}`);
+  const regExp = new RegExp(`${environment}\\s*\\{[^{}]*\}`)
   const file = fs.readFileSync(androidPath, "utf8")
 
-  const [flavorBlock] = file.match(regExp);
+  const [flavorBlock] = file.match(regExp)
   const [currentLine] = flavorBlock.match(ANDROID_REGEX_CODE)
   const [current] = currentLine.match(/\d+/)
 
@@ -51,10 +51,10 @@ function getAndroidVersionCode() {
 }
 
 function getIOSVersion() {
-  const ENV_REGEX = new RegExp(`release-${environment} [\\s\\S]*?\\{([\\s\\S]*?)\\}`, "gi");
+  const ENV_REGEX = new RegExp(`release-${environment} [\\s\\S]*?\\{([\\s\\S]*?)\\}`, "gi")
 
   const file = fs.readFileSync(iosPath, "utf8")
-  const [, flavorBlock] = file.match(ENV_REGEX);
+  const [, flavorBlock] = file.match(ENV_REGEX)
 
   const [_, current] = flavorBlock.match(IOS_REGEX_PBX)
   checkSemver(current)
@@ -62,7 +62,7 @@ function getIOSVersion() {
 }
 
 function getIOSBuildNumber() {
-  const ENV_REGEX = new RegExp(`release-${environment} [\\s\\S]*?\\{([\\s\\S]*?)\\}`, "gi");
+  const ENV_REGEX = new RegExp(`release-${environment} [\\s\\S]*?\\{([\\s\\S]*?)\\}`, "gi")
 
   const file = fs.readFileSync(iosPath, "utf8")
   const [, flavorBlock] = file.match(ENV_REGEX)
@@ -86,7 +86,7 @@ function android(releaseType) {
   const nextCode = currentCode + 1
 
   const file = fs.readFileSync(androidPath, "utf8")
-  const [flavorBlock] = file.match(regExp);
+  const [flavorBlock] = file.match(regExp)
 
   let updatedBlock = flavorBlock.replace(ANDROID_REGEX_CODE, `versionCode ${nextCode}`)
 
@@ -107,7 +107,7 @@ function android(releaseType) {
 }
 
 function ios(releaseType) {
-  const ENV_REGEX = new RegExp(`release-${environment} [\\s\\S]*?\\{([\\s\\S]*?)\\}`, "gi");
+  const ENV_REGEX = new RegExp(`release-${environment} [\\s\\S]*?\\{([\\s\\S]*?)\\}`, "gi")
   const updateOnlyBuildNumber = releaseType === "build"
 
   const currentVersion = getIOSVersion()
@@ -122,13 +122,18 @@ function ios(releaseType) {
   const file = fs.readFileSync(iosPath, "utf8")
   const [, flavorBlock] = file.match(ENV_REGEX)
 
-  let updatedBlock = flavorBlock.replace(REPLACE_IOS_BUILD_PBX, `CURRENT_PROJECT_VERSION = ${nextBuildNumber};`)
+  let updatedBlock = flavorBlock.replace(
+    REPLACE_IOS_BUILD_PBX,
+    `CURRENT_PROJECT_VERSION = ${nextBuildNumber};`,
+  )
 
   if (!updateOnlyBuildNumber) {
     updatedBlock = updatedBlock.replace(REPLACE_IOS_PBX, `MARKETING_VERSION = ${nextVersion};`)
   }
-  let occurrences = 0;
-  const updatedFile = file.replace(ENV_REGEX, match => ++occurrences === 2 ? updatedBlock : match)
+  let occurrences = 0
+  const updatedFile = file.replace(ENV_REGEX, (match) =>
+    ++occurrences === 2 ? updatedBlock : match,
+  )
   fs.writeFileSync(iosPath, updatedFile, "utf8")
 
   console.log(
