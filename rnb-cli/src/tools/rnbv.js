@@ -7,16 +7,19 @@ const semver = require("semver")
 
 const configMap = new Map([
   ["androidPath", "./android/app/build.gradle"],
-  ["iosPath", "./ios/ReactNativeBase/Info.plist"],
+  ["iosPath", "./ios/ReactNativeBase.xcodeproj/project.pbxproj"],
 ])
+let environment
 
 const androidPath = configMap.get("androidPath")
 const iosPath = configMap.get("iosPath")
 
 const ANDROID_REGEX = /versionName "([.|\d]+)"/
 const ANDROID_REGEX_CODE = /versionCode \d+/
-const IOS_REGEX = /\s\<key\>CFBundleShortVersionString\<\/key\>\n\s+\<string\>(.+)\<\/string\>/m
-const IOS_REGEX_BUILD_NUMBER = /\s\<key\>CFBundleVersion\<\/key\>\n\s+\<string\>(.+)\<\/string\>/m
+const IOS_REGEX_PBX = /\s+MARKETING_VERSION = (.+);/m
+const IOS_REGEX_PBX_BUILD_NUMBER = /\s+CURRENT_PROJECT_VERSION = (.+);/m
+const REPLACE_IOS_PBX = /MARKETING_VERSION = .*;/
+const REPLACE_IOS_BUILD_PBX = /CURRENT_PROJECT_VERSION = .*;/
 
 function checkSemver(maybeSemver) {
   if (!semver.valid(maybeSemver)) {
@@ -25,35 +28,52 @@ function checkSemver(maybeSemver) {
 }
 
 function getAndroidVersion() {
+  const regExp = new RegExp(`${environment}\\s*\\{[^{}]*\}`)
+
   const file = fs.readFileSync(androidPath, "utf8")
-  const [_, current] = file.match(ANDROID_REGEX)
+  const [currentLine] = file.match(regExp)
+
+  const [, current] = currentLine.match(ANDROID_REGEX)
+
   checkSemver(current)
   return current
 }
 
 function getAndroidVersionCode() {
+  const regExp = new RegExp(`${environment}\\s*\\{[^{}]*\}`)
   const file = fs.readFileSync(androidPath, "utf8")
-  const [currentLine] = file.match(ANDROID_REGEX_CODE)
+
+  const [flavorBlock] = file.match(regExp)
+  const [currentLine] = flavorBlock.match(ANDROID_REGEX_CODE)
   const [current] = currentLine.match(/\d+/)
+
   return parseInt(current, 0)
 }
 
 function getIOSVersion() {
+  const ENV_REGEX = new RegExp(`release-${environment} [\\s\\S]*?\\{([\\s\\S]*?)\\}`, "gi")
+
   const file = fs.readFileSync(iosPath, "utf8")
-  const [_, current] = file.match(IOS_REGEX)
+  const [, flavorBlock] = file.match(ENV_REGEX)
+
+  const [_, current] = flavorBlock.match(IOS_REGEX_PBX)
   checkSemver(current)
   return current
 }
 
 function getIOSBuildNumber() {
+  const ENV_REGEX = new RegExp(`release-${environment} [\\s\\S]*?\\{([\\s\\S]*?)\\}`, "gi")
+
   const file = fs.readFileSync(iosPath, "utf8")
-  const [currentLine] = file.match(IOS_REGEX_BUILD_NUMBER)
-  const [current] = currentLine.match(/\d+/)
+  const [, flavorBlock] = file.match(ENV_REGEX)
+  const [currentVersion] = flavorBlock.match(IOS_REGEX_PBX_BUILD_NUMBER)
+  const [current] = currentVersion.match(/\d+/)
 
   return parseInt(current, 0)
 }
 
 function android(releaseType) {
+  const regExp = new RegExp(`${environment}\\s*\\{[^{}]*\}`)
   const updateOnlyCode = releaseType === "build"
 
   const currentVersion = getAndroidVersion()
@@ -66,14 +86,17 @@ function android(releaseType) {
   const nextCode = currentCode + 1
 
   const file = fs.readFileSync(androidPath, "utf8")
+  const [flavorBlock] = file.match(regExp)
 
-  let updated = file.replace(ANDROID_REGEX_CODE, `versionCode ${nextCode}`)
+  let updatedBlock = flavorBlock.replace(ANDROID_REGEX_CODE, `versionCode ${nextCode}`)
 
   if (!updateOnlyCode) {
-    updated = updated.replace(ANDROID_REGEX, `versionName "${nextVersion}"`)
+    updatedBlock = updatedBlock.replace(ANDROID_REGEX, `versionName "${nextVersion}"`)
   }
 
-  fs.writeFileSync(androidPath, updated, "utf8")
+  const updatedFile = file.replace(regExp, updatedBlock)
+
+  fs.writeFileSync(androidPath, updatedFile, "utf8")
   console.log(
     chalk.green(
       updateOnlyCode
@@ -84,6 +107,7 @@ function android(releaseType) {
 }
 
 function ios(releaseType) {
+  const ENV_REGEX = new RegExp(`release-${environment} [\\s\\S]*?\\{([\\s\\S]*?)\\}`, "gi")
   const updateOnlyBuildNumber = releaseType === "build"
 
   const currentVersion = getIOSVersion()
@@ -93,23 +117,24 @@ function ios(releaseType) {
   }
 
   const currentBuildNumber = getIOSBuildNumber()
-  const nextBuildNumber = updateOnlyBuildNumber ? currentBuildNumber + 1 : 0
+  const nextBuildNumber = updateOnlyBuildNumber ? currentBuildNumber + 1 : 1
 
   const file = fs.readFileSync(iosPath, "utf8")
+  const [, flavorBlock] = file.match(ENV_REGEX)
 
-  let updated = file.replace(
-    `<string>${currentBuildNumber}</string>`,
-    `<string>${nextBuildNumber}</string>`,
+  let updatedBlock = flavorBlock.replace(
+    REPLACE_IOS_BUILD_PBX,
+    `CURRENT_PROJECT_VERSION = ${nextBuildNumber};`,
   )
 
   if (!updateOnlyBuildNumber) {
-    updated = updated.replace(
-      `<string>${currentVersion}</string>`,
-      `<string>${nextVersion}</string>`,
-    )
+    updatedBlock = updatedBlock.replace(REPLACE_IOS_PBX, `MARKETING_VERSION = ${nextVersion};`)
   }
-
-  fs.writeFileSync(iosPath, updated, "utf8")
+  let occurrences = 0
+  const updatedFile = file.replace(ENV_REGEX, (match) =>
+    ++occurrences === 2 ? updatedBlock : match,
+  )
+  fs.writeFileSync(iosPath, updatedFile, "utf8")
 
   console.log(
     chalk.green(
@@ -120,11 +145,28 @@ function ios(releaseType) {
   )
 }
 
-function run() {
-  configure()
-  if (!validate()) {
-    process.exit(1)
-  }
+function selectEnvironment() {
+  prompts({
+    type: "select",
+    name: "newEnv",
+    message: "Which environment do you want to release?",
+    choices: [
+      { title: "Development", value: "develop" },
+      { title: "Staging", value: "staging" },
+      { title: "Production", value: "prod" },
+      { title: "QA", value: "qa" },
+    ],
+    initial: 0,
+  }).then(({ newEnv }) => {
+    if (!newEnv) {
+      process.exit(2)
+    }
+    environment = newEnv
+    selectReleaseType()
+  })
+}
+
+function selectReleaseType() {
   prompts({
     type: "select",
     name: "releaseType",
@@ -143,6 +185,14 @@ function run() {
     android(releaseType)
     ios(releaseType)
   })
+}
+
+function run() {
+  configure()
+  if (!validate()) {
+    process.exit(1)
+  }
+  selectEnvironment()
 }
 
 function validate() {

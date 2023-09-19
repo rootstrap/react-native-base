@@ -104,8 +104,6 @@ android {
         applicationId "com.reactnativebase"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0.0"
         resValue "string", "build_config_package", "com.reactnativebase"
     }
 
@@ -142,21 +140,29 @@ android {
     productFlavors {
         prod {
             resValue "string", "app_name", "ReactNativeBase"
+            versionCode 1
+            versionName "1.0.0"
         }
         develop {
             applicationIdSuffix '.dev'
             versionNameSuffix "- Develop"
             resValue "string", "app_name", "RNBase - Develop"
+            versionCode 1
+            versionName "1.0.0"
         }
         qa {
             applicationIdSuffix '.qa'
             versionNameSuffix "- QA"
             resValue "string", "app_name", "RNBase - QA"
+            versionCode 1
+            versionName "1.0.0"
         }
         staging {
             applicationIdSuffix '.staging'
             versionNameSuffix "- Staging"
             resValue "string", "app_name", "RNBase - Staging"
+            versionCode 1
+            versionName "1.0.0"
         }
     }
 
