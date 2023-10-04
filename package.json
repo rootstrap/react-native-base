@@ -92,6 +92,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^4.0.0",
     "eslint-plugin-react-native-a11y": "^3.2.1",
+    "expo": "^49.0.13",
     "jest": "^29.2.1",
     "lefthook": "^1.2.8",
     "metro-react-native-babel-preset": "^0.76.8",
