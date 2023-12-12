@@ -11,6 +11,9 @@
       "changeLanguage": "Change Language",
       "darkMode": "Dark Mode",
       "themes": "Themes"
+    },
+    "home": {
+      "title": "Home Screen"
     }
   }
 }
