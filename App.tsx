@@ -1,3 +1,4 @@
+import AnalyticsManager from 'analytics/analyticsmanager';
 import 'localization';
 import React from 'react';
 
@@ -9,6 +10,7 @@ import NavigationStack from 'navigation';
 const client = new QueryClient();
 
 const App = () => {
+  AnalyticsManager.initialize();
   return (
     <QueryClientProvider client={client}>
       <NavigationContainer>
