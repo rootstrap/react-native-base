@@ -50,5 +50,6 @@ export const useThemeConfig = () => {
     toggleSystemTheme,
     isDefaultTheme,
     currentTheme,
+    isDarkMode: currentTheme === ColorScheme.dark,
   };
 };
