@@ -4,22 +4,13 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/maintainability)](https://codeclimate.com/github/rootstrap/react-native-base/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/test_coverage)](https://codeclimate.com/github/rootstrap/react-native-base/test_coverage)
 
-## Commands
-
-1. **Start the app**: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`, `staging`, and `prod`)
-2. **Start metro bundler**: `yarn start`
-3. **Lint the app**: `yarn lint`
-4. **Test the app**: `yarn test`
-
 ## Getting started
 
 1. Install dependencies: `yarn`
 2. Create a `.env` file in the root directory of the project, based on the `.env.defaults` sample file and the extra constants that you may need. This will be your development env.
 
-You can also create `.env.prod`, `.env.staging`, and `.env.qa` to define environment variables for production and staging.
-
-1. Rename your new project using `yarn rename` or `npm run rename`
-2. Start on android or ios: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`,`qa`, `staging`, and `prod`)
+    2.1 You can also create `.env.prod`, `.env.staging`, and `.env.qa` to define environment variables for production and staging.
+3. Rename your new project using `yarn rename` or `npm run rename`
 
 ### Steps for Android development
 
@@ -29,8 +20,21 @@ None
 
 1. Run the following command to install iOS pods
 
-```
+```bash
 npx pod-install
+```
+
+## Commands
+
+1. **Start metro bundler**: `yarn start`
+2. **Start the app**: `yarn android:{env}` or `yarn ios:{env}` (envs: `dev`, `staging`, and `prod`)
+3. **Lint the app**: `yarn lint`
+4. **Test the app**: `yarn test`
+
+**Note: by default we use Expo CLI for iOS if you want to use react-native CLI you must append the following flag to the command:**
+
+```bash
+USE_RN_CLI=true yarn ios:{env}
 ```
 
 ## Continuous Integration
@@ -39,17 +43,13 @@ The repo includes configuration for using GitHub Actions to run unit tests and c
 
 ## Using folders template
 
-There's a folder named .fttemplates where you'll find a template you can use to create new components for your app, keeping the same folder conventions for all your components. 
+There's a folder named .fttemplates where you'll find a template you can use to create new components for your app, keeping the same folder conventions for all your components.
 
 You must install Folder Templates extensions in Visual Studio Code to use this feature. You'll find it [here](https://marketplace.visualstudio.com/items?itemName=Huuums.vscode-fast-folder-structure).
 
 If you install the extension you can create your components folder using the template by clicking on Create new templated folder button in the context menu.
 
-
-https://user-images.githubusercontent.com/11773865/216385411-9e152929-e6f7-41a2-a22c-5312509acbd4.mov
-
-
-
+<https://user-images.githubusercontent.com/11773865/216385411-9e152929-e6f7-41a2-a22c-5312509acbd4.mov>
 
 ## Configuring Code Climate
 
@@ -66,6 +66,7 @@ https://user-images.githubusercontent.com/11773865/216385411-9e152929-e6f7-41a2-
 ### Usage
 
 ```
+
 sonar-scanner \
   -Dsonar.qualitygate.wait=true \
   -Dsonar.host.url=$SONAR_URL \
@@ -78,7 +79,8 @@ sonar-scanner \
   -Dsonar.sources=. \
   -Dsonar.projectBaseDir=. \
   -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-  -Dsonar.coverage.exclusions=**/spec.js,**/__mocks__/**,**/**.spec.js,**/**.config.js,**/rnbv.js,**/android/**,**/ios/**,**/**.styles.js,**/tests/**,**/__mocks__/**,**/httpClient/**,**/jest-setup.js,**/constants/**,**/assets/**,**/node_modules/**,**/coverage/**
+  -Dsonar.coverage.exclusions=**/spec.js,**/**mocks**/**,**/**.spec.js,**/**.config.js,**/rnbv.js,**/android/**,**/ios/**,**/**.styles.js,**/tests/**,**/**mocks**/**,**/httpClient/**,**/jest-setup.js,**/constants/**,**/assets/**,**/node_modules/**,**/coverage/**
+
 ```
 
 ## Build Android Release
@@ -114,11 +116,13 @@ If you want to add a new env here are the steps to follow:
 3. Scroll down to the `flavors` section and add a new flavor with the following format:
 
 ```
+
 {name} {
   applicationIdSuffix '.{name}'
   minSdkVersion rootProject.ext.minSdkVersion
   targetSdkVersion rootProject.ext.targetSdkVersion
 }
+
 ```
 
 4. Inside `android/app/src` copy one of the existing env folders like `staging` and rename it with the name of your new flavor.
@@ -134,10 +138,13 @@ We have in place a validation that will check if the env file exists and has all
 Variables are defined in `src/@types/env` and the validation is done in `scripts/validation-env.ts`.
 
 ```
+
   APP_ENV={dev | prod | staging | qa} react-native run-{android | ios}
+
 ```
 
 Note: For iOS the validation occurs within the `scripts/simulator.sh` script. For Android it occurs as an inline command in the `package.json` scripts
+
 ### iOS
 
 #### Using different schemes
@@ -159,7 +166,9 @@ To add a new build target do as follows:
 If you are looking for something quick and easy in the short term, there is one more way you can run the app with a custom env file, just run:
 
 ```
+
   ENVFILE=.env.{env} react-native run-ios
+
 ```
 
 ### Adding App Icons for each env

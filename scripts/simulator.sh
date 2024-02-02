@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [[ $# = 0 ]]; then
-    echo "Usage: $0 Scheme-Name Debug/Release"
-    exit 1
+  echo "Usage: $0 Scheme-Name Debug/Release"
+  exit 1
 fi
 
 TS_FILE="./scripts/validate-env.ts"
@@ -25,8 +25,18 @@ if [ $EXIT_CODE -ne 0 ]; then
   exit 1
 fi
 
-if which npx >/dev/null; then
-    npx expo run:ios --scheme $1 --configuration $2 ${@:3}
+if [[ $USE_RN_CLI = true ]]; then
+  echo "Using react-native-cli"
+  react-native run-ios --scheme $1 --mode $2 ${@:3}
+  exit 0
 else
-    react-native run-ios --scheme $1 --configuration $2 ${@:3}
+  # check if expo is in node_modules
+  if [ ! -d "./node_modules/expo" ]; then
+    echo "expo not found. Installing expo locally..."
+    yarn add -D expo
+  fi
+
+  echo "Using expo-cli"
+  expo run:ios --scheme $1 --configuration $2 ${@:3}
+  exit 0
 fi
