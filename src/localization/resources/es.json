@@ -8,7 +8,9 @@
     },
     "settings": {
       "title": "Configuración",
-      "updateLanguage": "Cambiar idioma"
+      "changeLanguage": "Cambiar idioma",
+      "darkMode": "Modo oscuro",
+      "themes": "Temas"
     }
   }
 }

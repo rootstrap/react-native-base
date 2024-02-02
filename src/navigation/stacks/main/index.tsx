@@ -22,12 +22,12 @@ const Stack = createNativeStackNavigator<MainStackParamList>();
 const MainStack = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen name={MainStackScreens.Home} component={HomeScreen} />
       <Stack.Screen
         name={MainStackScreens.Settings}
         component={SettingScreen}
         options={{ title: translate('screen.settings.title') }}
       />
-      <Stack.Screen name={MainStackScreens.Home} component={HomeScreen} />
     </Stack.Navigator>
   );
 };

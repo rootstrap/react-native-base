@@ -8,7 +8,12 @@
     },
     "settings": {
       "title": "Settings",
-      "updateLanguage": "Update Language"
+      "changeLanguage": "Change Language",
+      "darkMode": "Dark Mode",
+      "themes": "Themes"
+    },
+    "home": {
+      "title": "Home Screen"
     }
   }
 }

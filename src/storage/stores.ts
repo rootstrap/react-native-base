@@ -1,6 +1,6 @@
-import StoreInstances, { GlobalStoreKeys, StorageInstance } from 'storage';
-
 import { User } from 'network/modules/user/models';
+
+import StoreInstances, { GlobalStoreKeys, StorageInstance } from 'storage';
 
 import { useStoredValue, useStoredValueListener } from './hooks';
 
