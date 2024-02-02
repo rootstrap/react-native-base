@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "yoavbls.pretty-ts-errors",
+    "mikestead.dotenv",
+    "streetsidesoftware.code-spell-checker",
+    "wesbos.theme-cobalt2",
+    "ChakrounAnas.turbo-console-log",
+    "Huuums.vscode-fast-folder-structure",
+    "naumovs.color-highlight"
+  ]
+}

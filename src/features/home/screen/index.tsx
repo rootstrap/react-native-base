@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import Button from 'common/Button';
 
+import { translate } from 'localization/hooks';
+
 import { MainStackScreens } from 'navigation/stacks/main';
 
 import useStyles from './styles';
@@ -17,12 +19,12 @@ const HomeScreen: React.FunctionComponent<HomeNavigationProps> = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text accessibilityRole={'text'} style={styles.title}>
-        Home Screen
+      <Text accessibilityRole="text" style={styles.title}>
+        {translate('screen.home.title')}
       </Text>
       <Button
         accessibilityState={{ disabled: false }}
-        title={'⚙️'}
+        title="⚙️"
         onPress={goToSettings}
         style={styles.button}
       />

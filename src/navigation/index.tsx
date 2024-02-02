@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import RNBootSplash from 'react-native-bootsplash';
+import { useAuth } from 'store';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import AuthStack from 'navigation/stacks/auth';
 import MainStack from 'navigation/stacks/main';
-
-import { GlobalStore } from 'storage/stores';
 
 import { RootStacks } from './types';
 
@@ -16,7 +15,7 @@ const NO_HEADER = { headerShown: false };
 
 const NavigationStack: React.FunctionComponent = () => {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [user] = GlobalStore.user.useValueListener();
+  const { user } = useAuth();
 
   useEffect(() => {
     timerRef.current = setTimeout(() => RNBootSplash.hide({ fade: true }), 3000);

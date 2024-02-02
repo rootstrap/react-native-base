@@ -12,6 +12,9 @@
       "darkMode": "Dark Mode",
       "themes": "Themes",
       "systemDefault": "System Default"
+    },
+    "home": {
+      "title": "Home Screen"
     }
   }
 }
