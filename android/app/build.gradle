@@ -4,7 +4,7 @@ apply plugin: "com.facebook.react"
 import com.android.build.OutputFile
 
 project.ext.envConfigFiles = [
-    develop: ".env",
+    develop: ".env.dev",
     staging: ".env.staging",
     prod: ".env.prod",
     qa: ".env.qa",

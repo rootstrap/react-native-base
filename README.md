@@ -14,7 +14,7 @@
 ## Getting started
 
 1. Install dependencies: `yarn`
-2. Create a `.env.dev` file in the root directory of the project, based on the `.env.defaults` sample file and the extra constants that you may need. This will be your development env.
+2. Create a `.env.dev` file in the root directory of the project, based on the `.env.example` sample file and the extra constants that you may need. This will be your development env.
 
 You can also create `.env.prod`, `.env.staging`, and `.env.qa` to define environment variables for production and staging.
 
