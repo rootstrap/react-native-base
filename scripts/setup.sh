@@ -15,8 +15,8 @@ echo 'Installing Pods Modules...'
 npx pod-install
 
 echo ''
-echo 'Creating .env File...'
-cp .env.example .env
+echo 'Creating .env.dev File...'
+cp .env.example .env.dev
 
 echo ''
 echo 'Creating Debug.keystore...'
