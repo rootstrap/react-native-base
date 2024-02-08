@@ -4,8 +4,7 @@ import path from 'path';
 import Environment from '../src/@types/env';
 
 const APP_ENV = process.env.APP_ENV ?? 'dev';
-const isDev = APP_ENV === 'dev';
-const envFile = path.join(__dirname, isDev ? '../.env' : `../.env.${APP_ENV}`);
+const envFile = path.join(__dirname, `../.env.${APP_ENV}`);
 
 (() => {
   const fileExists = fs.existsSync(envFile);

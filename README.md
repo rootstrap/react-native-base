@@ -14,7 +14,7 @@
 ## Getting started
 
 1. Install dependencies: `yarn`
-2. Create a `.env` file in the root directory of the project, based on the `.env.defaults` sample file and the extra constants that you may need. This will be your development env.
+2. Create a `.env.dev` file in the root directory of the project, based on the `.env.example` sample file and the extra constants that you may need. This will be your development env.
 
 You can also create `.env.prod`, `.env.staging`, and `.env.qa` to define environment variables for production and staging.
 
@@ -102,7 +102,7 @@ sonar-scanner \
 
 ## Managing multiple environments
 
-The base is already equipped with three main environments: `dev`, `qa`, `staging`, `production`. All the env files you need to provide are as follows: `.env`, `.env.qa`, `.env.staging`, and `.env.prod`.
+The base is already equipped with three main environments: `dev`, `qa`, `staging`, `production`. All the env files you need to provide are as follows: `.env.dev`, `.env.qa`, `.env.staging`, and `.env.prod`.
 
 If you want to add a new env here are the steps to follow:
 
