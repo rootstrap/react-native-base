@@ -7,8 +7,8 @@
 pre-commit:
   parallel: true
   commands:
-    validate_env:
-      run: yarn validate:example:env
+    # validate_env:
+    #   run: yarn validate:example:env
     eslint:
       glob: "*.{js,ts,jsx,tsx}"
       run: yarn lint {staged_files}

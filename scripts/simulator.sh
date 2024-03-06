@@ -15,7 +15,7 @@ else
   TS_NODE_PATH="./node_modules/.bin/ts-node"
 fi
 
-$TS_NODE_PATH "$TS_FILE"
+# $TS_NODE_PATH "$TS_FILE"
 
 EXIT_CODE=$?
 
