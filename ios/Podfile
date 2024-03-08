@@ -43,7 +43,7 @@ target 'ReactNativeBase' do
     #
     # Note that if you have use_frameworks! enabled, Flipper will not work and
     # you should disable the next line.
-    # :flipper_configuration => flipper_config,
+    :flipper_configuration => flipper_config,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -53,7 +53,26 @@ target 'ReactNativeBase' do
     # Pods for testing
   end
 
+  use_flipper!({'Flipper' => '0.201.0'})
+  # Fixed as: https://github.com/facebook/react-native/issues/43335#issuecomment-1980708164
+  # Compatibility issue between flipper and Xcode 15.3
   post_install do |installer|
+    flipper_post_install(installer)
+    installer.pods_project.targets.each do |target|
+      if target.name == 'Flipper'
+        file_path = 'Pods/Flipper/xplat/Flipper/FlipperTransportTypes.h'
+        if !File.exist?(file_path)
+            return
+        end
+        contents = File.read(file_path)
+        unless contents.include?('#include <functional>')
+          File.open(file_path, 'w') do |file|
+            file.puts('#include <functional>')
+            file.puts(contents)
+          end
+        end
+      end
+    end
     react_native_post_install(
       installer,
       config[:reactNativePath],
