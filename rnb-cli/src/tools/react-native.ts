@@ -98,7 +98,6 @@ export async function renameReactNativeApp(
     `android/app/_BUCK`,
     `android/app/BUCK`,
     `android/app/build.gradle`,
-    // `android/app/src/debug/java/${newPath}/ReactNativeFlipper.java`,
     `android/app/src/main/AndroidManifest.xml`,
     `android/app/src/main/java/${newPath}/MainActivity.kt`,
     `android/app/src/main/java/${newPath}/MainApplication.kt`,
