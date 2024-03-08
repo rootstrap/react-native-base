@@ -13,7 +13,7 @@ import { useThemeConfig } from 'themes/useThemeConfig';
 
 const client = new QueryClient();
 
-const App = () => {
+const App: () => React.JSX.Element = () => {
   const { theme } = useThemeConfig();
   const { dark: isDarkMode } = useTheme();
   const [visible, setVisible] = useState(true);

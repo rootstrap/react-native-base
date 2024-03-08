@@ -19,7 +19,7 @@ jobs:
       # This needs to match Node version in package.json
       - uses: actions/setup-node@v1
         with:
-          node-version: '^16'
+          node-version: '^18'
 
       - name: Install Dependencies
         run: yarn
