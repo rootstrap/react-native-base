@@ -13,5 +13,11 @@
       "themes": "Temas",
       "systemDefault": "Predeterminado del sistema"
     }
+  },
+  "alert": {
+    "update": "Actualice la aplicación para continuar."
+  },
+  "buttons": {
+    "ok": "Ok"
   }
 }

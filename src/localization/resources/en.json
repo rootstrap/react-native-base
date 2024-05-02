@@ -16,5 +16,11 @@
     "home": {
       "title": "Home Screen"
     }
+  },
+  "alert": {
+    "update": "Please update the app to continue"
+  },
+  "buttons": {
+    "ok": "Ok"
   }
 }

@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "Firebase.h"
 #import "RNBootSplash.h"
 
 #import <React/RCTBundleURLProvider.h>
@@ -18,6 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [FIRApp configure];
   self.moduleName = @"ReactNativeBase";
 
   // You can add your custom initial props in the dictionary below.
