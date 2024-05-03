@@ -1,21 +1,30 @@
+import { Linking, Platform } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 import remoteConfig from '@react-native-firebase/remote-config';
 
-export const checkVersion = (): boolean => {
+export const isUpdated = (): boolean => {
   remoteConfig()
     .setDefaults({
-      remote_version: '0.1.1',
+      minimum_version: '',
     })
     .then(() => remoteConfig().fetchAndActivate())
     .then(fetchedRemotely => {
       if (fetchedRemotely) {
-        const remoteVersion = remoteConfig().getValue('remote_version').asString();
+        const remoteVersion = remoteConfig().getValue('').asString();
         const localVersion = DeviceInfo.getVersion();
         return compareVersions(localVersion, remoteVersion);
       }
     });
   return true;
+};
+
+export const openStore = () => {
+  if (Platform.OS === 'android') {
+    Linking.openURL('');
+  } else {
+    Linking.openURL('');
+  }
 };
 
 function compareVersions(local: string, remote: string): boolean {
