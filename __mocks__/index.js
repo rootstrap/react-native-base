@@ -1,3 +1,5 @@
+import { dir } from 'console';
+import { init } from 'i18next';
 import mockRNDeviceInfo from 'react-native-device-info/jest/react-native-device-info-mock';
 
 jest.mock('react-native-device-info', () => mockRNDeviceInfo);
@@ -41,4 +43,10 @@ jest.mock('i18next', () => ({
     const enFile = jest.requireActual('../src/localization/resources/en.json');
     return stringKey.split('.').reduce((result, key) => result[key], enFile);
   },
+  use: () => ({
+    language: 'en',
+    changeLanguage: jest.fn(),
+    init: jest.fn(),
+  }),
+  dir: jest.fn().mockReturnValue('ltr'),
 }));
