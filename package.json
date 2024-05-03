@@ -47,6 +47,7 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.9.1",
     "@tanstack/react-query": "^4.2.1",
+    "axios": "^1.6.8",
     "humps": "^2.0.1",
     "i18next": "^23.4.4",
     "react": "18.2.0",
