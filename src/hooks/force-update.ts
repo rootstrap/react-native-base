@@ -1,9 +1,26 @@
+import { useEffect, useState } from 'react';
 import { Linking, Platform } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 import remoteConfig from '@react-native-firebase/remote-config';
 
-export const isUpdated = async (): Promise<boolean> => {
+export const useValidateAppVersion = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const checkAndUpdate = async () => {
+      const updated = await isUpdated();
+      if (!updated) {
+        setShowModal(true);
+      }
+    };
+    checkAndUpdate();
+  });
+
+  return { showModal, openStore };
+};
+
+const isUpdated = async (): Promise<boolean> => {
   remoteConfig().setDefaults({
     minimum_version: '',
   });
@@ -18,7 +35,7 @@ export const isUpdated = async (): Promise<boolean> => {
   return true;
 };
 
-export const openStore = () => {
+const openStore = () => {
   Platform.select({
     ios: Linking.openURL(''),
     android: Linking.openURL(''),

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button, Modal, Text, View } from 'react-native';
 
-import { isUpdated, openStore } from 'hooks/force-update';
+import { useValidateAppVersion } from 'hooks/force-update';
 
 import { translate } from 'localization/hooks';
 
@@ -10,17 +10,7 @@ import { styles } from './force-update-modal.styles';
 interface ForceUpdateProps {}
 
 const ForceUpdateModal = ({}: ForceUpdateProps) => {
-  const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    const checkAndUpdate = async () => {
-      const updated = await isUpdated();
-      if (!updated) {
-        setShowModal(true);
-      }
-    };
-    checkAndUpdate();
-  }, []);
+  const { showModal, openStore } = useValidateAppVersion();
 
   return (
     <Modal animationType="slide" transparent={true} visible={showModal}>
