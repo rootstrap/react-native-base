@@ -6,7 +6,7 @@ import DeviceInfo from 'react-native-device-info';
 import remoteConfig from '@react-native-firebase/remote-config';
 
 enum RemoteFields {
-  MINIMUM_VERSION = '',
+  MINIMUM_VERSION = 'minimum_version',
 }
 
 export const useValidateAppVersion = () => {
@@ -36,9 +36,9 @@ export const useValidateAppVersion = () => {
     }
   };
 
-  function compareVersions(local: string, remote: string) {
+  const compareVersions = (local: string, remote: string) => {
     if (!local || !remote) {
-      return true;
+      return false;
     }
 
     const localVersion = local.split('.').map(versionNumber => parseInt(versionNumber, 10));
@@ -50,15 +50,13 @@ export const useValidateAppVersion = () => {
 
       if (localVersionComponent < remoteVersionComponent) {
         return true;
-      } else if (localVersionComponent > remoteVersionComponent) {
-        return false;
       }
     }
-  }
+  };
 
   useEffect(() => {
     checkUpdate();
-  });
+  }, []);
 
   return { isUpdateAvailable, openStore };
 };
