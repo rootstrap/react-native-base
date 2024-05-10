@@ -56,6 +56,7 @@ export const useValidateAppVersion = () => {
 
   useEffect(() => {
     checkUpdate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { isUpdateAvailable, openStore };
