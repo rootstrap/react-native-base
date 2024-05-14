@@ -19,23 +19,6 @@ export const useValidateAppVersion = () => {
     });
   };
 
-  const checkUpdate = async () => {
-    try {
-      remoteConfig().setDefaults({
-        minimum_version: '',
-      });
-
-      await remoteConfig().fetchAndActivate();
-
-      const remoteVersion = remoteConfig().getValue(RemoteFields.MINIMUM_VERSION).asString();
-      const localVersion = DeviceInfo.getVersion();
-      const updateAvailable = compareVersions(localVersion, remoteVersion);
-      setIsUpdateAvailable(updateAvailable);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const compareVersions = (local: string, remote: string) => {
     if (!local || !remote) {
       return false;
@@ -55,8 +38,23 @@ export const useValidateAppVersion = () => {
   };
 
   useEffect(() => {
+    const checkUpdate = async () => {
+      try {
+        remoteConfig().setDefaults({
+          minimum_version: '',
+        });
+
+        await remoteConfig().fetchAndActivate();
+
+        const remoteVersion = remoteConfig().getValue(RemoteFields.MINIMUM_VERSION).asString();
+        const localVersion = DeviceInfo.getVersion();
+        const updateAvailable = compareVersions(localVersion, remoteVersion);
+        setIsUpdateAvailable(updateAvailable);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     checkUpdate();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { isUpdateAvailable, openStore };
