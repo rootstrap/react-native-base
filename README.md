@@ -2,8 +2,9 @@
   <img src="https://camo.githubusercontent.com/2a2696626c8fce8df0706969bb11303a11751f22b55e87ffc969925a046169c5/68747470733a2f2f73332d75732d776573742d312e616d617a6f6e6177732e636f6d2f726f6f7473747261702e636f6d2f696d672f72732e706e67" width="100" alt="project-logo">
     <h1 align="center">React Native Base</h1>
 🔥 A React Native starter kit Built with TypeScript, React Navigation, React Query, i18n, and zustand.
-
 <br> 
+<br> 
+
 
 <img src="https://github.com/rootstrap/react-native-base/workflows/tests/badge.svg" style="flat-square&color=0080ff" alt="test-work-flow">	<img src="https://img.shields.io/github/languages/top/rootstrap/react-native-base?style=flat-square&color=0080ff" alt="repo-top-language">	<img src="https://img.shields.io/github/stars/rootstrap/react-native-base?style=flat-square&logo=github&logoColor=white&color=0080ff" alt="last-commit">	<img src="https://img.shields.io/github/issues/rootstrap/react-native-base?style=flat-square&logo=github&logoColor=white&color=0080ff" alt="repo-issues">[![Code Climate](https://api.codeclimate.com/v1/badges/8bb29bcea21bb5dda316/maintainability)](https://codeclimate.com/github/rootstrap/react-native-base/maintainability)
 	
