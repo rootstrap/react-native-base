@@ -33,6 +33,21 @@ None
 npx pod-install
 ```
 
+### Connection to firebase
+
+#### IOS
+
+1. Create a new app in firebase with the Bundle Identifier of the schema that you will run
+2. Download a `GoogleService-Info.plist`
+3. Run `xed -b ios` to open Xcode
+3. Add the `GoogleService-Info.plist` to the project folder
+4. Run `pod install` inside the `./ios` folder
+
+#### Android
+
+1. Create a new app in firebase with the package with the suffix of the flavor you will run
+2. Download the `google-services.json` and move it to the `./android/app` directory
+
 ## Continuous Integration
 
 The repo includes configuration for using GitHub Actions to run unit tests and code analysis: `.github/workflows/test.yml`. This can be adapted as needed for specifics of each project. Both CodeClimate and Sonarqube integrations are included in the workflow and their required environment settings should be retrieved from the repo Secrets.

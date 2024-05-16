@@ -3,6 +3,8 @@ import { SafeAreaView } from 'react-native';
 
 import Button from 'common/Button';
 
+import { ForceUpdateModal } from 'features/force-update-modal';
+
 import { translate } from 'localization/hooks';
 
 import { AuthStackScreens } from 'navigation/stacks/auth';
@@ -20,6 +22,7 @@ const WelcomeScreen = ({ navigation: { navigate } }: WelcomeScreenProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ForceUpdateModal />
       <Button
         testID="dummy-button"
         accessibilityState={{ disabled: false }}

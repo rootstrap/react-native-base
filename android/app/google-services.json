@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "333015382550",
+    "project_id": "force-update-test-aae87",
+    "storage_bucket": "force-update-test-aae87.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333015382550:android:dc159faf9b60b35c4d9337",
+        "android_client_info": {
+          "package_name": "com.reactnativebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR89MZuomztR1dneLOnvSypc46P_U7OE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333015382550:android:5a8990ed31ad7ce54d9337",
+        "android_client_info": {
+          "package_name": "com.reactnativebase.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR89MZuomztR1dneLOnvSypc46P_U7OE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333015382550:android:793fcb397d01eb374d9337",
+        "android_client_info": {
+          "package_name": "com.universe.innovations.development"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR89MZuomztR1dneLOnvSypc46P_U7OE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

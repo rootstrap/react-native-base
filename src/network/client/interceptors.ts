@@ -15,10 +15,7 @@ export default () => {
       const { token } = user;
 
       // TODO: attach extra params to request
-      request.headers = {
-        ...headers,
-        [ACCESS_TOKEN]: token,
-      };
+      headers[ACCESS_TOKEN] = token;
     }
 
     if (headers && headers[CONTENT_TYPE] !== MULTIPART_FORM_DATA) {

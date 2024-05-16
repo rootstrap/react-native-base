@@ -42,10 +42,12 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^19.2.2",
+    "@react-native-firebase/remote-config": "^19.2.2",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.9.1",
     "@tanstack/react-query": "^4.2.1",
-    "axios": "0.28.0",
+    "axios": "^1.6.8",
     "humps": "^2.0.1",
     "i18next": "^23.4.4",
     "react": "18.2.0",
@@ -53,6 +55,7 @@
     "react-native": "0.73.5",
     "react-native-bootsplash": "^5.0.0",
     "react-native-config": "^1.5.1",
+    "react-native-device-info": "^10.13.2",
     "react-native-flipper": "^0.212.0",
     "react-native-mmkv": "2.11.0",
     "react-native-restart": "^0.0.27",
