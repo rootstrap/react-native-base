@@ -13,7 +13,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4205FAE62A96C68B00DCD537 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4205FAE42A96C68B00DCD537 /* Colors.xcassets */; };
 		4205FAE72A96C68B00DCD537 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4205FAE52A96C68B00DCD537 /* BootSplash.storyboard */; };
-		4BCFA75E2BE0243C00D95A36 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BCFA75D2BE0243C00D95A36 /* GoogleService-Info.plist */; };
+		4BABA79A2BF7FDBF00C30CC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BABA7992BF7FDBF00C30CC6 /* GoogleService-Info.plist */; };
 		7BD1A54057EA747B02F2880A /* libPods-ReactNativeBase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1478BB1924F79D4BF5041AD /* libPods-ReactNativeBase.a */; };
 		E5DB18E2600904217A10F528 /* libPods-ReactNativeBase-ReactNativeBaseTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 752FC68F2E7B2A56E9903872 /* libPods-ReactNativeBase-ReactNativeBaseTests.a */; };
 /* End PBXBuildFile section */
@@ -44,7 +44,7 @@
 		4088188EB0721E64B5210F85 /* Pods-ReactNativeBase.release-develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase.release-develop.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase.release-develop.xcconfig"; sourceTree = "<group>"; };
 		4205FAE42A96C68B00DCD537 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = ReactNativeBase/Colors.xcassets; sourceTree = "<group>"; };
 		4205FAE52A96C68B00DCD537 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = ReactNativeBase/BootSplash.storyboard; sourceTree = "<group>"; };
-		4BCFA75D2BE0243C00D95A36 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4BABA7992BF7FDBF00C30CC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		58F5C8775B6DCB2FF489DAA4 /* Pods-ReactNativeBase-ReactNativeBaseTests.debug-staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-ReactNativeBaseTests.debug-staging.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests.debug-staging.xcconfig"; sourceTree = "<group>"; };
 		5CDA9629E36EA1F3653DB76B /* Pods-ReactNativeBase.debug-develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase.debug-develop.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase/Pods-ReactNativeBase.debug-develop.xcconfig"; sourceTree = "<group>"; };
 		6E7163E37D59D8272B457BE3 /* Pods-ReactNativeBase-ReactNativeBaseTests.release-develop.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBase-ReactNativeBaseTests.release-develop.xcconfig"; path = "Target Support Files/Pods-ReactNativeBase-ReactNativeBaseTests/Pods-ReactNativeBase-ReactNativeBaseTests.release-develop.xcconfig"; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		13B07FAE1A68108700A75B9A /* ReactNativeBase */ = {
 			isa = PBXGroup;
 			children = (
-				4BCFA75D2BE0243C00D95A36 /* GoogleService-Info.plist */,
+				4BABA7992BF7FDBF00C30CC6 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -277,7 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4205FAE72A96C68B00DCD537 /* BootSplash.storyboard in Resources */,
-				4BCFA75E2BE0243C00D95A36 /* GoogleService-Info.plist in Resources */,
+				4BABA79A2BF7FDBF00C30CC6 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				4205FAE62A96C68B00DCD537 /* Colors.xcassets in Resources */,
 			);
@@ -1118,7 +1118,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Develop";
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;

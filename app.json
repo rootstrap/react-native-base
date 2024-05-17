@@ -1,4 +1,11 @@
 {
   "name": "ReactNativeBase",
-  "displayName": "ReactNativeBase"
+  "displayName": "ReactNativeBase",
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "8023b7ca-9763-4332-a475-c36248b2f8d9"
+      }
+    }
+  }
 }
