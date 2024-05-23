@@ -16,24 +16,6 @@
       "ios": {
         "simulator": true
       }
-    },
-    "qa": {
-      "distribution": "internal",
-      "ios": {
-        "simulator": true
-      }
-    },
-    "staging": {
-      "distribution": "internal",
-      "ios": {
-        "simulator": true
-      }
-    },
-    "production": {
-      "distribution": "internal",
-      "ios": {
-        "simulator": true
-      }
     }
   },
   "submit": {
