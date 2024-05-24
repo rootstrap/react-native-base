@@ -55,6 +55,10 @@ npx pod-install
 1. Run the command `eas build --profile development --platform android` to run a build in android
 2. Select the flavour after the compilation and type `y` in `Install and run the Android build on an emulator?`
 
+### IOS build
+
+🚧 UNDER CONSTRUCTION 🚧
+
 ## Continuous Integration
 
 The repo includes configuration for using GitHub Actions to run unit tests and code analysis: `.github/workflows/test.yml`. This can be adapted as needed for specifics of each project. Both CodeClimate and Sonarqube integrations are included in the workflow and their required environment settings should be retrieved from the repo Secrets.
