@@ -5292,21 +5292,21 @@ expo-constants@~16.0.0:
   dependencies:
     "@expo/config" "~9.0.0-beta.0"
 
-expo-dev-client@^4.0.14:
-  version "4.0.14"
-  resolved "https://registry.yarnpkg.com/expo-dev-client/-/expo-dev-client-4.0.14.tgz#73d2f8b6f173d01f07af3e01cf8d5acdc6e05c01"
-  integrity sha512-s5/FZZdgvoxBGA35QgNet61Dc1jh+8u375uaYkH9pUvfKFXURd9PDDAWvtAnOo+QYg9WwgiHPo7dKeCdN6pOPA==
+expo-dev-client@^4.0.15:
+  version "4.0.15"
+  resolved "https://registry.yarnpkg.com/expo-dev-client/-/expo-dev-client-4.0.15.tgz#abb8be48f750490caafa4c5c0d22605c630fedf2"
+  integrity sha512-Ffwz66DW3xdldlSUwPPXJCWoL4teA8uV374sEJpKwyBhJrFuL+KpMWMe4/Dz/F1oHzjflD8GHBu9xqoqNdiJzw==
   dependencies:
-    expo-dev-launcher "4.0.15"
+    expo-dev-launcher "4.0.16"
     expo-dev-menu "5.0.14"
     expo-dev-menu-interface "1.8.3"
     expo-manifests "~0.14.0"
     expo-updates-interface "~0.16.2"
 
-expo-dev-launcher@4.0.15:
-  version "4.0.15"
-  resolved "https://registry.yarnpkg.com/expo-dev-launcher/-/expo-dev-launcher-4.0.15.tgz#cd36f10b7e534e5caa176a5718381ccfa73b0b8c"
-  integrity sha512-avl4NTwFwalZjojFAXvINPgxAlcAxfdwy9PSsAq5KAkl9Vv+Vr8O2gI3nfrPwtqAA0iOIES/EKN0YFCiQuuvvg==
+expo-dev-launcher@4.0.16:
+  version "4.0.16"
+  resolved "https://registry.yarnpkg.com/expo-dev-launcher/-/expo-dev-launcher-4.0.16.tgz#2220f59bf3bb3741636ac20a80ab8c754e2d29cb"
+  integrity sha512-mNt71awnJDL+GkvpBp9CzRR3q2Wm0GPo68noRvd389qDFBMA8QA8uyY8JVqekpr7RUwn1eg3cmfox5oSwL5rmA==
   dependencies:
     ajv "8.11.0"
     expo-dev-menu "5.0.14"

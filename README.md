@@ -55,6 +55,10 @@ npx pod-install
 1. Run the command `eas build --profile development --platform android` to run a build in android
 2. Select the flavour after the compilation and type `y` in `Install and run the Android build on an emulator?`
 
+Optional: For local build add the flag `--local`
+
+For more detail see the [documentation](https://docs.expo.dev/build-reference/local-builds/)
+
 ### IOS build
 
 🚧 UNDER CONSTRUCTION 🚧
