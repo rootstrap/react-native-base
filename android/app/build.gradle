@@ -146,21 +146,21 @@ android {
             versionName "1.0.0"
         }
         develop {
-            applicationIdSuffix '.dev'
+            applicationId "com.reactnativebase.dev"
             versionNameSuffix "- Develop"
             resValue "string", "app_name", "RNBase - Develop"
             versionCode 1
             versionName "1.0.0"
         }
         qa {
-            applicationIdSuffix '.qa'
+            applicationId "com.reactnativebase.qa"
             versionNameSuffix "- QA"
             resValue "string", "app_name", "RNBase - QA"
             versionCode 1
             versionName "1.0.0"
         }
         staging {
-            applicationIdSuffix '.staging'
+            applicationId 'com.reactnativebase.staging'
             versionNameSuffix "- Staging"
             resValue "string", "app_name", "RNBase - Staging"
             versionCode 1

@@ -1,0 +1,24 @@
+{
+  "cli": {
+    "version": ">= 9.0.7"
+  },  
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "withoutCredentials": true,
+      "distribution": "internal",
+      "env": {
+        "API_URL": " ",
+        "BASE_URL": " ",
+        "APP_STORE_URL": " ",
+        "PLAY_STORE_URL": " "
+      },
+      "ios": {
+        "simulator": true
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

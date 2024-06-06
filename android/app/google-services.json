@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:333015382550:android:dc159faf9b60b35c4d9337",
+        "mobilesdk_app_id": "1:333015382550:android:715ce630e31cc0844d9337",
         "android_client_info": {
           "package_name": "com.reactnativebase"
         }
@@ -45,9 +45,28 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:333015382550:android:793fcb397d01eb374d9337",
+        "mobilesdk_app_id": "1:333015382550:android:6c9ea0d5e94cd1be4d9337",
         "android_client_info": {
-          "package_name": "com.universe.innovations.development"
+          "package_name": "com.reactnativebase.qa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR89MZuomztR1dneLOnvSypc46P_U7OE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333015382550:android:0603e066cbadd2ad4d9337",
+        "android_client_info": {
+          "package_name": "com.reactnativebase.staging"
         }
       },
       "oauth_client": [],

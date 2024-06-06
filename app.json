@@ -1,4 +1,10 @@
 {
   "name": "ReactNativeBase",
-  "displayName": "ReactNativeBase"
+  "displayName": "ReactNativeBase",
+  "expo": {
+    "extra": {
+      "eas": {
+      }
+    }
+  }
 }
