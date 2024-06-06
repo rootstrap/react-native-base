@@ -57,7 +57,7 @@ npx pod-install
 
 Optional: For local build add the flag `--local`
 
-For more detail see the [documentation](https://docs.expo.dev/build-reference/local-builds/)
+For more detail see the [documentation](https://docs.expo.dev/eas-update/getting-started/)
 
 ### IOS build
 
